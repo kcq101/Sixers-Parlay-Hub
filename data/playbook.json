@@ -1,0 +1,19 @@
+{
+  "houseRules": [
+    "FanDuel Same Game Parlay, low wager, friend group.",
+    "9–10 legs, each roughly -300 to -500, aiming for about +1000 total (profit boosts help).",
+    "Best chance to hit near +1000, tilted toward legs where the stats beat the price.",
+    "Maxey-heavy. Milestone legs (\"X+\"): threes, steals, points + rebounds + assists ladders.",
+    "No Embiid threes. No totals.",
+    "Usually two slips: 9 props, and a 10-leg version with the moneyline or a spread."
+  ],
+  "learned": [
+    {"rule": "Avoid Embiid threes and blocks.", "why": "0 for 4 on your slips."},
+    {"rule": "Avoid bench-player threes.", "why": "Simons 1 for 2; his minutes swing too much."},
+    {"rule": "Avoid big spreads.", "why": "-12.5 missed by a point and a half. Use the moneyline or a small spread."},
+    {"rule": "Maxey steals are a coin flip.", "why": "1 for 3 on slips; 0 steals in 2 of 10 games this season."},
+    {"rule": "Lean on VJ threes and steals, and VJ/LeBron steals.", "why": "These legs keep hitting even when the team loses."},
+    {"rule": "Cap PRA legs at about 3, and keep them at lower rungs.", "why": "In the Nov 6 blowout, four PRA legs missed together."},
+    {"rule": "Check the final injury report about 30 minutes before tip.", "why": "Embiid, LeBron and Brown have all missed games."}
+  ]
+}

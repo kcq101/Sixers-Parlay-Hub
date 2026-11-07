@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sixers Parlay Hub</title>
+  <meta name="description" content="Our Sixers same-game parlay picks, history and playbook.">
+  <meta name="theme-color" content="#0E2240">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="masthead">
+    <h1 class="wordmark">Sixers Parlay Hub</h1>
+    <p class="updated" id="updated"></p>
+  </header>
+
+  <main>
+    <section id="tab-tonight" class="tab" aria-labelledby="t-tonight"></section>
+    <section id="tab-history" class="tab" aria-labelledby="t-history" hidden></section>
+    <section id="tab-playbook" class="tab" aria-labelledby="t-playbook" hidden></section>
+  </main>
+
+  <nav class="tabbar" role="tablist" aria-label="Sections">
+    <button role="tab" id="t-tonight" aria-controls="tab-tonight" aria-selected="true">Tonight</button>
+    <button role="tab" id="t-history" aria-controls="tab-history" aria-selected="false">History</button>
+    <button role="tab" id="t-playbook" aria-controls="tab-playbook" aria-selected="false">Playbook</button>
+  </nav>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

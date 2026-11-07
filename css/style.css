@@ -1,0 +1,155 @@
+:root {
+  --court: #0E2240;      /* page */
+  --court-2: #16305A;    /* raised rows */
+  --royal: #006BB6;      /* Sixers blue */
+  --red: #ED174C;        /* Sixers red: misses */
+  --chalk: #F4F7FB;      /* text */
+  --haze: #9DB0CC;       /* secondary text */
+  --line: rgba(157, 176, 204, 0.22);
+  --display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --body: "Barlow", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--court);
+  color: var(--chalk);
+  font: 400 16px/1.45 var(--body);
+  padding-bottom: calc(72px + env(safe-area-inset-bottom));
+}
+main { max-width: 640px; margin: 0 auto; padding: 0 18px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1.05; margin: 0; }
+p { margin: 0; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--chalk); outline-offset: 2px; border-radius: 4px; }
+
+/* Masthead: the court stripe */
+.masthead {
+  max-width: 640px; margin: 0 auto; padding: 22px 18px 14px;
+  border-bottom: 4px solid var(--royal);
+  box-shadow: 0 4px 0 var(--red);
+  margin-bottom: 26px;
+}
+.wordmark { font-size: 30px; letter-spacing: 0.01em; }
+.updated { color: var(--haze); font-size: 13px; margin-top: 2px; }
+
+/* Bottom tab bar */
+.tabbar {
+  position: fixed; inset: auto 0 0 0;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  background: #0A1A33; border-top: 1px solid var(--line);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.tabbar button {
+  background: none; border: 0; padding: 14px 0 16px;
+  font-family: var(--display); font-weight: 600; font-size: 19px;
+  color: var(--haze); cursor: pointer;
+}
+.tabbar button[aria-selected="true"] { color: var(--chalk); box-shadow: inset 0 3px 0 var(--red); }
+
+/* Tonight: matchup + the big number */
+.matchup { font-size: 46px; font-weight: 800; letter-spacing: -0.01em; }
+.matchup .vs { color: var(--haze); font-weight: 600; }
+.when { color: var(--haze); margin-top: 6px; }
+.status {
+  margin: 16px 0 22px; padding: 10px 12px;
+  border-left: 4px solid var(--red); background: rgba(237, 23, 76, 0.1);
+  font-size: 14px;
+}
+.status.final { border-color: var(--royal); background: rgba(0, 107, 182, 0.14); }
+
+.switch { display: flex; gap: 6px; margin-bottom: 18px; }
+.switch button {
+  flex: 1; padding: 10px; border-radius: 999px; cursor: pointer;
+  background: transparent; border: 1.5px solid var(--royal);
+  font-family: var(--display); font-size: 18px; font-weight: 600;
+}
+.switch button[aria-pressed="true"] { background: var(--royal); }
+
+.price-block { display: flex; align-items: baseline; gap: 14px; margin-bottom: 6px; }
+.price {
+  font-family: var(--display); font-weight: 800; font-size: 84px; line-height: 0.9;
+  font-variant-numeric: tabular-nums;
+}
+.price-meta { color: var(--haze); font-size: 14px; line-height: 1.35; }
+.price-note { color: var(--haze); font-size: 13px; margin-bottom: 22px; }
+
+/* Leg rows */
+.legs { list-style: none; margin: 0 0 30px; padding: 0; border-top: 1px solid var(--line); }
+.leg { padding: 14px 0; border-bottom: 1px solid var(--line); }
+.leg-top { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+.leg-name { font-family: var(--display); font-size: 23px; font-weight: 700; }
+.leg-what { font-family: var(--display); font-size: 19px; font-weight: 500; color: var(--haze); }
+.leg-price { font-family: var(--display); font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.leg-price small { display: block; text-align: right; font: 400 11px var(--body); color: var(--haze); }
+.leg-note { font-size: 14px; color: var(--haze); margin-top: 6px; }
+
+.tag { display: inline-block; font-size: 12px; font-weight: 600; padding: 1px 8px; border-radius: 4px; margin-left: 6px; vertical-align: 2px; }
+.tag-Core { background: var(--chalk); color: var(--court); }
+.tag-Solid { border: 1px solid var(--haze); color: var(--chalk); }
+.tag-Risky { background: var(--red); color: var(--chalk); }
+
+/* The game strip: one mark per game, oldest to newest */
+.strip { display: flex; align-items: center; gap: 4px; margin-top: 9px; flex-wrap: wrap; }
+.mark { width: 14px; height: 14px; border-radius: 50%; display: inline-block; }
+.mark.hit { background: var(--chalk); }
+.mark.miss { border: 2px solid var(--red); }
+.strip-count { font-size: 13px; color: var(--haze); margin-left: 8px; }
+.vs-opp { font-size: 13px; color: var(--haze); margin-top: 3px; }
+
+h2.section { font-size: 28px; margin: 34px 0 12px; }
+.plain { list-style: none; padding: 0; margin: 0; }
+.plain li { padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+.plain li strong { font-weight: 600; }
+.plain li span { color: var(--haze); }
+
+/* History */
+.summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 26px; }
+.summary div { background: var(--court-2); padding: 12px; border-radius: 8px; }
+.summary b { display: block; font: 800 30px/1 var(--display); white-space: nowrap; }
+.summary span { color: var(--haze); font-size: 13px; }
+
+.slip { border-bottom: 1px solid var(--line); }
+.slip summary {
+  list-style: none; cursor: pointer; padding: 14px 0;
+  display: grid; grid-template-columns: 1fr auto; gap: 2px 12px;
+}
+.slip summary::-webkit-details-marker { display: none; }
+.slip-title { font-family: var(--display); font-size: 22px; font-weight: 700; }
+.slip-result { font-family: var(--display); font-size: 22px; font-weight: 700; text-align: right; }
+.slip-result.near { color: var(--red); }
+.slip-sub { color: var(--haze); font-size: 13px; }
+.slip .strip { grid-column: 1 / -1; margin-top: 4px; }
+.slip-legs { list-style: none; margin: 0 0 14px; padding: 0 0 0 4px; }
+.slip-legs li { display: flex; gap: 10px; align-items: center; padding: 5px 0; font-size: 15px; }
+.slip-legs .actual { margin-left: auto; color: var(--haze); font-variant-numeric: tabular-nums; }
+.slip-note { color: var(--haze); font-size: 13px; margin: -6px 0 14px 4px; }
+
+.filters { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.filters button {
+  padding: 6px 12px; border-radius: 999px; cursor: pointer;
+  background: transparent; border: 1px solid var(--line); font-size: 14px;
+}
+.filters button[aria-pressed="true"] { background: var(--chalk); color: var(--court); border-color: var(--chalk); }
+
+table.rates { width: 100%; border-collapse: collapse; font-size: 15px; }
+.rates th { text-align: left; font-weight: 500; color: var(--haze); font-size: 13px; padding: 6px 4px; cursor: pointer; border-bottom: 1px solid var(--line); }
+.rates td { padding: 9px 4px; border-bottom: 1px solid var(--line); }
+.rates td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.bar { height: 6px; border-radius: 3px; background: rgba(237, 23, 76, 0.55); margin-top: 4px; overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--chalk); }
+
+/* Playbook */
+.rule { padding: 12px 0; border-bottom: 1px solid var(--line); }
+.rule p:first-child { font-weight: 600; }
+.rule p + p { color: var(--haze); font-size: 14px; margin-top: 2px; }
+
+.error { color: var(--chalk); background: var(--court-2); padding: 14px; border-radius: 8px; }
+
+@media (min-width: 700px) {
+  .matchup { font-size: 58px; }
+  .price { font-size: 104px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
