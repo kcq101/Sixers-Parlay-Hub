@@ -153,3 +153,17 @@ table.rates { width: 100%; border-collapse: collapse; font-size: 15px; }
   .price { font-size: 104px; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+/* Automatic updates */
+.schedule { background: var(--court-2); border-radius: 10px; padding: 14px 16px 12px; margin: -6px 0 24px; }
+.schedule h3 { font-size: 21px; margin-bottom: 8px; }
+.schedule ul { list-style: none; margin: 0 0 8px; padding: 0; }
+.schedule li { display: grid; grid-template-columns: 112px 1fr; gap: 0 12px; padding: 8px 0; border-top: 1px solid var(--line); }
+.schedule .when { font-family: var(--display); font-weight: 600; font-size: 17px; grid-row: span 2; }
+.schedule .what { font-weight: 600; display: flex; justify-content: space-between; gap: 8px; }
+.schedule .state { font-weight: 500; font-size: 12px; padding: 1px 8px; border-radius: 4px; border: 1px solid var(--haze); align-self: center; white-space: nowrap; }
+.schedule li.done .state { background: var(--chalk); color: var(--court); border-color: var(--chalk); }
+.schedule li.failed .state { background: var(--red); border-color: var(--red); }
+.schedule .detail { color: var(--haze); font-size: 13px; }
+.final { font-size: 14px; margin-top: 6px; display: flex; align-items: center; gap: 8px; font-weight: 600; }
+.final.miss { color: #FF8FA8; }

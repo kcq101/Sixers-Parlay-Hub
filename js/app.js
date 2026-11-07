@@ -64,7 +64,9 @@ function renderTonight(data, el) {
     el.innerHTML = `
       <h2 class="matchup">76ers <span class="vs">${g.home ? "vs" : "at"}</span> ${esc(TEAM[g.opp] || g.opp)}</h2>
       <p class="when">${esc(new Date(g.date + "T12:00:00").toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" }))}, ${esc(g.tip)}, ${esc(g.venue)}. Records: Sixers ${esc(g.records.PHI)}, ${esc(TEAM[g.opp])} ${esc(g.records[g.opp])}.</p>
-      <p class="status ${t.status === "final" ? "final" : ""}">${t.status === "final" ? "Final picks." : "Draft."} ${esc(t.statusNote)}</p>
+      <p class="status ${t.status !== "draft" ? "final" : ""}">${{ draft: "Draft.", final: "Final picks.", graded: "Graded." }[t.status] || ""} ${esc(t.statusNote)}</p>
+
+      ${scheduleBlock(data.schedule)}
 
       <div class="switch" role="group" aria-label="Slip version">
         ${slips.map((x, i) => `<button aria-pressed="${i === active}" data-i="${i}">${esc(x.name)} (${x.legs.length})</button>`).join("")}
@@ -108,10 +110,25 @@ function legRow(l, data, opp) {
       <div><span class="leg-name">${esc(shortName(l.player))}</span> <span class="leg-what">${esc(legLabel(l))}</span>${l.tag ? `<span class="tag tag-${esc(l.tag)}">${esc(l.tag)}</span>` : ""}</div>
       <div class="leg-price">${fmtOdds(l.price)}<small>${esc(l.priceNote || "")}</small></div>
     </div>
+    ${l.actual != null ? `<p class="final ${l.hit ? "hit" : "miss"}"><span class="mark ${l.hit ? "hit" : "miss"}"></span>Final: ${esc(l.stat === "ml" || l.stat === "spread" ? (l.actual > 0 ? `won by ${l.actual}` : `lost by ${-l.actual}`) : l.actual)}. ${l.hit ? "Hit" : "Missed"}.</p>` : ""}
     ${strip(games)}
     ${vsOpp(games, opp, l)}
     ${l.note ? `<p class="leg-note">${esc(l.note)}</p>` : ""}
   </li>`;
+}
+
+function scheduleBlock(sch) {
+  if (!sch || !sch.updates?.length) return "";
+  const fmt = iso => new Date(iso).toLocaleString("en-US", { weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+  return `<div class="schedule">
+    <h3>Automatic updates</h3>
+    <ul>${sch.updates.map(u => `<li class="${esc(u.status)}">
+      <span class="when">${esc(fmt(u.when))}</span>
+      <span class="what">${esc(u.what)}<span class="state">${u.status === "done" ? `Done ${esc(fmt(u.doneAt))}` : u.status === "failed" ? "Didn't run" : "Scheduled"}</span></span>
+      <span class="detail">${esc(u.result || u.detail)}</span>
+    </li>`).join("")}</ul>
+    <p class="detail">${esc(sch.note)}</p>
+  </div>`;
 }
 
 function benchRow(b, data, opp) {
@@ -224,9 +241,9 @@ function history_replace(id) { try { window.history.replaceState(null, "", "#" +
 async function boot() {
   try {
     const bust = `?v=${Date.now()}`;
-    const [tonight, slips, players, playbook] = await Promise.all(
-      ["tonight", "slips", "players", "playbook"].map(n => fetch(`data/${n}.json${bust}`).then(r => { if (!r.ok) throw new Error(n); return r.json(); })));
-    const data = { tonight, slips, players, playbook };
+    const [tonight, slips, players, playbook, schedule] = await Promise.all(
+      ["tonight", "slips", "players", "playbook", "schedule"].map(n => fetch(`data/${n}.json${bust}`).then(r => { if (!r.ok) throw new Error(n); return r.json(); })));
+    const data = { tonight, slips, players, playbook, schedule };
     $("#updated").textContent = `Updated ${new Date(tonight.updated).toLocaleString("en-US", { weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}`;
     renderTonight(data, $("#tab-tonight"));
     renderHistory(data, $("#tab-history"));
