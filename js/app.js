@@ -182,7 +182,7 @@ function slipBlock(s) {
   const marks = s.legs.map(l => `<span class="mark ${l.hit ? "hit" : "miss"}"></span>`).join("");
   return `<details class="slip">
     <summary>
-      <span class="slip-title">${s.home ? "vs" : "at"} ${esc(TEAM[s.opp] || s.opp)}, ${esc(fmtDate(s.date))}</span>
+      <span class="slip-title">${s.home ? "vs" : "at"} ${esc(TEAM[s.opp] || s.opp)}, ${esc(fmtDate(s.date))}${s.label ? ` <span class="slip-sub">${esc(s.label)}</span>` : ""}</span>
       <span class="slip-result ${missed === 1 ? "near" : ""}">${result}</span>
       <span class="slip-sub">${esc(price)}. Game: ${esc(s.final)}.</span>
       <div class="strip">${marks}</div>

@@ -1,77 +1,658 @@
 {
-  "_note": "2026-27 regular-season game logs. stl/blk/3pm included. Jaylen Brown is partial: the stats feed omits him, so only games with confirmed lines are listed.",
-  "updated": "2026-11-07",
-  "games": [
-    {"date": "2026-10-20", "opp": "NYK", "home": false, "result": "W 106-100"},
-    {"date": "2026-10-22", "opp": "CLE", "home": true,  "result": "W 114-106"},
-    {"date": "2026-10-24", "opp": "MIL", "home": true,  "result": "W 127-116"},
-    {"date": "2026-10-25", "opp": "DET", "home": true,  "result": "L 93-106"},
-    {"date": "2026-10-28", "opp": "IND", "home": false, "result": "W 114-109"},
-    {"date": "2026-10-30", "opp": "NYK", "home": true,  "result": "W 98-93"},
-    {"date": "2026-10-31", "opp": "CHA", "home": false, "result": "W 109-104"},
-    {"date": "2026-11-02", "opp": "CHI", "home": true,  "result": "W 126-107"},
-    {"date": "2026-11-04", "opp": "DET", "home": false, "result": "W 112-106"},
-    {"date": "2026-11-06", "opp": "CLE", "home": false, "result": "L 95-119"}
-  ],
-  "players": {
-    "Tyrese Maxey": [
-      {"date": "2026-10-20", "pts": 28, "reb": 4, "ast": 5,  "stl": 3, "blk": 3, "tpm": 2},
-      {"date": "2026-10-22", "pts": 32, "reb": 3, "ast": 6,  "stl": 2, "blk": 0, "tpm": 2},
-      {"date": "2026-10-24", "pts": 26, "reb": 4, "ast": 4,  "stl": 0, "blk": 0, "tpm": 4},
-      {"date": "2026-10-25", "pts": 29, "reb": 5, "ast": 4,  "stl": 3, "blk": 1, "tpm": 1},
-      {"date": "2026-10-28", "pts": 27, "reb": 5, "ast": 4,  "stl": 1, "blk": 0, "tpm": 3},
-      {"date": "2026-10-30", "pts": 27, "reb": 4, "ast": 4,  "stl": 1, "blk": 1, "tpm": 3},
-      {"date": "2026-10-31", "pts": 38, "reb": 4, "ast": 4,  "stl": 2, "blk": 0, "tpm": 4},
-      {"date": "2026-11-02", "pts": 26, "reb": 4, "ast": 11, "stl": 2, "blk": 2, "tpm": 1},
-      {"date": "2026-11-04", "pts": 19, "reb": 1, "ast": 7,  "stl": 0, "blk": 0, "tpm": 3},
-      {"date": "2026-11-06", "pts": 17, "reb": 3, "ast": 4,  "stl": 1, "blk": 0, "tpm": 2}
-    ],
-    "VJ Edgecombe": [
-      {"date": "2026-10-20", "pts": 9,  "reb": 4,  "ast": 1, "stl": 1, "blk": 0, "tpm": 0},
-      {"date": "2026-10-22", "pts": 11, "reb": 7,  "ast": 6, "stl": 3, "blk": 0, "tpm": 1},
-      {"date": "2026-10-24", "pts": 17, "reb": 13, "ast": 2, "stl": 1, "blk": 2, "tpm": 5},
-      {"date": "2026-10-28", "pts": 8,  "reb": 7,  "ast": 2, "stl": 1, "blk": 0, "tpm": 1},
-      {"date": "2026-10-30", "pts": 13, "reb": 8,  "ast": 2, "stl": 0, "blk": 0, "tpm": 1},
-      {"date": "2026-10-31", "pts": 10, "reb": 8,  "ast": 3, "stl": 1, "blk": 1, "tpm": 2},
-      {"date": "2026-11-02", "pts": 21, "reb": 3,  "ast": 5, "stl": 1, "blk": 1, "tpm": 2},
-      {"date": "2026-11-04", "pts": 11, "reb": 6,  "ast": 3, "stl": 1, "blk": 0, "tpm": 1},
-      {"date": "2026-11-06", "pts": 19, "reb": 3,  "ast": 2, "stl": 4, "blk": 0, "tpm": 3}
-    ],
-    "LeBron James": [
-      {"date": "2026-10-20", "pts": 14, "reb": 9,  "ast": 7,  "stl": 1, "blk": 1, "tpm": 0},
-      {"date": "2026-10-22", "pts": 17, "reb": 10, "ast": 5,  "stl": 3, "blk": 1, "tpm": 1},
-      {"date": "2026-10-25", "pts": 18, "reb": 2,  "ast": 5,  "stl": 2, "blk": 0, "tpm": 0},
-      {"date": "2026-10-28", "pts": 13, "reb": 5,  "ast": 10, "stl": 1, "blk": 2, "tpm": 2},
-      {"date": "2026-10-30", "pts": 20, "reb": 9,  "ast": 8,  "stl": 1, "blk": 1, "tpm": 2},
-      {"date": "2026-11-02", "pts": 15, "reb": 7,  "ast": 9,  "stl": 1, "blk": 0, "tpm": 0},
-      {"date": "2026-11-04", "pts": 13, "reb": 10, "ast": 8,  "stl": 1, "blk": 1, "tpm": 1},
-      {"date": "2026-11-06", "pts": 8,  "reb": 7,  "ast": 3,  "stl": 2, "blk": 1, "tpm": 0}
-    ],
-    "Joel Embiid": [
-      {"date": "2026-10-20", "pts": 13, "reb": 11, "ast": 6,  "stl": 2, "blk": 3, "tpm": 2},
-      {"date": "2026-10-22", "pts": 24, "reb": 7,  "ast": 1,  "stl": 0, "blk": 0, "tpm": 1},
-      {"date": "2026-10-24", "pts": 28, "reb": 11, "ast": 10, "stl": 1, "blk": 0, "tpm": 0},
-      {"date": "2026-10-28", "pts": 21, "reb": 11, "ast": 2,  "stl": 0, "blk": 1, "tpm": 0},
-      {"date": "2026-10-30", "pts": 10, "reb": 7,  "ast": 7,  "stl": 1, "blk": 1, "tpm": 0},
-      {"date": "2026-11-02", "pts": 15, "reb": 8,  "ast": 3,  "stl": 0, "blk": 0, "tpm": 0},
-      {"date": "2026-11-04", "pts": 26, "reb": 15, "ast": 2,  "stl": 1, "blk": 0, "tpm": 0},
-      {"date": "2026-11-06", "pts": 6,  "reb": 7,  "ast": 1,  "stl": 0, "blk": 2, "tpm": 0}
-    ],
-    "Jaylen Brown": [
-      {"date": "2026-10-20", "pts": 19, "reb": 8,  "ast": 6, "stl": 1, "blk": 1, "tpm": 2},
-      {"date": "2026-10-28", "pts": 20, "reb": 10, "ast": 2, "stl": 1, "blk": 1, "tpm": 1}
-    ],
-    "Anfernee Simons": [
-      {"date": "2026-10-20", "pts": 13, "reb": 2, "ast": 0, "stl": 0, "blk": 0, "tpm": 3},
-      {"date": "2026-10-22", "pts": 2,  "reb": 3, "ast": 0, "stl": 0, "blk": 0, "tpm": 0},
-      {"date": "2026-10-24", "pts": 4,  "reb": 1, "ast": 2, "stl": 1, "blk": 0, "tpm": 1},
-      {"date": "2026-10-25", "pts": 5,  "reb": 3, "ast": 3, "stl": 1, "blk": 2, "tpm": 1},
-      {"date": "2026-10-28", "pts": 20, "reb": 3, "ast": 1, "stl": 1, "blk": 0, "tpm": 6},
-      {"date": "2026-10-30", "pts": 21, "reb": 2, "ast": 1, "stl": 0, "blk": 0, "tpm": 5},
-      {"date": "2026-10-31", "pts": 19, "reb": 0, "ast": 2, "stl": 3, "blk": 0, "tpm": 5},
-      {"date": "2026-11-02", "pts": 6,  "reb": 2, "ast": 1, "stl": 0, "blk": 0, "tpm": 1},
-      {"date": "2026-11-04", "pts": 0,  "reb": 1, "ast": 0, "stl": 0, "blk": 0, "tpm": 0},
-      {"date": "2026-11-06", "pts": 6,  "reb": 2, "ast": 2, "stl": 0, "blk": 0, "tpm": 1}
-    ]
+ "_note": "2026-27 regular-season game logs (stl/blk/3pm included). A player missing from a date did not play or isn't in the feed.",
+ "updated": "2026-11-07",
+ "games": [
+  {
+   "date": "2026-10-20",
+   "opp": "NYK",
+   "home": false,
+   "result": "W 106-100"
+  },
+  {
+   "date": "2026-10-22",
+   "opp": "CLE",
+   "home": true,
+   "result": "W 114-106"
+  },
+  {
+   "date": "2026-10-24",
+   "opp": "MIL",
+   "home": true,
+   "result": "W 127-116"
+  },
+  {
+   "date": "2026-10-25",
+   "opp": "DET",
+   "home": true,
+   "result": "L 93-106"
+  },
+  {
+   "date": "2026-10-28",
+   "opp": "IND",
+   "home": false,
+   "result": "W 114-109"
+  },
+  {
+   "date": "2026-10-30",
+   "opp": "NYK",
+   "home": true,
+   "result": "W 98-93"
+  },
+  {
+   "date": "2026-10-31",
+   "opp": "CHA",
+   "home": false,
+   "result": "W 109-104"
+  },
+  {
+   "date": "2026-11-02",
+   "opp": "CHI",
+   "home": true,
+   "result": "W 126-107"
+  },
+  {
+   "date": "2026-11-04",
+   "opp": "DET",
+   "home": false,
+   "result": "W 112-106"
+  },
+  {
+   "date": "2026-11-06",
+   "opp": "CLE",
+   "home": false,
+   "result": "L 95-119"
   }
+ ],
+ "players": {
+  "Tyrese Maxey": [
+   {
+    "date": "2026-10-20",
+    "pts": 28,
+    "reb": 4,
+    "ast": 5,
+    "stl": 3,
+    "blk": 3,
+    "tpm": 2
+   },
+   {
+    "date": "2026-10-22",
+    "pts": 32,
+    "reb": 3,
+    "ast": 6,
+    "stl": 2,
+    "blk": 0,
+    "tpm": 2
+   },
+   {
+    "date": "2026-10-24",
+    "pts": 26,
+    "reb": 4,
+    "ast": 4,
+    "stl": 0,
+    "blk": 0,
+    "tpm": 4
+   },
+   {
+    "date": "2026-10-25",
+    "pts": 29,
+    "reb": 5,
+    "ast": 4,
+    "stl": 3,
+    "blk": 1,
+    "tpm": 1
+   },
+   {
+    "date": "2026-10-28",
+    "pts": 27,
+    "reb": 5,
+    "ast": 4,
+    "stl": 1,
+    "blk": 0,
+    "tpm": 3
+   },
+   {
+    "date": "2026-10-30",
+    "pts": 27,
+    "reb": 4,
+    "ast": 4,
+    "stl": 1,
+    "blk": 1,
+    "tpm": 3
+   },
+   {
+    "date": "2026-10-31",
+    "pts": 38,
+    "reb": 4,
+    "ast": 4,
+    "stl": 2,
+    "blk": 0,
+    "tpm": 4
+   },
+   {
+    "date": "2026-11-02",
+    "pts": 26,
+    "reb": 4,
+    "ast": 11,
+    "stl": 2,
+    "blk": 2,
+    "tpm": 1
+   },
+   {
+    "date": "2026-11-04",
+    "pts": 19,
+    "reb": 1,
+    "ast": 7,
+    "stl": 0,
+    "blk": 0,
+    "tpm": 3
+   },
+   {
+    "date": "2026-11-06",
+    "pts": 17,
+    "reb": 3,
+    "ast": 4,
+    "stl": 1,
+    "blk": 0,
+    "tpm": 2
+   }
+  ],
+  "VJ Edgecombe": [
+   {
+    "date": "2026-10-20",
+    "pts": 9,
+    "reb": 4,
+    "ast": 1,
+    "stl": 1,
+    "blk": 0,
+    "tpm": 0
+   },
+   {
+    "date": "2026-10-22",
+    "pts": 11,
+    "reb": 7,
+    "ast": 6,
+    "stl": 3,
+    "blk": 0,
+    "tpm": 1
+   },
+   {
+    "date": "2026-10-24",
+    "pts": 17,
+    "reb": 13,
+    "ast": 2,
+    "stl": 1,
+    "blk": 2,
+    "tpm": 5
+   },
+   {
+    "date": "2026-10-28",
+    "pts": 8,
+    "reb": 7,
+    "ast": 2,
+    "stl": 1,
+    "blk": 0,
+    "tpm": 1
+   },
+   {
+    "date": "2026-10-30",
+    "pts": 13,
+    "reb": 8,
+    "ast": 2,
+    "stl": 0,
+    "blk": 0,
+    "tpm": 1
+   },
+   {
+    "date": "2026-10-31",
+    "pts": 10,
+    "reb": 8,
+    "ast": 3,
+    "stl": 1,
+    "blk": 1,
+    "tpm": 2
+   },
+   {
+    "date": "2026-11-02",
+    "pts": 21,
+    "reb": 3,
+    "ast": 5,
+    "stl": 1,
+    "blk": 1,
+    "tpm": 2
+   },
+   {
+    "date": "2026-11-04",
+    "pts": 11,
+    "reb": 6,
+    "ast": 3,
+    "stl": 1,
+    "blk": 0,
+    "tpm": 1
+   },
+   {
+    "date": "2026-11-06",
+    "pts": 19,
+    "reb": 3,
+    "ast": 2,
+    "stl": 4,
+    "blk": 0,
+    "tpm": 3
+   }
+  ],
+  "LeBron James": [
+   {
+    "date": "2026-10-20",
+    "pts": 14,
+    "reb": 9,
+    "ast": 7,
+    "stl": 1,
+    "blk": 1,
+    "tpm": 0
+   },
+   {
+    "date": "2026-10-22",
+    "pts": 17,
+    "reb": 10,
+    "ast": 5,
+    "stl": 3,
+    "blk": 1,
+    "tpm": 1
+   },
+   {
+    "date": "2026-10-25",
+    "pts": 18,
+    "reb": 2,
+    "ast": 5,
+    "stl": 2,
+    "blk": 0,
+    "tpm": 0
+   },
+   {
+    "date": "2026-10-28",
+    "pts": 13,
+    "reb": 5,
+    "ast": 10,
+    "stl": 1,
+    "blk": 2,
+    "tpm": 2
+   },
+   {
+    "date": "2026-10-30",
+    "pts": 20,
+    "reb": 9,
+    "ast": 8,
+    "stl": 1,
+    "blk": 1,
+    "tpm": 2
+   },
+   {
+    "date": "2026-11-02",
+    "pts": 15,
+    "reb": 7,
+    "ast": 9,
+    "stl": 1,
+    "blk": 0,
+    "tpm": 0
+   },
+   {
+    "date": "2026-11-04",
+    "pts": 13,
+    "reb": 10,
+    "ast": 8,
+    "stl": 1,
+    "blk": 1,
+    "tpm": 1
+   },
+   {
+    "date": "2026-11-06",
+    "pts": 8,
+    "reb": 7,
+    "ast": 3,
+    "stl": 2,
+    "blk": 1,
+    "tpm": 0
+   }
+  ],
+  "Joel Embiid": [
+   {
+    "date": "2026-10-20",
+    "pts": 13,
+    "reb": 11,
+    "ast": 6,
+    "stl": 2,
+    "blk": 3,
+    "tpm": 2
+   },
+   {
+    "date": "2026-10-22",
+    "pts": 24,
+    "reb": 7,
+    "ast": 1,
+    "stl": 0,
+    "blk": 0,
+    "tpm": 1
+   },
+   {
+    "date": "2026-10-24",
+    "pts": 28,
+    "reb": 11,
+    "ast": 10,
+    "stl": 1,
+    "blk": 0,
+    "tpm": 0
+   },
+   {
+    "date": "2026-10-28",
+    "pts": 21,
+    "reb": 11,
+    "ast": 2,
+    "stl": 0,
+    "blk": 1,
+    "tpm": 0
+   },
+   {
+    "date": "2026-10-30",
+    "pts": 10,
+    "reb": 7,
+    "ast": 7,
+    "stl": 1,
+    "blk": 1,
+    "tpm": 0
+   },
+   {
+    "date": "2026-11-02",
+    "pts": 15,
+    "reb": 8,
+    "ast": 3,
+    "stl": 0,
+    "blk": 0,
+    "tpm": 0
+   },
+   {
+    "date": "2026-11-04",
+    "pts": 26,
+    "reb": 15,
+    "ast": 2,
+    "stl": 1,
+    "blk": 0,
+    "tpm": 0
+   },
+   {
+    "date": "2026-11-06",
+    "pts": 6,
+    "reb": 7,
+    "ast": 1,
+    "stl": 0,
+    "blk": 2,
+    "tpm": 0
+   }
+  ],
+  "Jaylen Brown": [
+   {
+    "date": "2026-10-20",
+    "pts": 19,
+    "reb": 8,
+    "ast": 6,
+    "stl": 1,
+    "blk": 1,
+    "tpm": 2
+   },
+   {
+    "date": "2026-10-22",
+    "pts": 21,
+    "reb": 8,
+    "ast": 4,
+    "stl": 1,
+    "blk": 0,
+    "tpm": 1
+   },
+   {
+    "date": "2026-10-24",
+    "pts": 27,
+    "reb": 3,
+    "ast": 5,
+    "stl": 3,
+    "blk": 0,
+    "tpm": 3
+   },
+   {
+    "date": "2026-10-25",
+    "pts": 16,
+    "reb": 4,
+    "ast": 4,
+    "stl": 0,
+    "blk": 1,
+    "tpm": 2
+   },
+   {
+    "date": "2026-10-28",
+    "pts": 20,
+    "reb": 10,
+    "ast": 2,
+    "stl": 1,
+    "blk": 1,
+    "tpm": 1
+   },
+   {
+    "date": "2026-10-31",
+    "pts": 16,
+    "reb": 4,
+    "ast": 4,
+    "stl": 2,
+    "blk": 0,
+    "tpm": 0
+   },
+   {
+    "date": "2026-11-02",
+    "pts": 25,
+    "reb": 11,
+    "ast": 5,
+    "stl": 1,
+    "blk": 0,
+    "tpm": 4
+   },
+   {
+    "date": "2026-11-04",
+    "pts": 30,
+    "reb": 7,
+    "ast": 1,
+    "stl": 1,
+    "blk": 1,
+    "tpm": 3
+   },
+   {
+    "date": "2026-11-06",
+    "pts": 20,
+    "reb": 5,
+    "ast": 5,
+    "stl": 1,
+    "blk": 0,
+    "tpm": 2
+   }
+  ],
+  "Anfernee Simons": [
+   {
+    "date": "2026-10-20",
+    "pts": 13,
+    "reb": 2,
+    "ast": 0,
+    "stl": 0,
+    "blk": 0,
+    "tpm": 3
+   },
+   {
+    "date": "2026-10-22",
+    "pts": 2,
+    "reb": 3,
+    "ast": 0,
+    "stl": 0,
+    "blk": 0,
+    "tpm": 0
+   },
+   {
+    "date": "2026-10-24",
+    "pts": 4,
+    "reb": 1,
+    "ast": 2,
+    "stl": 1,
+    "blk": 0,
+    "tpm": 1
+   },
+   {
+    "date": "2026-10-25",
+    "pts": 5,
+    "reb": 3,
+    "ast": 3,
+    "stl": 1,
+    "blk": 2,
+    "tpm": 1
+   },
+   {
+    "date": "2026-10-28",
+    "pts": 20,
+    "reb": 3,
+    "ast": 1,
+    "stl": 1,
+    "blk": 0,
+    "tpm": 6
+   },
+   {
+    "date": "2026-10-30",
+    "pts": 21,
+    "reb": 2,
+    "ast": 1,
+    "stl": 0,
+    "blk": 0,
+    "tpm": 5
+   },
+   {
+    "date": "2026-10-31",
+    "pts": 19,
+    "reb": 0,
+    "ast": 2,
+    "stl": 3,
+    "blk": 0,
+    "tpm": 5
+   },
+   {
+    "date": "2026-11-02",
+    "pts": 6,
+    "reb": 2,
+    "ast": 1,
+    "stl": 0,
+    "blk": 0,
+    "tpm": 1
+   },
+   {
+    "date": "2026-11-04",
+    "pts": 0,
+    "reb": 1,
+    "ast": 0,
+    "stl": 0,
+    "blk": 0,
+    "tpm": 0
+   },
+   {
+    "date": "2026-11-06",
+    "pts": 6,
+    "reb": 2,
+    "ast": 2,
+    "stl": 0,
+    "blk": 0,
+    "tpm": 1
+   }
+  ],
+  "Kentavious Caldwell-Pope": [
+   {
+    "date": "2026-10-20",
+    "pts": 10,
+    "reb": 4,
+    "ast": 1,
+    "stl": 0,
+    "blk": 0,
+    "tpm": 2
+   },
+   {
+    "date": "2026-10-22",
+    "pts": 3,
+    "reb": 3,
+    "ast": 2,
+    "stl": 1,
+    "blk": 0,
+    "tpm": 1
+   },
+   {
+    "date": "2026-10-24",
+    "pts": 12,
+    "reb": 2,
+    "ast": 1,
+    "stl": 3,
+    "blk": 0,
+    "tpm": 4
+   },
+   {
+    "date": "2026-10-25",
+    "pts": 7,
+    "reb": 3,
+    "ast": 3,
+    "stl": 1,
+    "blk": 0,
+    "tpm": 1
+   },
+   {
+    "date": "2026-10-28",
+    "pts": 4,
+    "reb": 2,
+    "ast": 1,
+    "stl": 2,
+    "blk": 0,
+    "tpm": 0
+   },
+   {
+    "date": "2026-10-30",
+    "pts": 5,
+    "reb": 3,
+    "ast": 3,
+    "stl": 1,
+    "blk": 0,
+    "tpm": 1
+   },
+   {
+    "date": "2026-10-31",
+    "pts": 3,
+    "reb": 2,
+    "ast": 1,
+    "stl": 0,
+    "blk": 0,
+    "tpm": 1
+   },
+   {
+    "date": "2026-11-02",
+    "pts": 3,
+    "reb": 1,
+    "ast": 0,
+    "stl": 0,
+    "blk": 0,
+    "tpm": 1
+   },
+   {
+    "date": "2026-11-04",
+    "pts": 5,
+    "reb": 1,
+    "ast": 0,
+    "stl": 0,
+    "blk": 0,
+    "tpm": 1
+   },
+   {
+    "date": "2026-11-06",
+    "pts": 5,
+    "reb": 2,
+    "ast": 0,
+    "stl": 0,
+    "blk": 0,
+    "tpm": 1
+   }
+  ]
+ }
 }

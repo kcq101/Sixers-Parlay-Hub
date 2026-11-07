@@ -1,61 +1,188 @@
 {
-  "status": "draft",
-  "statusNote": "Built Saturday from stats. Final injury report and FanDuel prices still to come — re-check about 2 hours before tip.",
-  "updated": "2026-11-07T16:30:00-05:00",
-  "game": {
-    "date": "2026-11-08",
-    "tip": "3:30 PM ET",
-    "opp": "CHI",
-    "oppName": "Chicago Bulls",
-    "home": false,
-    "venue": "United Center",
-    "records": {"PHI": "8-2", "CHI": "1-6"},
-    "line": "Spread not posted in my sources yet. ESPN's predictor gives the Sixers about a 74% chance to win.",
-    "lastMeeting": "Sixers won 126-107 on Nov 2. Maxey 26 pts / 11 ast, LeBron 31 PRA."
+ "status": "draft",
+ "statusNote": "Built Saturday from stats. Final injury report and FanDuel prices still to come \u2014 re-check about 2 hours before tip.",
+ "updated": "2026-11-07T16:20:00-05:00",
+ "game": {
+  "date": "2026-11-08",
+  "tip": "3:30 PM ET",
+  "opp": "CHI",
+  "oppName": "Chicago Bulls",
+  "home": false,
+  "venue": "United Center",
+  "records": {
+   "PHI": "8-2",
+   "CHI": "1-6"
   },
-  "injuries": [
-    {"team": "PHI", "player": "Adem Bona", "status": "Out", "note": "cervical spine sprain"},
-    {"team": "PHI", "player": "Dominick Barlow", "status": "Out", "note": "back"},
-    {"team": "PHI", "player": "Joel Embiid", "status": "No designation", "note": "managing plantar fascia; not a back-to-back"},
-    {"team": "CHI", "player": "Nic Claxton", "status": "Game-time decision", "note": "hamstring; minutes limit likely if he plays"}
-  ],
-  "slips": [
+  "line": "Spread not posted in my sources yet. ESPN's predictor gives the Sixers about a 74% chance to win.",
+  "lastMeeting": "Sixers won 126-107 on Nov 2. Maxey 26 pts / 11 ast, LeBron 31 PRA."
+ },
+ "injuries": [
+  {
+   "team": "PHI",
+   "player": "Adem Bona",
+   "status": "Out",
+   "note": "cervical spine sprain"
+  },
+  {
+   "team": "PHI",
+   "player": "Dominick Barlow",
+   "status": "Out",
+   "note": "back"
+  },
+  {
+   "team": "PHI",
+   "player": "Joel Embiid",
+   "status": "No designation",
+   "note": "managing plantar fascia; not a back-to-back"
+  },
+  {
+   "team": "CHI",
+   "player": "Nic Claxton",
+   "status": "Game-time decision",
+   "note": "hamstring; minutes limit likely if he plays"
+  }
+ ],
+ "slips": [
+  {
+   "name": "Props only",
+   "legsCount": 9,
+   "estPrice": "about +750 before boost",
+   "legs": [
     {
-      "name": "Props only",
-      "legsCount": 9,
-      "estPrice": "about +750 before boost (about +1130 with a 50% boost)",
-      "legs": [
-        {"player": "Tyrese Maxey", "stat": "tpm", "line": 2,  "price": -310, "priceNote": "FD price Fri vs CLE", "tag": "Solid", "note": "Hit on 4 of 5 slips."},
-        {"player": "Tyrese Maxey", "stat": "pra", "line": 30, "price": -280, "priceNote": "FD price Fri vs CLE", "tag": "Solid", "note": "41 PRA vs Chicago on Monday."},
-        {"player": "Tyrese Maxey", "stat": "ast", "line": 4,  "price": -300, "priceNote": "estimate", "tag": "Core", "note": "4+ assists in every game this season."},
-        {"player": "VJ Edgecombe", "stat": "tpm", "line": 1,  "price": -430, "priceNote": "FD price Fri vs CLE", "tag": "Core", "note": "5 for 5 on your slips."},
-        {"player": "VJ Edgecombe", "stat": "stl", "line": 1,  "price": -320, "priceNote": "FD price Fri vs CLE", "tag": "Core", "note": "3 for 3 on your slips."},
-        {"player": "VJ Edgecombe", "stat": "pra", "line": 15, "price": -530, "priceNote": "FD price Fri vs CLE", "tag": "Core", "note": "Held up even in Friday's blowout."},
-        {"player": "LeBron James", "stat": "stl", "line": 1,  "price": -240, "priceNote": "FD price Fri vs CLE", "tag": "Solid", "note": "1+ steal in every game he's played."},
-        {"player": "LeBron James", "stat": "pra", "line": 25, "price": -430, "priceNote": "FD price Fri vs CLE", "tag": "Solid", "note": "Only miss was Friday's blowout (18)."},
-        {"player": "Joel Embiid",  "stat": "reb", "line": 6,  "price": -400, "priceNote": "estimate", "tag": "Solid", "note": "Rebounds held up Friday (7) when his scoring didn't. Claxton may be limited."}
-      ]
+     "player": "Tyrese Maxey",
+     "stat": "tpm",
+     "line": 2,
+     "price": -310,
+     "priceNote": "FD price Fri vs CLE",
+     "tag": "Solid",
+     "note": "8 for 11 on your slips."
     },
     {
-      "name": "With game line",
-      "legsCount": 10,
-      "estPrice": "about +1050 before boost",
-      "sameAs": "Props only",
-      "addLegs": [
-        {"player": "76ers", "stat": "ml", "line": 0, "price": -280, "priceNote": "estimate from ESPN's 74% win chance", "tag": "Solid", "note": "Bulls are 1-6. Beat them by 19 on Monday."}
-      ]
+     "player": "Tyrese Maxey",
+     "stat": "pra",
+     "line": 30,
+     "price": -280,
+     "priceNote": "FD price Fri vs CLE",
+     "tag": "Solid",
+     "note": "41 PRA vs Chicago on Monday."
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "ast",
+     "line": 4,
+     "price": -300,
+     "priceNote": "estimate",
+     "tag": "Core",
+     "note": "4+ assists in every game this season."
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "tpm",
+     "line": 1,
+     "price": -430,
+     "priceNote": "FD price Fri vs CLE",
+     "tag": "Core",
+     "note": "5 for 5 on your slips."
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "stl",
+     "line": 1,
+     "price": -320,
+     "priceNote": "FD price Fri vs CLE",
+     "tag": "Core",
+     "note": "3 for 3 on your slips."
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "pra",
+     "line": 15,
+     "price": -530,
+     "priceNote": "FD price Fri vs CLE",
+     "tag": "Core",
+     "note": "Held up even in Friday's blowout."
+    },
+    {
+     "player": "LeBron James",
+     "stat": "stl",
+     "line": 1,
+     "price": -240,
+     "priceNote": "FD price Fri vs CLE",
+     "tag": "Solid",
+     "note": "1+ steal in every game he's played."
+    },
+    {
+     "player": "Jaylen Brown",
+     "stat": "pra",
+     "line": 25,
+     "price": -440,
+     "priceNote": "FD price Fri vs CLE",
+     "tag": "Core",
+     "note": "9 for 9 on your slips. 41 PRA vs Chicago Monday."
+    },
+    {
+     "player": "Joel Embiid",
+     "stat": "reb",
+     "line": 6,
+     "price": -400,
+     "priceNote": "estimate",
+     "tag": "Risky",
+     "note": "Untested on your slips, and Embiid legs are 4 for 15. But he's had 7+ rebounds in all 8 games, even Friday."
     }
-  ],
-  "bench": [
-    {"player": "Jaylen Brown", "stat": "pra", "line": 25, "effect": "Similar price. Swap in for LeBron PRA if LeBron is limited.", "note": "4 for 5 on your slips."},
-    {"player": "LeBron James", "stat": "ast", "line": 4, "effect": "Similar price; doesn't need him to score.", "note": "4+ assists in 7 of 8 games."},
-    {"player": "VJ Edgecombe", "stat": "pra", "line": 20, "effect": "Lengthens the slip (replace VJ 15+).", "note": "Cleared 20 in 7 of 9 games."},
-    {"player": "VJ Edgecombe", "stat": "reb", "line": 4, "effect": "Similar price.", "note": "4+ rebounds in 7 of 9 games."}
-  ],
-  "tuner": [
-    "Under +900 with no boost: swap VJ 15+ PRA for VJ 20+ PRA (roughly +150 to the slip).",
-    "Over +1300: drop Maxey 30+ PRA to 25+, or swap the moneyline for Sixers +4.5.",
-    "If Embiid is out: replace his rebounds leg with LeBron 4+ assists.",
-    "Blowout either way is the risk: keep it to 3 PRA legs or fewer."
-  ]
+   ]
+  },
+  {
+   "name": "With game line",
+   "legsCount": 10,
+   "estPrice": "about +1050 before boost",
+   "sameAs": "Props only",
+   "addLegs": [
+    {
+     "player": "76ers",
+     "stat": "ml",
+     "line": 0,
+     "price": -280,
+     "priceNote": "estimate from ESPN's 74% win chance",
+     "tag": "Solid",
+     "note": "Bulls are 1-6. Beat them by 19 on Monday."
+    }
+   ]
+  }
+ ],
+ "bench": [
+  {
+   "player": "LeBron James",
+   "stat": "pra",
+   "line": 25,
+   "effect": "Similar price. Swap in for Embiid rebounds if you'd rather skip Embiid.",
+   "note": "6 for 7 on your slips."
+  },
+  {
+   "player": "LeBron James",
+   "stat": "ast",
+   "line": 4,
+   "effect": "Similar price; doesn't need him to score.",
+   "note": "4+ assists in 7 of 8 games."
+  },
+  {
+   "player": "VJ Edgecombe",
+   "stat": "pra",
+   "line": 20,
+   "effect": "Lengthens the slip (replace VJ 15+).",
+   "note": "VJ finished at 14 in the opener and cost you that slip."
+  },
+  {
+   "player": "Tyrese Maxey",
+   "stat": "stl",
+   "line": 1,
+   "effect": "Lengthens the slip a little.",
+   "note": "6 for 9 on your slips."
+  }
+ ],
+ "tuner": [
+  "Under +900 with no boost: swap VJ 15+ for VJ 20+ pts + reb + ast, or add Maxey 1+ steal as a 10th leg.",
+  "Over +1300: drop Maxey 30+ to 25+ pts + reb + ast, or use Sixers +4.5 instead of the moneyline.",
+  "If Embiid is out or you'd rather skip him: use LeBron 25+ pts + reb + ast.",
+  "Blowouts sink pts + reb + ast legs together, so keep it to about 3 of them."
+ ]
 }

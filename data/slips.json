@@ -1,84 +1,877 @@
 {
-  "_note": "Every slip played. 'line' is the X+ threshold (Over 26.5 = 27). actual = player's number (or Sixers margin for spread/ML). null actual = result known, number not.",
-  "slips": [
+ "_note": "Every slip played. 'line' is the X+ threshold (Over 26.5 = 27). actual = player's number, or the Sixers' margin for spread/moneyline.",
+ "slips": [
+  {
+   "date": "2026-10-20",
+   "opp": "NYK",
+   "home": false,
+   "final": "W 106-100",
+   "price": 1199,
+   "boost": null,
+   "boosted": null,
+   "legs": [
     {
-      "date": "2026-10-24", "opp": "MIL", "home": true, "final": "W 127-116",
-      "price": 1263, "boost": null, "boosted": null,
-      "legs": [
-        {"player": "Tyrese Maxey",  "stat": "tpm", "line": 2,  "actual": 4,  "hit": true},
-        {"player": "VJ Edgecombe",  "stat": "tpm", "line": 1,  "actual": 5,  "hit": true},
-        {"player": "Joel Embiid",   "stat": "tpm", "line": 1,  "actual": 0,  "hit": false},
-        {"player": "Tyrese Maxey",  "stat": "stl", "line": 1,  "actual": 0,  "hit": false},
-        {"player": "VJ Edgecombe",  "stat": "stl", "line": 1,  "actual": 1,  "hit": true},
-        {"player": "Joel Embiid",   "stat": "blk", "line": 1,  "actual": 0,  "hit": false},
-        {"player": "Tyrese Maxey",  "stat": "pra", "line": 30, "actual": 34, "hit": true},
-        {"player": "Jaylen Brown",  "stat": "pra", "line": 30, "actual": null, "hit": true},
-        {"player": "VJ Edgecombe",  "stat": "pra", "line": 20, "actual": 32, "hit": true},
-        {"player": "76ers",         "stat": "spread", "line": -12.5, "actual": 11, "hit": false}
-      ]
+     "player": "Tyrese Maxey",
+     "stat": "tpm",
+     "line": 2,
+     "actual": 2,
+     "hit": true
     },
     {
-      "date": "2026-10-28", "opp": "IND", "home": false, "final": "W 114-109",
-      "price": 1038, "boost": 25, "boosted": 1298,
-      "legs": [
-        {"player": "Tyrese Maxey",    "stat": "tpm", "line": 2,  "actual": 3,  "hit": true},
-        {"player": "VJ Edgecombe",    "stat": "tpm", "line": 1,  "actual": 1,  "hit": true},
-        {"player": "Joel Embiid",     "stat": "tpm", "line": 1,  "actual": 0,  "hit": false},
-        {"player": "Anfernee Simons", "stat": "tpm", "line": 1,  "actual": 6,  "hit": true},
-        {"player": "Joel Embiid",     "stat": "pra", "line": 30, "actual": 34, "hit": true},
-        {"player": "Tyrese Maxey",    "stat": "pra", "line": 30, "actual": 36, "hit": true},
-        {"player": "Jaylen Brown",    "stat": "pra", "line": 30, "actual": 32, "hit": true},
-        {"player": "LeBron James",    "stat": "pra", "line": 25, "actual": 28, "hit": true},
-        {"player": "VJ Edgecombe",    "stat": "reb", "line": 4,  "actual": 7,  "hit": true}
-      ]
+     "player": "Tyrese Maxey",
+     "stat": "stl",
+     "line": 1,
+     "actual": 3,
+     "hit": true
     },
     {
-      "date": "2026-11-02", "opp": "CHI", "home": true, "final": "W 126-107",
-      "price": 874, "boost": 50, "boosted": 1310,
-      "legs": [
-        {"player": "Tyrese Maxey", "stat": "tpm", "line": 2,  "actual": 1,  "hit": false},
-        {"player": "VJ Edgecombe", "stat": "tpm", "line": 1,  "actual": 2,  "hit": true},
-        {"player": "Tyrese Maxey", "stat": "stl", "line": 1,  "actual": 2,  "hit": true},
-        {"player": "LeBron James", "stat": "stl", "line": 1,  "actual": 1,  "hit": true},
-        {"player": "VJ Edgecombe", "stat": "stl", "line": 1,  "actual": 1,  "hit": true},
-        {"player": "Tyrese Maxey", "stat": "pra", "line": 30, "actual": 41, "hit": true},
-        {"player": "Jaylen Brown", "stat": "pra", "line": 27, "actual": null, "hit": true},
-        {"player": "Joel Embiid",  "stat": "pra", "line": 28, "actual": 26, "hit": false},
-        {"player": "LeBron James", "stat": "pra", "line": 26, "actual": 31, "hit": true},
-        {"player": "76ers",        "stat": "ml",  "line": 0,  "actual": 19, "hit": true}
-      ]
+     "player": "VJ Edgecombe",
+     "stat": "stl",
+     "line": 1,
+     "actual": 1,
+     "hit": true
     },
     {
-      "date": "2026-11-04", "opp": "DET", "home": false, "final": "W 112-106",
-      "price": 897, "boost": 50, "boosted": 1346,
-      "legs": [
-        {"player": "Tyrese Maxey",    "stat": "tpm", "line": 2,  "actual": 3,  "hit": true},
-        {"player": "Anfernee Simons", "stat": "tpm", "line": 1,  "actual": 0,  "hit": false},
-        {"player": "VJ Edgecombe",    "stat": "tpm", "line": 1,  "actual": 1,  "hit": true},
-        {"player": "Tyrese Maxey",    "stat": "stl", "line": 1,  "actual": 0,  "hit": false},
-        {"player": "LeBron James",    "stat": "stl", "line": 1,  "actual": 1,  "hit": true},
-        {"player": "Joel Embiid",     "stat": "blk", "line": 1,  "actual": 0,  "hit": false},
-        {"player": "Tyrese Maxey",    "stat": "pra", "line": 25, "actual": 27, "hit": true},
-        {"player": "Joel Embiid",     "stat": "pra", "line": 25, "actual": 43, "hit": true},
-        {"player": "Jaylen Brown",    "stat": "pra", "line": 25, "actual": null, "hit": true},
-        {"player": "VJ Edgecombe",    "stat": "pra", "line": 15, "actual": 20, "hit": true}
-      ]
+     "player": "Jaylen Brown",
+     "stat": "stl",
+     "line": 1,
+     "actual": 1,
+     "hit": true
     },
     {
-      "date": "2026-11-06", "opp": "CLE", "home": false, "final": "L 95-119",
-      "price": 772, "boost": 50, "boosted": 1159,
-      "note": "Blowout loss: every PRA leg except VJ missed together.",
-      "legs": [
-        {"player": "Tyrese Maxey", "stat": "pra", "line": 30, "actual": 24, "hit": false},
-        {"player": "Tyrese Maxey", "stat": "tpm", "line": 2,  "actual": 2,  "hit": true},
-        {"player": "VJ Edgecombe", "stat": "tpm", "line": 1,  "actual": 3,  "hit": true},
-        {"player": "VJ Edgecombe", "stat": "stl", "line": 1,  "actual": 4,  "hit": true},
-        {"player": "LeBron James", "stat": "stl", "line": 1,  "actual": 2,  "hit": true},
-        {"player": "LeBron James", "stat": "pra", "line": 25, "actual": 18, "hit": false},
-        {"player": "Jaylen Brown", "stat": "pra", "line": 25, "actual": null, "hit": false},
-        {"player": "VJ Edgecombe", "stat": "pra", "line": 15, "actual": 24, "hit": true},
-        {"player": "Joel Embiid",  "stat": "pra", "line": 30, "actual": 14, "hit": false}
-      ]
+     "player": "Jaylen Brown",
+     "stat": "pra",
+     "line": 25,
+     "actual": 33,
+     "hit": true
+    },
+    {
+     "player": "LeBron James",
+     "stat": "pra",
+     "line": 25,
+     "actual": 30,
+     "hit": true
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "pra",
+     "line": 25,
+     "actual": 37,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "pra",
+     "line": 15,
+     "actual": 14,
+     "hit": false
+    },
+    {
+     "player": "76ers",
+     "stat": "ml",
+     "line": 0,
+     "actual": 6,
+     "hit": true
     }
-  ]
+   ],
+   "note": "Lost by one leg: VJ finished one short at 14."
+  },
+  {
+   "date": "2026-10-22",
+   "opp": "CLE",
+   "home": true,
+   "final": "W 114-106",
+   "price": 811,
+   "boost": null,
+   "boosted": null,
+   "legs": [
+    {
+     "player": "Tyrese Maxey",
+     "stat": "tpm",
+     "line": 2,
+     "actual": 2,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "stl",
+     "line": 1,
+     "actual": 2,
+     "hit": true
+    },
+    {
+     "player": "LeBron James",
+     "stat": "stl",
+     "line": 1,
+     "actual": 3,
+     "hit": true
+    },
+    {
+     "player": "Joel Embiid",
+     "stat": "blk",
+     "line": 1,
+     "actual": 0,
+     "hit": false
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "pra",
+     "line": 15,
+     "actual": 24,
+     "hit": true
+    },
+    {
+     "player": "Jaylen Brown",
+     "stat": "pra",
+     "line": 25,
+     "actual": 33,
+     "hit": true
+    },
+    {
+     "player": "LeBron James",
+     "stat": "pra",
+     "line": 25,
+     "actual": 32,
+     "hit": true
+    },
+    {
+     "player": "Joel Embiid",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    }
+   ],
+   "note": "Lost by one leg: Embiid block."
+  },
+  {
+   "date": "2026-10-24",
+   "opp": "MIL",
+   "home": true,
+   "final": "W 127-116",
+   "label": "with -5.5",
+   "price": 870,
+   "boost": null,
+   "boosted": null,
+   "legs": [
+    {
+     "player": "Tyrese Maxey",
+     "stat": "tpm",
+     "line": 2,
+     "actual": 4,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 5,
+     "hit": true
+    },
+    {
+     "player": "Joel Embiid",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 0,
+     "hit": false
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "stl",
+     "line": 1,
+     "actual": 0,
+     "hit": false
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "stl",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    },
+    {
+     "player": "Joel Embiid",
+     "stat": "blk",
+     "line": 1,
+     "actual": 0,
+     "hit": false
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "pra",
+     "line": 30,
+     "actual": 34,
+     "hit": true
+    },
+    {
+     "player": "Jaylen Brown",
+     "stat": "pra",
+     "line": 30,
+     "actual": 35,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "pra",
+     "line": 20,
+     "actual": 32,
+     "hit": true
+    },
+    {
+     "player": "76ers",
+     "stat": "spread",
+     "line": -5.5,
+     "actual": 11,
+     "hit": true
+    }
+   ]
+  },
+  {
+   "date": "2026-10-24",
+   "opp": "MIL",
+   "home": true,
+   "final": "W 127-116",
+   "label": "with -12.5",
+   "price": 1263,
+   "boost": null,
+   "boosted": null,
+   "legs": [
+    {
+     "player": "Tyrese Maxey",
+     "stat": "tpm",
+     "line": 2,
+     "actual": 4,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 5,
+     "hit": true
+    },
+    {
+     "player": "Joel Embiid",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 0,
+     "hit": false
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "stl",
+     "line": 1,
+     "actual": 0,
+     "hit": false
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "stl",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    },
+    {
+     "player": "Joel Embiid",
+     "stat": "blk",
+     "line": 1,
+     "actual": 0,
+     "hit": false
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "pra",
+     "line": 30,
+     "actual": 34,
+     "hit": true
+    },
+    {
+     "player": "Jaylen Brown",
+     "stat": "pra",
+     "line": 30,
+     "actual": 35,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "pra",
+     "line": 20,
+     "actual": 32,
+     "hit": true
+    },
+    {
+     "player": "76ers",
+     "stat": "spread",
+     "line": -12.5,
+     "actual": 11,
+     "hit": false
+    }
+   ]
+  },
+  {
+   "date": "2026-10-25",
+   "opp": "DET",
+   "home": true,
+   "final": "L 93-106",
+   "price": 882,
+   "boost": null,
+   "boosted": null,
+   "legs": [
+    {
+     "player": "Tyrese Maxey",
+     "stat": "tpm",
+     "line": 2,
+     "actual": 1,
+     "hit": false
+    },
+    {
+     "player": "LeBron James",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 0,
+     "hit": false
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "stl",
+     "line": 1,
+     "actual": 3,
+     "hit": true
+    },
+    {
+     "player": "Jaylen Brown",
+     "stat": "stl",
+     "line": 1,
+     "actual": 0,
+     "hit": false
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "pra",
+     "line": 30,
+     "actual": 38,
+     "hit": true
+    },
+    {
+     "player": "Jaylen Brown",
+     "stat": "reb",
+     "line": 6,
+     "actual": 4,
+     "hit": false
+    },
+    {
+     "player": "Jaylen Brown",
+     "stat": "pts",
+     "line": 22,
+     "actual": 16,
+     "hit": false
+    },
+    {
+     "player": "LeBron James",
+     "stat": "pts",
+     "line": 16,
+     "actual": 18,
+     "hit": true
+    },
+    {
+     "player": "Anfernee Simons",
+     "stat": "pra",
+     "line": 10,
+     "actual": 11,
+     "hit": true
+    },
+    {
+     "player": "Kentavious Caldwell-Pope",
+     "stat": "pra",
+     "line": 10,
+     "actual": 13,
+     "hit": true
+    }
+   ],
+   "note": "Second night of a back-to-back; Embiid sat."
+  },
+  {
+   "date": "2026-10-28",
+   "opp": "IND",
+   "home": false,
+   "final": "W 114-109",
+   "price": 1038,
+   "boost": 25,
+   "boosted": 1298,
+   "legs": [
+    {
+     "player": "Tyrese Maxey",
+     "stat": "tpm",
+     "line": 2,
+     "actual": 3,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    },
+    {
+     "player": "Joel Embiid",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 0,
+     "hit": false
+    },
+    {
+     "player": "Anfernee Simons",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 6,
+     "hit": true
+    },
+    {
+     "player": "Joel Embiid",
+     "stat": "pra",
+     "line": 30,
+     "actual": 34,
+     "hit": true
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "pra",
+     "line": 30,
+     "actual": 36,
+     "hit": true
+    },
+    {
+     "player": "Jaylen Brown",
+     "stat": "pra",
+     "line": 30,
+     "actual": 32,
+     "hit": true
+    },
+    {
+     "player": "LeBron James",
+     "stat": "pra",
+     "line": 25,
+     "actual": 28,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "reb",
+     "line": 4,
+     "actual": 7,
+     "hit": true
+    }
+   ],
+   "note": "Lost by one leg: Embiid three."
+  },
+  {
+   "date": "2026-10-30",
+   "opp": "NYK",
+   "home": true,
+   "final": "W 98-93",
+   "price": 791,
+   "boost": 50,
+   "boosted": 1187,
+   "legs": [
+    {
+     "player": "Tyrese Maxey",
+     "stat": "tpm",
+     "line": 2,
+     "actual": 3,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    },
+    {
+     "player": "Kentavious Caldwell-Pope",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "stl",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "stl",
+     "line": 1,
+     "actual": 0,
+     "hit": false
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "pra",
+     "line": 30,
+     "actual": 35,
+     "hit": true
+    },
+    {
+     "player": "LeBron James",
+     "stat": "pra",
+     "line": 25,
+     "actual": 37,
+     "hit": true
+    },
+    {
+     "player": "Joel Embiid",
+     "stat": "pra",
+     "line": 30,
+     "actual": 24,
+     "hit": false
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "pra",
+     "line": 18,
+     "actual": 23,
+     "hit": true
+    },
+    {
+     "player": "Joel Embiid",
+     "stat": "blk",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    }
+   ]
+  },
+  {
+   "date": "2026-11-02",
+   "opp": "CHI",
+   "home": true,
+   "final": "W 126-107",
+   "label": "with moneyline",
+   "price": 874,
+   "boost": 50,
+   "boosted": 1310,
+   "legs": [
+    {
+     "player": "Tyrese Maxey",
+     "stat": "tpm",
+     "line": 2,
+     "actual": 1,
+     "hit": false
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 2,
+     "hit": true
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "stl",
+     "line": 1,
+     "actual": 2,
+     "hit": true
+    },
+    {
+     "player": "LeBron James",
+     "stat": "stl",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "stl",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "pra",
+     "line": 30,
+     "actual": 41,
+     "hit": true
+    },
+    {
+     "player": "Jaylen Brown",
+     "stat": "pra",
+     "line": 27,
+     "actual": 41,
+     "hit": true
+    },
+    {
+     "player": "Joel Embiid",
+     "stat": "pra",
+     "line": 28,
+     "actual": 26,
+     "hit": false
+    },
+    {
+     "player": "LeBron James",
+     "stat": "pra",
+     "line": 26,
+     "actual": 31,
+     "hit": true
+    },
+    {
+     "player": "76ers",
+     "stat": "ml",
+     "line": 0,
+     "actual": 19,
+     "hit": true
+    }
+   ]
+  },
+  {
+   "date": "2026-11-02",
+   "opp": "CHI",
+   "home": true,
+   "final": "W 126-107",
+   "label": "with -5.5",
+   "price": 1087,
+   "boost": 25,
+   "boosted": 1358,
+   "legs": [
+    {
+     "player": "Tyrese Maxey",
+     "stat": "tpm",
+     "line": 2,
+     "actual": 1,
+     "hit": false
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 2,
+     "hit": true
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "stl",
+     "line": 1,
+     "actual": 2,
+     "hit": true
+    },
+    {
+     "player": "LeBron James",
+     "stat": "stl",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "stl",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "pra",
+     "line": 30,
+     "actual": 41,
+     "hit": true
+    },
+    {
+     "player": "Jaylen Brown",
+     "stat": "pra",
+     "line": 27,
+     "actual": 41,
+     "hit": true
+    },
+    {
+     "player": "Joel Embiid",
+     "stat": "pra",
+     "line": 28,
+     "actual": 26,
+     "hit": false
+    },
+    {
+     "player": "LeBron James",
+     "stat": "pra",
+     "line": 26,
+     "actual": 31,
+     "hit": true
+    },
+    {
+     "player": "76ers",
+     "stat": "spread",
+     "line": -5.5,
+     "actual": 19,
+     "hit": true
+    }
+   ]
+  },
+  {
+   "date": "2026-11-04",
+   "opp": "DET",
+   "home": false,
+   "final": "W 112-106",
+   "price": 897,
+   "boost": 50,
+   "boosted": 1346,
+   "legs": [
+    {
+     "player": "Tyrese Maxey",
+     "stat": "tpm",
+     "line": 2,
+     "actual": 3,
+     "hit": true
+    },
+    {
+     "player": "Anfernee Simons",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 0,
+     "hit": false
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "stl",
+     "line": 1,
+     "actual": 0,
+     "hit": false
+    },
+    {
+     "player": "LeBron James",
+     "stat": "stl",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    },
+    {
+     "player": "Joel Embiid",
+     "stat": "blk",
+     "line": 1,
+     "actual": 0,
+     "hit": false
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "pra",
+     "line": 25,
+     "actual": 27,
+     "hit": true
+    },
+    {
+     "player": "Joel Embiid",
+     "stat": "pra",
+     "line": 25,
+     "actual": 43,
+     "hit": true
+    },
+    {
+     "player": "Jaylen Brown",
+     "stat": "pra",
+     "line": 25,
+     "actual": 38,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "pra",
+     "line": 15,
+     "actual": 20,
+     "hit": true
+    }
+   ]
+  },
+  {
+   "date": "2026-11-06",
+   "opp": "CLE",
+   "home": false,
+   "final": "L 95-119",
+   "price": 772,
+   "boost": 50,
+   "boosted": 1159,
+   "legs": [
+    {
+     "player": "Tyrese Maxey",
+     "stat": "pra",
+     "line": 30,
+     "actual": 24,
+     "hit": false
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "tpm",
+     "line": 2,
+     "actual": 2,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 3,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "stl",
+     "line": 1,
+     "actual": 4,
+     "hit": true
+    },
+    {
+     "player": "LeBron James",
+     "stat": "stl",
+     "line": 1,
+     "actual": 2,
+     "hit": true
+    },
+    {
+     "player": "LeBron James",
+     "stat": "pra",
+     "line": 25,
+     "actual": 18,
+     "hit": false
+    },
+    {
+     "player": "Jaylen Brown",
+     "stat": "pra",
+     "line": 25,
+     "actual": 30,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "pra",
+     "line": 15,
+     "actual": 24,
+     "hit": true
+    },
+    {
+     "player": "Joel Embiid",
+     "stat": "pra",
+     "line": 30,
+     "actual": 14,
+     "hit": false
+    }
+   ],
+   "note": "Blowout loss: three of the five PRA legs missed together."
+  }
+ ]
 }

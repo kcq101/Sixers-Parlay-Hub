@@ -106,9 +106,9 @@ h2.section { font-size: 28px; margin: 34px 0 12px; }
 .plain li span { color: var(--haze); }
 
 /* History */
-.summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 26px; }
+.summary { display: grid; grid-template-columns: 1fr 1.25fr 1fr; gap: 10px; margin-bottom: 26px; }
 .summary div { background: var(--court-2); padding: 12px; border-radius: 8px; }
-.summary b { display: block; font: 800 30px/1 var(--display); white-space: nowrap; }
+.summary b { display: block; font: 800 28px/1 var(--display); white-space: nowrap; }
 .summary span { color: var(--haze); font-size: 13px; }
 
 .slip { border-bottom: 1px solid var(--line); }
