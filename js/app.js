@@ -1,4 +1,4 @@
-// Sixers Parlay Hub — reads data/*.json and renders three tabs.
+// Sixers Parlay Hub — reads data/*.json and renders four tabs: Tonight, Build, Tickets, Stats.
 const TEAM = { CHI: "Bulls", CLE: "Cavaliers", DET: "Pistons", MIL: "Bucks", IND: "Pacers", NYK: "Knicks", CHA: "Hornets", BOS: "Celtics", TOR: "Raptors", BKN: "Nets", ORL: "Magic", POR: "Trail Blazers", MIA: "Heat", HOU: "Rockets", MEM: "Grizzlies", DEN: "Nuggets" };
 const STAT = {
   tpm: n => `${n}+ threes`, stl: n => `${n}+ ${n === 1 ? "steal" : "steals"}`, blk: n => `${n}+ ${n === 1 ? "block" : "blocks"}`,
@@ -7,30 +7,41 @@ const STAT = {
 };
 const STAT_GROUP = { tpm: "Threes", stl: "Steals", blk: "Blocks", reb: "Rebounds", ast: "Assists", pts: "Points", pra: "Pts + reb + ast", ml: "Moneyline", spread: "Spread" };
 const SGP_HAIRCUT = 0.85; // FanDuel paid ~15% under the straight multiply on Nov 6
+const STAKE = 10;         // illustrative stake; stakes aren't recorded
+const BOOST = 0.5;        // the profit boost we usually get
 
 const $ = (sel, el = document) => el.querySelector(sel);
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const fmtOdds = n => (n > 0 ? `+${Math.round(n)}` : `${Math.round(n)}`);
+const money = n => `${n < 0 ? "−" : ""}$${Math.abs(n) % 1 ? Math.abs(n).toFixed(2) : Math.abs(n)}`;
 const shortName = p => (p === "76ers" ? "76ers" : p.split(" ").slice(-1)[0]);
+const initials = p => (p === "76ers" ? "PHI" : p.split(" ").map(w => w[0]).join(""));
 const legLabel = l => STAT[l.stat](l.line);
+const isGame = l => l.stat === "ml" || l.stat === "spread";
 const fmtDate = d => new Date(d + "T12:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric" });
+const fmtShort = d => new Date(d + "T12:00:00").toLocaleDateString("en-US", { month: "numeric", day: "numeric" });
+const margin = v => (v > 0 ? `won by ${v}` : `lost by ${-v}`);
+const pct = (h, n) => (n ? Math.round((h / n) * 100) : 0);
 
 const toProb = a => (a < 0 ? -a / (-a + 100) : 100 / (a + 100));
 const toAmerican = dec => (dec >= 2 ? (dec - 1) * 100 : -100 / (dec - 1));
+
+const CHEV = `<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>`;
+const CHIP_ICON = `<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/><circle cx="12" cy="12" r="2"/></svg>`;
 
 function value(game, stat) {
   if (stat === "pra") return game.pts + game.reb + game.ast;
   return game[stat];
 }
 
-// Season games for a leg: returns [{date, val, hit}]
+// Season games for a leg: returns [{date, opp, val, hit}]
 function history(leg, data) {
-  if (leg.stat === "ml" || leg.stat === "spread") {
+  if (isGame(leg)) {
     return data.players.games.map(g => {
       const [a, b] = g.result.slice(2).split("-").map(Number);
-      const margin = g.result.startsWith("W") ? a - b : -(b - a);
-      const hit = leg.stat === "ml" ? margin > 0 : margin + leg.line > 0;
-      return { date: g.date, opp: g.opp, val: margin, hit };
+      const m = g.result.startsWith("W") ? a - b : -(b - a);
+      const hit = leg.stat === "ml" ? m > 0 : m + leg.line > 0;
+      return { date: g.date, opp: g.opp, val: m, hit };
     });
   }
   const log = data.players.players[leg.player] || [];
@@ -41,120 +52,406 @@ function history(leg, data) {
   });
 }
 
-function strip(games, extraClass = "") {
-  if (!games.length) return `<div class="strip ${extraClass}"><span class="strip-count">No game log yet</span></div>`;
+// How a player + stat has done on our slips: {h, n}
+function slipRecord(data, player, stat) {
+  const legs = data.slips.slips.flatMap(s => s.legs).filter(l => l.player === player && l.stat === stat);
+  return { h: legs.filter(l => l.hit).length, n: legs.length };
+}
+
+function legState(l) {
+  if (l.void) return "void";
+  if (l.actual == null) return "pending";
+  return l.hit ? "hit" : "miss";
+}
+
+function bars(games, leg) {
+  if (!games.length) return `<p class="bars-empty">No game log yet</p>`;
+  const vals = games.map(g => Math.abs(g.val));
+  const max = Math.max(...vals, isGame(leg) ? 1 : leg.line * 1.6, 1);
   const hits = games.filter(g => g.hit).length;
-  const marks = games.map(g => `<span class="mark ${g.hit ? "hit" : "miss"}" title="${esc(fmtDate(g.date))} vs ${esc(g.opp)}: ${esc(g.val)}"></span>`).join("");
-  return `<div class="strip ${extraClass}" aria-label="Hit in ${hits} of ${games.length} games">${marks}<span class="strip-count">${hits} of ${games.length} this season</span></div>`;
+  const thr = isGame(leg) ? "" : `<span class="thr" style="bottom:${Math.round((leg.line / max) * 34)}px"></span>`;
+  return `<div class="bars" role="img" aria-label="Hit in ${hits} of ${games.length} games this season">${games.map(g =>
+    `<span class="${g.hit ? "h" : "m"}" style="height:${Math.max(8, Math.round((Math.abs(g.val) / max) * 100))}%" title="${esc(fmtDate(g.date))} vs ${esc(g.opp)}: ${esc(g.val)}"></span>`).join("")}${thr}</div>`;
+}
+
+function tagBadge(tag) {
+  if (!tag) return "";
+  const cls = { Core: "chalk", Solid: "steel", Risky: "red" }[tag] || "steel";
+  return `<span class="badge ${cls}">${esc(tag)}</span>`;
+}
+
+function expandSlips(t) {
+  return t.slips.map(s => (s.sameAs ? { ...s, legs: [...t.slips.find(x => x.name === s.sameAs).legs, ...s.addLegs] } : s));
+}
+
+function estPrice(legs) {
+  const dec = legs.reduce((acc, l) => acc / toProb(l.price), 1);
+  return toAmerican(dec * SGP_HAIRCUT);
 }
 
 // ---------- Tonight ----------
-function renderTonight(data, el) {
+function renderTonight(data, el, ui) {
   const t = data.tonight;
   const g = t.game;
-  const slips = t.slips.map(s => (s.sameAs ? { ...s, legs: [...t.slips.find(x => x.name === s.sameAs).legs, ...s.addLegs] } : s));
-  let active = 0;
+  const slips = expandSlips(t);
+  const opp = TEAM[g.opp] || g.opp;
 
   const draw = () => {
-    const s = slips[active];
-    const dec = s.legs.reduce((acc, l) => acc / toProb(l.price), 1);
-    const est = toAmerican(dec * SGP_HAIRCUT);
-    const boosted50 = est * 1.5;
+    const s = slips[ui.slip] || slips[0];
+    const est = estPrice(s.legs);
+    const boosted = est * (1 + BOOST);
+    const profit = (STAKE * boosted) / 100;
+    const states = s.legs.map(legState);
+    const settled = states.filter(x => x !== "pending").length;
+    const flags = buildFlags(data, s.legs).length;
 
     el.innerHTML = `
-      <h2 class="matchup">76ers <span class="vs">${g.home ? "vs" : "at"}</span> ${esc(TEAM[g.opp] || g.opp)}</h2>
-      <p class="when">${esc(new Date(g.date + "T12:00:00").toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" }))}, ${esc(g.tip)}, ${esc(g.venue)}. Records: Sixers ${esc(g.records.PHI)}, ${esc(TEAM[g.opp])} ${esc(g.records[g.opp])}.</p>
-      <p class="status ${t.status !== "draft" ? "final" : ""}">${{ draft: "Draft.", final: "Final picks.", graded: "Graded." }[t.status] || ""} ${esc(t.statusNote)}</p>
+      <section class="plate">
+        <span class="stripe"></span><span class="rivet tl"></span><span class="rivet tr"></span><span class="rivet bl"></span><span class="rivet br"></span>
+        <div class="plate-top">
+          <span class="mono kicker">${esc(new Date(g.date + "T12:00:00").toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" }))} · ${esc(g.tip)}</span>
+          <span class="badge ${t.status === "draft" ? "brass" : t.status === "graded" ? "chalk" : "blue"}">${esc({ draft: "Draft", final: "Final picks", graded: "Graded" }[t.status] || t.status)}</span>
+        </div>
+        <div class="matchup">
+          <div class="team"><div class="monogram phi">PHI</div><span class="team-name">76ers</span><span class="record mono">${esc(g.records.PHI)}</span></div>
+          <span class="at">${g.home ? "vs" : "at"}</span>
+          <div class="team"><div class="monogram opp">${esc(g.opp)}</div><span class="team-name">${esc(opp)}</span><span class="record mono">${esc(g.records[g.opp])}</span></div>
+        </div>
+        <div class="plate-foot"><span>${esc(g.venue)}</span><span>${t.status === "draft" ? "Picks not locked" : ""}</span></div>
+        ${t.statusNote ? `<p class="status-note">${esc(t.statusNote)}</p>` : ""}
+      </section>
+
+      <div class="switch" role="group" aria-label="Slip version">
+        ${slips.map((x, i) => `<button type="button" aria-pressed="${i === ui.slip}" data-i="${i}">${esc(x.name)} <small>${x.legs.length}</small></button>`).join("")}
+      </div>
+
+      <section class="plate">
+        <div class="sum-top">
+          <div><div class="label">Est. FanDuel price</div><div class="big-price">${fmtOdds(est)}</div></div>
+          <div style="text-align:right"><div class="label">With ${BOOST * 100}% boost</div><div class="boost-price">${fmtOdds(boosted)}</div></div>
+        </div>
+        <div class="sum-grid">
+          <div><span class="label">Stake</span><b>${money(STAKE)}</b></div>
+          <div><span class="label">Profit</span><b class="profit">${money(Math.round(profit * 100) / 100)}</b></div>
+          <div><span class="label">Return</span><b>${money(Math.round((STAKE + profit) * 100) / 100)}</b></div>
+        </div>
+        <p class="muted" style="margin-top:8px">Illustrative $10 stake. Profit is at the boosted price; return = stake + profit.</p>
+        <div class="progress-row"><span class="label">Ticket progress</span><span class="label" style="color:var(--ink-2)">${settled} of ${s.legs.length} settled</span></div>
+        <div class="segs" aria-hidden="true">${states.map(x => `<span class="seg ${x === "hit" ? "hit" : x === "miss" ? "miss" : ""}"></span>`).join("")}</div>
+        <p class="muted" style="margin-top:10px">Estimate = legs multiplied, less ~15% because FanDuel pays less when legs are related. Your screenshot is the real number.</p>
+      </section>
+
+      <section class="legs">
+        <div class="section-row"><h2 class="section">Legs</h2><span class="label">Bars = this season · line = threshold</span></div>
+        ${s.legs.map((l, i) => legCard(l, data, g.opp, i === ui.open)).join("")}
+      </section>
+
+      <button type="button" class="analyst-link" data-go="t-build">
+        <div class="analyst-head">${CHIP_ICON}<span class="mono analyst-title">Parlay Analyst</span><span class="badge brass" style="margin-left:auto">${flags} ${flags === 1 ? "flag" : "flags"}</span></div>
+        <p style="font-size:14px;color:var(--ink-2)">${esc(flagSummary(data, s.legs))}</p>
+        <span class="mono" style="display:inline-block;margin-top:10px;font-size:11px">Open the read →</span>
+      </button>
 
       ${scheduleBlock(data.schedule)}
 
-      <div class="switch" role="group" aria-label="Slip version">
-        ${slips.map((x, i) => `<button aria-pressed="${i === active}" data-i="${i}">${esc(x.name)} (${x.legs.length})</button>`).join("")}
-      </div>
+      <section class="panel">
+        <h2 class="panel-h">Injury report</h2>
+        <div class="rows">${t.injuries.map(i => `<div><span class="mono tm">${esc(i.team)}</span><span class="grow"><b style="font-weight:600">${esc(i.player)}</b> <span class="sub">· ${esc(i.note)}</span></span>${injuryBadge(i.status)}</div>`).join("")}</div>
+      </section>
 
-      <div class="price-block">
-        <span class="price">${fmtOdds(est)}</span>
-        <span class="price-meta">estimated FanDuel price<br>${fmtOdds(boosted50)} with a 50% boost</span>
-      </div>
-      <p class="price-note">Built from each leg's price, less about 15% because FanDuel pays less when legs are related. Your screenshot is the real number.</p>
-
-      <ul class="legs">${s.legs.map(l => legRow(l, data, g.opp)).join("")}</ul>
-
-      <h2 class="section">If the price is off</h2>
-      <ul class="plain">${t.tuner.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
-
-      <h2 class="section">Bench</h2>
-      <ul class="legs">${t.bench.map(b => benchRow(b, data, g.opp)).join("")}</ul>
-
-      <h2 class="section">Injury report</h2>
-      <ul class="plain">${t.injuries.map(i => `<li><strong>${esc(i.player)}</strong> (${esc(i.team)}): ${esc(i.status)}. <span>${esc(i.note)}</span></li>`).join("")}</ul>
-
-      <h2 class="section">Game notes</h2>
-      <ul class="plain"><li>${esc(g.line)}</li><li>${esc(g.lastMeeting)}</li></ul>
+      <section class="panel">
+        <h2 class="panel-h">Game notes</h2>
+        <div class="rows"><div><span class="grow" style="color:var(--ink-2)">${esc(g.line)}</span></div><div><span class="grow" style="color:var(--ink-2)">${esc(g.lastMeeting)}</span></div></div>
+      </section>
     `;
-    el.querySelectorAll(".switch button").forEach(b => b.addEventListener("click", () => { active = +b.dataset.i; draw(); }));
+    el.querySelectorAll(".switch button").forEach(b => b.addEventListener("click", () => { ui.slip = +b.dataset.i; draw(); }));
+    el.querySelectorAll("details.leg").forEach((d, i) => d.addEventListener("toggle", () => { if (d.open) ui.open = i; else if (ui.open === i) ui.open = -1; }));
   };
   draw();
 }
 
-function vsOpp(games, opp, leg) {
-  const prior = games.filter(x => x.opp === opp);
-  if (!prior.length || leg.stat === "ml" || leg.stat === "spread") return "";
-  return `<p class="vs-opp">vs ${esc(TEAM[opp] || opp)} this season: ${prior.map(x => x.val).join(", ")}</p>`;
+function injuryBadge(status) {
+  const s = String(status).toLowerCase();
+  const cls = s === "out" ? "red" : s.includes("game-time") || s.includes("questionable") || s.includes("doubtful") ? "blue" : "brass";
+  const label = s.includes("game-time") ? "GTD" : s === "no designation" ? "No desig." : status;
+  return `<span class="badge ${cls}">${esc(label)}</span>`;
 }
 
-function legRow(l, data, opp) {
+function legCard(l, data, opp, open) {
   const games = history(l, data);
-  return `<li class="leg">
-    <div class="leg-top">
-      <div><span class="leg-name">${esc(shortName(l.player))}</span> <span class="leg-what">${esc(legLabel(l))}</span>${l.tag ? `<span class="tag tag-${esc(l.tag)}">${esc(l.tag)}</span>` : ""}</div>
-      <div class="leg-price">${fmtOdds(l.price)}<small>${esc(l.priceNote || "")}</small></div>
+  const st = legState(l);
+  const hits = games.filter(g => g.hit).length;
+  const prior = games.filter(x => x.opp === opp);
+  const rec = slipRecord(data, l.player, l.stat);
+  const vsLine = prior.length ? `vs ${esc(TEAM[opp] || opp)} this season: ${prior.map(x => (isGame(l) ? margin(x.val) : x.val)).join(", ")}` : "";
+  const final = l.actual != null
+    ? `<p class="final-line ${l.hit ? "hit" : "miss"}">Final: ${esc(isGame(l) ? margin(l.actual) : l.actual)}. ${l.hit ? "Hit" : "Missed"}.</p>` : "";
+  return `<details class="leg ${st}"${open ? " open" : ""}>
+    <summary>
+      <div class="leg-head">
+        <span class="ini">${esc(initials(l.player))}</span>
+        <span class="leg-mid">
+          <span class="leg-name">${esc(shortName(l.player))} ${tagBadge(l.tag)}</span>
+          <span class="leg-what">${esc(legLabel(l))}</span>
+        </span>
+        <span class="leg-right">
+          <span class="leg-price">${fmtOdds(l.price)}</span>
+          <span class="leg-rate mono">${games.length ? `${hits}/${games.length} season` : "no log"}</span>
+        </span>
+        ${CHEV}
+      </div>
+      ${bars(games, l)}
+    </summary>
+    <div class="leg-body">
+      ${final}
+      ${games.length ? `<div class="games">${games.map(x => `<div class="${x.hit ? "h" : "m"}"><small>${esc(x.opp)}</small><b>${esc(isGame(l) ? (x.val > 0 ? `W+${x.val}` : `L${x.val}`) : x.val)}</b></div>`).join("")}</div>` : ""}
+      ${l.note ? `<p class="leg-note">${esc(l.note)}</p>` : ""}
+      <p class="muted">${rec.n ? `On our slips: ${rec.h} of ${rec.n}.` : "Not on our slips yet."} ${vsLine ? vsLine + "." : ""} ${l.priceNote ? `Price: ${esc(l.priceNote)}.` : ""}</p>
+      <div><button type="button" class="btn" data-go="t-build">Swap options</button></div>
     </div>
-    ${l.actual != null ? `<p class="final ${l.hit ? "hit" : "miss"}"><span class="mark ${l.hit ? "hit" : "miss"}"></span>Final: ${esc(l.stat === "ml" || l.stat === "spread" ? (l.actual > 0 ? `won by ${l.actual}` : `lost by ${-l.actual}`) : l.actual)}. ${l.hit ? "Hit" : "Missed"}.</p>` : ""}
-    ${strip(games)}
-    ${vsOpp(games, opp, l)}
-    ${l.note ? `<p class="leg-note">${esc(l.note)}</p>` : ""}
-  </li>`;
+  </details>`;
 }
 
 function scheduleBlock(sch) {
   if (!sch || !sch.updates?.length) return "";
-  const fmt = iso => new Date(iso).toLocaleString("en-US", { weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
-  return `<div class="schedule">
-    <h3>Automatic updates</h3>
-    <ul>${sch.updates.map(u => `<li class="${esc(u.status)}">
-      <span class="when">${esc(fmt(u.when))}</span>
-      <span class="what">${esc(u.what)}<span class="state">${u.status === "done" ? `Done ${esc(fmt(u.doneAt))}` : u.status === "failed" ? "Didn't run" : "Scheduled"}</span></span>
-      <span class="detail">${esc(u.result || u.detail)}</span>
+  const fmt = iso => new Date(iso).toLocaleString("en-US", { weekday: "short", hour: "numeric", minute: "2-digit" });
+  return `<section class="panel">
+    <h2 class="panel-h">Automatic updates</h2>
+    <ul class="sched">${sch.updates.map(u => `<li>
+      <span class="mono when">${esc(fmt(u.when))}</span>
+      <span class="what">${esc(u.what)}<span>${esc(u.result || u.detail)}</span></span>
+      <span class="badge ${u.status === "done" ? "hit" : u.status === "failed" ? "red" : "steel"}" style="align-self:flex-start">${u.status === "done" ? "Done" : u.status === "failed" ? "Didn't run" : "Sched"}</span>
     </li>`).join("")}</ul>
-    <p class="detail">${esc(sch.note)}</p>
-  </div>`;
+    ${sch.note ? `<p class="muted" style="margin-top:8px">${esc(sch.note)}</p>` : ""}
+  </section>`;
 }
 
-function benchRow(b, data, opp) {
-  const games = history(b, data);
-  return `<li class="leg">
-    <div class="leg-top"><div><span class="leg-name">${esc(shortName(b.player))}</span> <span class="leg-what">${esc(legLabel(b))}</span></div></div>
-    ${strip(games)}
-    ${vsOpp(games, opp, b)}
-    <p class="leg-note">${esc(b.effect)} ${esc(b.note || "")}</p>
-  </li>`;
+// ---------- Analyst checks (computed from the slip and the playbook's working rules) ----------
+function buildFlags(data, legs) {
+  const flags = [];
+  const props = legs.filter(l => !isGame(l));
+  const byPlayer = {};
+  props.forEach(l => (byPlayer[l.player] ??= []).push(l));
+  Object.entries(byPlayer).filter(([, ls]) => ls.length >= 3).forEach(([p, ls]) => flags.push({
+    kind: "Same player", cls: "brass", title: `${ls.length} ${shortName(p)} legs`, chips: ls.map(legLabel),
+    text: `One cold or short night can sink all ${ls.length} at once.`
+  }));
+  const pra = props.filter(l => l.stat === "pra");
+  if (pra.length >= 3) flags.push({
+    kind: "Game script", cls: "brass", title: `${pra.length} pts + reb + ast legs`,
+    chips: pra.map(l => `${shortName(l.player)} ${l.line}+`),
+    text: pra.length > 3 ? "Over the cap of about 3. Blowouts sink these together, as on Nov 6." : "At the cap of about 3. Blowouts sink these together — on Nov 6 three of five missed."
+  });
+  const embiid = props.filter(l => l.player === "Joel Embiid" && l.stat !== "reb");
+  if (embiid.length) flags.push({
+    kind: "Playbook", cls: "red", title: "Embiid leg outside the rules", chips: embiid.map(legLabel),
+    text: "The playbook says skip Embiid threes, blocks and pts + reb + ast. Rebounds is the only one worth testing."
+  });
+  props.filter(l => l.tag === "Risky" && !embiid.includes(l)).forEach(l => flags.push({
+    kind: "Risky leg", cls: "red", title: `${shortName(l.player)} ${legLabel(l)}`, chips: [], text: l.note || ""
+  }));
+  return flags;
 }
 
-// ---------- History ----------
-function renderHistory(data, el) {
+function flagSummary(data, legs) {
+  const f = buildFlags(data, legs);
+  if (!f.length) return "No overlaps or rule breaks found in this slip.";
+  return f.map(x => x.title).join(" · ") + ".";
+}
+
+// ---------- Build ----------
+function renderBuild(data, el, ui) {
+  const t = data.tonight;
+  const slips = expandSlips(t);
+  const draw = () => {
+    const s = slips[ui.slip] || slips[0];
+    const flags = buildFlags(data, s.legs);
+    const risky = s.legs.filter(l => l.tag === "Risky");
+    const why = s.legs.map(l => {
+      const games = history(l, data);
+      const h = games.filter(x => x.hit).length;
+      return { l, h, n: games.length, r: games.length ? h / games.length : 0 };
+    }).sort((a, b) => b.r - a.r || b.n - a.n);
+    const strong = why.filter(w => w.n && w.r >= 0.8).length;
+    const target = risky[0] || why[why.length - 1].l;
+    const injuries = t.injuries.filter(i => i.team === "PHI" ? true : !/out/i.test(i.status));
+    const est = estPrice(s.legs);
+
+    el.innerHTML = `
+      <section class="analyst">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div class="analyst-mark">${CHIP_ICON}</div>
+          <div style="display:flex;flex-direction:column;gap:3px"><span class="mono analyst-title" style="color:var(--blue-ink);font-size:12px">Parlay Analyst</span><span class="mono" style="font-size:9px;color:var(--ink-4)">${esc(s.name)} · ${s.legs.length} legs</span></div>
+        </div>
+        <p class="lead">${strong} of ${s.legs.length} legs hit in at least 80% of games this season.${flags.length ? ` Watch: <b>${esc(flags.map(f => f.title).join(" · "))}</b>.` : " No overlaps or rule breaks found."}</p>
+        <div class="mini-kpis">
+          <div><b>${fmtOdds(est)}</b><span class="label">Est. price</span></div>
+          <div><b class="brass-t">${flags.filter(f => f.cls === "brass").length}</b><span class="label">Overlaps</span></div>
+          <div><b style="color:var(--red-ink)">${risky.length}</b><span class="label">Risky ${risky.length === 1 ? "leg" : "legs"}</span></div>
+        </div>
+      </section>
+
+      ${flags.length ? `<section class="panel"><h2 class="panel-h">Overlap &amp; correlated risk</h2>
+        ${flags.map(f => `<div class="flag"><div class="flag-h"><span class="badge ${f.cls}">${esc(f.kind)}</span>${esc(f.title)}</div>
+          ${f.chips.length ? `<div class="chips">${f.chips.map(c => `<span class="chip">${esc(c)}</span>`).join("")}</div>` : ""}
+          ${f.text ? `<p>${esc(f.text)}</p>` : ""}</div>`).join("")}
+      </section>` : ""}
+
+      <section class="panel">
+        <h2 class="panel-h">Injury, lineup &amp; minutes</h2>
+        <div class="rows">${injuries.map(i => `<div><span class="mono tm">${esc(i.team)}</span><span class="grow"><b style="font-weight:600">${esc(i.player)}</b> <span class="sub">· ${esc(i.note)}</span></span>${injuryBadge(i.status)}</div>`).join("")}</div>
+        <p class="muted" style="margin-top:8px">The 1:30 PM refresh rechecks this and swaps any leg whose player is out.</p>
+      </section>
+
+      <section class="panel" style="border-color:rgba(237,23,76,.45)">
+        <h2 class="panel-h">Swap one leg</h2>
+        <div class="swap-target">
+          <span style="flex:1;display:flex;flex-direction:column;gap:2px"><span class="mono" style="font-size:9px;color:#FF8FA8">${target.tag === "Risky" ? "Riskiest leg" : "Weakest leg"}</span><span class="disp" style="font-size:19px;font-weight:700">${esc(shortName(target.player))} ${esc(legLabel(target))} <span style="color:var(--ink-3);font-weight:500">${fmtOdds(target.price)}</span></span></span>
+          ${tagBadge(target.tag)}
+        </div>
+        <p class="muted" style="margin:8px 0 12px">Bench options keep the other legs as they are. Make the swap in FanDuel; this page never places a bet.</p>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          ${t.bench.map(b => {
+            const games = history(b, data);
+            const h = games.filter(x => x.hit).length;
+            return `<div class="swap-opt"><div style="display:flex;justify-content:space-between;gap:8px"><span class="disp" style="font-size:18px;font-weight:700">${esc(shortName(b.player))} ${esc(legLabel(b))}</span><span class="mono" style="font-size:10px;color:var(--brass-ink)">${games.length ? `${h}/${games.length}` : ""}</span></div>
+              ${bars(games, b)}
+              <p class="muted" style="font-size:13px;color:var(--ink-3)">${esc(b.effect)} ${esc(b.note || "")}</p></div>`;
+          }).join("")}
+        </div>
+      </section>
+
+      <section class="panel why">
+        <h2 class="panel-h">Why each leg</h2>
+        ${why.map(w => `<div><span class="mono rate">${w.n ? `${w.h}/${w.n}` : "—"}</span><div style="flex:1;display:flex;flex-direction:column;gap:2px"><span class="leg-t">${esc(shortName(w.l.player))} ${esc(legLabel(w.l))}</span><p>${esc(w.l.note || "")}</p></div></div>`).join("")}
+      </section>
+
+      ${t.tuner?.length ? `<section class="panel tuner"><h2 class="panel-h">If FanDuel's price is off</h2>${t.tuner.map(x => `<div>${esc(x)}</div>`).join("")}</section>` : ""}
+
+      <p class="disclaimer">Rates are how often each leg would have hit this season, not the chance it hits tonight. The analyst's notes are a read of the data, not a guarantee. The FanDuel screenshot is always the real price.</p>
+
+      ${playbookBlock(data.playbook)}
+    `;
+  };
+  draw();
+  return draw;
+}
+
+function playbookBlock(p) {
+  if (!p) return "";
+  return `<details class="rules">
+    <summary>House rules &amp; lessons ${CHEV}</summary>
+    <div class="rules-body">
+      <div><h3 class="panel-h" style="margin-bottom:4px">How we play</h3><ul>${p.houseRules.map(r => `<li>${esc(r)}</li>`).join("")}</ul></div>
+      <div><h3 class="panel-h" style="margin-bottom:4px">What the history says</h3><ul>${p.learned.map(r => `<li><b>${esc(r.rule)}</b><span>${esc(r.why)}</span></li>`).join("")}</ul></div>
+    </div>
+  </details>`;
+}
+
+// ---------- Tickets ----------
+function ticketPL(s) {
+  const won = s.legs.every(l => l.hit);
+  const price = s.boosted || s.price;
+  return won ? (STAKE * price) / 100 : -STAKE;
+}
+
+function renderTickets(data, el) {
   const slips = [...data.slips.slips].sort((a, b) => b.date.localeCompare(a.date));
-  const allLegs = slips.flatMap(s => s.legs.map(l => ({ ...l, date: s.date })));
-  const hits = allLegs.filter(l => l.hit).length;
+  const all = slips.flatMap(s => s.legs);
+  const hits = all.filter(l => l.hit).length;
   const won = slips.filter(s => s.legs.every(l => l.hit)).length;
   const oneAway = slips.filter(s => s.legs.filter(l => !l.hit).length === 1).length;
-
-  let filter = "All";
-  let sortKey = "rate";
-  const players = ["All", ...new Set(allLegs.map(l => l.player))];
+  const t = data.tonight;
+  const tonightSlips = expandSlips(t);
+  let filter = "all";
+  const FILTERS = { all: "All", near: "One away", line: "With game line", boosted: "Boosted" };
+  const keep = s => filter === "all" ? true
+    : filter === "near" ? s.legs.filter(l => !l.hit).length === 1
+    : filter === "line" ? s.legs.some(isGame)
+    : !!s.boosted;
 
   const draw = () => {
-    const legs = filter === "All" ? allLegs : allLegs.filter(l => l.player === filter);
+    el.innerHTML = `
+      <section class="plate kpi3">
+        <div><b>${won}–${slips.length - won}</b><span class="label">Cashed</span></div>
+        <div><b>${hits}/${all.length}</b><span class="label">Legs hit · ${pct(hits, all.length)}%</span></div>
+        <div><b class="brass-t">${oneAway}</b><span class="label">One leg away</span></div>
+      </section>
+
+      <div class="pills" role="group" aria-label="Filter tickets">
+        ${Object.entries(FILTERS).map(([k, v]) => `<button type="button" aria-pressed="${k === filter}" data-f="${k}">${v}</button>`).join("")}
+      </div>
+
+      ${t.status !== "graded" ? `<button type="button" class="next-card" data-go="t-tonight">
+        <span style="flex:1;display:flex;flex-direction:column;gap:3px">
+          <span class="mono" style="font-size:9px;color:var(--brass-ink)">Up next · ${esc({ draft: "Draft", final: "Final picks" }[t.status] || t.status)}</span>
+          <span class="disp" style="font-size:20px;font-weight:700">${t.game.home ? "vs" : "at"} ${esc(TEAM[t.game.opp] || t.game.opp)} · ${esc(fmtDate(t.game.date))}</span>
+          <span style="font-size:12px;color:var(--ink-3)">${tonightSlips.map(s => `${s.legs.length} legs est. ${fmtOdds(estPrice(s.legs))}`).join(" · ")}</span>
+        </span>
+        <span class="mono" style="font-size:11px">Open →</span>
+      </button>` : ""}
+
+      ${slips.filter(keep).map(ticketBlock).join("") || `<p class="muted">No tickets match.</p>`}
+      <p class="muted">P/L assumes an illustrative $10 stake per ticket.</p>
+    `;
+    el.querySelectorAll(".pills button").forEach(b => b.addEventListener("click", () => { filter = b.dataset.f; draw(); }));
+  };
+  draw();
+}
+
+function ticketBlock(s) {
+  const h = s.legs.filter(l => l.hit).length;
+  const missed = s.legs.length - h;
+  const pl = ticketPL(s);
+  const cls = missed === 0 ? "won" : missed === 1 ? "near" : "";
+  const price = s.boosted ? `${fmtOdds(s.price)} → ${fmtOdds(s.boosted)} boosted` : fmtOdds(s.price);
+  const final = s.final.replace(/^W /, "Won ").replace(/^L /, "Lost ").replace("-", "–");
+  return `<details class="ticket ${cls}">
+    <summary>
+      <div class="t-top"><span class="t-title">${s.home ? "vs" : "at"} ${esc(TEAM[s.opp] || s.opp)} · ${esc(fmtDate(s.date))}${s.label ? ` <small>${esc(s.label)}</small>` : ""}</span><span class="t-res">${missed === 0 ? "Cashed" : `${h} of ${s.legs.length}`}</span></div>
+      <div class="t-sub"><span>${esc(price)} · ${esc(final)}</span><span class="${pl < 0 ? "pl-neg" : "pl-pos"}">${pl < 0 ? money(pl) : "+" + money(Math.round(pl * 100) / 100)}</span></div>
+      <div class="dots" aria-label="${h} of ${s.legs.length} legs hit">${s.legs.map(l => `<span class="dot ${l.hit ? "h" : "m"}"></span>`).join("")}</div>
+    </summary>
+    <ul class="t-legs">${s.legs.map(l => `<li class="${l.hit ? "h" : "m"}"><span class="dot ${l.hit ? "h" : "m"}" aria-label="${l.hit ? "hit" : "missed"}"></span>${esc(shortName(l.player))} ${esc(legLabel(l))}<span class="act">${l.actual == null ? "" : esc(isGame(l) ? (l.actual > 0 ? `W+${l.actual}` : `L${l.actual}`) : l.actual)}</span></li>`).join("")}
+      ${s.note ? `<li><p class="t-note">${esc(s.note)}</p></li>` : ""}
+    </ul>
+  </details>`;
+}
+
+// ---------- Stats ----------
+function rateRow(name, h, n) {
+  const r = n ? h / n : 0;
+  const c = r >= 0.8 ? "var(--hit)" : r >= 0.6 ? "var(--blue)" : "var(--red)";
+  return `<div class="rate-row"><div class="top"><span>${esc(name)}</span><span class="mono" style="font-size:11px;color:var(--ink-2)">${h}/${n} · ${pct(h, n)}%</span></div><div class="trk"><i style="width:${pct(h, n)}%;background:${c}"></i></div></div>`;
+}
+
+function renderStats(data, el) {
+  const slips = [...data.slips.slips].sort((a, b) => a.date.localeCompare(b.date));
+  const all = slips.flatMap(s => s.legs);
+  const hits = all.filter(l => l.hit).length;
+  const pl = slips.reduce((a, s) => a + ticketPL(s), 0);
+  const cashed = slips.filter(s => s.legs.every(l => l.hit));
+  const best = Math.max(...slips.map(s => s.boosted || s.price));
+  const bestSlip = slips.find(s => (s.boosted || s.price) === best);
+  const near = slips.filter(s => s.legs.filter(l => !l.hit).length === 1);
+  const avgHit = slips.reduce((a, s) => a + s.legs.filter(l => l.hit).length, 0) / slips.length;
+  const avgLegs = all.length / slips.length;
+  const maxLegs = Math.max(...slips.map(s => s.legs.length));
+
+  const group = keyFn => {
+    const g = {};
+    all.forEach(l => { const k = keyFn(l); g[k] ??= { h: 0, n: 0 }; g[k].n++; if (l.hit) g[k].h++; });
+    return Object.entries(g).sort((a, b) => b[1].h / b[1].n - a[1].h / a[1].n || b[1].n - a[1].n);
+  };
+  const byPlayer = group(l => (l.player === "76ers" ? "Sixers game lines" : shortName(l.player)));
+  const byCat = group(l => (isGame(l) ? "Game lines" : STAT_GROUP[l.stat]));
+
+  let sortKey = "rate";
+  let filter = "All";
+  const players = ["All", ...new Set(all.map(l => l.player))];
+
+  const draw = () => {
+    const legs = filter === "All" ? all : all.filter(l => l.player === filter);
     const groups = {};
     legs.forEach(l => {
       const key = `${l.player}|${l.stat}`;
@@ -165,92 +462,96 @@ function renderHistory(data, el) {
       sortKey === "rate" ? (b.h / b.n - a.h / a.n) || b.n - a.n : b.n - a.n || (b.h / b.n - a.h / a.n));
 
     el.innerHTML = `
-      <div class="summary">
-        <div><b>${won} of ${slips.length}</b><span>slips cashed</span></div>
-        <div><b>${hits} of ${allLegs.length}</b><span>legs hit</span></div>
-        <div><b>${oneAway}</b><span>lost by one leg</span></div>
+      <section class="plate hero">
+        <div><div class="label">Season P/L</div><div class="hero-n" style="color:${pl < 0 ? "var(--red-ink)" : "var(--hit)"}">${pl < 0 ? money(pl) : "+" + money(Math.round(pl))}</div><span class="muted">at $10 a ticket · ${slips.length} played</span></div>
+        <div style="text-align:right"><div class="label">Legs hit</div><div class="hero-n" style="font-size:40px">${pct(hits, all.length)}%</div><span class="muted">${hits} of ${all.length}</span></div>
+      </section>
+
+      <div class="kpi2">
+        <div><span class="label">Highest payout</span><b>${cashed.length ? "+" + money(Math.round(Math.max(...cashed.map(ticketPL)))) : "—"}</b><span class="muted">${cashed.length ? `${cashed.length} cashed` : "None cashed yet"}</span></div>
+        <div><span class="label">Best price played</span><b class="brass-t">${fmtOdds(best)}</b><span class="muted">${esc(TEAM[bestSlip.opp] || bestSlip.opp)} ${esc(fmtDate(bestSlip.date))}${bestSlip.label ? " " + esc(bestSlip.label) : ""}</span></div>
+        <div><span class="label">Avg legs hit</span><b>${avgHit.toFixed(1)} <small>/ ${avgLegs.toFixed(1)}</small></b><span class="muted">per ticket</span></div>
+        <div><span class="label">One leg away</span><b class="brass-t">${near.length}</b><span class="muted">${near.map(s => fmtShort(s.date)).join(", ") || "none"}</span></div>
       </div>
 
-      <h2 class="section">Hit rate by leg</h2>
-      <div class="filters" role="group" aria-label="Filter by player">
-        ${players.map(p => `<button aria-pressed="${p === filter}" data-p="${esc(p)}">${esc(p === "All" ? "Everyone" : shortName(p))}</button>`).join("")}
-      </div>
-      <table class="rates">
-        <thead><tr><th scope="col">Leg</th><th scope="col" class="num" data-sort="count">Played</th><th scope="col" class="num" data-sort="rate">Hit</th></tr></thead>
-        <tbody>${rows.map(r => `<tr>
-          <td>${esc(shortName(r.player))} ${esc(STAT_GROUP[r.stat].toLowerCase())}<div class="bar"><i style="width:${(r.h / r.n) * 100}%"></i></div></td>
-          <td class="num">${r.n}</td><td class="num">${r.h} of ${r.n}</td></tr>`).join("")}</tbody>
-      </table>
+      <section class="panel">
+        <h2 class="panel-h">Legs hit per ticket</h2>
+        <div class="legend"><span><i class="sw" style="background:var(--hit)"></i>Hit</span><span><i class="sw" style="box-shadow:inset 0 0 0 1.5px var(--red)"></i>Missed</span><span><i class="sw" style="background:var(--brass-ink)"></i>One away</span></div>
+        <div class="chart" role="img" aria-label="Legs hit per ticket, oldest to newest: ${slips.map(s => `${s.legs.filter(l => l.hit).length} of ${s.legs.length}`).join(", ")}">
+          ${slips.map(s => { const h = s.legs.filter(l => l.hit).length; const m = s.legs.length - h;
+            return `<div class="col" title="${esc(fmtDate(s.date))}${s.label ? " " + esc(s.label) : ""}: ${h} of ${s.legs.length}"><div class="miss" style="height:${(m / maxLegs) * 100}%"></div><div class="hit ${m === 1 ? "near" : ""}" style="height:${(h / maxLegs) * 100}%"></div></div>`; }).join("")}
+        </div>
+        <div class="chart-x">${slips.map(s => `<span>${esc(fmtShort(s.date))}</span>`).join("")}</div>
+      </section>
 
-      <h2 class="section">Every slip</h2>
-      ${slips.map(slipBlock).join("")}
+      <section class="panel"><h2 class="panel-h">Hit rate by player</h2>${byPlayer.map(([k, v]) => rateRow(k, v.h, v.n)).join("")}</section>
+      <section class="panel"><h2 class="panel-h">Hit rate by prop type</h2>${byCat.map(([k, v]) => rateRow(k, v.h, v.n)).join("")}</section>
+
+      <section class="panel">
+        <h2 class="panel-h">Every player + prop</h2>
+        <div class="pills" role="group" aria-label="Filter by player" style="margin-bottom:10px">
+          ${players.map(p => `<button type="button" aria-pressed="${p === filter}" data-p="${esc(p)}">${esc(p === "All" ? "Everyone" : shortName(p))}</button>`).join("")}
+        </div>
+        <table class="rates">
+          <thead><tr><th scope="col">Leg</th><th scope="col" style="text-align:right"><button type="button" data-sort="count" aria-pressed="${sortKey === "count"}">Played</button></th><th scope="col" style="text-align:right"><button type="button" data-sort="rate" aria-pressed="${sortKey === "rate"}">Hit</button></th></tr></thead>
+          <tbody>${rows.map(r => `<tr><td>${esc(shortName(r.player))} ${esc(STAT_GROUP[r.stat].toLowerCase())}<div class="trk" style="margin-top:4px;height:5px"><i style="width:${pct(r.h, r.n)}%;background:${r.h / r.n >= 0.8 ? "var(--hit)" : r.h / r.n >= 0.6 ? "var(--blue)" : "var(--red)"}"></i></div></td><td class="num">${r.n}</td><td class="num">${r.h}/${r.n}</td></tr>`).join("")}</tbody>
+        </table>
+      </section>
     `;
-    el.querySelectorAll(".filters button").forEach(b => b.addEventListener("click", () => { filter = b.dataset.p; draw(); }));
-    el.querySelectorAll("th[data-sort]").forEach(th => th.addEventListener("click", () => { sortKey = th.dataset.sort; draw(); }));
+    el.querySelectorAll(".pills button").forEach(b => b.addEventListener("click", () => { filter = b.dataset.p; draw(); }));
+    el.querySelectorAll("th button[data-sort]").forEach(b => b.addEventListener("click", () => { sortKey = b.dataset.sort; draw(); }));
   };
   draw();
 }
 
-function slipBlock(s) {
-  const hit = s.legs.filter(l => l.hit).length;
-  const missed = s.legs.length - hit;
-  const result = missed === 0 ? "Cashed" : `${hit} of ${s.legs.length}`;
-  const price = s.boosted ? `${fmtOdds(s.price)}, boosted to ${fmtOdds(s.boosted)}` : fmtOdds(s.price);
-  const marks = s.legs.map(l => `<span class="mark ${l.hit ? "hit" : "miss"}"></span>`).join("");
-  return `<details class="slip">
-    <summary>
-      <span class="slip-title">${s.home ? "vs" : "at"} ${esc(TEAM[s.opp] || s.opp)}, ${esc(fmtDate(s.date))}${s.label ? ` <span class="slip-sub">${esc(s.label)}</span>` : ""}</span>
-      <span class="slip-result ${missed === 1 ? "near" : ""}">${result}</span>
-      <span class="slip-sub">${esc(price)}. Game: ${esc(s.final)}.</span>
-      <div class="strip">${marks}</div>
-    </summary>
-    <ul class="slip-legs">${s.legs.map(l => `<li><span class="mark ${l.hit ? "hit" : "miss"}" aria-label="${l.hit ? "hit" : "missed"}"></span>${esc(shortName(l.player))} ${esc(legLabel(l))}<span class="actual">${l.actual == null ? "" : (l.stat === "ml" || l.stat === "spread" ? (l.actual > 0 ? `won by ${l.actual}` : `lost by ${-l.actual}`) : l.actual)}</span></li>`).join("")}</ul>
-    ${s.note ? `<p class="slip-note">${esc(s.note)}</p>` : ""}
-  </details>`;
-}
-
-// ---------- Playbook ----------
-function renderPlaybook(data, el) {
-  const p = data.playbook;
-  el.innerHTML = `
-    <h2 class="section" style="margin-top:0">How we play</h2>
-    <ul class="plain">${p.houseRules.map(r => `<li>${esc(r)}</li>`).join("")}</ul>
-    <h2 class="section">What the history says</h2>
-    ${p.learned.map(r => `<div class="rule"><p>${esc(r.rule)}</p><p>${esc(r.why)}</p></div>`).join("")}
-  `;
-}
-
 // ---------- Tabs + boot ----------
+const OLD_HASH = { history: "tickets", playbook: "build" };
+function show(id) {
+  document.querySelectorAll('[role="tab"]').forEach(t => {
+    const on = t.id === id;
+    t.setAttribute("aria-selected", on);
+    document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+  });
+  try { window.history.replaceState(null, "", "#" + id.slice(2)); } catch (e) { /* file:// */ }
+  window.scrollTo(0, 0);
+}
 function setupTabs() {
-  const tabs = document.querySelectorAll('[role="tab"]');
-  const show = id => {
-    tabs.forEach(t => {
-      const on = t.id === id;
-      t.setAttribute("aria-selected", on);
-      document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
-    });
-    history_replace(id);
-    window.scrollTo(0, 0);
-  };
-  tabs.forEach(t => t.addEventListener("click", () => show(t.id)));
-  const fromHash = location.hash.replace("#", "");
+  document.querySelectorAll('[role="tab"]').forEach(t => t.addEventListener("click", () => show(t.id)));
+  document.addEventListener("click", e => { const go = e.target.closest("[data-go]"); if (go) show(go.dataset.go); });
+  let fromHash = location.hash.replace("#", "");
+  fromHash = OLD_HASH[fromHash] || fromHash;
   if (fromHash && document.getElementById("t-" + fromHash)) show("t-" + fromHash);
 }
-function history_replace(id) { try { window.history.replaceState(null, "", "#" + id.slice(2)); } catch (e) { /* file:// */ } }
 
-async function boot() {
+const ui = { slip: 0, open: -1 };
+async function load() {
   try {
     const bust = `?v=${Date.now()}`;
     const [tonight, slips, players, playbook, schedule] = await Promise.all(
       ["tonight", "slips", "players", "playbook", "schedule"].map(n => fetch(`data/${n}.json${bust}`).then(r => { if (!r.ok) throw new Error(n); return r.json(); })));
     const data = { tonight, slips, players, playbook, schedule };
     $("#updated").textContent = `Updated ${new Date(tonight.updated).toLocaleString("en-US", { weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}`;
-    renderTonight(data, $("#tab-tonight"));
-    renderHistory(data, $("#tab-history"));
-    renderPlaybook(data, $("#tab-playbook"));
+    if (ui.slip >= tonight.slips.length) ui.slip = 0;
+    const redrawBuild = renderBuild(data, $("#tab-build"), ui);
+    renderTonight(data, $("#tab-tonight"), ui);
+    // Keep Build in step with the slip chosen on Tonight.
+    $("#tab-tonight").addEventListener("click", e => { if (e.target.closest(".switch button")) redrawBuild(); });
+    renderTickets(data, $("#tab-tickets"));
+    renderStats(data, $("#tab-stats"));
   } catch (e) {
     $("#tab-tonight").innerHTML = `<p class="error">Couldn't load the picks file (${esc(e.message)}). Refresh the page; if it keeps happening, the data file in the repo has a formatting error.</p>`;
   }
-  setupTabs();
 }
-boot();
+
+function setupRefresh() {
+  const b = $("#refresh");
+  b.addEventListener("click", async () => {
+    b.classList.remove("spin"); void b.offsetWidth; b.classList.add("spin");
+    ["#tab-tonight", "#tab-build", "#tab-tickets", "#tab-stats"].forEach(s => { const el = $(s); el.replaceWith(el.cloneNode(false)); });
+    await load();
+  });
+}
+
+setupTabs();
+setupRefresh();
+load();

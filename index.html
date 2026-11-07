@@ -5,28 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Sixers Parlay Hub</title>
   <meta name="description" content="Our Sixers same-game parlay picks, history and playbook.">
-  <meta name="theme-color" content="#0E2240">
+  <meta name="theme-color" content="#070F1F">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header class="masthead">
-    <h1 class="wordmark">Sixers Parlay Hub</h1>
-    <p class="updated" id="updated"></p>
+  <header class="topbar">
+    <div>
+      <h1 class="wordmark">Sixers Parlay Hub</h1>
+      <p class="updated mono" id="updated"></p>
+    </div>
+    <button class="icon-btn" id="refresh" type="button" aria-label="Refresh data">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 4v5h-5"/></svg>
+    </button>
   </header>
 
   <main>
     <section id="tab-tonight" class="tab" aria-labelledby="t-tonight"></section>
-    <section id="tab-history" class="tab" aria-labelledby="t-history" hidden></section>
-    <section id="tab-playbook" class="tab" aria-labelledby="t-playbook" hidden></section>
+    <section id="tab-build" class="tab" aria-labelledby="t-build" hidden></section>
+    <section id="tab-tickets" class="tab" aria-labelledby="t-tickets" hidden></section>
+    <section id="tab-stats" class="tab" aria-labelledby="t-stats" hidden></section>
   </main>
 
   <nav class="tabbar" role="tablist" aria-label="Sections">
-    <button role="tab" id="t-tonight" aria-controls="tab-tonight" aria-selected="true">Tonight</button>
-    <button role="tab" id="t-history" aria-controls="tab-history" aria-selected="false">History</button>
-    <button role="tab" id="t-playbook" aria-controls="tab-playbook" aria-selected="false">Playbook</button>
+    <button role="tab" id="t-tonight" aria-controls="tab-tonight" aria-selected="true">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>Tonight</button>
+    <button role="tab" id="t-build" aria-controls="tab-build" aria-selected="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg>Build</button>
+    <button role="tab" id="t-tickets" aria-controls="tab-tickets" aria-selected="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v4a2 2 0 0 0 0 4v4H4v-4a2 2 0 0 0 0-4z"/><path d="M14 6v12" stroke-dasharray="2 2"/></svg>Tickets</button>
+    <button role="tab" id="t-stats" aria-controls="tab-stats" aria-selected="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Stats</button>
   </nav>
 
   <script src="js/app.js"></script>
