@@ -161,7 +161,7 @@ h2.section { font: 700 24px/1 var(--display); text-transform: uppercase; letter-
 .leg-what { font: 500 17px/1.1 var(--display); color: var(--ink-3); }
 .leg-right { flex: none; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
 .leg-price { font: 700 20px/1 var(--display); font-variant-numeric: tabular-nums; }
-.leg-rate { font-size: 10px; color: var(--ink-2); }
+.leg-rate { font-size: 10px; line-height: 1.4; color: var(--ink-2); text-align: right; white-space: nowrap; }
 .chev { width: 16px; height: 16px; stroke: var(--ink-4); fill: none; stroke-width: 2; transition: transform .15s; }
 .leg[open] .chev { transform: rotate(180deg); }
 .bars { position: relative; height: 34px; display: flex; align-items: flex-end; gap: 3px; margin: 10px 0 0 52px; }
@@ -221,7 +221,7 @@ h2.section { font: 700 24px/1 var(--display); text-transform: uppercase; letter-
 .flag p, .why p { font-size: 13px; color: var(--ink-3); }
 .why > div { display: flex; gap: 10px; padding: 9px 0; border-top: 1px solid rgba(160,182,214,.12); }
 .why > div:first-child { border-top: 0; padding-top: 0; }
-.why .rate { flex: none; width: 46px; font-size: 11px; color: var(--brass-ink); padding-top: 3px; }
+.why .rate { flex: none; width: 64px; line-height: 1.5; font-size: 11px; color: var(--brass-ink); padding-top: 3px; }
 .why .leg-t { font: 700 17px/1.15 var(--display); }
 .swap-target { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; background: #1A0E1C; border: 1px dashed var(--red); }
 .swap-opt { display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; border-radius: 10px; background: var(--panel-2); border: 1px solid var(--line-2); }

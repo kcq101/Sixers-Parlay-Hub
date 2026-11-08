@@ -52,6 +52,14 @@ function history(leg, data) {
   });
 }
 
+// Season average for a leg's stat (Sixers' average margin for game lines), e.g. "2.6" or "+5.2"
+function seasonAvg(games, leg) {
+  if (!games.length) return "";
+  const a = games.reduce((s, g) => s + g.val, 0) / games.length;
+  return isGame(leg) ? `${a > 0 ? "+" : ""}${a.toFixed(1)}` : a.toFixed(1);
+}
+const AVG_WHAT = { tpm: "threes", stl: "steals", blk: "blocks", reb: "rebounds", ast: "assists", pts: "points", pra: "pts + reb + ast", ml: "margin", spread: "margin" };
+
 // How a player + stat has done on our slips: {h, n}
 function slipRecord(data, player, stat) {
   const legs = data.slips.slips.flatMap(s => s.legs).filter(l => l.player === player && l.stat === stat);
@@ -196,7 +204,7 @@ function legCard(l, data, opp, open) {
         </span>
         <span class="leg-right">
           <span class="leg-price">${fmtOdds(l.price)}</span>
-          <span class="leg-rate mono">${games.length ? `${hits}/${games.length} season` : "no log"}</span>
+          <span class="leg-rate mono">${games.length ? `${hits}/${games.length}<br>avg ${seasonAvg(games, l)}` : "no log"}</span>
         </span>
         ${CHEV}
       </div>
@@ -206,7 +214,7 @@ function legCard(l, data, opp, open) {
       ${final}
       ${games.length ? `<div class="games">${games.map(x => `<div class="${x.hit ? "h" : "m"}"><small>${esc(x.opp)}</small><b>${esc(isGame(l) ? (x.val > 0 ? `W+${x.val}` : `L${x.val}`) : x.val)}</b></div>`).join("")}</div>` : ""}
       ${l.note ? `<p class="leg-note">${esc(l.note)}</p>` : ""}
-      <p class="muted">${rec.n ? `On our slips: ${rec.h} of ${rec.n}.` : "Not on our slips yet."} ${vsLine ? vsLine + "." : ""} ${l.priceNote ? `Price: ${esc(l.priceNote)}.` : ""}</p>
+      <p class="muted">${games.length ? `Season avg ${seasonAvg(games, l)} ${AVG_WHAT[l.stat]}${isGame(l) ? "" : ` (needs ${l.line})`} over ${games.length} games. ` : ""}${rec.n ? `On our slips: ${rec.h} of ${rec.n}.` : "Not on our slips yet."} ${vsLine ? vsLine + "." : ""} ${l.priceNote ? `Price: ${esc(l.priceNote)}.` : ""}</p>
       <div><button type="button" class="btn" data-go="t-build">Swap options</button></div>
     </div>
   </details>`;
@@ -270,7 +278,7 @@ function renderBuild(data, el, ui) {
     const why = s.legs.map(l => {
       const games = history(l, data);
       const h = games.filter(x => x.hit).length;
-      return { l, h, n: games.length, r: games.length ? h / games.length : 0 };
+      return { l, h, n: games.length, r: games.length ? h / games.length : 0, avg: seasonAvg(games, l) };
     }).sort((a, b) => b.r - a.r || b.n - a.n);
     const strong = why.filter(w => w.n && w.r >= 0.8).length;
     const target = risky[0] || why[why.length - 1].l;
@@ -314,7 +322,7 @@ function renderBuild(data, el, ui) {
           ${t.bench.map(b => {
             const games = history(b, data);
             const h = games.filter(x => x.hit).length;
-            return `<div class="swap-opt"><div style="display:flex;justify-content:space-between;gap:8px"><span class="disp" style="font-size:18px;font-weight:700">${esc(shortName(b.player))} ${esc(legLabel(b))}</span><span class="mono" style="font-size:10px;color:var(--brass-ink)">${games.length ? `${h}/${games.length}` : ""}</span></div>
+            return `<div class="swap-opt"><div style="display:flex;justify-content:space-between;gap:8px"><span class="disp" style="font-size:18px;font-weight:700">${esc(shortName(b.player))} ${esc(legLabel(b))}</span><span class="mono" style="font-size:10px;color:var(--brass-ink);white-space:nowrap">${games.length ? `${h}/${games.length} · avg ${seasonAvg(games, b)}` : ""}</span></div>
               ${bars(games, b)}
               <p class="muted" style="font-size:13px;color:var(--ink-3)">${esc(b.effect)} ${esc(b.note || "")}</p></div>`;
           }).join("")}
@@ -323,7 +331,7 @@ function renderBuild(data, el, ui) {
 
       <section class="panel why">
         <h2 class="panel-h">Why each leg</h2>
-        ${why.map(w => `<div><span class="mono rate">${w.n ? `${w.h}/${w.n}` : "—"}</span><div style="flex:1;display:flex;flex-direction:column;gap:2px"><span class="leg-t">${esc(shortName(w.l.player))} ${esc(legLabel(w.l))}</span><p>${esc(w.l.note || "")}</p></div></div>`).join("")}
+        ${why.map(w => `<div><span class="mono rate">${w.n ? `${w.h}/${w.n}<br><span style="color:var(--ink-4)">avg ${w.avg}</span>` : "—"}</span><div style="flex:1;display:flex;flex-direction:column;gap:2px"><span class="leg-t">${esc(shortName(w.l.player))} ${esc(legLabel(w.l))}</span><p>${esc(w.l.note || "")}</p></div></div>`).join("")}
       </section>
 
       ${t.tuner?.length ? `<section class="panel tuner"><h2 class="panel-h">If FanDuel's price is off</h2>${t.tuner.map(x => `<div>${esc(x)}</div>`).join("")}</section>` : ""}
