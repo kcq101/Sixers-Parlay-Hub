@@ -192,7 +192,7 @@ function renderTonight(data, el, ui) {
       <button type="button" class="analyst-link" data-go="t-build">
         <div class="analyst-head"><img class="ai-avatar" src="assets/answers-icon.png" width="32" height="32" alt=""><span class="mono analyst-title">AI: The Answers</span><span class="badge brass" style="margin-left:auto">${flags} ${flags === 1 ? "flag" : "flags"}</span></div>
         <p style="font-size:14px;color:var(--ink-2)">${esc(flagSummary(data, s.legs))}</p>
-        <span class="mono" style="display:inline-block;margin-top:10px;font-size:11px">Open the read →</span>
+        <span class="mono" style="display:inline-block;margin-top:10px;font-size:14px">Open the read →</span>
       </button>
 
       ${scheduleBlock(data.schedule)}
@@ -324,7 +324,7 @@ function renderBuild(data, el, ui) {
       <section class="analyst">
         <div style="display:flex;align-items:center;gap:10px">
           <img class="ai-avatar lg" src="assets/answers-icon.png" width="44" height="44" alt="">
-          <div style="display:flex;flex-direction:column;gap:3px"><span class="mono analyst-title" style="color:var(--blue-ink);font-size:12px">AI: The Answers</span><span class="mono" style="font-size:9px;color:var(--ink-4)">${esc(s.name)} · ${s.legs.length} legs</span></div>
+          <div style="display:flex;flex-direction:column;gap:3px"><span class="mono analyst-title" style="color:var(--blue-ink);font-size:15px">AI: The Answers</span><span class="mono" style="font-size:11px;color:var(--ink-4)">${esc(s.name)} · ${s.legs.length} legs</span></div>
         </div>
         <p class="lead">${strong} of ${s.legs.length} legs hit in at least 80% of games this season.${flags.length ? ` Watch: <b>${esc(flags.map(f => f.title).join(" · "))}</b>.` : " No overlaps or rule breaks found."}</p>
         <div class="mini-kpis">
@@ -349,7 +349,7 @@ function renderBuild(data, el, ui) {
       <section class="panel" style="border-color:rgba(237,23,76,.45)">
         <h2 class="panel-h">Swap one leg</h2>
         <div class="swap-target">
-          <span style="flex:1;display:flex;flex-direction:column;gap:2px"><span class="mono" style="font-size:9px;color:#FF8FA8">${target.tag === "Risky" ? "Riskiest leg" : "Weakest leg"}</span><span class="disp" style="font-size:19px;font-weight:700">${esc(shortName(target.player))} ${esc(legLabel(target))} <span style="color:var(--ink-3);font-weight:500">${fmtOdds(target.price)}</span></span></span>
+          <span style="flex:1;display:flex;flex-direction:column;gap:2px"><span class="mono" style="font-size:11px;color:#FF8FA8">${target.tag === "Risky" ? "Riskiest leg" : "Weakest leg"}</span><span class="disp" style="font-size:19px;font-weight:700">${esc(shortName(target.player))} ${esc(legLabel(target))} <span style="color:var(--ink-3);font-weight:500">${fmtOdds(target.price)}</span></span></span>
           ${tagBadge(target.tag)}
         </div>
         <p class="muted" style="margin:8px 0 12px">Bench options keep the other legs as they are. Make the swap in FanDuel; this page never places a bet.</p>
@@ -357,7 +357,7 @@ function renderBuild(data, el, ui) {
           ${t.bench.map(b => {
             const games = history(b, data);
             const h = games.filter(x => x.hit).length;
-            return `<div class="swap-opt"><div style="display:flex;justify-content:space-between;gap:8px"><span class="disp" style="font-size:18px;font-weight:700">${esc(shortName(b.player))} ${esc(legLabel(b))}</span><span class="mono" style="font-size:10px;color:var(--brass-ink);white-space:nowrap">${games.length ? `${h}/${games.length} · avg ${seasonAvg(games, b)}` : ""}</span></div>
+            return `<div class="swap-opt"><div style="display:flex;justify-content:space-between;gap:8px"><span class="disp" style="font-size:18px;font-weight:700">${esc(shortName(b.player))} ${esc(legLabel(b))}</span><span class="mono" style="font-size:12.5px;color:var(--brass-ink);white-space:nowrap">${games.length ? `${h}/${games.length} · avg ${seasonAvg(games, b)}` : ""}</span></div>
               ${bars(games, b)}
               <p class="muted" style="font-size:13px;color:var(--ink-3)">${esc(b.effect)} ${esc(b.note || "")}</p></div>`;
           }).join("")}
@@ -427,11 +427,11 @@ function renderTickets(data, el) {
 
       ${t.status !== "graded" ? `<button type="button" class="next-card" data-go="t-tonight">
         <span style="flex:1;display:flex;flex-direction:column;gap:3px">
-          <span class="mono" style="font-size:9px;color:var(--brass-ink)">Up next · ${esc({ draft: "Draft", final: "Final picks" }[t.status] || t.status)}</span>
+          <span class="mono" style="font-size:11px;color:var(--brass-ink)">Up next · ${esc({ draft: "Draft", final: "Final picks" }[t.status] || t.status)}</span>
           <span class="disp" style="font-size:20px;font-weight:700">${t.game.home ? "vs" : "at"} ${esc(TEAM[t.game.opp] || t.game.opp)} · ${esc(fmtDate(t.game.date))}</span>
-          <span style="font-size:12px;color:var(--ink-3)">${tonightSlips.map(s => `${s.legs.length} legs est. ${fmtOdds(estPrice(s.legs))}`).join(" · ")}</span>
+          <span style="font-size:15px;color:var(--ink-3)">${tonightSlips.map(s => `${s.legs.length} legs est. ${fmtOdds(estPrice(s.legs))}`).join(" · ")}</span>
         </span>
-        <span class="mono" style="font-size:11px">Open →</span>
+        <span class="mono" style="font-size:14px">Open →</span>
       </button>` : ""}
 
       ${slips.filter(keep).map(ticketBlock).join("") || `<p class="muted">No tickets match.</p>`}
@@ -476,7 +476,7 @@ function rampColor(r) {
 function rateRow(name, h, n) {
   const r = n ? h / n : 0;
   const c = r >= 0.8 ? "var(--hit)" : r >= 0.6 ? "var(--blue)" : "var(--red)";
-  return `<div class="rate-row"><div class="top"><span>${esc(name)}</span><span class="mono" style="font-size:11px;color:var(--ink-2)">${h}/${n} · ${pct(h, n)}%</span></div><div class="trk"><i style="width:${pct(h, n)}%;background:${c}"></i></div></div>`;
+  return `<div class="rate-row"><div class="top"><span>${esc(name)}</span><span class="mono" style="font-size:14px;color:var(--ink-2)">${h}/${n} · ${pct(h, n)}%</span></div><div class="trk"><i style="width:${pct(h, n)}%;background:${c}"></i></div></div>`;
 }
 
 function renderStats(data, el) {
@@ -530,12 +530,12 @@ function renderStats(data, el) {
 
       <section class="panel">
         <h2 class="panel-h">Legs hit per ticket</h2>
-        <div class="legend"><span><i class="sw" style="box-shadow:inset 0 0 0 1.5px var(--red)"></i>Missed legs</span><span style="gap:6px"><span class="mono" style="font-size:9px">0%</span><i class="ramp" aria-hidden="true"></i><span class="mono" style="font-size:9px">100% hit</span></span></div>
+        <div class="legend"><span><i class="sw" style="box-shadow:inset 0 0 0 1.5px var(--red)"></i>Missed legs</span><span style="gap:6px"><span class="mono" style="font-size:11px">0%</span><i class="ramp" aria-hidden="true"></i><span class="mono" style="font-size:11px">100% hit</span></span></div>
         <div class="chart" role="img" aria-label="Legs hit per ticket, oldest to newest: ${slips.map(s => `${s.legs.filter(l => l.hit).length} of ${s.legs.length}`).join(", ")}">
           ${slips.map(s => { const h = s.legs.filter(l => l.hit).length; const m = s.legs.length - h;
             return `<div class="col" title="${esc(fmtDate(s.date))}${s.label ? " " + esc(s.label) : ""}: ${h} of ${s.legs.length}"><div class="miss" style="height:${(m / maxLegs) * 100}%"></div><div class="hit" style="height:${(h / maxLegs) * 100}%;background:${rampColor(h / s.legs.length)}"></div></div>`; }).join("")}
         </div>
-        <div class="chart-x">${slips.map(s => `<span>${esc(fmtShort(s.date))}</span>`).join("")}</div>
+        <div class="chart-x">${slips.map((s, i) => { const [, m, d] = s.date.split("-").map(Number); const prevM = i ? +slips[i - 1].date.split("-")[1] : 0; return `<span>${m !== prevM ? `${m}/${d}` : d}</span>`; }).join("")}</div>
       </section>
 
       <section class="panel"><h2 class="panel-h">Hit rate by player</h2>${byPlayer.map(([k, v]) => rateRow(k, v.h, v.n)).join("")}</section>
