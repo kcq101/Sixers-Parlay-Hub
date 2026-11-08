@@ -261,9 +261,11 @@ function scheduleBlock(sch) {
   return `<section class="panel">
     <h2 class="panel-h">Automatic updates</h2>
     <ul class="sched">${sch.updates.map(u => `<li>
-      <span class="mono when">${esc(fmt(u.when))}</span>
       <span class="what">${esc(u.what)}<span>${esc(u.result || u.detail)}</span></span>
-      <span class="badge ${u.status === "done" ? "hit" : u.status === "failed" ? "red" : "steel"}" style="align-self:flex-start">${u.status === "done" ? "Done" : u.status === "failed" ? "Didn't run" : "Sched"}</span>
+      <span class="side">
+        <span class="badge ${u.status === "done" ? "hit" : u.status === "failed" ? "red" : "steel"}">${u.status === "done" ? "Done" : u.status === "failed" ? "Didn't run" : "Sched"}</span>
+        <span class="mono when">${esc(fmt(u.when))}</span>
+      </span>
     </li>`).join("")}</ul>
     ${sch.note ? `<p class="muted" style="margin-top:8px">${esc(sch.note)}</p>` : ""}
   </section>`;
