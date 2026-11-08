@@ -140,7 +140,7 @@ const STAKE = 10;         // illustrative stake; stakes aren't recorded
 
 const $ = (sel, el = document) => el.querySelector(sel);
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-const fmtOdds = n => (n > 0 ? `+${Math.round(n)}` : `${Math.round(n)}`);
+const fmtOdds = n => (n == null ? "?" : n > 0 ? `+${Math.round(n)}` : `${Math.round(n)}`);
 const money = n => `${n < 0 ? "−" : ""}$${Math.abs(n) % 1 ? Math.abs(n).toFixed(2) : Math.abs(n)}`;
 const shortName = p => (p === "76ers" ? "76ers" : p.split(" ").slice(-1)[0]);
 const initials = p => (p === "76ers" ? "PHI" : p.split(" ").map(w => w[0]).join(""));
@@ -220,7 +220,8 @@ function expandSlips(t) {
 }
 
 function estPrice(legs) {
-  const dec = legs.reduce((acc, l) => acc / toProb(l.price), 1);
+  // Legs with no posted price for this game (price null) are left out, not guessed.
+  const dec = legs.filter(l => l.price != null).reduce((acc, l) => acc / toProb(l.price), 1);
   return toAmerican(dec * SGP_HAIRCUT);
 }
 
@@ -239,6 +240,8 @@ function renderTonight(data, el, ui) {
     const states = s.legs.map(legState);
     const settled = states.filter(x => x !== "pending").length;
     const flags = buildFlags(data, s.legs).length;
+    const unpriced = real ? 0 : s.legs.filter(l => l.price == null).length;
+    const context = [`vs ${opp} (${g.records[g.opp] || "?"})`, g.spread].filter(Boolean).join(" · ");
 
     el.innerHTML = `
       <section class="plate">
@@ -273,7 +276,8 @@ function renderTonight(data, el, ui) {
         <p class="muted" style="margin-top:8px">Illustrative $10 stake. Profit is at the regular price, no boost; return = stake + profit.</p>
         <div class="progress-row"><span class="label">Ticket progress</span><span class="label" style="color:var(--ink-2)">${settled} of ${s.legs.length} settled</span></div>
         <div class="segs" aria-hidden="true">${states.map(x => `<span class="seg ${x === "hit" ? "hit" : x === "miss" ? "miss" : ""}"></span>`).join("")}</div>
-        <p class="muted" style="margin-top:10px">${real ? "Price from your FanDuel slip." : "Estimate = legs multiplied, less ~15% because FanDuel pays less when legs are related. Your screenshot is the real number."}</p>
+        ${unpriced ? `<p class="status-note" style="margin-top:10px">${unpriced} ${unpriced === 1 ? "leg has" : "legs have"} no posted price for this game yet, so the estimate leaves ${unpriced === 1 ? "it" : "them"} out. The real price will be higher.</p>` : ""}
+        <p class="muted" style="margin-top:10px">${real ? "Price from your FanDuel slip." : `Estimate = legs multiplied, less ~15% because FanDuel pays less when legs are related. Uses only prices posted for this game (${esc(context)}); prices shift with the opponent. Your screenshot is the real number.`}</p>
       </section>
 
       <section class="legs">

@@ -35,6 +35,14 @@
   {
    "rule": "Check the final injury report about 30 minutes before tip.",
    "why": "Embiid sits the second night of back-to-backs; LeBron and Brown have each missed a game."
+  },
+  {
+   "rule": "Only use prices posted for this game. If a leg has no posted price, leave its price blank (\"price unknown\") instead of guessing or reusing another game's price.",
+   "why": "Prices move with the opponent. Against 1-6 Chicago on Nov 8, Maxey 4+ assists was -650, not the guessed -300, and VJ 1+ threes went from -430 (vs CLE) to -520."
+  },
+  {
+   "rule": "Maxey 4+ assists is too short to use.",
+   "why": "-650 on FanDuel vs Chicago on Nov 8."
   }
  ]
 }
