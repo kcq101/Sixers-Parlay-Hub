@@ -22,8 +22,17 @@ function aim(bone, child, target) {
   bone.updateMatrixWorld(true);
 }
 
+// Reads models/shooter.glb. Some hosts (like the Claude preview) won't serve .glb files,
+// so it can also read the same model packed as text in models/shooter-data.js, if present.
+async function fetchModel(url) {
+  const r = await fetch(url).catch(() => null);
+  if (r && r.ok) return r.arrayBuffer();
+  const { default: b64 } = await import("../models/shooter-data.js");
+  return Uint8Array.from(atob(b64), c => c.charCodeAt(0)).buffer;
+}
+
 export async function load(url = "models/shooter.glb") {
-  const gltf = await new GLTFLoader().loadAsync(url);
+  const gltf = await new GLTFLoader().parseAsync(await fetchModel(url), "models/");
   const model = gltf.scene;
 
   // Scale to the shooter's height, face the hoop (-z), stand behind the line.
