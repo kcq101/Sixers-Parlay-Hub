@@ -4,9 +4,9 @@
 //   1. court and weathered pavement          (z  +25 … -9)
 //   2. fence, brick industrial buildings,     (z   -5 … -40)
 //      concrete retaining wall at the water
-//   3. the Delaware River                     (z   -9 … -1150)
-//   4. the Ben Franklin Bridge                (towers at about 490 m and 810 m)
-//   5. the lit Philadelphia skyline           (about 1200 m)
+//   3. the Delaware River                     (z   -9 … -1500)
+//   4. the Ben Franklin Bridge                (towers at about 400 m and 930 m, real proportions)
+//   5. the lit Philadelphia skyline           (about 1.4 km)
 // A phone held upright only sees about ±11° left and right of straight ahead, so every landmark
 // is placed inside that strip. Lighting is baked: no real-time shadows here, and the
 // "reflections" on the wet pavement and river are painted-on glows, which cost almost nothing.
@@ -110,17 +110,19 @@ function industrial(group, r) {
 // ---------- the Ben Franklin Bridge ----------
 // Its look: blue steel, two tall lattice towers with big X bracing between the legs, an arched
 // crown on top, a deep stiffening truss under the deck, and white lights strung along the cables.
-const DECK_Y = 41, TOWER_H = 116, LEG_GAP = 32;
+// Real dimensions: towers 117 m, deck 41 m above the water, main span 533 m, side spans 218 m.
+const DECK_Y = 41, TOWER_H = 117, LEG_GAP = 32, MAIN_SPAN = 533, SIDE_SPAN = 218;
 
 function bridge(group, r) {
   const steel = new THREE.MeshStandardMaterial({ color: 0x2f63b8, emissive: 0x1b4aa8, emissiveIntensity: 0.55, roughness: 0.55, metalness: 0.35, fog: true });
   const members = instancer(new THREE.BoxGeometry(1, 1, 1), steel, { shadows: false });
 
   // The bridge runs across the view from near-left to far-right.
-  const A = v3(-58, 0, -480), B = v3(62, 0, -800);            // tower bases (on the water)
-  const along = new THREE.Vector3().subVectors(B, A).normalize();
+  const A = v3(-50, 0, -390);                                  // near tower base (on the water)
+  const along = new THREE.Vector3(104, 0, -522).normalize();   // heading away and to the right
+  const B = A.clone().addScaledVector(along, MAIN_SPAN);       // far tower, ~1 km away
   const across = new THREE.Vector3(-along.z, 0, along.x);      // horizontal, perpendicular to the deck
-  const anchorA = A.clone().addScaledVector(along, -230), anchorB = B.clone().addScaledVector(along, 230);
+  const anchorA = A.clone().addScaledVector(along, -SIDE_SPAN), anchorB = B.clone().addScaledVector(along, SIDE_SPAN);
 
   function tower(base) {
     const legs = [-1, 1].map(s => base.clone().addScaledVector(across, s * LEG_GAP / 2));
@@ -149,7 +151,7 @@ function bridge(group, r) {
   const legsA = tower(A), legsB = tower(B);
 
   // Deck with its deep stiffening truss, on both sides.
-  const deckPts = (s) => [anchorA, B.clone().addScaledVector(along, 230)].map(p => p.clone().addScaledVector(across, s * (LEG_GAP / 2 - 3)));
+  const deckPts = (s) => [anchorA, anchorB].map(p => p.clone().addScaledVector(across, s * (LEG_GAP / 2 - 3)));
   for (const s of [-1, 1]) {
     const [p0, p1] = deckPts(s);
     beam(members, v3(p0.x, DECK_Y, p0.z), v3(p1.x, DECK_Y, p1.z), 1.2, 1.2);            // top chord
@@ -249,22 +251,22 @@ export function build() {
 
   // 3. The river.
   const riverTex = riverTexture(r);
-  const river = new THREE.Mesh(new THREE.PlaneGeometry(2400, 1150), new THREE.MeshBasicMaterial({ map: riverTex, fog: true }));
-  river.rotation.x = -Math.PI / 2; river.position.set(0, WATER_Y, EDGE_Z - 575);
+  const river = new THREE.Mesh(new THREE.PlaneGeometry(3000, 1320), new THREE.MeshBasicMaterial({ map: riverTex, fog: true }));
+  river.rotation.x = -Math.PI / 2; river.position.set(0, WATER_Y, EDGE_Z - 660);
   group.add(river);
   // Far shore: a low band of lit waterfront buildings under the skyline.
   const shoreTex = canvasTexture(1024, 64, (g, W, H) => {
     g.fillStyle = "#0a0f1e"; g.fillRect(0, 0, W, H);
     for (let i = 0; i < 900; i++) { g.fillStyle = r() < 0.7 ? "rgba(255,200,130,0.9)" : "rgba(170,205,255,0.9)"; g.fillRect(r() * W, 10 + r() * (H - 14), 2, 2); }
   });
-  const shore = new THREE.Mesh(new THREE.PlaneGeometry(2400, 30), new THREE.MeshBasicMaterial({ map: shoreTex, fog: false, color: 0xbbbbbb }));
-  shore.position.set(0, WATER_Y + 15, -1150); group.add(shore);
+  const shore = new THREE.Mesh(new THREE.PlaneGeometry(3000, 34), new THREE.MeshBasicMaterial({ map: shoreTex, fog: false, color: 0xbbbbbb }));
+  shore.position.set(0, WATER_Y + 17, -1330); group.add(shore);
 
   // 4. The Ben Franklin Bridge.
   bridge(group, r);
 
   // 5. Skyline behind the bridge.
-  phillySkyline(group, phillyTowers(60, -1260, 1), { r, fog: false, dim: 0.9 });
+  phillySkyline(group, phillyTowers(30, -1400, 0.95), { r, fog: false, dim: 0.92 });
 
   // Night light: cool moonlight and city glow. No real-time shadows.
   group.add(new THREE.HemisphereLight(0x4a5f9a, 0x14121a, 0.6));

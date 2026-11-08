@@ -2,15 +2,15 @@
 // Same scale, coordinates and camera as the other courts (hoop glass at z = 0, camera at z ≈ 11).
 // Layers, near to far: worn park court → stone wall with wrought-iron fence, vintage lamps,
 // park trees → plaza → City Hall (about 430 m away, tower centred behind the hoop so the clock
-// and William Penn rise above the backboard; about 570 m away) → lit skyscrapers behind and beside it.
+// and William Penn rise above the backboard; about 440 m away) → lit skyscrapers behind and beside it.
 // City Hall is lit by its own glow (baked into its materials) rather than real lights.
 import { THREE, canvasTexture, rng, noise, instancer, beam, v3, glowPoints, skyGradient,
-  groundAndCourt, vintageLamp, lightPool, phillySkyline } from "./kit.js";
+  groundAndCourt, vintageLamp, lightPool, phillySkyline, phillyTowers } from "./kit.js";
 
 export const id = "philly_center_city";
 export const name = "Center City";
 
-const CH_Z = -560;              // City Hall's front face
+const CH_Z = -430;              // City Hall's front face
 const STONE = "#d9ccb3", FLOOD = 0xffd6a0;
 
 // ---------- City Hall ----------
@@ -96,8 +96,10 @@ function cityHall(group, r) {
   for (const [x, w, h] of [[-66, 20, 50], [66, 20, 50], [0, 34, 56]]) {
     const pav = new THREE.Mesh(new THREE.BoxGeometry(w, h, 24), [stoneFlat, stoneFlat, slate, slate, lit(pavTex), stoneFlat]);
     pav.position.set(x, h / 2, CH_Z + 2); group.add(pav);
-    const dome = new THREE.Mesh(new THREE.CylinderGeometry(w * 0.32, w * 0.62, 14, 4, 1), slate);
-    dome.rotation.y = Math.PI / 4; dome.position.set(x, h + 7, CH_Z + 2); group.add(dome);
+    // curved, square-plan mansard dome (a lathe with four sides)
+    const prof = [[0.64, 0], [0.62, 0.12], [0.55, 0.45], [0.43, 0.75], [0.3, 0.95], [0.26, 1.0]].map(([rr, yy]) => new THREE.Vector2(w * rr, yy * 14));
+    const dome = new THREE.Mesh(new THREE.LatheGeometry(prof, 4), slate);
+    dome.rotation.y = Math.PI / 4; dome.position.set(x, h, CH_Z + 2); group.add(dome);
     const crest = new THREE.Mesh(new THREE.BoxGeometry(w * 0.4, 1.2, w * 0.4), stoneFlat);
     crest.position.set(x, h + 14.6, CH_Z + 2); group.add(crest);
   }
@@ -113,39 +115,52 @@ function cityHall(group, r) {
   const parts = instancer(new THREE.BoxGeometry(1, 1, 1), stoneFlat, { shadows: false });
   for (const sx of [-1, 1]) for (const sz of [-1, 1]) beam(parts, v3(sx * (TW / 2 - 1), 56, TZ + sz * (TW / 2 - 1)), v3(sx * (TW / 2 - 1), 118, TZ + sz * (TW / 2 - 1)), 3.6, 3.6);  // corner buttresses
   for (const y of [70, 85, 100]) beam(parts, v3(-TW / 2 - 0.8, y, TZ + TW / 2 + 0.6), v3(TW / 2 + 0.8, y, TZ + TW / 2 + 0.6), 1.2, 1.4);  // string courses
-  // Clock stage with a glowing clock on each face.
-  const clockStage = new THREE.Mesh(new THREE.BoxGeometry(TW - 1, 18, TW - 1), stoneFlat);
-  clockStage.position.set(0, 109, TZ); group.add(clockStage);
+  // Clock stage (the metal part of the tower) with a glowing 7.9 m clock on each face, a curved
+  // hood over each clock, and columns at the corners. Clock centres at 110 m.
+  const clockStage = new THREE.Mesh(new THREE.BoxGeometry(TW - 2, 18, TW - 2), stoneFlat);
+  clockStage.position.set(0, 110, TZ); group.add(clockStage);
   const clockMat = new THREE.MeshBasicMaterial({ map: clockTex(), transparent: true, color: 0xfff3d6 });
-  const half = (TW - 1) / 2 + 0.08;
+  const half = (TW - 2) / 2 + 0.08;
+  const hoods = instancer(new THREE.CylinderGeometry(5.3, 5.3, 1.6, 20, 1, true, -Math.PI / 2, Math.PI), stoneFlat, { shadows: false });
   for (const [x, z, ry] of [[0, TZ + half, 0], [half, TZ, Math.PI / 2], [-half, TZ, -Math.PI / 2]]) {
-    const face = new THREE.Mesh(new THREE.CircleGeometry(4.6, 40), clockMat);
-    face.position.set(x, 109, z); face.rotation.y = ry; group.add(face);
+    const face = new THREE.Mesh(new THREE.CircleGeometry(3.95, 40), clockMat);
+    face.position.set(x, 110, z); face.rotation.y = ry; group.add(face);
+    hoods.add(x + Math.sin(ry) * 0.6, 110.4, z + Math.cos(ry) * 0.6, Math.PI / 2, ry, 0);
   }
-  beam(parts, v3(-TW / 2 - 0.6, 118.5, TZ + TW / 2 - 0.2), v3(TW / 2 + 0.6, 118.5, TZ + TW / 2 - 0.2), 1.6, 1.8);   // cornice
-  const pin = instancer(new THREE.ConeGeometry(1.4, 7, 6), stoneFlat, { shadows: false });                          // corner pinnacles
-  for (const sx of [-1, 1]) for (const sz of [-1, 1]) pin.add(sx * (TW / 2 - 1.5), 122.5, TZ + sz * (TW / 2 - 1.5));
+  group.add(hoods.build());
+  const corner = instancer(new THREE.CylinderGeometry(0.9, 1.0, 18, 10), stoneFlat, { shadows: false });
+  for (const sx of [-1, 1]) for (const sz of [-1, 1]) corner.add(sx * (TW / 2 - 1.2), 110, TZ + sz * (TW / 2 - 1.2));
+  group.add(corner.build());
+  beam(parts, v3(-TW / 2 - 0.4, 119.4, TZ + TW / 2 - 0.6), v3(TW / 2 + 0.4, 119.4, TZ + TW / 2 - 0.6), 1.8, 1.8);   // cornice
+  const pin = instancer(new THREE.ConeGeometry(1.2, 6, 6), stoneFlat, { shadows: false });                          // corner pinnacles
+  for (const sx of [-1, 1]) for (const sz of [-1, 1]) pin.add(sx * (TW / 2 - 1.5), 123.3, TZ + sz * (TW / 2 - 1.5));
   group.add(pin.build());
-  // Octagonal lantern with columns and warm light inside.
-  const lantern = new THREE.Mesh(new THREE.CylinderGeometry(8.4, 9.4, 17, 8), new THREE.MeshStandardMaterial({ color: 0x6a5a40, emissive: 0xffb860, emissiveIntensity: 0.9, roughness: 0.7 }));
-  lantern.position.set(0, 127.5, TZ); lantern.rotation.y = Math.PI / 8; group.add(lantern);
-  const cols = instancer(new THREE.CylinderGeometry(0.55, 0.65, 15, 8), stoneFlat, { shadows: false });
-  for (let i = 0; i < 16; i++) { const a = i / 16 * Math.PI * 2; cols.add(Math.cos(a) * 9.8, 127.5, TZ + Math.sin(a) * 9.8); }
+  // Octagonal colonnade (the observation level tops out near 138 m), lit warm inside.
+  const lantern = new THREE.Mesh(new THREE.CylinderGeometry(8.2, 9.2, 17, 8), new THREE.MeshStandardMaterial({ color: 0x6a5a40, emissive: 0xffb860, emissiveIntensity: 0.95, roughness: 0.7 }));
+  lantern.position.set(0, 129, TZ); lantern.rotation.y = Math.PI / 8; group.add(lantern);
+  const cols = instancer(new THREE.CylinderGeometry(0.5, 0.6, 15.5, 8), stoneFlat, { shadows: false });
+  for (let i = 0; i < 16; i++) { const a2 = (i + 0.5) / 16 * Math.PI * 2; cols.add(Math.cos(a2) * 9.7, 129, TZ + Math.sin(a2) * 9.7); }
   group.add(cols.build());
-  const ledge = new THREE.Mesh(new THREE.CylinderGeometry(11, 11, 1.4, 16), stoneFlat); ledge.position.set(0, 136.5, TZ); group.add(ledge);
-  // Dome, drum and the statue.
+  for (const [y, rr] of [[120.6, 11], [137.6, 10.8]]) {
+    const ring = new THREE.Mesh(new THREE.CylinderGeometry(rr, rr, 1.2, 16), stoneFlat); ring.position.set(0, y, TZ); group.add(ring);
+  }
+  // Bell-shaped dome up to the statue's base at 155.8 m, with a ring of small dormers.
   const gold = new THREE.MeshStandardMaterial({ color: 0x9a8058, emissive: 0xffc070, emissiveIntensity: 0.5, roughness: 0.6, metalness: 0.4 });
-  const dome = new THREE.Mesh(new THREE.CylinderGeometry(3.0, 9.0, 13, 8), gold); dome.position.set(0, 143.6, TZ); dome.rotation.y = Math.PI / 8; group.add(dome);
-  const drum = new THREE.Mesh(new THREE.CylinderGeometry(2.4, 2.8, 3.2, 8), gold); drum.position.set(0, 151.6, TZ); group.add(drum);
+  const domeProf = [[9.8, 0], [10, 0.8], [9.6, 2.4], [8.6, 4.8], [7.2, 7.4], [5.6, 9.8], [4.1, 12], [3.0, 13.8], [2.5, 15.2], [2.4, 17.6]].map(([rr, yy]) => new THREE.Vector2(rr, yy));
+  const dome = new THREE.Mesh(new THREE.LatheGeometry(domeProf, 16), gold); dome.position.set(0, 138.2, TZ); group.add(dome);
+  const dormers = instancer(new THREE.BoxGeometry(1.6, 2.2, 1.2), stoneFlat, { shadows: false });
+  for (let i = 0; i < 8; i++) { const a2 = i / 8 * Math.PI * 2; dormers.add(Math.cos(a2) * 8.4, 143.2, TZ + Math.sin(a2) * 8.4, 0, -a2 + Math.PI / 2, 0); }
+  group.add(dormers.build());
+  // William Penn, 11.3 m tall, facing out over the city with an outstretched arm.
   const bronze = new THREE.MeshStandardMaterial({ color: 0x3a2e22, emissive: 0x6a4a28, emissiveIntensity: 0.35, roughness: 0.6, metalness: 0.5 });
-  const S0 = 153.2;
-  const coat = new THREE.Mesh(new THREE.CylinderGeometry(1.1, 1.9, 7.2, 10), bronze); coat.position.set(0, S0 + 3.6, TZ); group.add(coat);
-  const shoulders = new THREE.Mesh(new THREE.SphereGeometry(1.2, 10, 8), bronze); shoulders.scale.set(1.2, 0.8, 0.9); shoulders.position.set(0, S0 + 7.2, TZ); group.add(shoulders);
-  const head = new THREE.Mesh(new THREE.SphereGeometry(0.75, 10, 8), bronze); head.position.set(0, S0 + 8.6, TZ); group.add(head);
-  const brim = new THREE.Mesh(new THREE.CylinderGeometry(1.25, 1.25, 0.18, 14), bronze); brim.position.set(0, S0 + 9.2, TZ); group.add(brim);
-  const crown = new THREE.Mesh(new THREE.CylinderGeometry(0.6, 0.7, 0.9, 10), bronze); crown.position.set(0, S0 + 9.7, TZ); group.add(crown);
-  const arm = new THREE.Mesh(new THREE.CylinderGeometry(0.32, 0.4, 3.0, 8), bronze);
-  arm.position.set(1.5, S0 + 6.2, TZ + 0.6); arm.rotation.z = -1.0; group.add(arm);   // the outstretched arm
+  const S0 = 155.8;
+  const coat = new THREE.Mesh(new THREE.CylinderGeometry(1.0, 1.8, 7.0, 10), bronze); coat.position.set(0, S0 + 3.5, TZ); group.add(coat);
+  const shoulders = new THREE.Mesh(new THREE.SphereGeometry(1.15, 10, 8), bronze); shoulders.scale.set(1.2, 0.8, 0.9); shoulders.position.set(0, S0 + 7.1, TZ); group.add(shoulders);
+  const head = new THREE.Mesh(new THREE.SphereGeometry(0.72, 10, 8), bronze); head.position.set(0, S0 + 8.5, TZ); group.add(head);
+  const brim = new THREE.Mesh(new THREE.CylinderGeometry(1.25, 1.25, 0.18, 14), bronze); brim.position.set(0, S0 + 9.1, TZ); group.add(brim);
+  const crown = new THREE.Mesh(new THREE.CylinderGeometry(0.58, 0.68, 1.6, 10), bronze); crown.position.set(0, S0 + 10.0, TZ); group.add(crown);
+  const arm = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.38, 3.0, 8), bronze);
+  arm.position.set(1.5, S0 + 6.0, TZ + 0.6); arm.rotation.z = -1.0; group.add(arm);
   group.add(parts.build());
 
   // Warm floodlight glow at the foot of the building.
@@ -233,16 +248,10 @@ export function build() {
 
   // Mid-rise blocks framing the plaza, then skyscrapers behind and beside City Hall.
   phillySkyline(group, [
-    { x: -112, z: -420, h: 70, w: 40, lit: 0.5 }, { x: 118, z: -410, h: 82, w: 44, lit: 0.5 },
-    { x: -165, z: -500, h: 110, w: 36, lit: 0.45 }, { x: 172, z: -490, h: 96, w: 40, lit: 0.45 },
+    { x: -102, z: -330, h: 70, w: 40, lit: 0.5 }, { x: 108, z: -320, h: 82, w: 44, lit: 0.5 },
+    { x: -150, z: -400, h: 110, w: 36, lit: 0.45 }, { x: 156, z: -390, h: 96, w: 40, lit: 0.45 },
   ], { r, fog: true, dim: 0.95 });
-  phillySkyline(group, [
-    { x: -150, z: -970, h: 258, w: 34, kind: "spire" }, { x: -100, z: -1050, h: 288, w: 38, kind: "spire" },
-    { x: -215, z: -910, h: 170, w: 40 }, { x: -60, z: -760, h: 140, w: 46, lit: 0.35 },
-    { x: 70, z: -930, h: 150, w: 44 }, { x: 115, z: -1030, h: 297, w: 40, kind: "taper" },
-    { x: 175, z: -1110, h: 342, w: 44, kind: "lantern" }, { x: 235, z: -990, h: 230, w: 38, kind: "pyramid" },
-    { x: -260, z: -1050, h: 200, w: 42 }, { x: 290, z: -950, h: 180, w: 40 },
-  ], { r, fog: true, dim: 1.0 });
+  phillySkyline(group, phillyTowers(0, -900, 1.25).filter(t => Math.abs(t.x) > 40), { r, fog: true, dim: 1.0 });
 
   // Night light: deep blue sky light, a little moon, warm lamps (above). No real-time shadows.
   group.add(new THREE.HemisphereLight(0x3d5a9a, 0x15131a, 0.65));

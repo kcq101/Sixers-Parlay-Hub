@@ -170,13 +170,30 @@ export function groundAndCourt(group, { size, z, color, lines, seed, roughness =
   return { ground, court };
 }
 
-// Lit windows on a dark tower face. lit = share of windows on.
-export function towerWindows(r, { cols = 10, rows = 40, lit = 0.45, warm = 0.7, base = "#0d1424", cool = "rgba(170,205,255,0.95)", warmC = "rgba(255,214,150,0.95)", W = 128, H = 512 } = {}) {
+// A tower face at night: tinted glass (or stone) with faint floor lines and mullions, and lit
+// windows in runs and clusters the way real offices light up, not an even grid of dots.
+export function towerWindows(r, { cols = 10, rows = 40, lit = 0.45, warm = 0.6, glass = "#0c1628", stone = false, W = 128, H = 512 } = {}) {
   return canvasTexture(W, H, (g) => {
-    g.fillStyle = base; g.fillRect(0, 0, W, H);
+    const gr = g.createLinearGradient(0, 0, 0, H);
+    if (stone) { gr.addColorStop(0, "#5a5650"); gr.addColorStop(1, "#3a3732"); }
+    else { gr.addColorStop(0, new THREE.Color(glass).offsetHSL(0, 0, 0.06).getStyle()); gr.addColorStop(1, glass); }
+    g.fillStyle = gr; g.fillRect(0, 0, W, H);
     const cw = W / cols, rh = H / rows;
-    for (let y = 0; y < rows; y++) for (let x = 0; x < cols; x++) {
-      if (r() < lit) { g.fillStyle = r() < warm ? warmC : cool; g.fillRect(x * cw + cw * 0.2, y * rh + rh * 0.25, cw * 0.6, rh * 0.5); }
+    g.fillStyle = stone ? "rgba(20,18,16,0.55)" : "rgba(140,170,220,0.10)";
+    for (let y = 0; y < rows; y++) g.fillRect(0, y * rh, W, 1);           // floor lines
+    for (let x = 0; x < cols; x++) g.fillRect(x * cw, 0, 1, H);           // mullions
+    const warmC = ["rgba(255,218,160,0.95)", "rgba(255,200,130,0.9)"], coolC = ["rgba(200,225,255,0.95)", "rgba(165,200,255,0.85)"];
+    let busy = r();
+    for (let y = 0; y < rows; y++) {
+      busy = Math.min(1, Math.max(0, busy + (r() - 0.5) * 0.5));           // whole floors tend to be on or off together
+      const p = lit * (0.25 + busy * 1.5);
+      for (let x = 0; x < cols;) {
+        if (r() < p * 0.5) {
+          const run = 1 + Math.floor(r() * 4), c = r() < warm ? warmC : coolC;
+          g.fillStyle = c[Math.floor(r() * 2)];
+          for (let k = 0; k < run && x < cols; k++, x++) g.fillRect(x * cw + 1.5, y * rh + rh * 0.22, cw - 3, rh * 0.56);
+        } else x++;
+      }
     }
   });
 }
@@ -257,54 +274,84 @@ export function lightPool(group, x, z, color, { radius = 4, strength = 0.5, stre
 }
 
 // ---------- Philadelphia skyline ----------
-// Towers inspired by the real skyline's shapes (no names or logos):
-//  "lantern" tall glass tower with a glowing top box · "taper" glass tower narrowing to a peak
-//  "spire" stepped gable crown with a needle · "pyramid" stepped pyramid top · "flat" plain box.
+// Towers built from the shapes of the real skyline (no names or logos on them):
+//  "spire"   One Liberty Place: tiers of steep gables outlined in light, with a needle spire
+//  "gable"   Two Liberty Place: the same gabled crown, cut off with no spire
+//  "taper"   Comcast Center: glass obelisk whose top narrows to a slim lit cap
+//  "lantern" Comcast Technology Center: tallest; a glowing open "lantern" box at the top
+//  "pyramid" BNY Mellon Center (Three Logan): stone tower with a stepped pyramid top, edges lit
+//  "flat"    everything else
 export function phillySkyline(group, towers, { r, fog = false, dim = 1 } = {}) {
-  const crownMat = (c, e) => new THREE.MeshStandardMaterial({ color: c, emissive: e, emissiveIntensity: 1.0 * dim, roughness: 0.6, fog });
+  const glowMat = (c, i = 1) => new THREE.MeshBasicMaterial({ color: new THREE.Color(c).multiplyScalar(i * dim), fog });
+  const solid = (c) => new THREE.MeshBasicMaterial({ color: new THREE.Color(c).multiplyScalar(dim), fog });
+  const outline = [];
   for (const t of towers) {
-    const { x, z, h, w, d = w, kind = "flat", lit = 0.45, warm = 0.6 } = t;
-    const tex = towerWindows(r, { cols: Math.max(6, Math.round(w / 3)), rows: Math.round(h / 4), lit, warm });
+    const { x, z, h, w, d = w, kind = "flat", lit = 0.42, warm = 0.55 } = t;
+    const stone = kind === "pyramid";
+    const glass = { spire: "#0e1a33", gable: "#0e1a33", taper: "#0b1d2e", lantern: "#0d1830" }[kind] || ["#0d1424", "#11161f", "#0c1222"][Math.floor(r() * 3)];
+    const tex = towerWindows(r, { cols: Math.max(8, Math.round(w / 2.6)), rows: Math.round(h / 3.8), lit, warm, glass, stone });
     const face = new THREE.MeshBasicMaterial({ map: tex, fog, color: new THREE.Color(dim, dim, dim) });
-    const roof = new THREE.MeshBasicMaterial({ color: 0x0b1020, fog });
+    const roof = solid(0x0b1020);
     const body = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), [face, face, roof, roof, face, face]);
     body.position.set(x, h / 2, z);
     group.add(body);
-    if (kind === "lantern") {
-      const top = new THREE.Mesh(new THREE.BoxGeometry(w * 0.86, h * 0.07, d * 0.86), crownMat(0xdfe8ff, 0x9fc4ff));
-      top.position.set(x, h + h * 0.035, z); group.add(top);
+    const top = (mesh, y) => { mesh.position.set(x, y, z); group.add(mesh); return mesh; };
+    if (kind === "spire" || kind === "gable") {
+      const tiers = kind === "spire" ? 3 : 2;
+      let y = h, s = 1;
+      for (let i = 0; i < tiers; i++) {
+        const hh = h * 0.028, gh = h * 0.05;
+        top(new THREE.Mesh(new THREE.BoxGeometry(w * s, hh, d * s), solid(0x1a2440)), y + hh / 2);
+        // four steep gables per tier (a square pyramid seen from any side reads as gables)
+        const gab = top(new THREE.Mesh(new THREE.ConeGeometry(w * s * 0.71, gh, 4, 1), solid(0x22304f)), y + hh + gh / 2);
+        gab.rotation.y = Math.PI / 4;
+        const half = w * s / 2;
+        for (const sx of [-1, 1]) for (let k = 0; k <= 6; k++) {                 // light outline up each gable edge
+          const t2 = k / 6;
+          outline.push(v3(x + sx * half * (1 - t2), y + hh + gh * t2, z + d * s / 2 + 0.3));
+        }
+        y += hh + gh * 0.55; s *= 0.68;
+      }
+      if (kind === "spire") {
+        top(new THREE.Mesh(new THREE.CylinderGeometry(0.25, 1.1, h * 0.12, 6), glowMat(0xe8eef8, 0.9)), y + h * 0.06);
+        for (let k = 0; k < 6; k++) outline.push(v3(x, y + k * h * 0.02, z + 1.2));
+      }
     } else if (kind === "taper") {
-      const top = new THREE.Mesh(new THREE.CylinderGeometry(0.4, w * 0.7, h * 0.12, 4), crownMat(0x8fb3e8, 0x3b6db8));
-      top.rotation.y = Math.PI / 4; top.position.set(x, h + h * 0.06, z); group.add(top);
-    } else if (kind === "spire") {
-      for (let i = 0; i < 3; i++) {
-        const s = 1 - i * 0.24, hh = h * 0.035;
-        const step = new THREE.Mesh(new THREE.BoxGeometry(w * s, hh, d * s), crownMat(0xe8eef8, 0xb8c8e8));
-        step.position.set(x, h + hh * (i + 0.5), z); group.add(step);
-        const gable = new THREE.Mesh(new THREE.CylinderGeometry(0.01, w * s * 0.7, hh * 1.4, 4, 1, true), crownMat(0xe8eef8, 0xb8c8e8));
-        gable.rotation.y = Math.PI / 4; gable.position.set(x, h + hh * (i + 1.2), z); group.add(gable);
-      }
-      const needle = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.9, h * 0.13, 6), crownMat(0xf4f6fa, 0xd8e2f4));
-      needle.position.set(x, h + h * 0.105 + h * 0.065, z); group.add(needle);
+      const th = h * 0.12;
+      const cap = top(new THREE.Mesh(new THREE.CylinderGeometry(w * 0.16, w * 0.71, th, 4, 1), new THREE.MeshBasicMaterial({ map: tex, fog, color: new THREE.Color(dim * 0.9, dim, dim * 1.05) })), h + th / 2);
+      cap.rotation.y = Math.PI / 4;
+      top(new THREE.Mesh(new THREE.BoxGeometry(w * 0.24, h * 0.012, d * 0.24), glowMat(0xcfe6ff, 1.1)), h + th + h * 0.006);
+    } else if (kind === "lantern") {
+      const lh = h * 0.075;
+      top(new THREE.Mesh(new THREE.BoxGeometry(w * 0.92, lh, d * 0.92), glowMat(0xeef4ff, 1.15)), h + lh / 2);
+      top(new THREE.Mesh(new THREE.BoxGeometry(w * 0.98, h * 0.008, d * 0.98), solid(0x1a2236)), h + lh + h * 0.004);
     } else if (kind === "pyramid") {
-      for (let i = 0; i < 4; i++) {
-        const s = 1 - i * 0.22, hh = h * 0.03;
-        const step = new THREE.Mesh(new THREE.BoxGeometry(w * s, hh, d * s), crownMat(0xbfd3f0, 0x6f9ce0));
-        step.position.set(x, h + hh * (i + 0.5), z); group.add(step);
+      let y = h;
+      for (let i = 0; i < 5; i++) {
+        const s = 1 - i * 0.18, hh = h * 0.025;
+        top(new THREE.Mesh(new THREE.BoxGeometry(w * s, hh, d * s), solid(0x6a6660)), y + hh / 2);
+        for (let k = -4; k <= 4; k++) outline.push(v3(x + k / 4 * w * s / 2, y + hh, z + d * s / 2 + 0.3));
+        y += hh;
       }
+      top(new THREE.Mesh(new THREE.ConeGeometry(w * 0.12, h * 0.05, 4), solid(0x6a6660)), y + h * 0.025).rotation.y = Math.PI / 4;
     }
   }
+  if (outline.length) group.add(glowPoints(outline, 0xdfe9ff, 2.6));
 }
 
-// The default skyline layout, centred on x = cx at distance z; scale shrinks/grows it as a whole.
+// The skyline seen from the east (the river side), left to right, at real heights.
+// Centred on x = cx at distance z; s scales spacing (not heights).
 export function phillyTowers(cx, z, s = 1) {
-  const T = (dx, dz, h, w, kind, extra = {}) => ({ x: cx + dx * s, z: z + dz * s, h: h * s, w: w * s, kind, ...extra });
+  const T = (dx, dz, h, w, kind = "flat", extra = {}) => ({ x: cx + dx * s, z: z + dz, h, w, kind, ...extra });
   return [
-    T(-170, 40, 120, 40, "flat"), T(-125, -30, 170, 36, "flat"),
-    T(-80, 10, 258, 34, "spire"), T(-40, -60, 288, 38, "spire"),
-    T(-5, 30, 150, 44, "flat", { lit: 0.35 }), T(30, -20, 297, 40, "taper"),
-    T(70, -80, 342, 44, "lantern"), T(110, 20, 230, 38, "pyramid"),
-    T(150, -10, 180, 34, "flat"), T(195, 30, 130, 42, "flat"), T(240, -40, 160, 36, "flat"),
-    T(-210, -10, 90, 50, "flat"), T(285, 10, 100, 48, "flat"),
+    T(-250, 20, 110, 48), T(-205, -10, 150, 40, "flat", { lit: 0.5 }),       // older Center City blocks
+    T(-150, 30, 130, 44),
+    T(-100, -10, 258, 36, "gable"),                                          // Two Liberty
+    T(-60, -45, 288, 40, "spire"),                                           // One Liberty
+    T(-20, 35, 150, 52, "flat", { lit: 0.35 }),                              // Centre Square
+    T(15, -5, 241, 40, "pyramid", { lit: 0.38, warm: 0.8 }),                 // BNY Mellon Center
+    T(55, -40, 297, 42, "taper", { lit: 0.36 }),                             // Comcast Center
+    T(100, -85, 342, 44, "lantern", { lit: 0.4 }),                           // Comcast Technology Center
+    T(145, 25, 152, 38), T(190, -15, 125, 44), T(235, 15, 100, 50), T(275, -20, 135, 40),
   ];
 }
