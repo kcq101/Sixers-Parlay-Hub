@@ -10,10 +10,10 @@
 import { HOOP } from "./physics.js";
 
 export const DEFAULTS = {
-  forgiveness: 0.45,   // 0 = strict, 1 = very generous
-  targetSpeed: 2.2,    // flick speed for a perfect shot, in screen-heights per second
-  aimSens: 1.0,        // how much left/right angle matters
-  powerSens: 1.0,      // how much speed matters
+  forgiveness: 0.6,    // 0 = strict, 1 = very generous
+  targetSpeed: 1.9,    // flick speed for a perfect shot, in screen-heights per second
+  aimSens: 1.1,        // how much left/right angle matters
+  powerSens: 1.1,      // how much speed matters
   launchDeg: 52,       // arc of every shot
   windowMs: 90,        // only the last part of the flick counts
   gravity: 9.81,
