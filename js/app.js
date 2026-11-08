@@ -266,7 +266,7 @@ function renderTonight(data, el, ui) {
       <section class="plate">
         <div class="sum-top">
           <div><div class="label">${real ? "FanDuel price" : "Est. FanDuel price"}</div><div class="big-price">${fmtOdds(est)}</div></div>
-          <div class="boosts">${[0.25, 0.5].map(b => `<div class="boost-row"><span class="label">With ${b * 100}% boost</span><span class="boost-price">${fmtOdds(est * (1 + b))}</span></div>`).join("")}</div>
+          <div class="boosts">${[0.25, 0.5].map(b => `<div class="boost-row"><span class="label">With ${b * 100}% boost</span><span class="boost-price">${fmtOdds(real && s.boosted && s.boost === b * 100 ? s.boosted : est * (1 + b))}</span></div>`).join("")}</div>
         </div>
         <div class="sum-grid">
           <div><span class="label">Stake</span><b>${money(STAKE)}</b></div>
