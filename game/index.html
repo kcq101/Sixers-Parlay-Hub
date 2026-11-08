@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <title>Shoot Around</title>
+  <meta name="theme-color" content="#070F1F">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=Barlow:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --red: #ED174C; --blue: #2E8BFF; --ink: #EAF0F8; --muted: #A3B4CF; --panel: rgba(9,18,36,0.92); }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #070F1F; color: var(--ink);
+      font: 500 15px/1.3 "Barlow", system-ui, sans-serif; overscroll-behavior: none;
+      -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+    canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+    #scene { touch-action: none; }
+    #trail { pointer-events: none; }
+    .top { position: fixed; left: 0; right: 0; top: 0; padding: calc(env(safe-area-inset-top) + 10px) 12px 0;
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; pointer-events: none; }
+    .btn { pointer-events: auto; width: 44px; height: 44px; border-radius: 12px; border: 1px solid rgba(160,182,214,.25);
+      background: rgba(7,15,31,.6); color: var(--ink); font-size: 20px; display: grid; place-items: center; cursor: pointer; }
+    .btn svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .score { display: flex; gap: 6px; background: rgba(7,15,31,.6); border: 1px solid rgba(160,182,214,.2);
+      border-radius: 12px; padding: 5px 6px; }
+    .stat { min-width: 54px; text-align: center; padding: 0 4px; }
+    .stat b { display: block; font: 800 24px/1 "Barlow Condensed", sans-serif; }
+    .stat span { font: 600 10px/1.2 "Barlow Condensed", sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+    .stat.streak b { color: #fff; text-shadow: 0 0 10px rgba(237,23,76,.8); }
+    .banner { position: fixed; left: 0; right: 0; top: 24%; text-align: center; pointer-events: none;
+      font: 800 46px/1 "Barlow Condensed", sans-serif; text-transform: uppercase; letter-spacing: .02em; opacity: 0; }
+    .banner.made { color: #fff; text-shadow: 0 0 18px rgba(46,139,255,.9), 0 3px 0 var(--red); }
+    .banner.swish { font-size: 64px; text-shadow: 0 0 24px rgba(237,23,76,.95), 0 3px 0 var(--blue); }
+    .banner.miss { color: #c9d5e6; font-size: 36px; text-shadow: 0 2px 8px rgba(0,0,0,.8); }
+    .banner.show { animation: pop 1.3s ease-out forwards; }
+    @keyframes pop { 0% { opacity: 0; transform: scale(.6); } 12% { opacity: 1; transform: scale(1.08); }
+      22% { transform: scale(1); } 75% { opacity: 1; } 100% { opacity: 0; transform: translateY(-14px); } }
+    .hint { position: fixed; left: 0; right: 0; bottom: calc(env(safe-area-inset-bottom) + 26px); text-align: center;
+      pointer-events: none; font: 600 17px/1 "Barlow Condensed", sans-serif; letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(234,240,248,.92); transition: opacity .4s; }
+    .hint span { background: rgba(7,15,31,.7); padding: 7px 12px; border-radius: 999px; }
+    .hint::before { content: ""; display: block; width: 2px; height: 34px; margin: 0 auto 10px;
+      background: linear-gradient(to top, rgba(255,255,255,0), rgba(255,255,255,.85)); animation: rise 1.4s ease-in-out infinite; }
+    @keyframes rise { 0% { transform: translateY(14px); opacity: 0; } 40% { opacity: 1; } 100% { transform: translateY(-14px); opacity: 0; } }
+    .hint.gone { opacity: 0; }
+    .hint.nudge { opacity: 1; animation: shake .4s; }
+    @keyframes shake { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+    #debug { position: fixed; left: 8px; right: 8px; bottom: calc(env(safe-area-inset-bottom) + 70px); text-align: center;
+      font: 500 12px/1.3 ui-monospace, Menlo, monospace; color: #9fd0ff; pointer-events: none; text-shadow: 0 1px 2px #000; }
+    #panel { position: fixed; left: 10px; right: 10px; bottom: calc(env(safe-area-inset-bottom) + 10px); max-height: 72vh; overflow: auto;
+      background: var(--panel); border: 1px solid rgba(160,182,214,.25); border-radius: 16px; padding: 12px 14px 14px; }
+    #panel[hidden] { display: none; }
+    .panel-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+    .panel-head h2 { margin: 0; font: 800 20px/1 "Barlow Condensed", sans-serif; letter-spacing: .06em; text-transform: uppercase; }
+    .x { width: 40px; height: 40px; border: 0; background: transparent; color: var(--ink); font-size: 18px; }
+    .row { display: block; padding: 7px 0; }
+    .lab { display: flex; justify-content: space-between; font-size: 14px; color: var(--muted); }
+    .lab b { color: var(--ink); font-weight: 600; }
+    input[type=range] { width: 100%; accent-color: var(--red); height: 28px; }
+    .check { display: flex; gap: 8px; align-items: center; padding: 8px 0; color: var(--muted); }
+    .reset { margin-top: 4px; width: 100%; height: 42px; border-radius: 10px; border: 1px solid rgba(160,182,214,.3);
+      background: transparent; color: var(--ink); font: 600 15px "Barlow", sans-serif; }
+    .loading { position: fixed; inset: 0; display: grid; place-items: center; font: 600 18px "Barlow Condensed", sans-serif;
+      letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="loading" id="loading">Heading to the court…</div>
+  <canvas id="scene" aria-label="Basketball court. Flick upward to shoot."></canvas>
+  <canvas id="trail"></canvas>
+
+  <div class="top">
+    <button class="btn" id="close" type="button" aria-label="Close game">
+      <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="score" aria-live="polite">
+      <div class="stat"><b id="makes">0</b><span>Makes</span></div>
+      <div class="stat"><b id="shots">0</b><span>Shots</span></div>
+      <div class="stat streak"><b id="streak">0</b><span>Streak</span></div>
+      <div class="stat"><b id="best">0</b><span>Best</span></div>
+    </div>
+    <button class="btn" id="gear" type="button" aria-label="Tuning">
+      <svg viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg></button>
+  </div>
+
+  <div class="banner" id="banner" aria-live="assertive"></div>
+  <div class="hint" id="hint"><span>Flick up to shoot</span></div>
+  <div id="debug" hidden></div>
+  <div id="panel" hidden></div>
+
+  <script type="module">
+    import("./js/main.js")
+      .then(() => document.getElementById("loading").remove())
+      .catch(e => { document.getElementById("loading").textContent = "Couldn't start the game: " + e.message; });
+  </script>
+</body>
+</html>
