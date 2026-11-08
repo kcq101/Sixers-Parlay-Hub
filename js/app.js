@@ -233,7 +233,8 @@ function renderTonight(data, el, ui) {
 
   const draw = () => {
     const s = slips[ui.slip] || slips[0];
-    const est = estPrice(s.legs);
+    const real = s.fdPrice != null;        // FanDuel's actual price, once the slip is placed
+    const est = real ? s.fdPrice : estPrice(s.legs);
     const profit = (STAKE * est) / 100;   // regular (unboosted) price
     const states = s.legs.map(legState);
     const settled = states.filter(x => x !== "pending").length;
@@ -261,7 +262,7 @@ function renderTonight(data, el, ui) {
 
       <section class="plate">
         <div class="sum-top">
-          <div><div class="label">Est. FanDuel price</div><div class="big-price">${fmtOdds(est)}</div></div>
+          <div><div class="label">${real ? "FanDuel price" : "Est. FanDuel price"}</div><div class="big-price">${fmtOdds(est)}</div></div>
           <div class="boosts">${[0.25, 0.5].map(b => `<div class="boost-row"><span class="label">With ${b * 100}% boost</span><span class="boost-price">${fmtOdds(est * (1 + b))}</span></div>`).join("")}</div>
         </div>
         <div class="sum-grid">
@@ -272,7 +273,7 @@ function renderTonight(data, el, ui) {
         <p class="muted" style="margin-top:8px">Illustrative $10 stake. Profit is at the regular price, no boost; return = stake + profit.</p>
         <div class="progress-row"><span class="label">Ticket progress</span><span class="label" style="color:var(--ink-2)">${settled} of ${s.legs.length} settled</span></div>
         <div class="segs" aria-hidden="true">${states.map(x => `<span class="seg ${x === "hit" ? "hit" : x === "miss" ? "miss" : ""}"></span>`).join("")}</div>
-        <p class="muted" style="margin-top:10px">Estimate = legs multiplied, less ~15% because FanDuel pays less when legs are related. Your screenshot is the real number.</p>
+        <p class="muted" style="margin-top:10px">${real ? "Price from your FanDuel slip." : "Estimate = legs multiplied, less ~15% because FanDuel pays less when legs are related. Your screenshot is the real number."}</p>
       </section>
 
       <section class="legs">
@@ -415,7 +416,7 @@ function renderBuild(data, el, ui) {
     const strong = why.filter(w => w.n && w.r >= 0.8).length;
     const target = risky[0] || why[why.length - 1].l;
     const injuries = t.injuries.filter(i => i.team === "PHI" ? true : !/out/i.test(i.status));
-    const est = estPrice(s.legs);
+    const est = s.fdPrice != null ? s.fdPrice : estPrice(s.legs);
 
     el.innerHTML = `
       <section class="analyst">
@@ -527,7 +528,7 @@ function renderTickets(data, el) {
         <span style="flex:1;display:flex;flex-direction:column;gap:3px">
           <span class="mono" style="font-size:11px;color:var(--brass-ink)">Up next · ${esc({ draft: "Draft", final: "Final picks" }[t.status] || t.status)}</span>
           <span class="disp" style="font-size:20px;font-weight:700">${t.game.home ? "vs" : "at"} ${esc(TEAM[t.game.opp] || t.game.opp)} · ${esc(fmtDate(t.game.date))}</span>
-          <span style="font-size:15px;color:var(--ink-3)">${tonightSlips.map(s => `${s.legs.length} legs est. ${fmtOdds(estPrice(s.legs))}`).join(" · ")}</span>
+          <span style="font-size:15px;color:var(--ink-3)">${tonightSlips.map(s => `${s.legs.length} legs ${s.fdPrice != null ? fmtOdds(s.fdPrice) : `est. ${fmtOdds(estPrice(s.legs))}`}`).join(" · ")}</span>
         </span>
         <span class="mono" style="font-size:14px">Open →</span>
       </button>` : ""}

@@ -1,10 +1,10 @@
 {
- "status": "draft",
- "statusNote": "Checked the 7:15 AM NBA injury report and the line at 1:40 PM ET. All five Sixers stars are in (Embiid probable), so no prop legs changed; the moneyline is -420, so the 10-leg slip now uses Sixers -5.5 instead.",
- "updated": "2026-11-08T13:40:00-05:00",
+ "status": "final",
+ "statusNote": "Locked on FanDuel: 9-leg SGP at +625. Moneyline in for Maxey 4+ assists; VJ, Brown and Embiid nudged up a notch for price.",
+ "updated": "2026-11-08T15:14:00-05:00",
  "game": {
   "date": "2026-11-08",
-  "tip": "3:30 PM ET",
+  "tip": "3:40 PM ET",
   "opp": "CHI",
   "oppName": "Chicago Bulls",
   "home": false,
@@ -74,16 +74,26 @@
  ],
  "slips": [
   {
-   "name": "Props only",
+   "name": "Placed slip",
    "legsCount": 9,
-   "estPrice": "about +750 before boost",
+   "fdPrice": 625,
+   "estPrice": "+625 on FanDuel",
    "legs": [
+    {
+     "player": "76ers",
+     "stat": "ml",
+     "line": 0,
+     "price": -450,
+     "priceNote": "FanDuel, Kevin's slip",
+     "tag": "Solid",
+     "note": "Moneyline is 2 for 2 on our slips. Beat Chicago by 19 on Monday."
+    },
     {
      "player": "Tyrese Maxey",
      "stat": "tpm",
      "line": 2,
-     "price": -310,
-     "priceNote": "FD price Fri vs CLE",
+     "price": -340,
+     "priceNote": "FanDuel, Kevin's slip",
      "tag": "Solid",
      "note": "8 for 11 on your slips."
     },
@@ -91,26 +101,17 @@
      "player": "Tyrese Maxey",
      "stat": "pra",
      "line": 30,
-     "price": -280,
-     "priceNote": "FD price Fri vs CLE",
+     "price": -310,
+     "priceNote": "FanDuel, Kevin's slip",
      "tag": "Solid",
      "note": "41 PRA vs Chicago on Monday."
-    },
-    {
-     "player": "Tyrese Maxey",
-     "stat": "ast",
-     "line": 4,
-     "price": -300,
-     "priceNote": "estimate",
-     "tag": "Core",
-     "note": "4+ assists in every game this season."
     },
     {
      "player": "VJ Edgecombe",
      "stat": "tpm",
      "line": 1,
-     "price": -430,
-     "priceNote": "FD price Fri vs CLE",
+     "price": -520,
+     "priceNote": "FanDuel, Kevin's slip",
      "tag": "Core",
      "note": "5 for 5 on your slips."
     },
@@ -118,63 +119,46 @@
      "player": "VJ Edgecombe",
      "stat": "stl",
      "line": 1,
-     "price": -320,
-     "priceNote": "FD price Fri vs CLE",
+     "price": -350,
+     "priceNote": "FanDuel, Kevin's slip",
      "tag": "Core",
      "note": "3 for 3 on your slips."
     },
     {
      "player": "VJ Edgecombe",
      "stat": "pra",
-     "line": 15,
-     "price": -530,
-     "priceNote": "FD price Fri vs CLE",
+     "line": 17,
+     "price": -550,
+     "priceNote": "FanDuel, Kevin's slip",
+     "tag": "Solid",
+     "note": "Nudged up from 15+ for a better price (over 16.5)."
+    },
+    {
+     "player": "Jaylen Brown",
+     "stat": "pra",
+     "line": 26,
+     "price": -450,
+     "priceNote": "FanDuel, Kevin's slip",
      "tag": "Core",
-     "note": "Held up even in Friday's blowout."
+     "note": "Nudged up from 25+ (over 25.5). 9 for 9 on your slips. 41 PRA vs Chicago Monday."
     },
     {
      "player": "LeBron James",
      "stat": "stl",
      "line": 1,
-     "price": -240,
-     "priceNote": "FD price Fri vs CLE",
+     "price": -245,
+     "priceNote": "FanDuel, Kevin's slip",
      "tag": "Solid",
      "note": "1+ steal in every game he's played."
     },
     {
-     "player": "Jaylen Brown",
-     "stat": "pra",
-     "line": 25,
-     "price": -440,
-     "priceNote": "FD price Fri vs CLE",
-     "tag": "Core",
-     "note": "9 for 9 on your slips. 41 PRA vs Chicago Monday."
-    },
-    {
      "player": "Joel Embiid",
      "stat": "reb",
-     "line": 6,
-     "price": -400,
-     "priceNote": "estimate",
+     "line": 7,
+     "price": -340,
+     "priceNote": "FanDuel, Kevin's slip",
      "tag": "Risky",
-     "note": "Untested on your slips, and Embiid legs are 4 for 15. But he's had 7+ rebounds in all 8 games, even Friday."
-    }
-   ]
-  },
-  {
-   "name": "With game line",
-   "legsCount": 10,
-   "estPrice": "about +1100 before boost",
-   "sameAs": "Props only",
-   "addLegs": [
-    {
-     "player": "76ers",
-     "stat": "spread",
-     "line": -5.5,
-     "price": -250,
-     "priceNote": "estimate from the -9.5 main line",
-     "tag": "Solid",
-     "note": "The real moneyline is -420, too short for this slip, so this uses Sixers -5.5 as an alternate spread instead (2 for 2 on our slips). Beat Chicago by 19 on Monday."
+     "note": "Nudged up from 6+ (over 6.5). Untested on your slips, but he's had 7+ rebounds in all 8 games."
     }
    ]
   }
