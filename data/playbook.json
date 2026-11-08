@@ -1,7 +1,7 @@
 {
  "houseRules": [
   "FanDuel Same Game Parlay, low wager, friend group.",
-  "9\u201310 legs, each roughly -300 to -500, aiming for about +1000 total (profit boosts help).",
+  "9–10 legs, each roughly -300 to -500, aiming for about +1000 total (profit boosts help).",
   "Best chance to hit near +1000, tilted toward legs where the stats beat the price.",
   "Maxey-heavy. Milestone legs (\"X+\"): threes, steals, points + rebounds + assists ladders.",
   "No Embiid threes. No totals.",
@@ -14,15 +14,15 @@
   },
   {
    "rule": "Lean on Brown pts + reb + ast, VJ threes and LeBron steals.",
-   "why": "9 for 9, 9 for 9 and 5 for 5."
+   "why": "11 for 11, 11 for 11 and 7 for 7."
   },
   {
-   "rule": "Use small spreads or the moneyline, never big spreads.",
-   "why": "-5.5 went 2 for 2 and the moneyline 2 for 2; -12.5 missed by a point and a half."
+   "rule": "Use small spreads (-2.5 to -5.5) or the moneyline, never big spreads (-7.5 or more).",
+   "why": "-2.5 and -5.5 went 3 for 3 and the moneyline 2 for 2; -7.5 missed by two (won by 6 as 9.5-point favorites at Chicago) and -12.5 by a point and a half."
   },
   {
    "rule": "Keep VJ's pts + reb + ast at 15+, not higher.",
-   "why": "6 for 7, and the one miss (14 in the opener) cost a slip."
+   "why": "8 for 9, and the one miss (14 in the opener) cost a slip."
   },
   {
    "rule": "Maxey steals are fine, not core.",

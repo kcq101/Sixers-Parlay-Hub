@@ -1,6 +1,6 @@
 {
  "_note": "2026-27 regular-season game logs (stl/blk/3pm included). A player missing from a date did not play or isn't in the feed.",
- "updated": "2026-11-07",
+ "updated": "2026-11-08",
  "games": [
   {
    "date": "2026-10-20",
@@ -61,6 +61,12 @@
    "opp": "CLE",
    "home": false,
    "result": "L 95-119"
+  },
+  {
+   "date": "2026-11-08",
+   "opp": "CHI",
+   "home": false,
+   "result": "W 127-121"
   }
  ],
  "players": {

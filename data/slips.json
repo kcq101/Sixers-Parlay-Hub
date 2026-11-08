@@ -872,6 +872,151 @@
     }
    ],
    "note": "Blowout loss: three of the five PRA legs missed together."
+  },
+  {
+   "date": "2026-11-08",
+   "opp": "CHI",
+   "home": false,
+   "final": "W 127-121",
+   "label": "with -7.5",
+   "price": 630,
+   "boost": 50,
+   "boosted": 944,
+   "legs": [
+    {
+     "player": "Tyrese Maxey",
+     "stat": "tpm",
+     "line": 2,
+     "actual": 3,
+     "hit": true
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "pra",
+     "line": 30,
+     "actual": 38,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 3,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "stl",
+     "line": 1,
+     "actual": 3,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "pra",
+     "line": 17,
+     "actual": 22,
+     "hit": true
+    },
+    {
+     "player": "Jaylen Brown",
+     "stat": "pra",
+     "line": 26,
+     "actual": 40,
+     "hit": true
+    },
+    {
+     "player": "LeBron James",
+     "stat": "stl",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    },
+    {
+     "player": "76ers",
+     "stat": "spread",
+     "line": -7.5,
+     "actual": 6,
+     "hit": false
+    }
+   ],
+   "note": "Lost by one leg: the Sixers won by 6, two short of covering -7.5 ($25 wager, would have paid $261.23)."
+  },
+  {
+   "date": "2026-11-08",
+   "opp": "CHI",
+   "home": false,
+   "final": "W 127-121",
+   "label": "with -2.5",
+   "price": 730,
+   "boost": 50,
+   "boosted": 1095,
+   "legs": [
+    {
+     "player": "Tyrese Maxey",
+     "stat": "tpm",
+     "line": 2,
+     "actual": 3,
+     "hit": true
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "pra",
+     "line": 30,
+     "actual": 38,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 3,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "stl",
+     "line": 1,
+     "actual": 3,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "pra",
+     "line": 17,
+     "actual": 22,
+     "hit": true
+    },
+    {
+     "player": "Jaylen Brown",
+     "stat": "pra",
+     "line": 26,
+     "actual": 40,
+     "hit": true
+    },
+    {
+     "player": "LeBron James",
+     "stat": "stl",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    },
+    {
+     "player": "Joel Embiid",
+     "stat": "reb",
+     "line": 7,
+     "actual": 10,
+     "hit": true
+    },
+    {
+     "player": "76ers",
+     "stat": "spread",
+     "line": -2.5,
+     "actual": 6,
+     "hit": true
+    }
+   ],
+   "note": "Cashed at +1095 boosted (VJ's threes, steals and pts + reb + ast are floors from a late-4th box; no full final box yet)."
   }
  ]
 }

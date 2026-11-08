@@ -13,9 +13,9 @@
    "when": "2026-11-08T18:30:00-05:00",
    "what": "Grade the slip",
    "detail": "Pulls the final box score, grades each suggested leg, and adds the game to the season logs.",
-   "status": "scheduled",
-   "doneAt": null,
-   "result": null
+   "status": "done",
+   "doneAt": "2026-11-08T19:15:00-05:00",
+   "result": "Sixers won 127-121: the -7.5 slip went 7 of 8 (Sixers covered only 6), and the -2.5 slip went 9 of 9 and cashed at +1095 boosted. Player game logs wait for a full final box score."
   }
  ]
 }

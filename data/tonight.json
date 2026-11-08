@@ -1,7 +1,7 @@
 {
- "status": "final",
- "statusNote": "Two slips placed on FanDuel, both with a 50% profit boost: 8 legs with Sixers -7.5 at +630 (+944 boosted), and 9 legs adding Embiid 7+ rebounds with Sixers -2.5 at +730 (+1095 boosted).",
- "updated": "2026-11-08T15:37:00-05:00",
+ "status": "graded",
+ "statusNote": "Final: Sixers won 127-121. The -7.5 slip went 7 of 8 (missed: Sixers -7.5, they won by 6); the -2.5 slip went 9 of 9 and cashed at +1095 boosted.",
+ "updated": "2026-11-08T19:15:00-05:00",
  "game": {
   "date": "2026-11-08",
   "tip": "3:40 PM ET",
@@ -90,7 +90,9 @@
      "price": -340,
      "priceNote": "FanDuel betslip, 3:37 PM",
      "tag": "Solid",
-     "note": "8 for 11 on your slips."
+     "note": "3 per the NBC Sports/Rotoworld recap; he had 2 with 7:33 left, so 2+ is certain.",
+     "actual": 3,
+     "hit": true
     },
     {
      "player": "Tyrese Maxey",
@@ -99,7 +101,9 @@
      "price": -330,
      "priceNote": "FanDuel betslip, 3:37 PM",
      "tag": "Solid",
-     "note": "41 PRA vs Chicago on Monday."
+     "note": "27 pts, 7 ast, 4 reb (rebounds from the NBC Sports/Rotoworld recap only).",
+     "actual": 38,
+     "hit": true
     },
     {
      "player": "VJ Edgecombe",
@@ -108,7 +112,9 @@
      "price": -530,
      "priceNote": "FanDuel betslip, 3:37 PM",
      "tag": "Core",
-     "note": "5 for 5 on your slips."
+     "note": "At least 3: he had 3 with 7:33 left; no final box found yet.",
+     "actual": 3,
+     "hit": true
     },
     {
      "player": "VJ Edgecombe",
@@ -117,7 +123,9 @@
      "price": -350,
      "priceNote": "FanDuel betslip, 3:37 PM",
      "tag": "Core",
-     "note": "3 for 3 on your slips."
+     "note": "At least 3: he had 3 with 7:33 left; no final box found yet.",
+     "actual": 3,
+     "hit": true
     },
     {
      "player": "VJ Edgecombe",
@@ -126,7 +134,9 @@
      "price": -600,
      "priceNote": "FanDuel betslip, 3:37 PM",
      "tag": "Solid",
-     "note": "Nudged up from 15+ for a better price (over 16.5)."
+     "note": "At least 22: 13 pts, 6 reb, and 3 ast as of 7:33 left; final assists not confirmed.",
+     "actual": 22,
+     "hit": true
     },
     {
      "player": "Jaylen Brown",
@@ -135,7 +145,9 @@
      "price": -450,
      "priceNote": "FanDuel betslip, 3:37 PM",
      "tag": "Core",
-     "note": "Nudged up from 25+ (over 25.5). 9 for 9 on your slips. 41 PRA vs Chicago Monday."
+     "note": "Nudged up from 25+ (over 25.5). 9 for 9 on your slips. 41 PRA vs Chicago Monday.",
+     "actual": 40,
+     "hit": true
     },
     {
      "player": "LeBron James",
@@ -144,7 +156,9 @@
      "price": -245,
      "priceNote": "FanDuel betslip, 3:37 PM",
      "tag": "Solid",
-     "note": "1+ steal in every game he's played."
+     "note": "1+ steal in every game he's played.",
+     "actual": 1,
+     "hit": true
     },
     {
      "player": "76ers",
@@ -153,7 +167,9 @@
      "price": -138,
      "priceNote": "FanDuel, per Kevin",
      "tag": "Solid",
-     "note": "Alternate spread instead of the moneyline. Main line is Sixers -9.5; they beat Chicago by 19 on Monday."
+     "note": "Alternate spread instead of the moneyline. Main line is Sixers -9.5; they beat Chicago by 19 on Monday.",
+     "actual": 6,
+     "hit": false
     }
    ]
   },
@@ -172,7 +188,9 @@
      "price": -340,
      "priceNote": "FanDuel betslip, 3:37 PM",
      "tag": "Solid",
-     "note": "8 for 11 on your slips."
+     "note": "3 per the NBC Sports/Rotoworld recap; he had 2 with 7:33 left, so 2+ is certain.",
+     "actual": 3,
+     "hit": true
     },
     {
      "player": "Tyrese Maxey",
@@ -181,7 +199,9 @@
      "price": -330,
      "priceNote": "FanDuel betslip, 3:37 PM",
      "tag": "Solid",
-     "note": "41 PRA vs Chicago on Monday."
+     "note": "27 pts, 7 ast, 4 reb (rebounds from the NBC Sports/Rotoworld recap only).",
+     "actual": 38,
+     "hit": true
     },
     {
      "player": "VJ Edgecombe",
@@ -190,7 +210,9 @@
      "price": -530,
      "priceNote": "FanDuel betslip, 3:37 PM",
      "tag": "Core",
-     "note": "5 for 5 on your slips."
+     "note": "At least 3: he had 3 with 7:33 left; no final box found yet.",
+     "actual": 3,
+     "hit": true
     },
     {
      "player": "VJ Edgecombe",
@@ -199,7 +221,9 @@
      "price": -350,
      "priceNote": "FanDuel betslip, 3:37 PM",
      "tag": "Core",
-     "note": "3 for 3 on your slips."
+     "note": "At least 3: he had 3 with 7:33 left; no final box found yet.",
+     "actual": 3,
+     "hit": true
     },
     {
      "player": "VJ Edgecombe",
@@ -208,7 +232,9 @@
      "price": -600,
      "priceNote": "FanDuel betslip, 3:37 PM",
      "tag": "Solid",
-     "note": "Nudged up from 15+ for a better price (over 16.5)."
+     "note": "At least 22: 13 pts, 6 reb, and 3 ast as of 7:33 left; final assists not confirmed.",
+     "actual": 22,
+     "hit": true
     },
     {
      "player": "Jaylen Brown",
@@ -217,7 +243,9 @@
      "price": -450,
      "priceNote": "FanDuel betslip, 3:37 PM",
      "tag": "Core",
-     "note": "Nudged up from 25+ (over 25.5). 9 for 9 on your slips. 41 PRA vs Chicago Monday."
+     "note": "Nudged up from 25+ (over 25.5). 9 for 9 on your slips. 41 PRA vs Chicago Monday.",
+     "actual": 40,
+     "hit": true
     },
     {
      "player": "LeBron James",
@@ -226,7 +254,9 @@
      "price": -245,
      "priceNote": "FanDuel betslip, 3:37 PM",
      "tag": "Solid",
-     "note": "1+ steal in every game he's played."
+     "note": "1+ steal in every game he's played.",
+     "actual": 1,
+     "hit": true
     },
     {
      "player": "Joel Embiid",
@@ -235,7 +265,9 @@
      "price": -320,
      "priceNote": "FanDuel betslip, 3:37 PM",
      "tag": "Risky",
-     "note": "Nudged up from 6+ (over 6.5). Untested on your slips, but he's had 7+ rebounds in all 8 games."
+     "note": "Nudged up from 6+ (over 6.5). Untested on your slips, but he's had 7+ rebounds in all 8 games.",
+     "actual": 10,
+     "hit": true
     },
     {
      "player": "76ers",
@@ -244,7 +276,9 @@
      "price": -260,
      "priceNote": "FanDuel betslip, 3:37 PM",
      "tag": "Solid",
-     "note": "Small alternate spread in place of the -450 moneyline."
+     "note": "Small alternate spread in place of the -450 moneyline.",
+     "actual": 6,
+     "hit": true
     }
    ]
   }
