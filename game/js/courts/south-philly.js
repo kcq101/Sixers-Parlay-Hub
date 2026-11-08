@@ -171,13 +171,14 @@ export function build() {
   const towers = [
     [-70, 150, 26], [-40, 210, 22], [-18, 290, 28], [8, 260, 24], [30, 190, 30], [55, 230, 22], [90, 160, 30], [-100, 120, 34], [120, 140, 28],
   ];
-  for (const [x, h, w] of towers) {
+  for (const [x, h0, w] of towers) {
+    const h = h0 * 0.5;
     const m = new THREE.MeshBasicMaterial({ map: skylineTexture(r, w, h), fog: false });
     const t = new THREE.Mesh(new THREE.PlaneGeometry(w, h), m);
     t.position.set(x, h / 2 - 4, -420); group.add(t);
   }
   // Two spire-topped towers.
-  for (const [x, h, w] of [[-18, 290, 28], [8, 260, 24]]) {
+  for (const [x, h, w] of [[-18, 145, 28], [8, 130, 24]]) {
     const spire = new THREE.Mesh(new THREE.ConeGeometry(w * 0.45, 46, 4),
       new THREE.MeshBasicMaterial({ color: 0x1a2440, fog: false }));
     spire.position.set(x, h - 4 + 23, -421); spire.rotation.y = Math.PI / 4; group.add(spire);

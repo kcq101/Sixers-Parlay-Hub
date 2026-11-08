@@ -9,7 +9,7 @@ import * as southPhilly from "./courts/south-philly.js";
 import * as hoopKit from "./hoop.js";
 import * as ballKit from "./ball.js";
 import * as shooterKit from "./shooter.js";
-import * as shooterModel from "./shooter-model.js";
+import * as spriteShooter from "./sprite-shooter.js";
 
 const $ = s => document.querySelector(s);
 const canvas = $("#scene");
@@ -31,12 +31,29 @@ scene.fog = court.fog;
 const hoop = hoopKit.build(); scene.add(hoop.group);
 const ball = ballKit.build(); scene.add(ball.mesh, ball.shadow);
 // Start with the simple placeholder, then swap in the 3D model once it has downloaded.
+// Start with the simple placeholder, then swap in the animated shooter once it has downloaded.
+// The animation holds the ball itself until release, so the game's ball hides until then.
 let shooter = shooterKit.build(); scene.add(shooter.group);
-shooterModel.load().then(m => {
+spriteShooter.load().then(m => {
   scene.remove(shooter.group);
   shooter = m; scene.add(m.group);
-  m.setPose(poseT);
-}).catch(e => console.warn("Shooter model didn't load; keeping the placeholder.", e));
+  Object.assign(RELEASE, m.release);          // the game's ball starts where the drawing lets go
+  if (state === "ready") { m.setFrame(spriteShooter.SET); ball.mesh.visible = ball.shadow.visible = false; }
+}).catch(e => console.warn("Shooter animation didn't load; keeping the placeholder.", e));
+const isSprite = () => shooter.kind === "sprite";
+
+// Plays a list of animation frames; holds the last one.
+let anim = null;
+function play(seq, onDone) { anim = { ...seq, i: 0, t: 0, onDone }; shooter.setFrame(seq.frames[0]); }
+function stepAnim(dt) {
+  if (!anim) return;
+  anim.t += dt * 1000;
+  while (anim && anim.i < anim.ms.length && anim.t >= anim.ms[anim.i]) {
+    anim.t -= anim.ms[anim.i]; anim.i++;
+    shooter.setFrame(anim.frames[anim.i]);
+    if (anim.i === anim.ms.length) { const done = anim.onDone; anim = null; done?.(); }
+  }
+}
 
 const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 700);
 const lookAt = new THREE.Vector3(LOOK_AT.x, LOOK_AT.y, LOOK_AT.z);
@@ -121,6 +138,7 @@ flickInput(canvas, {
     if (!f.ok) { if (f.why !== "tap") nudgeHint(); return; }
     const l = launch(f, RELEASE, set);
     shot = createShot(RELEASE, l.vel, l.spin);
+    if (isSprite()) { ball.mesh.visible = ball.shadow.visible = true; ball.place(RELEASE); play(spriteShooter.SHOOT_SEQ); }
     state = "flight"; poseTarget = 1; shownResult = false; lastRim = 0; lastBoard = 0;
     hud.hint.classList.add("gone");
     if (debugOn) hud.debug.textContent += `  → speed ${(l.powerErr * 100).toFixed(1)}%  aim ${(l.aimErr * 180 / Math.PI).toFixed(2)}°`;
@@ -165,6 +183,13 @@ function frame(now) {
       finishShot(shot.result);
       state = "reset"; resetT = 0; poseTarget = 0;
     }
+  } else if (state === "reset" && isSprite()) {
+    // Ball leaves the scene; he gathers the next one and comes back up to the set point.
+    resetT += dt;
+    if (resetT > 0.3 && !anim && ball.mesh.visible) {
+      ball.mesh.visible = ball.shadow.visible = false;
+      play(spriteShooter.RESET_SEQ, () => { state = "ready"; acc = 0; holdBall(); ball.mesh.visible = ball.shadow.visible = false; });
+    }
   } else if (state === "reset") {
     resetT += dt;
     if (resetT > 0.35) {
@@ -178,7 +203,7 @@ function frame(now) {
 
   // Arms: snap up on release, ease back down after.
   poseT += (poseTarget - poseT) * Math.min(1, dt * (poseTarget > poseT ? 18 : 5));
-  shooter.setPose(poseT);
+  if (isSprite()) stepAnim(dt); else shooter.setPose(poseT);
 
   hoop.updateNet(dt, state === "flight" && shot && shot.p.y < 3.2 ? shot.p : null);
   drawTrail(now);
