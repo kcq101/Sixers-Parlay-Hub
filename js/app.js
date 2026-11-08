@@ -137,7 +137,6 @@ const STAT = {
 const STAT_GROUP = { tpm: "Threes", stl: "Steals", blk: "Blocks", reb: "Rebounds", ast: "Assists", pts: "Points", pra: "Pts + reb + ast", ml: "Moneyline", spread: "Spread" };
 const SGP_HAIRCUT = 0.85; // FanDuel paid ~15% under the straight multiply on Nov 6
 const STAKE = 10;         // illustrative stake; stakes aren't recorded
-const BOOST = 0.5;        // the profit boost we usually get
 
 const $ = (sel, el = document) => el.querySelector(sel);
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -235,8 +234,7 @@ function renderTonight(data, el, ui) {
   const draw = () => {
     const s = slips[ui.slip] || slips[0];
     const est = estPrice(s.legs);
-    const boosted = est * (1 + BOOST);
-    const profit = (STAKE * boosted) / 100;
+    const profit = (STAKE * est) / 100;   // regular (unboosted) price
     const states = s.legs.map(legState);
     const settled = states.filter(x => x !== "pending").length;
     const flags = buildFlags(data, s.legs).length;
@@ -271,7 +269,7 @@ function renderTonight(data, el, ui) {
           <div><span class="label">Profit</span><b class="profit">${money(Math.round(profit * 100) / 100)}</b></div>
           <div><span class="label">Return</span><b>${money(Math.round((STAKE + profit) * 100) / 100)}</b></div>
         </div>
-        <p class="muted" style="margin-top:8px">Illustrative $10 stake. Profit is at the ${BOOST * 100}% boost; return = stake + profit.</p>
+        <p class="muted" style="margin-top:8px">Illustrative $10 stake. Profit is at the regular price, no boost; return = stake + profit.</p>
         <div class="progress-row"><span class="label">Ticket progress</span><span class="label" style="color:var(--ink-2)">${settled} of ${s.legs.length} settled</span></div>
         <div class="segs" aria-hidden="true">${states.map(x => `<span class="seg ${x === "hit" ? "hit" : x === "miss" ? "miss" : ""}"></span>`).join("")}</div>
         <p class="muted" style="margin-top:10px">Estimate = legs multiplied, less ~15% because FanDuel pays less when legs are related. Your screenshot is the real number.</p>
