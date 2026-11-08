@@ -150,8 +150,8 @@
      "player": "76ers",
      "stat": "spread",
      "line": -7.5,
-     "price": null,
-     "priceNote": "price unknown (not shown on the placed slip)",
+     "price": -138,
+     "priceNote": "FanDuel, per Kevin",
      "tag": "Solid",
      "note": "Alternate spread instead of the moneyline. Main line is Sixers -9.5; they beat Chicago by 19 on Monday."
     }
