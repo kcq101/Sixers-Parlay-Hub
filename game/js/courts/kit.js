@@ -158,9 +158,9 @@ export function courtLinesTexture({ paint = "#4f74b0", paintAlpha = 0.5, line = 
 }
 
 // Ground plane + court paint, in one call.
-export function groundAndCourt(group, { size, z, color, lines, seed, roughness = 0.9, shadows = true }) {
+export function groundAndCourt(group, { size, z, color, lines, seed, roughness = 0.9, shadows = true, pave = {} }) {
   const ground = new THREE.Mesh(new THREE.PlaneGeometry(size[0], size[1]),
-    new THREE.MeshStandardMaterial({ map: pavementTexture({ color, seed }), roughness }));
+    new THREE.MeshStandardMaterial({ map: pavementTexture({ color, seed, ...pave }), roughness }));
   ground.rotation.x = -Math.PI / 2; ground.position.set(0, 0, z); ground.receiveShadow = shadows;
   group.add(ground);
   const court = new THREE.Mesh(new THREE.PlaneGeometry(18, 18),

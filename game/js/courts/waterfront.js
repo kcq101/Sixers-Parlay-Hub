@@ -1,17 +1,17 @@
 // Philadelphia Waterfront court at night.
 // Same scale, coordinates and camera as the other courts (hoop glass at z = 0, camera at z ≈ 11).
 // Depth is built in layers, near to far:
-//   1. court and weathered pavement          (z  +25 … -9)
-//   2. fence, brick industrial buildings,     (z   -5 … -40)
+//   1. street court and asphalt               (z  +25 … -9)
+//   2. brick industrial buildings and the     (z   -9 … -40)
 //      concrete retaining wall at the water
 //   3. the Delaware River                     (z   -9 … -1500)
 //   4. the Ben Franklin Bridge                (towers at about 400 m and 930 m, real proportions)
 //   5. the lit Philadelphia skyline           (about 1.4 km)
 // A phone held upright only sees about ±11° left and right of straight ahead, so every landmark
-// is placed inside that strip. Lighting is baked: no real-time shadows here, and the
-// "reflections" on the wet pavement and river are painted-on glows, which cost almost nothing.
+// is placed inside that strip. Lighting is baked: no real-time shadows here, and the river's
+// reflections are painted on, which costs almost nothing.
 import { THREE, canvasTexture, rng, noise, instancer, beam, v3, wirePoints, glowPoints, brick, skyGradient,
-  groundAndCourt, chainLink, streetLight, lightPool, phillySkyline, phillyTowers, courtFloods } from "./kit.js";
+  groundAndCourt, streetLight, phillySkyline, phillyTowers, courtFloods } from "./kit.js";
 
 export const id = "philly_waterfront";
 export const name = "Waterfront";
@@ -103,7 +103,6 @@ function industrial(group, r) {
       color: new THREE.Color(BLUE).multiplyScalar(0.55), transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, fog: false,
     }));
     wash.position.set(x, 2.25, z + 0.06); group.add(wash);
-    lightPool(group, x, z + 1.2, BLUE, { radius: 3.2, strength: 0.35 });
   }
 }
 
@@ -209,15 +208,13 @@ export function build() {
   const group = new THREE.Group();
   const r = rng(77);
 
-  // 1. Court and pavement: grey concrete, worn, ending at the river wall.
+  // 1. A regular street court: dark asphalt with a painted court and clean white lines,
+  //    ending at the river wall.
   groundAndCourt(group, {
-    size: [80, 36], z: EDGE_Z + 18, color: "#4a4d52", seed: 21, roughness: 0.55, shadows: false,
-    lines: { paint: "#2f5fa8", paintAlpha: 0.45, line: "#e6ecf2", lineAlpha: 0.62, seed: 9 },
+    size: [80, 36], z: EDGE_Z + 18, color: "#35373c", seed: 21, roughness: 0.85, shadows: false,
+    pave: { patches: 0, darks: 0, cracks: 22 },
+    lines: { surface: { color: "#26354f", alpha: 0.55 }, paint: "#2f5fa8", paintAlpha: 0.65, line: "#eef2f6", lineAlpha: 0.85, wear: 12, seed: 9 },
   });
-  // Wet patches: darker, glossier pavement where puddles sit.
-  const wet = instancer(new THREE.CircleGeometry(1, 20), new THREE.MeshStandardMaterial({ color: 0x1c2230, roughness: 0.15, metalness: 0.2, transparent: true, opacity: 0.55, depthWrite: false }), { shadows: false });
-  for (const [x, z, s] of [[-2.6, 7.5, 1.6], [3.1, 2.0, 1.2], [-3.8, -2.5, 2.2], [1.5, -6.2, 1.8], [4.5, 9, 1.4]]) wet.add(x, 0.006, z, -Math.PI / 2, 0, 0, s * 1.6, s, 1);
-  group.add(wet.build());
 
   // 2. Retaining wall at the water's edge, with a steel rail on top.
   const concrete = canvasTexture(512, 64, (g, W, H) => {
@@ -234,19 +231,14 @@ export function build() {
   for (let x = -45; x <= 45; x += 2) beam(rails, v3(x, 1.0, EDGE_Z), v3(x, 2.05, EDGE_Z), 0.05);
   group.add(rails.build());
 
-  // Chain-link around parts of the court (behind the hoop on the left, and the sides).
-  chainLink(group, { x0: -14, z0: -5.2, x1: -1.6, z1: -5.2, height: 3.2 });
-  chainLink(group, { x0: -14, z0: -5.2, x1: -14, z1: 12, height: 3.2 });
-  chainLink(group, { x0: 14, z0: -5.2, x1: 14, z1: 12, height: 3.2 });
 
   industrial(group, r);
 
-  // Amber street lights along the promenade, with their glow (and wet reflection) on the ground.
+  // Amber street lights along the promenade.
   for (const [x, z, flip] of [[-3.6, -7.6, false], [3.9, -7.6, true]]) {
     group.add(streetLight(x, z, flip, AMBER, 6.5));
     const lamp = new THREE.PointLight(AMBER, 6, 16, 1.5);
     lamp.position.set(x + (flip ? -1.05 : 1.05), 6.2, z); group.add(lamp);
-    lightPool(group, x + (flip ? -1.05 : 1.05), z + 0.6, AMBER, { radius: 4.2, strength: 0.32, streak: 7 });
   }
 
   // 3. The river.
