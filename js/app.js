@@ -1,5 +1,38 @@
 // Sixers Parlay Hub — reads data/*.json and renders four tabs: Tonight, Build, Tickets, Stats.
-const TEAM = { CHI: "Bulls", CLE: "Cavaliers", DET: "Pistons", MIL: "Bucks", IND: "Pacers", NYK: "Knicks", CHA: "Hornets", BOS: "Celtics", TOR: "Raptors", BKN: "Nets", ORL: "Magic", POR: "Trail Blazers", MIA: "Heat", HOU: "Rockets", MEM: "Grizzlies", DEN: "Nuggets" };
+// Every team: [nickname, primary color, trim color]. Badges are original shields in team colors, not league logos.
+const TEAMS = {
+  ATL: ["Hawks", "#C8102E", "#FDB927"], BOS: ["Celtics", "#007A33", "#BA9653"], BKN: ["Nets", "#111111", "#FFFFFF"],
+  CHA: ["Hornets", "#1D1160", "#00788C"], CHI: ["Bulls", "#CE1141", "#111111"], CLE: ["Cavaliers", "#860038", "#FDBB30"],
+  DAL: ["Mavericks", "#00538C", "#B8C4CA"], DEN: ["Nuggets", "#0E2240", "#FEC524"], DET: ["Pistons", "#C8102E", "#1D42BA"],
+  GSW: ["Warriors", "#1D428A", "#FFC72C"], HOU: ["Rockets", "#CE1141", "#C4CED4"], IND: ["Pacers", "#002D62", "#FDBB30"],
+  LAC: ["Clippers", "#C8102E", "#1D428A"], LAL: ["Lakers", "#552583", "#FDB927"], MEM: ["Grizzlies", "#5D76A9", "#12173F"],
+  MIA: ["Heat", "#98002E", "#F9A01B"], MIL: ["Bucks", "#00471B", "#EEE1C6"], MIN: ["Timberwolves", "#0C2340", "#78BE20"],
+  NOP: ["Pelicans", "#0C2340", "#C8102E"], NYK: ["Knicks", "#006BB6", "#F58426"], OKC: ["Thunder", "#007AC1", "#EF3B24"],
+  ORL: ["Magic", "#0077C0", "#C4CED4"], PHI: ["76ers", "#006BB6", "#ED174C"], PHX: ["Suns", "#1D1160", "#E56020"],
+  POR: ["Trail Blazers", "#E03A3E", "#111111"], SAC: ["Kings", "#5A2D81", "#63727A"], SAS: ["Spurs", "#111111", "#C4CED4"],
+  TOR: ["Raptors", "#CE1141", "#111111"], UTA: ["Jazz", "#002B5C", "#F9A01B"], WAS: ["Wizards", "#002B5C", "#E31837"]
+};
+const TEAM = Object.fromEntries(Object.entries(TEAMS).map(([k, v]) => [k, v[0]]));
+
+// Original shield badge in a team's colors with its three-letter code.
+function crest(code) {
+  const [, main, trim] = TEAMS[code] || [code, "#34476B", "#8FA2C0"];
+  const id = `cr-${esc(code)}`;
+  const shield = "M40 3 L75 12 V45 C75 67 59 81 40 89 C21 81 5 67 5 45 V12 Z";
+  const inner = "M40 10 L68 17.5 V45 C68 62.5 55.5 74 40 81 C24.5 74 12 62.5 12 45 V17.5 Z";
+  const sixers = code === "PHI"
+    ? `<path d="M10 60 H70" stroke="#FFFFFF" stroke-width="5"/><path d="M10 67 H70" stroke="${trim}" stroke-width="5"/><path d="M10 74 H70" stroke="#FFFFFF" stroke-width="5"/>`
+    : `<path d="M12 70 L40 58 L68 70 V90 H12 Z" fill="${trim}" opacity=".9"/>`;
+  return `<svg class="crest" viewBox="0 0 80 92" role="img" aria-label="${esc(TEAM[code] || code)}">
+    <defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <clipPath id="${id}-c"><path d="${inner}"/></clipPath></defs>
+    <path d="${shield}" fill="${trim}" stroke="rgba(234,240,248,.85)" stroke-width="1.5"/>
+    <path d="${inner}" fill="${main}"/>
+    <g clip-path="url(#${id}-c)">${sixers}</g>
+    <path d="${inner}" fill="url(#${id})"/>
+    <text x="40" y="47" text-anchor="middle" font-family="Barlow Condensed, Arial Narrow, sans-serif" font-weight="800" font-size="25" textLength="46" lengthAdjust="spacingAndGlyphs" fill="#FFFFFF">${esc(code)}</text>
+  </svg>`;
+}
 const STAT = {
   tpm: n => `${n}+ threes`, stl: n => `${n}+ ${n === 1 ? "steal" : "steals"}`, blk: n => `${n}+ ${n === 1 ? "block" : "blocks"}`,
   reb: n => `${n}+ rebounds`, ast: n => `${n}+ assists`, pts: n => `${n}+ points`, pra: n => `${n}+ pts + reb + ast`,
@@ -120,9 +153,9 @@ function renderTonight(data, el, ui) {
           <span class="badge ${t.status === "draft" ? "brass" : t.status === "graded" ? "chalk" : "blue"}">${esc({ draft: "Draft", final: "Final picks", graded: "Graded" }[t.status] || t.status)}</span>
         </div>
         <div class="matchup">
-          <div class="team"><div class="monogram phi">PHI</div><span class="team-name">76ers</span><span class="record mono">${esc(g.records.PHI)}</span></div>
+          <div class="team">${crest("PHI")}<span class="team-name">76ers</span><span class="record mono">${esc(g.records.PHI)}</span></div>
           <span class="at">${g.home ? "vs" : "at"}</span>
-          <div class="team"><div class="monogram opp">${esc(g.opp)}</div><span class="team-name">${esc(opp)}</span><span class="record mono">${esc(g.records[g.opp])}</span></div>
+          <div class="team">${crest(g.opp)}<span class="team-name">${esc(opp)}</span><span class="record mono">${esc(g.records[g.opp])}</span></div>
         </div>
         <div class="plate-foot"><span>${esc(g.venue)}</span><span>${t.status === "draft" ? "Picks not locked" : ""}</span></div>
         ${t.statusNote ? `<p class="status-note">${esc(t.statusNote)}</p>` : ""}
