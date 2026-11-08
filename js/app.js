@@ -1,5 +1,5 @@
 // Sixers Parlay Hub — reads data/*.json and renders four tabs: Tonight, Build, Tickets, Stats.
-// Every team: [nickname, primary color, trim color]. Badges are original shields in team colors, not league logos.
+// Every team: [nickname, primary color, trim color]. Badges are original basketballs in team colors, not league logos.
 const TEAMS = {
   ATL: ["Hawks", "#C8102E", "#FDB927"], BOS: ["Celtics", "#007A33", "#BA9653"], BKN: ["Nets", "#111111", "#FFFFFF"],
   CHA: ["Hornets", "#1D1160", "#00788C"], CHI: ["Bulls", "#CE1141", "#111111"], CLE: ["Cavaliers", "#860038", "#FDBB30"],
@@ -14,23 +14,26 @@ const TEAMS = {
 };
 const TEAM = Object.fromEntries(Object.entries(TEAMS).map(([k, v]) => [k, v[0]]));
 
-// Original shield badge in a team's colors with its three-letter code.
+// Original basketball badge in a team's colors with its three-letter code.
 function crest(code) {
   const [, main, trim] = TEAMS[code] || [code, "#34476B", "#8FA2C0"];
   const id = `cr-${esc(code)}`;
-  const shield = "M40 3 L75 12 V45 C75 67 59 81 40 89 C21 81 5 67 5 45 V12 Z";
-  const inner = "M40 10 L68 17.5 V45 C68 62.5 55.5 74 40 81 C24.5 74 12 62.5 12 45 V17.5 Z";
-  const sixers = code === "PHI"
-    ? `<path d="M10 60 H70" stroke="#FFFFFF" stroke-width="5"/><path d="M10 67 H70" stroke="${trim}" stroke-width="5"/><path d="M10 74 H70" stroke="#FFFFFF" stroke-width="5"/>`
-    : `<path d="M12 70 L40 58 L68 70 V90 H12 Z" fill="${trim}" opacity=".9"/>`;
-  return `<svg class="crest" viewBox="0 0 80 92" role="img" aria-label="${esc(TEAM[code] || code)}">
-    <defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/></linearGradient>
-    <clipPath id="${id}-c"><path d="${inner}"/></clipPath></defs>
-    <path d="${shield}" fill="${trim}" stroke="rgba(234,240,248,.85)" stroke-width="1.5"/>
-    <path d="${inner}" fill="${main}"/>
-    <g clip-path="url(#${id}-c)">${sixers}</g>
-    <path d="${inner}" fill="url(#${id})"/>
-    <text x="40" y="47" text-anchor="middle" font-family="Barlow Condensed, Arial Narrow, sans-serif" font-weight="800" font-size="25" textLength="46" lengthAdjust="spacingAndGlyphs" fill="#FFFFFF">${esc(code)}</text>
+  const seam = code === "PHI" ? "#FFFFFF" : trim;
+  return `<svg class="crest" viewBox="0 0 84 84" role="img" aria-label="${esc(TEAM[code] || code)}">
+    <defs>
+      <radialGradient id="${id}-s" cx=".32" cy=".26" r=".75"><stop offset="0" stop-color="#fff" stop-opacity=".32"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".35"/></radialGradient>
+      <pattern id="${id}-p" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".7" fill="#000" fill-opacity=".18"/><circle cx="3" cy="3" r=".6" fill="#fff" fill-opacity=".07"/></pattern>
+      <clipPath id="${id}-c"><circle cx="42" cy="42" r="36"/></clipPath>
+    </defs>
+    <circle cx="42" cy="42" r="40" fill="${trim}" stroke="rgba(234,240,248,.85)" stroke-width="1.5"/>
+    <circle cx="42" cy="42" r="36" fill="${main}"/>
+    <circle cx="42" cy="42" r="36" fill="url(#${id}-p)"/>
+    <g clip-path="url(#${id}-c)" fill="none" stroke="${seam}" stroke-width="2.6" stroke-opacity=".85">
+      <path d="M42 4 V80"/><path d="M4 42 H80"/>
+      <path d="M16 12 C30 26 30 58 16 72"/><path d="M68 12 C54 26 54 58 68 72"/>
+    </g>
+    <circle cx="42" cy="42" r="36" fill="url(#${id}-s)"/>
+    <text x="42" y="51" text-anchor="middle" font-family="Barlow Condensed, Arial Narrow, sans-serif" font-weight="800" font-size="25" textLength="48" lengthAdjust="spacingAndGlyphs" fill="#FFFFFF" stroke="rgba(0,0,0,.55)" stroke-width="3.5" paint-order="stroke" stroke-linejoin="round">${esc(code)}</text>
   </svg>`;
 }
 const STAT = {
