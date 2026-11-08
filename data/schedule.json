@@ -5,9 +5,9 @@
    "when": "2026-11-08T13:30:00-05:00",
    "what": "Refresh the picks",
    "detail": "Checks the final injury report, the game line and public prop prices, and swaps any leg whose player is out.",
-   "status": "scheduled",
-   "doneAt": null,
-   "result": null
+   "status": "done",
+   "doneAt": "2026-11-08T13:42:00-05:00",
+   "result": "All Sixers stars are in (Embiid probable, Claxton questionable); the line is Sixers -9.5 / -420, so the moneyline leg became Sixers -5.5 and no prop legs changed."
   },
   {
    "when": "2026-11-08T18:30:00-05:00",
