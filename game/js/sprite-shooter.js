@@ -62,5 +62,6 @@ export async function load() {
   const k = (cam.z - releaseZ) / (cam.z - onCard.z);
   const release = cam.clone().lerp(onCard, k);
 
-  return { kind: "sprite", group, setFrame, release: { x: release.x, y: release.y, z: release.z } };
+  const tint = c => card.material.color.set(c);
+  return { kind: "sprite", group, setFrame, tint, release: { x: release.x, y: release.y, z: release.z } };
 }

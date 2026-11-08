@@ -1,4 +1,4 @@
-// South Philly neighbourhood court at night.
+// South Philly neighbourhood court at night (the first court; kept for a later night/unlockable version).
 // A court module returns { group, background, fog } and knows nothing about
 // the ball, hoop, shooter or UI, so courts can be swapped freely.
 import * as THREE from "../../vendor/three.module.min.js";

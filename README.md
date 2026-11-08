@@ -12,7 +12,7 @@ Our Sixers same-game parlay picks, history and playbook. View-only site, built f
 A separate page that the tab opens on top of the hub, so its touch handling can't fight the page's scrolling and its code only downloads when someone taps Play. It also works on its own at `game/index.html`.
 - `js/shot.js` — reads the flick (speed = power, angle = aim) and applies the forgiveness curve
 - `js/physics.js` — ball flight, rim, backboard, floor and net; decides swish, rattled in, front/back/side rim, airball
-- `js/courts/` — one file per court; courts don't know about the ball or hoop, so they can be swapped
+- `js/courts/` — one file per court; courts don't know about the ball or hoop, so they can be swapped. `south-philly-street.js` (sunset, from Kevin's scene spec) is the one in use; `south-philly-night.js` is the first night version, kept for later
 - `sprites/shooter.webp` + `shooter.json` — the shooter as pre-rendered animation frames (cut from a green-screen clip), shown on a flat card facing the camera like classic arcade games; `js/sprite-shooter.js` plays them and hands the ball to the physics at the release frame
 - `tools/keyframes.py` — rebuilds the sprite sheet from a new green-screen clip: `python3 game/tools/keyframes.py clip.gif game/sprites/shooter.webp game/sprites/shooter.json`
 - `js/shooter.js` — simple stand-in shown while the animation loads, or if it fails

@@ -5,7 +5,7 @@ import { readFlick, launch } from "./shot.js";
 import { RELEASE, CAMERA, LOOK_AT } from "./config.js";
 import { flickInput } from "./input.js";
 import { loadSettings, mountPanel } from "./tuning.js";
-import * as southPhilly from "./courts/south-philly.js";
+import * as southPhilly from "./courts/south-philly-street.js";
 import * as hoopKit from "./hoop.js";
 import * as ballKit from "./ball.js";
 import * as shooterKit from "./shooter.js";
@@ -27,8 +27,16 @@ const court = southPhilly.build();
 scene.add(court.group);
 scene.background = court.background;
 scene.fog = court.fog;
+if (court.shadows) {
+  // Shadows are drawn once ("baked") since the court never moves; the ball uses its own soft spot.
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.shadowMap.autoUpdate = false;
+  renderer.shadowMap.needsUpdate = true;
+}
 
 const hoop = hoopKit.build(); scene.add(hoop.group);
+hoop.group.traverse(o => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
 const ball = ballKit.build(); scene.add(ball.mesh, ball.shadow);
 // Start with the simple placeholder, then swap in the 3D model once it has downloaded.
 // Start with the simple placeholder, then swap in the animated shooter once it has downloaded.
@@ -38,6 +46,7 @@ spriteShooter.load().then(m => {
   scene.remove(shooter.group);
   shooter = m; scene.add(m.group);
   Object.assign(RELEASE, m.release);          // the game's ball starts where the drawing lets go
+  if (court.shooterTint) m.tint(court.shooterTint);
   if (state === "ready") { m.setFrame(spriteShooter.STAND); ball.mesh.visible = ball.shadow.visible = false; }
 }).catch(e => console.warn("Shooter animation didn't load; keeping the placeholder.", e));
 const isSprite = () => shooter.kind === "sprite";
