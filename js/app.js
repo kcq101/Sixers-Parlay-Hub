@@ -269,9 +269,9 @@ function renderTonight(data, el, ui) {
 
       ${ui.liveOn ? liveStrip(ui.live, g) : ""}
 
-      <div class="switch" role="group" aria-label="Slip version">
+      ${slips.length > 1 ? `<div class="switch" role="group" aria-label="Slip version">
         ${slips.map((x, i) => `<button type="button" aria-pressed="${i === ui.slip}" data-i="${i}">${esc(x.name)} <small>${x.legs.length}</small></button>`).join("")}
-      </div>
+      </div>` : ""}
 
       <section class="plate">
         <div class="sum-top">
