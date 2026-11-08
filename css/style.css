@@ -131,7 +131,9 @@ h2.section { font: 700 24px/1 var(--display); text-transform: uppercase; letter-
 .sum-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
 .label { font: 600 11px/1.2 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-4); }
 .big-price { font: 800 64px/.9 var(--display); font-variant-numeric: tabular-nums; margin-top: 4px; }
-.boost-price { font: 700 30px/1 var(--display); color: var(--brass-ink); font-variant-numeric: tabular-nums; margin-top: 4px; }
+.boosts { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+.boost-row { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; }
+.boost-price { font: 700 28px/1 var(--display); color: var(--brass-ink); font-variant-numeric: tabular-nums; }
 .sum-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; margin-top: 16px; background: var(--line); border-radius: 10px; overflow: hidden; }
 .sum-grid div { background: var(--panel); padding: 10px 8px; display: flex; flex-direction: column; gap: 4px; }
 .sum-grid b { font: 700 22px/1 var(--display); }

@@ -171,14 +171,14 @@ function renderTonight(data, el, ui) {
       <section class="plate">
         <div class="sum-top">
           <div><div class="label">Est. FanDuel price</div><div class="big-price">${fmtOdds(est)}</div></div>
-          <div style="text-align:right"><div class="label">With ${BOOST * 100}% boost</div><div class="boost-price">${fmtOdds(boosted)}</div></div>
+          <div class="boosts">${[0.25, 0.5].map(b => `<div class="boost-row"><span class="label">With ${b * 100}% boost</span><span class="boost-price">${fmtOdds(est * (1 + b))}</span></div>`).join("")}</div>
         </div>
         <div class="sum-grid">
           <div><span class="label">Stake</span><b>${money(STAKE)}</b></div>
           <div><span class="label">Profit</span><b class="profit">${money(Math.round(profit * 100) / 100)}</b></div>
           <div><span class="label">Return</span><b>${money(Math.round((STAKE + profit) * 100) / 100)}</b></div>
         </div>
-        <p class="muted" style="margin-top:8px">Illustrative $10 stake. Profit is at the boosted price; return = stake + profit.</p>
+        <p class="muted" style="margin-top:8px">Illustrative $10 stake. Profit is at the ${BOOST * 100}% boost; return = stake + profit.</p>
         <div class="progress-row"><span class="label">Ticket progress</span><span class="label" style="color:var(--ink-2)">${settled} of ${s.legs.length} settled</span></div>
         <div class="segs" aria-hidden="true">${states.map(x => `<span class="seg ${x === "hit" ? "hit" : x === "miss" ? "miss" : ""}"></span>`).join("")}</div>
         <p class="muted" style="margin-top:10px">Estimate = legs multiplied, less ~15% because FanDuel pays less when legs are related. Your screenshot is the real number.</p>
