@@ -196,4 +196,4 @@ window.addEventListener("resize", resize);
 resize();
 paintStats();
 requestAnimationFrame(frame);
-window.__shoot = { set, stats, get state() { return state; }, get shot() { return shot; } }; // for testing
+window.__shoot = { set, stats, camera, get shooter() { return shooter; }, get state() { return state; }, get shot() { return shot; } }; // for testing

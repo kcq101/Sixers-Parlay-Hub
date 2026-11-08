@@ -66,32 +66,65 @@ export async function load(url = "models/shooter.glb") {
     const side = sx === 1 ? "Right" : "Left";   // model faces -z, so his right hand is on +x
     const a = { sx, upper: bone(side + "Arm"), fore: bone(side + "ForeArm"), hand: bone(side + "Hand"), tip: bone(side + "HandMiddle") };
     a.rest = [a.upper, a.fore, a.hand].map(b => b.quaternion.clone());
+    // Which way each palm faces in the hand bone's own frame (checked against the mesh).
+    a.palmAxis = sx === 1 ? v().set(0, 0, 1) : v().set(-1, 0, 0);
     return a;
   });
   group.updateMatrixWorld(true);
   const upperLen = arms[0].upper.getWorldPosition(v()).distanceTo(arms[0].fore.getWorldPosition(v()));
   const foreLen = arms[0].fore.getWorldPosition(v()).distanceTo(arms[0].hand.getWorldPosition(v()));
 
-  // Wrist targets around the ball (world space), and where the fingers point.
-  const R = RELEASE;
+  // Hand placement. At the set point each palm rests on the ball's surface:
+  // the shooting hand behind and under it, the guide hand on its left side.
+  // n = direction from ball centre to where the palm touches; fingers run up along the surface.
+  const R = RELEASE, BALL = new THREE.Vector3(R.x, R.y, R.z), RAD = 0.12, GAP = 0.025;
+  function onBall(n, fingersUp) {
+    n = n.clone().normalize();
+    const f = fingersUp.clone().addScaledVector(n, -fingersUp.dot(n)).normalize();
+    const palm = BALL.clone().addScaledVector(n, RAD + GAP);
+    return {
+      wrist: palm.clone().addScaledVector(f, -0.065).addScaledVector(n, 0.015),
+      fingers: palm.clone().addScaledVector(f, 0.11).addScaledVector(n, -0.015),
+      palm: n.clone().negate(),           // palm faces the ball
+    };
+  }
   const P = {
     set: {
-      [1]: { wrist: v().set(R.x + 0.03, R.y - 0.1, R.z + 0.11), fingers: v().set(R.x, R.y + 0.02, R.z) },
-      [-1]: { wrist: v().set(R.x - 0.13, R.y - 0.05, R.z + 0.02), fingers: v().set(R.x - 0.11, R.y + 0.12, R.z - 0.02) },
+      [1]: onBall(v().set(0.05, -0.55, 0.83), v().set(0, 1, -0.15)),
+      [-1]: onBall(v().set(-0.9, 0.12, 0.38), v().set(0.35, 1, -0.1)),
     },
-    follow: {
-      [1]: { wrist: v().set(R.x + 0.05, R.y - 0.02, R.z - 0.12), fingers: v().set(R.x + 0.05, R.y - 0.1, R.z - 0.26) },
-      [-1]: { wrist: v().set(R.x - 0.2, R.y - 0.08, R.z - 0.02), fingers: v().set(R.x - 0.22, R.y + 0.05, R.z - 0.06) },
+    follow: {   // arms up toward the hoop, shooting wrist snapped down
+      [1]: { wrist: v().set(R.x + 0.05, R.y - 0.02, R.z - 0.12), fingers: v().set(R.x + 0.05, R.y - 0.1, R.z - 0.26), palm: v().set(0, -0.55, -0.84) },
+      [-1]: { wrist: v().set(R.x - 0.2, R.y - 0.08, R.z - 0.02), fingers: v().set(R.x - 0.22, R.y + 0.05, R.z - 0.06), palm: v().set(1, 0, 0) },
     },
   };
 
-  const S = v(), T = v(), F = v(), E = v(), u = v(), perp = v(), pole = v();
+  // Turn the hand around its own length so the palm faces `want`.
+  const _ax = v(), _cur = v(), _w = v(), _tq = new THREE.Quaternion(), _hq = new THREE.Quaternion(), _hp = new THREE.Quaternion();
+  function twist(a, want) {
+    a.hand.getWorldPosition(_bp); a.tip.getWorldPosition(_cp);
+    _ax.subVectors(_cp, _bp).normalize();
+    a.hand.getWorldQuaternion(_hq);
+    _cur.copy(a.palmAxis).applyQuaternion(_hq);
+    _cur.addScaledVector(_ax, -_cur.dot(_ax)).normalize();
+    _w.copy(want).addScaledVector(_ax, -want.dot(_ax)).normalize();
+    let ang = Math.acos(Math.max(-1, Math.min(1, _cur.dot(_w))));
+    if (_ax.dot(_cur.clone().cross(_w)) < 0) ang = -ang;
+    _tq.setFromAxisAngle(_ax, ang);
+    a.hand.parent.getWorldQuaternion(_hp).invert();
+    a.hand.quaternion.copy(_hp.multiply(_tq.multiply(_hq)));
+    a.hand.updateMatrixWorld(true);
+  }
+
+  const S = v(), T = v(), F = v(), N = v(), E = v(), u = v(), perp = v(), pole = v();
   function setPose(t) {
     for (const a of arms) {
       a.upper.quaternion.copy(a.rest[0]); a.fore.quaternion.copy(a.rest[1]); a.hand.quaternion.copy(a.rest[2]);
       a.upper.updateMatrixWorld(true);
-      T.lerpVectors(P.set[a.sx].wrist, P.follow[a.sx].wrist, t);
-      F.lerpVectors(P.set[a.sx].fingers, P.follow[a.sx].fingers, t);
+      const p0 = P.set[a.sx], p1 = P.follow[a.sx];
+      T.lerpVectors(p0.wrist, p1.wrist, t);
+      F.lerpVectors(p0.fingers, p1.fingers, t);
+      N.lerpVectors(p0.palm, p1.palm, t).normalize();
       // Two-bone reach: find the elbow, pointing down, out and a little toward the hoop.
       a.upper.getWorldPosition(S);
       const d = Math.min(S.distanceTo(T), (upperLen + foreLen) * 0.999);
@@ -104,6 +137,7 @@ export async function load(url = "models/shooter.glb") {
       aim(a.upper, a.fore, E);
       aim(a.fore, a.hand, T);
       aim(a.hand, a.tip, F);
+      twist(a, N);
     }
   }
   setPose(0);
