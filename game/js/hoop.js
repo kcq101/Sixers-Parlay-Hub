@@ -5,28 +5,60 @@ import { HOOP } from "./physics.js";
 
 const NET_STRANDS = 16, NET_ROWS = 6, NET_BOTTOM_R = 0.14;
 
-export function build() {
+// style.board: "glass" (default, see-through) or "solid" (painted steel street board).
+// style.color / style.line: board colour and line colour for a solid board.
+export function build(style = {}) {
   const g = new THREE.Group();
   const H = HOOP;
   const bw = H.boardHalfW * 2, bh = H.boardTop - H.boardBottom;
+  const sq = (w, h) => ({ w: 0.61 / bw * w, h: 0.457 / bh * h, bottom: h - (H.rimY + 0.01 - H.boardBottom) / bh * h });
 
-  // Glass: faint tint, white border, shooter's square.
-  const glassTex = canvasTexture(512, 300, (c, w, h) => {
-    c.clearRect(0, 0, w, h);
-    c.fillStyle = "rgba(10,20,40,0.45)"; c.fillRect(0, 0, w, h);
-    c.strokeStyle = "#f4f6fa"; c.lineWidth = 12; c.strokeRect(6, 6, w - 12, h - 12);
-    const sq = { w: 0.61 / bw * w, h: 0.457 / bh * h };
-    const sqBottom = h - (H.rimY + 0.01 - H.boardBottom) / bh * h;
-    c.lineWidth = 8; c.strokeRect(w / 2 - sq.w / 2, sqBottom - sq.h, sq.w, sq.h);
-  });
-  const glass = new THREE.Mesh(new THREE.PlaneGeometry(bw, bh),
-    new THREE.MeshStandardMaterial({ map: glassTex, transparent: true, roughness: 0.15, metalness: 0.1, depthWrite: false }));
-  glass.position.set(0, H.boardBottom + bh / 2, H.boardZ - 0.005);
-  g.add(glass);
-  const frameMat = new THREE.MeshStandardMaterial({ color: 0x9aa3ae, metalness: 0.8, roughness: 0.35 });
-  const edge = (w, h, x, y) => { const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, 0.04), frameMat); m.position.set(x, y, H.boardZ - 0.03); g.add(m); };
-  edge(bw + 0.04, 0.04, 0, H.boardTop); edge(bw + 0.04, 0.04, 0, H.boardBottom);
-  edge(0.04, bh, -bw / 2, H.boardBottom + bh / 2); edge(0.04, bh, bw / 2, H.boardBottom + bh / 2);
+  if (style.board === "solid") {
+    // Painted steel board: off-white/grey with weathering, bolts, and a red-orange border and box.
+    const line = style.line || "#e0502a";
+    const tex = canvasTexture(512, 300, (c, w, h) => {
+      c.fillStyle = style.color || "#d6d8d6"; c.fillRect(0, 0, w, h);
+      for (let i = 0; i < 2600; i++) { c.fillStyle = `rgba(${Math.random() < 0.5 ? "60,58,54" : "255,255,255"},${Math.random() * 0.06})`; c.fillRect(Math.random() * w, Math.random() * h, 2 + Math.random() * 6, 2); }
+      for (let i = 0; i < 14; i++) {                                         // rust and grime streaks running down
+        const x = Math.random() * w, y = Math.random() * h * 0.6, len = 30 + Math.random() * 90;
+        const gr = c.createLinearGradient(0, y, 0, y + len);
+        gr.addColorStop(0, `rgba(${Math.random() < 0.5 ? "140,80,40" : "70,66,60"},0.22)`); gr.addColorStop(1, "rgba(0,0,0,0)");
+        c.fillStyle = gr; c.fillRect(x, y, 2 + Math.random() * 4, len);
+      }
+      c.strokeStyle = line; c.lineWidth = 14; c.strokeRect(10, 10, w - 20, h - 20);      // border
+      const s2 = sq(w, h);
+      c.lineWidth = 9; c.strokeRect(w / 2 - s2.w / 2, s2.bottom - s2.h, s2.w, s2.h);       // box over the rim
+      c.fillStyle = "#6d6f70";                                                            // bolts
+      for (const [x, y] of [[26, 26], [w - 26, 26], [26, h - 26], [w - 26, h - 26], [w / 2, 26]]) { c.beginPath(); c.arc(x, y, 4, 0, 7); c.fill(); }
+    });
+    const board = new THREE.Mesh(new THREE.BoxGeometry(bw, bh, 0.04), [
+      ...Array(4).fill(new THREE.MeshStandardMaterial({ color: 0x8a8d90, roughness: 0.6, metalness: 0.5 })),
+      new THREE.MeshStandardMaterial({ map: tex, roughness: 0.7, metalness: 0.15 }),
+      new THREE.MeshStandardMaterial({ color: 0x7c8084, roughness: 0.7, metalness: 0.4 }),
+    ]);
+    board.position.set(0, H.boardBottom + bh / 2, H.boardZ - 0.02);
+    g.add(board);
+    // Steel frame bars on the back, visible around the edges.
+    const frame = new THREE.MeshStandardMaterial({ color: 0x55595e, metalness: 0.7, roughness: 0.45 });
+    for (const y of [H.boardBottom + 0.15, H.boardTop - 0.15]) { const b = new THREE.Mesh(new THREE.BoxGeometry(bw * 0.9, 0.06, 0.06), frame); b.position.set(0, y, H.boardZ - 0.08); g.add(b); }
+  } else {
+    // Glass: faint tint, white border, shooter's square.
+    const glassTex = canvasTexture(512, 300, (c, w, h) => {
+      c.clearRect(0, 0, w, h);
+      c.fillStyle = "rgba(10,20,40,0.45)"; c.fillRect(0, 0, w, h);
+      c.strokeStyle = "#f4f6fa"; c.lineWidth = 12; c.strokeRect(6, 6, w - 12, h - 12);
+      const s2 = sq(w, h);
+      c.lineWidth = 8; c.strokeRect(w / 2 - s2.w / 2, s2.bottom - s2.h, s2.w, s2.h);
+    });
+    const glass = new THREE.Mesh(new THREE.PlaneGeometry(bw, bh),
+      new THREE.MeshStandardMaterial({ map: glassTex, transparent: true, roughness: 0.15, metalness: 0.1, depthWrite: false }));
+    glass.position.set(0, H.boardBottom + bh / 2, H.boardZ - 0.005);
+    g.add(glass);
+    const frameMat = new THREE.MeshStandardMaterial({ color: 0x9aa3ae, metalness: 0.8, roughness: 0.35 });
+    const edge = (w, h, x, y) => { const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, 0.04), frameMat); m.position.set(x, y, H.boardZ - 0.03); g.add(m); };
+    edge(bw + 0.04, 0.04, 0, H.boardTop); edge(bw + 0.04, 0.04, 0, H.boardBottom);
+    edge(0.04, bh, -bw / 2, H.boardBottom + bh / 2); edge(0.04, bh, bw / 2, H.boardBottom + bh / 2);
+  }
 
   // Pole and arm behind the board.
   const steel = new THREE.MeshStandardMaterial({ color: 0x3a4250, metalness: 0.6, roughness: 0.5 });

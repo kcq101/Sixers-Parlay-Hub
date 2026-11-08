@@ -276,6 +276,7 @@ export function build() {
     background: skyGradient([[0, "#050a1a"], [0.45, "#0f1c42"], [0.72, "#24285a"], [0.88, "#4a3a62"], [1, "#5e4560"]]),
     fog: new THREE.Fog(0x101a36, 160, 2400),
     shooterTint: 0xe8edf8,
+    hoop: { board: "solid", color: "#cfd1cf", line: "#c2321a" },   // painted steel street backboard
     exposure: 1.55,
     shadows: false,
     ballGlow: 0.55,

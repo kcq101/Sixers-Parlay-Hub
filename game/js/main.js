@@ -39,7 +39,7 @@ if (court.shadows) {
   renderer.shadowMap.needsUpdate = true;
 }
 
-const hoop = hoopKit.build(); scene.add(hoop.group);
+const hoop = hoopKit.build(court.hoop); scene.add(hoop.group);   // courts can choose the backboard style
 hoop.group.traverse(o => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
 const ball = ballKit.build(); scene.add(ball.mesh, ball.shadow);
 if (court.ballGlow) { ball.mesh.material.emissive.set(0x5a2a10); ball.mesh.material.emissiveIntensity = court.ballGlow; }   // keeps the ball readable at night
