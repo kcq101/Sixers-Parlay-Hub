@@ -9,6 +9,39 @@ frames = []
 for i in range(n):
     im.seek(i); frames.append(np.asarray(im.convert("RGB")).astype(np.float32))
 H, W, _ = frames[0].shape
+
+# The generated clip isn't perfectly consistent: in the follow-through he comes out about 6%
+# shorter than when standing at the start, and his feet drift down a few pixels. Measure
+# feet-to-headband in each frame, stretch the follow-through frames back to his standing
+# height (vertically, anchored at the feet; widths already match), and pin every frame's
+# feet to the same spot.
+def measure(a):
+    r, g, b = a[..., 0], a[..., 1], a[..., 2]
+    fg = (g - np.maximum(r, b)) < 40
+    ys, xs = np.nonzero(fg); sole = ys.max()
+    cx = int(np.median(xs[ys > sole - 200]))
+    white = (r > 195) & (g > 195) & (b > 195)
+    band = next((y for y in range(0, H // 2) if white[y, cx - 30:cx + 30].sum() >= 22), None)
+    return sole, band
+sole0, band0 = measure(frames[0])
+h0 = sole0 - band0
+scales = {}
+for i in range(6, n):
+    so, ba = measure(frames[i])
+    scales[i] = h0 / (so - ba)
+if 6 in scales:
+    scales[5] = (1 + scales[6]) / 2          # release frame sits between the two
+def refit(a, s, sole):
+    img = Image.fromarray(a.astype(np.uint8))
+    nh = int(round(H * s))
+    big = img.resize((W, nh), Image.LANCZOS)
+    canvas = Image.new("RGB", (W, H), tuple(int(v) for v in a[2, 2]))   # background green
+    canvas.paste(big, (0, int(round(sole0 - sole * s))))
+    return np.asarray(canvas).astype(np.float32)
+for i in range(1, n):
+    so, _ = measure(frames[i])
+    frames[i] = refit(frames[i], scales.get(i, 1.0), so)
+print("height fixes:", {k: round(v, 3) for k, v in scales.items()}, file=sys.stderr)
 rgba = []
 balls = {}
 for i, a in enumerate(frames):
@@ -18,6 +51,8 @@ for i, a in enumerate(frames):
     alpha = ndimage.median_filter(alpha, size=3)          # GIF dither speckle
     # despill: no pixel may be greener than its red/blue
     g2 = np.minimum(g, np.maximum(r, b) * 1.02)
+    warm = (r - b > 45) & (g2 > r * 0.9)                    # skin edges picked up green from the screen
+    g2 = np.where(warm, r * 0.82, g2)
     out = np.dstack([r, g2, b, alpha * 255])
     # find the ball: the topmost orange shape; its widest row gives centre and radius
     orange = (r > 120) & (r - g > 45) & (g > 40) & (b < 110)
@@ -33,6 +68,13 @@ for i, a in enumerate(frames):
             yy, xx = np.mgrid[0:H, 0:W]
             m = ((xx - cx) ** 2 + (yy - (top + rad)) ** 2 < (rad * 1.45) ** 2) & (yy < top + rad * 2.2)
             out[m, 3] = 0
+    # drop leftover specks that aren't attached to him
+    lab2, k2 = ndimage.label(out[..., 3] > 25)
+    if k2 > 1:
+        sizes = ndimage.sum(np.ones_like(lab2), lab2, range(1, k2 + 1))
+        keep = np.argmax(sizes) + 1
+        for j in range(1, k2 + 1):
+            if j != keep and sizes[j - 1] < 400: out[lab2 == j, 3] = 0
     rgba.append(out)
 # crop all frames to one shared box
 alls = np.stack([f[..., 3] for f in rgba]) > 20
