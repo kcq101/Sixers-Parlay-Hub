@@ -2,15 +2,16 @@
 // frames cut from a green-screen clip, packed into sprites/shooter.webp, shown on a flat
 // card in the 3D court facing the camera. The hands look right because they're drawn that way.
 //
-// Frames: 0 stand · 1 dip · 2 ball low · 3 ball rising · 4 set point (holding the ball)
+// Frames: 0 stand (ball held at the chest) · 1 dip · 2 ball low · 3 ball rising · 4 set point
 //         5 release (ball removed: the game's ball takes over here) · 6-8 follow-through.
 import * as THREE from "../vendor/three.module.min.js";
 import { canvasTexture } from "./util.js";
 import { SHOOTER, CAMERA, RELEASE } from "./config.js";
 
-export const SET = 4, RELEASE_FRAME = 5;
-export const SHOOT_SEQ = { frames: [5, 6, 7, 8], ms: [70, 90, 110] };
-export const RESET_SEQ = { frames: [0, 1, 2, 3, 4], ms: [130, 130, 130, 130] };
+export const STAND = 0, RELEASE_FRAME = 5;
+// He waits standing with the ball. A flick starts the whole motion: knee dip, ball up,
+// release at frame 5 (about a quarter second after the flick), follow-through.
+export const SHOOT_SEQ = { frames: [1, 2, 3, 4, 5, 6, 7, 8], ms: [55, 65, 60, 55, 70, 90, 110] };
 
 export async function load() {
   const [meta, tex] = await Promise.all([
@@ -51,7 +52,7 @@ export async function load() {
   function setFrame(i) {
     tex.offset.set((i % meta.cols) / meta.cols, 1 - (Math.floor(i / meta.cols) + 1) / meta.rows);
   }
-  setFrame(SET);
+  setFrame(STAND);
 
   // Where the game's ball starts: on the line from the camera through the drawn ball,
   // a little in front of the card, so it appears exactly where the drawing had it.

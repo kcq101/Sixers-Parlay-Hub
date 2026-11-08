@@ -38,20 +38,22 @@ spriteShooter.load().then(m => {
   scene.remove(shooter.group);
   shooter = m; scene.add(m.group);
   Object.assign(RELEASE, m.release);          // the game's ball starts where the drawing lets go
-  if (state === "ready") { m.setFrame(spriteShooter.SET); ball.mesh.visible = ball.shadow.visible = false; }
+  if (state === "ready") { m.setFrame(spriteShooter.STAND); ball.mesh.visible = ball.shadow.visible = false; }
 }).catch(e => console.warn("Shooter animation didn't load; keeping the placeholder.", e));
 const isSprite = () => shooter.kind === "sprite";
 
-// Plays a list of animation frames; holds the last one.
+// Plays a list of animation frames and holds the last one. onFrame runs as each frame shows.
 let anim = null;
-function play(seq, onDone) { anim = { ...seq, i: 0, t: 0, onDone }; shooter.setFrame(seq.frames[0]); }
+function play(seq, onFrame) { anim = { ...seq, i: 0, t: 0, onFrame }; shooter.setFrame(seq.frames[0]); onFrame?.(seq.frames[0]); }
 function stepAnim(dt) {
   if (!anim) return;
   anim.t += dt * 1000;
   while (anim && anim.i < anim.ms.length && anim.t >= anim.ms[anim.i]) {
     anim.t -= anim.ms[anim.i]; anim.i++;
-    shooter.setFrame(anim.frames[anim.i]);
-    if (anim.i === anim.ms.length) { const done = anim.onDone; anim = null; done?.(); }
+    const f = anim.frames[anim.i], cb = anim.onFrame;
+    shooter.setFrame(f);
+    if (anim.i === anim.ms.length) anim = null;
+    cb?.(f);
   }
 }
 
@@ -137,9 +139,17 @@ flickInput(canvas, {
       : `no shot (${f.why})`;
     if (!f.ok) { if (f.why !== "tap") nudgeHint(); return; }
     const l = launch(f, RELEASE, set);
-    shot = createShot(RELEASE, l.vel, l.spin);
-    if (isSprite()) { ball.mesh.visible = ball.shadow.visible = true; ball.place(RELEASE); play(spriteShooter.SHOOT_SEQ); }
-    state = "flight"; poseTarget = 1; shownResult = false; lastRim = 0; lastBoard = 0;
+    const go = () => {
+      shot = createShot(RELEASE, l.vel, l.spin);
+      state = "flight"; poseTarget = 1; shownResult = false; lastRim = 0; lastBoard = 0; acc = 0;
+    };
+    if (isSprite()) {
+      // The flick starts his motion; the ball leaves his hands when the animation reaches the release.
+      state = "windup";
+      play(spriteShooter.SHOOT_SEQ, fr => {
+        if (fr === spriteShooter.RELEASE_FRAME) { ball.mesh.visible = ball.shadow.visible = true; ball.place(RELEASE); go(); }
+      });
+    } else go();
     hud.hint.classList.add("gone");
     if (debugOn) hud.debug.textContent += `  → speed ${(l.powerErr * 100).toFixed(1)}%  aim ${(l.aimErr * 180 / Math.PI).toFixed(2)}°`;
   },
@@ -186,9 +196,12 @@ function frame(now) {
   } else if (state === "reset" && isSprite()) {
     // Ball leaves the scene; he gathers the next one and comes back up to the set point.
     resetT += dt;
-    if (resetT > 0.3 && !anim && ball.mesh.visible) {
+    if (resetT > 0.45) {
+      // Ball's gone; he's back standing with the next one, ready to shoot.
+      holdBall();
       ball.mesh.visible = ball.shadow.visible = false;
-      play(spriteShooter.RESET_SEQ, () => { state = "ready"; acc = 0; holdBall(); ball.mesh.visible = ball.shadow.visible = false; });
+      shooter.setFrame(spriteShooter.STAND);
+      state = "ready"; acc = 0;
     }
   } else if (state === "reset") {
     resetT += dt;
