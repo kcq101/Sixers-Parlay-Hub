@@ -15,6 +15,86 @@ const TEAMS = {
 const TEAM = Object.fromEntries(Object.entries(TEAMS).map(([k, v]) => [k, v[0]]));
 
 // Original basketball badge in a team's colors with its three-letter code.
+// Line-sketch city skylines drawn behind each team's badge. Each city is a left-to-right list of
+// [shape, width, height]; shapes are simple building silhouettes, not exact architecture.
+const SKYLINES = {
+  ATL: [["flat", 8, 40], ["pyramid", 9, 75], ["step", 10, 60], ["spire", 8, 88], ["flat", 10, 50], ["dome", 12, 28]],
+  BOS: [["flat", 9, 45], ["antennas", 10, 72], ["flat", 12, 86], ["clock", 7, 56], ["flat", 9, 40]],
+  BKN: [["flat", 9, 40], ["clock", 8, 72], ["flat", 12, 55], ["dome", 14, 26], ["flat", 8, 45]],
+  CHA: [["flat", 8, 45], ["spire", 10, 95], ["step", 10, 65], ["flat", 9, 55], ["pyramid", 8, 60]],
+  CHI: [["flat", 8, 45], ["stepant", 14, 90], ["flat", 8, 55], ["taperant", 10, 80], ["spire", 7, 72], ["flat", 9, 48]],
+  CLE: [["flat", 9, 45], ["stepspire", 10, 74], ["taper", 10, 82], ["flat", 10, 55], ["flat", 8, 40]],
+  DAL: [["flat", 9, 50], ["tower", 8, 72], ["flat", 11, 80], ["spire", 9, 74], ["flat", 9, 55]],
+  DEN: [["flat", 9, 50], ["taper", 10, 72], ["dome", 9, 36], ["dome", 12, 62], ["flat", 8, 45]],
+  DET: [["flat", 9, 45], ["flat", 8, 60], ["flat", 12, 88], ["flat", 8, 60], ["stepspire", 9, 70], ["flat", 8, 45]],
+  GSW: [["flat", 9, 45], ["pyramid", 9, 95], ["flat", 10, 70], ["taper", 10, 90], ["tower", 7, 58]],
+  HOU: [["flat", 9, 55], ["step", 10, 85], ["pyramid", 10, 70], ["flat", 12, 95], ["spire", 9, 75]],
+  IND: [["flat", 9, 45], ["spire", 6, 60], ["flat", 11, 75], ["pyramid", 10, 62], ["flat", 9, 50]],
+  LAC: [["flat", 9, 50], ["spire", 12, 95], ["flat", 11, 85], ["pyramid", 9, 60], ["flat", 9, 45]],
+  LAL: [["flat", 9, 50], ["spire", 12, 95], ["flat", 11, 85], ["pyramid", 9, 60], ["flat", 9, 45]],
+  MEM: [["flat", 9, 40], ["pyramid", 16, 55], ["flat", 10, 60], ["step", 9, 50], ["flat", 8, 40]],
+  MIA: [["flat", 9, 55], ["step", 10, 70], ["flat", 8, 80], ["taper", 10, 86], ["flat", 9, 60], ["spire", 8, 50]],
+  MIL: [["flat", 9, 45], ["clock", 8, 72], ["flat", 11, 76], ["taper", 9, 60], ["flat", 10, 40]],
+  MIN: [["flat", 9, 50], ["step", 11, 90], ["pyramid", 9, 70], ["spire", 7, 60], ["flat", 10, 55]],
+  NOP: [["flat", 9, 50], ["dome", 16, 40], ["flat", 10, 70], ["pyramid", 9, 60], ["flat", 9, 45]],
+  NYK: [["flat", 8, 50], ["stepspire", 10, 88], ["spire", 8, 76], ["flat", 9, 60], ["taperspire", 11, 100], ["flat", 8, 55]],
+  OKC: [["flat", 9, 45], ["taper", 12, 90], ["flat", 9, 60], ["step", 9, 55], ["flat", 8, 40]],
+  ORL: [["flat", 9, 45], ["spire", 9, 70], ["flat", 10, 60], ["stepspire", 9, 66], ["flat", 8, 40]],
+  PHI: [["flat", 8, 40], ["liberty", 10, 74], ["liberty", 8, 60], ["clock", 9, 66], ["taper", 11, 92], ["flat", 10, 100], ["flat", 8, 45]],
+  PHX: [["flat", 9, 45], ["flat", 11, 66], ["step", 9, 55], ["dome", 12, 30], ["flat", 8, 40]],
+  POR: [["flat", 9, 50], ["pyramid", 9, 70], ["flat", 10, 60], ["stepspire", 9, 72], ["flat", 9, 45]],
+  SAC: [["flat", 9, 45], ["clock", 9, 58], ["flat", 11, 70], ["step", 9, 60], ["flat", 9, 40]],
+  SAS: [["flat", 9, 45], ["tower", 8, 92], ["flat", 10, 55], ["dome", 9, 34], ["flat", 9, 50]],
+  TOR: [["flat", 9, 55], ["tower", 7, 100], ["dome", 14, 34], ["flat", 10, 76], ["flat", 9, 60]],
+  UTA: [["flat", 9, 45], ["spire", 8, 70], ["dome", 9, 46], ["flat", 10, 60], ["flat", 8, 40]],
+  WAS: [["flat", 9, 30], ["dome", 14, 50], ["spire", 4, 96], ["flat", 10, 30], ["flat", 9, 26]]
+};
+
+function building([type, w, h], x) {
+  const g = 100, top = g - h, r = x + w, m = x + w / 2;
+  const box = (x0, x1, t) => `M${x0} ${g} V${t} H${x1} V${g}`;
+  switch (type) {
+    case "step": return `${box(x, r, top + h * 0.3)} M${x + w * 0.15} ${top + h * 0.3} V${top + h * 0.12} H${r - w * 0.15} V${top + h * 0.3} M${x + w * 0.32} ${top + h * 0.12} V${top} H${r - w * 0.32} V${top + h * 0.12}`;
+    case "stepspire": return `${building(["step", w, h * 0.85], x)} M${m} ${g - h * 0.85} V${top}`;
+    case "stepant": return `${box(x, r, top + h * 0.35)} M${x + w * 0.2} ${top + h * 0.35} V${top + h * 0.12} H${r - w * 0.2} V${top + h * 0.35} M${x + w * 0.35} ${top + h * 0.12} V${top} M${r - w * 0.35} ${top + h * 0.12} V${top + h * 0.03}`;
+    case "spire": return `${box(x, r, top + h * 0.3)} M${x} ${top + h * 0.3} L${m} ${top + h * 0.1} L${r} ${top + h * 0.3} M${m} ${top + h * 0.1} V${top}`;
+    case "liberty": return `${box(x, r, top + h * 0.32)} M${x} ${top + h * 0.32} L${m} ${top + h * 0.12} L${r} ${top + h * 0.32} M${x + w * 0.25} ${top + h * 0.32} L${m} ${top + h * 0.12} L${r - w * 0.25} ${top + h * 0.32} M${m} ${top + h * 0.12} V${top}`;
+    case "antennas": return `${box(x, r, top + h * 0.12)} M${x + w * 0.35} ${top + h * 0.12} V${top} M${r - w * 0.35} ${top + h * 0.12} V${top + h * 0.04}`;
+    case "taper": return `M${x} ${g} L${x + w * 0.15} ${top} H${r - w * 0.15} L${r} ${g}`;
+    case "taperant": return `M${x} ${g} L${x + w * 0.2} ${top + h * 0.12} H${r - w * 0.2} L${r} ${g} M${x + w * 0.35} ${top + h * 0.12} V${top} M${r - w * 0.35} ${top + h * 0.12} V${top}`;
+    case "taperspire": return `M${x} ${g} L${x + w * 0.2} ${top + h * 0.2} H${r - w * 0.2} L${r} ${g} M${m} ${top + h * 0.2} V${top}`;
+    case "pyramid": return `${box(x, r, top + h * 0.3)} M${x} ${top + h * 0.3} L${m} ${top} L${r} ${top + h * 0.3}`;
+    case "dome": return `${box(x, r, top + h * 0.45)} M${x} ${top + h * 0.45} Q${m} ${top - h * 0.15} ${r} ${top + h * 0.45}`;
+    case "tower": return `M${m - w * 0.12} ${g} V${top + h * 0.28} M${m + w * 0.12} ${g} V${top + h * 0.28} M${x} ${top + h * 0.28} H${r} L${r - w * 0.15} ${top + h * 0.18} H${x + w * 0.15} Z M${m} ${top + h * 0.18} V${top}`;
+    case "clock": return `${box(x + w * 0.15, r - w * 0.15, top + h * 0.35)} M${x} ${g} V${g - h * 0.4} H${x + w * 0.15} M${r} ${g} V${g - h * 0.4} H${r - w * 0.15} M${x + w * 0.15} ${top + h * 0.35} Q${m} ${top + h * 0.12} ${r - w * 0.15} ${top + h * 0.35} M${m} ${top + h * 0.18} V${top} M${m - 1.2} ${top + h * 0.5} a1.2 1.2 0 1 0 2.4 0 a1.2 1.2 0 1 0 -2.4 0`;
+    default: return box(x, r, top);
+  }
+}
+
+// Short window ticks on taller buildings give the sketch some texture.
+function windows([type, w, h], x) {
+  if (h < 50 || type === "tower") return "";
+  let d = "";
+  for (let y = 100 - 8; y > 100 - h * 0.6; y -= 8) d += `M${x + w * 0.3} ${y} h${w * 0.4}`;
+  return d;
+}
+
+function skyline(code) {
+  const spec = SKYLINES[code];
+  if (!spec) return "";
+  let x = 2, outline = "", ticks = "";
+  spec.forEach(b => { outline += building(b, x); ticks += windows(b, x); x += b[1] + 2; });
+  const W = x;
+  return `<svg class="skyline" viewBox="0 0 ${W} 101" preserveAspectRatio="none" aria-hidden="true">
+    <g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke">
+      <path d="${outline}" stroke-width="1.2" vector-effect="non-scaling-stroke"/>
+      <path d="${outline}" stroke-width="0.8" stroke-opacity=".45" transform="translate(.7 -.5)" vector-effect="non-scaling-stroke"/>
+      <path d="${ticks}" stroke-width="0.8" stroke-opacity=".55" vector-effect="non-scaling-stroke"/>
+      <path d="M0 100 H${W}" stroke-width="1" vector-effect="non-scaling-stroke"/>
+    </g>
+  </svg>`;
+}
+
 function crest(code) {
   const [, main, trim] = TEAMS[code] || [code, "#34476B", "#8FA2C0"];
   const id = `cr-${esc(code)}`;
@@ -156,9 +236,9 @@ function renderTonight(data, el, ui) {
           <span class="badge ${t.status === "draft" ? "brass" : t.status === "graded" ? "chalk" : "blue"}">${esc({ draft: "Draft", final: "Final picks", graded: "Graded" }[t.status] || t.status)}</span>
         </div>
         <div class="matchup">
-          <div class="team">${crest("PHI")}<span class="team-name">76ers</span><span class="record mono">${esc(g.records.PHI)}</span></div>
+          <div class="team">${skyline("PHI")}${crest("PHI")}<span class="team-name">76ers</span><span class="record mono">${esc(g.records.PHI)}</span></div>
           <span class="at">${g.home ? "vs" : "at"}</span>
-          <div class="team">${crest(g.opp)}<span class="team-name">${esc(opp)}</span><span class="record mono">${esc(g.records[g.opp])}</span></div>
+          <div class="team">${skyline(g.opp)}${crest(g.opp)}<span class="team-name">${esc(opp)}</span><span class="record mono">${esc(g.records[g.opp])}</span></div>
         </div>
         <div class="plate-foot"><span>${esc(g.venue)}</span><span>${t.status === "draft" ? "Picks not locked" : ""}</span></div>
         ${t.statusNote ? `<p class="status-note">${esc(t.statusNote)}</p>` : ""}
