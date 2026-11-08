@@ -1,4 +1,5 @@
-// Sixers Parlay Hub — reads data/*.json and renders four tabs: Tonight, Build, Tickets, Stats.
+// Sixers Parlay Hub — reads data/*.json and renders four tabs: Tonight, Build, Tickets, Stats,
+// plus Shoot Around, a mini-game that lives in game/.
 // Every team: [nickname, primary color, trim color]. Badges are original basketballs in team colors, not league logos.
 const TEAMS = {
   ATL: ["Hawks", "#C8102E", "#FDB927"], BOS: ["Celtics", "#007A33", "#BA9653"], BKN: ["Nets", "#111111", "#FFFFFF"],
@@ -658,6 +659,57 @@ function renderStats(data, el) {
   draw();
 }
 
+// ---------- Shoot Around (mini-game) ----------
+// The game lives in game/ as its own page and opens full-screen on top of the hub,
+// so its touch handling can't fight the page's scrolling and its code only loads on Play.
+const BEST_KEY = "shootAround.bestStreak";
+function bestStreak() { try { return Number(localStorage.getItem(BEST_KEY) || 0); } catch (e) { return 0; } }
+function renderShoot(el) {
+  const draw = () => {
+    el.innerHTML = `
+      <section class="plate">
+        <span class="stripe"></span><span class="rivet tl"></span><span class="rivet tr"></span><span class="rivet bl"></span><span class="rivet br"></span>
+        <span class="mono kicker">Mini-game · South Philly court</span>
+        <h2 class="shoot-title">Shoot <em>Around</em></h2>
+        <p class="shoot-lede">Free throws under the lights. Flick up to shoot.</p>
+        <div class="shoot-stats">
+          <div><span class="label">Best streak</span><b>${bestStreak()}</b></div>
+          <div><span class="label">Court</span><b>South Philly</b></div>
+        </div>
+        <button class="play-btn" type="button" data-play><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"/></svg>Play</button>
+      </section>
+      <section class="panel">
+        <h3 class="panel-h">How to play</h3>
+        <ol class="how">
+          <li>Put your finger anywhere on the screen.</li>
+          <li>Flick straight up. Speed sets the power, angle sets the aim.</li>
+          <li>A quick, straight flick is a swish. Too soft hits the front rim; too hard, the back.</li>
+          <li>The slider button (top right in the game) tunes the feel.</li>
+        </ol>
+      </section>
+      <p class="muted">Early preview: one court and free play. More Philly courts and game modes are coming.</p>`;
+    el.querySelector("[data-play]").addEventListener("click", openGame);
+  };
+  function openGame() {
+    if (document.querySelector(".game-overlay")) return;
+    const wrap = document.createElement("div");
+    wrap.className = "game-overlay";
+    wrap.innerHTML = `<iframe src="game/index.html" title="Shoot Around" allow="fullscreen; vibrate"></iframe>`;
+    document.body.appendChild(wrap);
+    document.body.classList.add("gaming");
+  }
+  function closeGame() {
+    const o = document.querySelector(".game-overlay");
+    if (!o) return;
+    o.remove();
+    document.body.classList.remove("gaming");
+    draw();
+  }
+  window.addEventListener("message", e => { if (e.origin === location.origin && e.data && e.data.type === "shoot-close") closeGame(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") closeGame(); });
+  draw();
+}
+
 // ---------- Tabs + boot ----------
 const OLD_HASH = { history: "tickets", playbook: "build" };
 function show(id) {
@@ -708,4 +760,5 @@ function setupRefresh() {
 
 setupTabs();
 setupRefresh();
+renderShoot($("#tab-shoot"));
 load();
