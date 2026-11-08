@@ -662,19 +662,28 @@ function renderStats(data, el) {
 // ---------- Shoot Around (mini-game) ----------
 // The game lives in game/ as its own page and opens full-screen on top of the hub,
 // so its touch handling can't fight the page's scrolling and its code only loads on Play.
-const BEST_KEY = "shootAround.bestStreak";
+const BEST_KEY = "shootAround.bestStreak", COURT_KEY = "shootAround.court";
+const SHOOT_COURTS = [
+  { key: "south-philly", name: "South Philly", note: "Street court at sunset" },
+  { key: "waterfront", name: "Waterfront", note: "Ben Franklin Bridge at night" },
+  { key: "center-city", name: "Center City", note: "City Hall at night" },
+];
+function savedCourt() { try { const c = localStorage.getItem(COURT_KEY); return SHOOT_COURTS.some(x => x.key === c) ? c : "south-philly"; } catch (e) { return "south-philly"; } }
 function bestStreak() { try { return Number(localStorage.getItem(BEST_KEY) || 0); } catch (e) { return 0; } }
 function renderShoot(el) {
   const draw = () => {
     el.innerHTML = `
       <section class="plate">
         <span class="stripe"></span><span class="rivet tl"></span><span class="rivet tr"></span><span class="rivet bl"></span><span class="rivet br"></span>
-        <span class="mono kicker">Mini-game · South Philly court</span>
+        <span class="mono kicker">Mini-game · Philly courts</span>
         <h2 class="shoot-title">Shoot <em>Around</em></h2>
-        <p class="shoot-lede">Free throws under the lights. Flick up to shoot.</p>
+        <p class="shoot-lede">Free throws around Philly. Pick a court, flick up to shoot.</p>
         <div class="shoot-stats">
           <div><span class="label">Best streak</span><b>${bestStreak()}</b></div>
-          <div><span class="label">Court</span><b>South Philly</b></div>
+          <div><span class="label">Courts</span><b>${SHOOT_COURTS.length}</b></div>
+        </div>
+        <div class="court-pick" role="radiogroup" aria-label="Court">
+          ${SHOOT_COURTS.map(c => `<button type="button" role="radio" data-court="${c.key}" aria-checked="${c.key === court}"><b>${c.name}</b><span>${c.note}</span></button>`).join("")}
         </div>
         <button class="play-btn" type="button" data-play><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"/></svg>Play</button>
       </section>
@@ -687,14 +696,20 @@ function renderShoot(el) {
           <li>The slider button (top right in the game) tunes the feel.</li>
         </ol>
       </section>
-      <p class="muted">Early preview: one court and free play. More Philly courts and game modes are coming.</p>`;
+      <p class="muted">Early preview: free play on three courts. Game modes and leaderboards are coming.</p>`;
     el.querySelector("[data-play]").addEventListener("click", openGame);
+    el.querySelectorAll("[data-court]").forEach(b => b.addEventListener("click", () => {
+      court = b.dataset.court;
+      try { localStorage.setItem(COURT_KEY, court); } catch (e) { /* private mode */ }
+      el.querySelectorAll("[data-court]").forEach(x => x.setAttribute("aria-checked", x === b));
+    }));
   };
+  let court = savedCourt();
   function openGame() {
     if (document.querySelector(".game-overlay")) return;
     const wrap = document.createElement("div");
     wrap.className = "game-overlay";
-    wrap.innerHTML = `<iframe src="game/index.html" title="Shoot Around" allow="fullscreen; vibrate"></iframe>`;
+    wrap.innerHTML = `<iframe src="game/index.html?court=${court}" title="Shoot Around" allow="fullscreen; vibrate"></iframe>`;
     document.body.appendChild(wrap);
     document.body.classList.add("gaming");
   }

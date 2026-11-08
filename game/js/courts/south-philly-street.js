@@ -8,6 +8,7 @@
 // (noted next to each one). The camera stays where Kevin set it in config.js.
 import * as THREE from "../../vendor/three.module.min.js";
 import { canvasTexture, rng, noise } from "../util.js";
+import { brick, instancer, wire } from "./kit.js";
 import { HOOP } from "../physics.js";
 
 export const id = "philly_south_street";
@@ -94,19 +95,6 @@ function courtLinesTexture() {
     for (let i = 0; i < 9000; i++) { g.fillStyle = "rgba(0,0,0,0.5)"; g.fillRect(r() * S, r() * S, 2, 2); }
     g.globalCompositeOperation = "source-over";
   });
-}
-
-function brick(g, x0, y0, w, h, base, r, k) {
-  const c = new THREE.Color(base);
-  const bw = 0.23 * k, bh = 0.075 * k;
-  g.fillStyle = "#4a3a34"; g.fillRect(x0, y0, w, h);       // mortar
-  for (let row = 0, y = y0; y < y0 + h; y += bh, row++) {
-    for (let x = x0 - (row % 2) * bw / 2; x < x0 + w; x += bw) {
-      const v = 0.85 + r() * 0.3;
-      g.fillStyle = `rgb(${c.r * 255 * v | 0},${c.g * 255 * v | 0},${c.b * 255 * v | 0})`;
-      g.fillRect(x + 1, y + 1, bw - 2, bh - 2);
-    }
-  }
 }
 
 // Window and door layout in metres from the house's bottom-left corner; the textures and the
@@ -233,25 +221,6 @@ function fenceTexture() {
 
 // ---------- building blocks ----------
 
-// Collects many copies of one small part and turns them into a single instanced mesh.
-function instancer(geo, mat) {
-  const list = [];
-  const m = new THREE.Matrix4(), q = new THREE.Quaternion(), s = new THREE.Vector3(1, 1, 1), e = new THREE.Euler();
-  return {
-    add(x, y, z, rx = 0, ry = 0, rz = 0, sx = 1, sy = 1, sz = 1) {
-      q.setFromEuler(e.set(rx, ry, rz)); s.set(sx, sy, sz);
-      list.push(new THREE.Matrix4().compose(new THREE.Vector3(x, y, z), q, s));
-    },
-    build() {
-      const mesh = new THREE.InstancedMesh(geo, mat, Math.max(1, list.length));
-      list.forEach((mm, i) => mesh.setMatrixAt(i, mm));
-      mesh.count = list.length;
-      mesh.castShadow = true; mesh.receiveShadow = true;
-      return mesh;
-    },
-  };
-}
-
 function rowhouses(group, spec, r, parts) {
   const sky = ["#7a5a86", "#2e2a40"];
   const side = new THREE.MeshStandardMaterial({ color: new THREE.Color(spec.color).multiplyScalar(0.55), roughness: 1 });
@@ -311,16 +280,6 @@ function utilityPole(x, z) {
   sign.position.set(0, 2.9, 0.19); g.add(sign);
   g.position.set(x, 0, z);
   return g;
-}
-
-// A sagging wire between two points.
-function wire(a, b, sag, mat) {
-  const pts = [];
-  for (let i = 0; i <= 20; i++) {
-    const t = i / 20;
-    pts.push(new THREE.Vector3().lerpVectors(a, b, t).add(new THREE.Vector3(0, -sag * 4 * t * (1 - t), 0)));
-  }
-  return new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), mat);
 }
 
 function streetLight(x, z, flip) {

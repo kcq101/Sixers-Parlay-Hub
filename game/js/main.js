@@ -5,7 +5,6 @@ import { readFlick, launch } from "./shot.js";
 import { RELEASE, CAMERA, LOOK_AT } from "./config.js";
 import { flickInput } from "./input.js";
 import { loadSettings, mountPanel } from "./tuning.js";
-import * as southPhilly from "./courts/south-philly-street.js";
 import * as hoopKit from "./hoop.js";
 import * as ballKit from "./ball.js";
 import * as shooterKit from "./shooter.js";
@@ -23,7 +22,11 @@ renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1.15;
 
 const scene = new THREE.Scene();
-const court = southPhilly.build();
+// Which court: ?court=south-philly | waterfront | center-city (the hub's picker sets it).
+export const COURTS = { "south-philly": "south-philly-street", waterfront: "waterfront", "center-city": "center-city" };
+const courtKey = COURTS[new URLSearchParams(location.search).get("court")] ? new URLSearchParams(location.search).get("court") : "south-philly";
+const courtMod = await import(`./courts/${COURTS[courtKey]}.js`);
+const court = courtMod.build();
 scene.add(court.group);
 scene.background = court.background;
 scene.fog = court.fog;
@@ -38,6 +41,7 @@ if (court.shadows) {
 const hoop = hoopKit.build(); scene.add(hoop.group);
 hoop.group.traverse(o => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
 const ball = ballKit.build(); scene.add(ball.mesh, ball.shadow);
+if (court.ballGlow) { ball.mesh.material.emissive.set(0x5a2a10); ball.mesh.material.emissiveIntensity = court.ballGlow; }   // keeps the ball readable at night
 // Start with the simple placeholder, then swap in the 3D model once it has downloaded.
 // Start with the simple placeholder, then swap in the animated shooter once it has downloaded.
 // The animation holds the ball itself until release, so the game's ball hides until then.
@@ -66,7 +70,7 @@ function stepAnim(dt) {
   }
 }
 
-const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 700);
+const camera = new THREE.PerspectiveCamera(50, 1, 0.25, 4000);   // far enough for distant skylines
 const lookAt = new THREE.Vector3(LOOK_AT.x, LOOK_AT.y, LOOK_AT.z);
 function resize() {
   const w = window.innerWidth, h = window.innerHeight;
@@ -227,6 +231,7 @@ function frame(now) {
   poseT += (poseTarget - poseT) * Math.min(1, dt * (poseTarget > poseT ? 18 : 5));
   if (isSprite()) stepAnim(dt); else shooter.setPose(poseT);
 
+  court.update?.(dt);
   hoop.updateNet(dt, state === "flight" && shot && shot.p.y < 3.2 ? shot.p : null);
   drawTrail(now);
   renderer.render(scene, camera);
@@ -243,4 +248,4 @@ window.addEventListener("resize", resize);
 resize();
 paintStats();
 requestAnimationFrame(frame);
-window.__shoot = { set, stats, camera, get shooter() { return shooter; }, get state() { return state; }, get shot() { return shot; } }; // for testing
+window.__shoot = { set, stats, camera, renderer, scene, courtKey, get shooter() { return shooter; }, get state() { return state; }, get shot() { return shot; } }; // for testing
