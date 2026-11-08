@@ -338,3 +338,33 @@ body.gaming { overflow: hidden; }
 .court-pick b { font: 700 19px/1.05 var(--display); text-transform: uppercase; letter-spacing: .03em; }
 .court-pick span { font-size: 13.5px; color: var(--ink-3); }
 .court-pick button[aria-checked="true"] { border-color: var(--red); box-shadow: inset 3px 0 0 var(--red); background: #1a1530; }
+
+/* Live tracking (ESPN) */
+.live-strip { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
+.live-strip.on { border-color: rgba(46,139,255,.55); box-shadow: inset 3px 0 0 var(--blue); }
+.live-strip.final { border-color: rgba(234,240,248,.35); }
+.ls-top { display: flex; align-items: center; gap: 10px; }
+.ls-top .icon-btn { margin-left: auto; }
+.ls-detail { font-size: 14px; color: var(--ink-2); }
+.ls-score { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 8px; }
+.ls-team { display: flex; flex-direction: column; align-items: center; gap: 2px; color: var(--ink-3); }
+.ls-team span { font: 600 15px/1 var(--display); text-transform: uppercase; letter-spacing: .04em; }
+.ls-team b { font: 800 44px/1 var(--display); font-variant-numeric: tabular-nums; color: var(--ink-2); }
+.ls-team.lead b { color: var(--ink); }
+.ls-dash { font: 600 28px/1 var(--display); color: #7D90AF; }
+.ls-err { font-size: 13px; color: #FF8FA8; }
+.badge.live-dot { display: inline-flex; align-items: center; gap: 6px; }
+.badge.live-dot::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #fff; animation: livepulse 1.4s ease-in-out infinite; }
+@keyframes livepulse { 50% { opacity: .25; } }
+@media (prefers-reduced-motion: reduce) { .badge.live-dot::before { animation: none; } }
+
+.leg.live { border-color: rgba(46,139,255,.45); } .leg.live::before { background: var(--blue); }
+.live-meter { display: flex; align-items: center; gap: 10px; margin: 10px 0 0 52px; }
+.lm-track { flex: 1; height: 6px; border-radius: 3px; background: #1E2D4B; overflow: hidden; }
+.lm-track i { display: block; height: 100%; background: var(--blue); border-radius: 3px; transition: width .4s; }
+.live-meter.hit .lm-track i { background: var(--hit); }
+.live-meter.miss .lm-track i { background: var(--red); }
+.lm-text { font: 600 13px/1.2 var(--mono); letter-spacing: .03em; color: var(--blue-ink); white-space: nowrap; }
+.live-meter.hit .lm-text { color: var(--hit); }
+.live-meter.miss .lm-text { color: var(--red-ink); }
+.live-meter.void .lm-text { color: var(--ink-3); }

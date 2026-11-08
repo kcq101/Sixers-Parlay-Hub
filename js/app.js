@@ -238,8 +238,15 @@ function renderTonight(data, el, ui) {
     const real = s.fdPrice != null;        // FanDuel's actual price, once the slip is placed
     const est = real ? s.fdPrice : estPrice(s.legs);
     const profit = (STAKE * est) / 100;   // regular (unboosted) price
-    const states = s.legs.map(legState);
-    const settled = states.filter(x => x !== "pending").length;
+    const L = ui.live && !ui.live.error ? ui.live : ui.live?.last || null;   // last good ESPN read
+    const evs = s.legs.map(l => (l.void || l.actual != null ? null : safeEval(l, L, g.opp)));
+    const states = s.legs.map((l, i) => (evs[i] ? evs[i].state : legState(l)));
+    const settled = states.filter(x => x !== "pending" && x !== "live").length;
+    const nHit = states.filter(x => x === "hit").length, nMiss = states.filter(x => x === "miss").length;
+    const tracking = !!(L && L.state !== "pre");
+    const progress = tracking
+      ? `${nHit} hit · ${nMiss} missed · ${s.legs.length - settled} to go`
+      : `${settled} of ${s.legs.length} settled`;
     const flags = buildFlags(data, s.legs).length;
     const unpriced = real ? 0 : s.legs.filter(l => l.price == null).length;
     const context = [`vs ${opp} (${g.records[g.opp] || "?"})`, g.spread].filter(Boolean).join(" · ");
@@ -260,6 +267,8 @@ function renderTonight(data, el, ui) {
         ${t.statusNote ? `<p class="status-note">${esc(t.statusNote)}</p>` : ""}
       </section>
 
+      ${ui.liveOn ? liveStrip(ui.live, g) : ""}
+
       <div class="switch" role="group" aria-label="Slip version">
         ${slips.map((x, i) => `<button type="button" aria-pressed="${i === ui.slip}" data-i="${i}">${esc(x.name)} <small>${x.legs.length}</small></button>`).join("")}
       </div>
@@ -275,15 +284,15 @@ function renderTonight(data, el, ui) {
           <div><span class="label">Return</span><b>${money(Math.round((STAKE + profit) * 100) / 100)}</b></div>
         </div>
         <p class="muted" style="margin-top:8px">Illustrative $10 stake. Profit is at the regular price, no boost; return = stake + profit.</p>
-        <div class="progress-row"><span class="label">Ticket progress</span><span class="label" style="color:var(--ink-2)">${settled} of ${s.legs.length} settled</span></div>
-        <div class="segs" aria-hidden="true">${states.map(x => `<span class="seg ${x === "hit" ? "hit" : x === "miss" ? "miss" : ""}"></span>`).join("")}</div>
+        <div class="progress-row"><span class="label">Ticket progress</span><span class="label" style="color:var(--ink-2)">${progress}</span></div>
+        <div class="segs" aria-hidden="true">${states.map(x => `<span class="seg ${["hit", "miss", "live"].includes(x) ? x : ""}"></span>`).join("")}</div>
         ${unpriced ? `<p class="status-note" style="margin-top:10px">${unpriced} ${unpriced === 1 ? "leg has" : "legs have"} no posted price for this game yet, so the estimate leaves ${unpriced === 1 ? "it" : "them"} out. The real price will be higher.</p>` : ""}
         <p class="muted" style="margin-top:10px">${real ? "Price from your FanDuel slip." : `Estimate = legs multiplied, less ~15% because FanDuel pays less when legs are related. Uses only prices posted for this game (${esc(context)}); prices shift with the opponent. Your screenshot is the real number.`}</p>
       </section>
 
       <section class="legs">
         <div class="section-row"><h2 class="section">Legs</h2><span class="label">Bars = this season · line = threshold</span></div>
-        ${s.legs.map((l, i) => legCard(l, data, g.opp, i === ui.open)).join("")}
+        ${s.legs.map((l, i) => legCard(l, data, g.opp, i === ui.open, evs[i], L)).join("")}
       </section>
 
       <button type="button" class="analyst-link" data-go="t-build">
@@ -306,8 +315,53 @@ function renderTonight(data, el, ui) {
     `;
     el.querySelectorAll(".switch button").forEach(b => b.addEventListener("click", () => { ui.slip = +b.dataset.i; draw(); }));
     el.querySelectorAll("details.leg").forEach((d, i) => d.addEventListener("toggle", () => { if (d.open) ui.open = i; else if (ui.open === i) ui.open = -1; }));
+    el.querySelector("[data-live-refresh]")?.addEventListener("click", () => liveTick(true));
   };
+  ui.redrawTonight = draw;
   draw();
+}
+
+function safeEval(l, L, opp) {
+  try { return window.Live ? Live.evalLeg(l, L, opp) : null; } catch (e) { return null; }
+}
+
+// Score strip under the matchup while live tracking is on.
+function liveStrip(live, g) {
+  const opp = TEAM[g.opp] || g.opp;
+  const clock = d => d.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
+  const btn = `<button type="button" class="icon-btn" data-live-refresh aria-label="Refresh live stats"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 4v5h-5"/></svg></button>`;
+  const L = live && !live.error ? live : live?.last;
+  if (!live) return `<section class="live-strip"><div class="ls-top"><span class="badge steel">Live stats</span><span class="mono ls-detail">Checking ESPN…</span></div></section>`;
+  const err = live.error ? `<p class="ls-err">Live stats paused: ${esc(live.error)}. Tap refresh to try again.</p>` : "";
+  const when = live.updated ? `Updated ${clock(live.updated)}` : "";
+  if (!L || L.state === "pre") {
+    const tip = L?.tipAt ? clock(new Date(L.tipAt)) : g.tip;
+    return `<section class="live-strip"><div class="ls-top"><span class="badge steel">${L ? "Pre-game" : "Live stats"}</span><span class="mono ls-detail">Tip ${esc(tip)}</span>${btn}</div>
+      <p class="muted">Leg tracking starts at tip-off from ESPN's box score.${when ? ` ${when}.` : ""}</p>${err}</section>`;
+  }
+  const final = L.state === "post";
+  const us = L.score.PHI ?? 0, them = L.score[g.opp] ?? 0;
+  const side = (name, n, lead) => `<div class="ls-team${lead ? " lead" : ""}"><span>${esc(name)}</span><b>${n}</b></div>`;
+  return `<section class="live-strip ${final ? "final" : "on"}">
+    <div class="ls-top"><span class="badge ${final ? "chalk" : "red live-dot"}">${final ? "Final" : "Live"}</span><span class="mono ls-detail">${esc(final ? "" : L.detail)}</span>${btn}</div>
+    <div class="ls-score">${side("76ers", us, us > them)}<span class="ls-dash">–</span>${side(opp, them, them > us)}</div>
+    <p class="muted">${final ? `Final box score from ESPN. The 6:30 PM job grades it for the record.` : `ESPN box score, every 2 min while this tab is open.`}${when ? ` ${when}.` : ""}</p>${err}
+  </section>`;
+}
+
+// Live progress line for one leg, e.g. "18 of 30" with a meter, or "Up 12 · needs 8+".
+function liveLine(l, ev) {
+  if (!ev) return "";
+  if (isGame(l)) {
+    const m = ev.val;
+    const now = m > 0 ? `Up ${m}` : m < 0 ? `Down ${-m}` : "Tied";
+    const need = l.stat === "ml" ? "needs the win" : l.line < 0 ? `needs to win by ${Math.floor(-l.line) + 1}+` : `covers unless they lose by ${Math.ceil(l.line)}+`;
+    return `<div class="live-meter ${ev.state}"><span class="lm-text">${ev.state === "live" ? `${now} · ${need}` : `${ev.state === "hit" ? "Covered" : "Missed"} · ${now.toLowerCase()}`}</span></div>`;
+  }
+  if (ev.state === "void") return `<div class="live-meter void"><span class="lm-text">Didn't play · leg voids</span></div>`;
+  const w = Math.min(100, Math.round((ev.val / l.line) * 100));
+  const label = ev.state === "hit" ? `Hit · ${ev.val} of ${l.line}` : ev.notIn ? `Hasn't played yet · 0 of ${l.line}` : `${ev.val} of ${l.line}${ev.state === "miss" ? " · missed" : ""}`;
+  return `<div class="live-meter ${ev.state}"><span class="lm-track"><i style="width:${w}%"></i></span><span class="lm-text">${esc(label)}</span></div>`;
 }
 
 function injuryBadge(status) {
@@ -317,15 +371,18 @@ function injuryBadge(status) {
   return `<span class="badge ${cls}">${esc(label)}</span>`;
 }
 
-function legCard(l, data, opp, open) {
+function legCard(l, data, opp, open, ev, L) {
   const games = history(l, data);
-  const st = legState(l);
+  const st = ev ? ev.state : legState(l);
   const hits = games.filter(g => g.hit).length;
   const prior = games.filter(x => x.opp === opp);
   const rec = slipRecord(data, l.player, l.stat);
   const vsLine = prior.length ? `vs ${esc(TEAM[opp] || opp)} this season: ${prior.map(x => (isGame(l) ? margin(x.val) : x.val)).join(", ")}` : "";
+  const liveFinal = ev && L?.state === "post";
   const final = l.actual != null
-    ? `<p class="final-line ${l.hit ? "hit" : "miss"}">Final: ${esc(isGame(l) ? margin(l.actual) : l.actual)}. ${l.hit ? "Hit" : "Missed"}.</p>` : "";
+    ? `<p class="final-line ${l.hit ? "hit" : "miss"}">Final: ${esc(isGame(l) ? margin(l.actual) : l.actual)}. ${l.hit ? "Hit" : "Missed"}.</p>`
+    : liveFinal && ev.state === "void" ? `<p class="final-line">Didn't play. FanDuel voids this leg and reprices the slip.</p>`
+    : liveFinal ? `<p class="final-line ${ev.state}">Final (ESPN): ${esc(isGame(l) ? margin(ev.val) : ev.val)}. ${ev.state === "hit" ? "Hit" : "Missed"}.</p>` : "";
   return `<details class="leg ${st}"${open ? " open" : ""}>
     <summary>
       <div class="leg-head">
@@ -340,6 +397,7 @@ function legCard(l, data, opp, open) {
         </span>
         ${CHEV}
       </div>
+      ${liveLine(l, ev)}
       ${bars(games, l)}
     </summary>
     <div class="leg-body">
@@ -732,6 +790,69 @@ function renderShoot(el) {
   draw();
 }
 
+// ---------- Live tracking (ESPN) ----------
+// Polls only while The Game tab is showing, the page is visible and it's game day; every 2 min
+// once the game is on, stops at the final. Before tip it waits until tip time (checking at most
+// every 15 min). Nothing is written anywhere; this just paints the legs.
+const LIVE_EVERY = 2 * 60 * 1000;
+const poll = { game: null, eventId: null, tipAt: null, timer: null, busy: false, done: false, last: 0 };
+
+function etDate(d) {
+  return new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit" }).format(d);
+}
+function gameDay(g, status) {
+  if (status === "graded" || !g?.date) return false;
+  const now = new Date();
+  // Same day in Eastern time, or a late game still running a few hours past midnight.
+  return etDate(now) === g.date || etDate(new Date(now.getTime() - 5 * 3600e3)) === g.date;
+}
+const canPoll = () => document.visibilityState === "visible" && !$("#tab-tonight").hidden;
+
+function startLive(tonight) {
+  const g = tonight.game;
+  const key = `${g.date}|${g.opp}`;
+  if (poll.key !== key) { Object.assign(poll, { key, eventId: null, tipAt: null, done: false, last: 0 }); ui.live = null; }
+  poll.game = g;
+  ui.liveOn = !!window.Live && gameDay(g, tonight.status);
+  if (!ui.liveOn) { clearTimeout(poll.timer); return; }
+  liveTick();
+}
+
+async function liveTick(force) {
+  clearTimeout(poll.timer);
+  if (!ui.liveOn || poll.busy) return;
+  if (poll.done && !force) return;
+  if (!force && !canPoll()) return;           // picks up again when the tab or page is shown
+  poll.busy = true;
+  try {
+    const fresh = await Live.fetchGame(poll.game, poll);
+    ui.live = { ...fresh, updated: new Date() };
+  } catch (e) {
+    const good = ui.live && !ui.live.error ? ui.live : ui.live?.last || null;
+    ui.live = { error: e.message || "couldn't reach ESPN", updated: ui.live?.updated, last: good };
+  }
+  poll.busy = false;
+  poll.last = Date.now();
+  try { ui.redrawTonight?.(); } catch (e) { /* keep polling even if a redraw trips */ }
+  const st = ui.live.error ? "error" : ui.live.state;
+  if (st === "post") { poll.done = true; return; }
+  let wait = LIVE_EVERY;
+  if (st === "pre") {
+    const tip = poll.tipAt ? new Date(poll.tipAt).getTime() - Date.now() : 0;
+    wait = Math.min(15 * 60 * 1000, Math.max(LIVE_EVERY, tip));
+  }
+  poll.timer = setTimeout(liveTick, wait);
+}
+
+// Back on the tab or the page: catch up if the last read is stale, otherwise keep the schedule.
+function liveResume() {
+  if (!ui.liveOn || poll.done || poll.busy || !canPoll()) return;
+  const since = Date.now() - poll.last;
+  if (since >= LIVE_EVERY - 5000) liveTick();
+  else { clearTimeout(poll.timer); poll.timer = setTimeout(liveTick, LIVE_EVERY - since); }
+}
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") liveResume(); });
+
 // ---------- Tabs + boot ----------
 const OLD_HASH = { history: "tickets", playbook: "build" };
 function show(id) {
@@ -742,6 +863,7 @@ function show(id) {
   });
   try { window.history.replaceState(null, "", "#" + id.slice(2)); } catch (e) { /* file:// */ }
   window.scrollTo(0, 0);
+  if (id === "t-tonight") liveResume();
 }
 function setupTabs() {
   document.querySelectorAll('[role="tab"]').forEach(t => t.addEventListener("click", () => show(t.id)));
@@ -760,12 +882,14 @@ async function load() {
     const data = { tonight, slips, players, playbook, schedule };
     $("#updated").textContent = `Updated ${new Date(tonight.updated).toLocaleString("en-US", { weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}`;
     if (ui.slip >= tonight.slips.length) ui.slip = 0;
+    ui.liveOn = !!window.Live && gameDay(tonight.game, tonight.status);
     const redrawBuild = renderBuild(data, $("#tab-build"), ui);
     renderTonight(data, $("#tab-tonight"), ui);
     // Keep Build in step with the slip chosen on Tonight.
     $("#tab-tonight").addEventListener("click", e => { if (e.target.closest(".switch button")) redrawBuild(); });
     renderTickets(data, $("#tab-tickets"));
     renderStats(data, $("#tab-stats"));
+    startLive(tonight);
   } catch (e) {
     $("#tab-tonight").innerHTML = `<p class="error">Couldn't load the picks file (${esc(e.message)}). Refresh the page; if it keeps happening, the data file in the repo has a formatting error.</p>`;
   }
