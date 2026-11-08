@@ -1,6 +1,6 @@
 // Philadelphia Center City court at night, with City Hall as the focal point.
 // Same scale, coordinates and camera as the other courts (hoop glass at z = 0, camera at z ≈ 11).
-// Layers, near to far: worn park court → stone wall with wrought-iron fence, vintage lamps,
+// Layers, near to far: worn park court → low stone wall, vintage lamps,
 // park trees → plaza → City Hall (about 430 m away, tower centred behind the hoop so the clock
 // and William Penn rise above the backboard; about 440 m away) → lit skyscrapers behind and beside it.
 // City Hall is lit by its own glow (baked into its materials) rather than real lights.
@@ -170,7 +170,7 @@ function cityHall(group, r) {
 // ---------- the park around the court ----------
 
 function park(group, r) {
-  // Low granite wall behind the court with a wrought-iron fence on top.
+  // Low granite wall behind the court.
   const granite = canvasTexture(512, 64, (g, W, H) => {
     g.fillStyle = "#8b8780"; g.fillRect(0, 0, W, H);
     noise(g, W, H, 8000, r, 0.22);
@@ -183,16 +183,7 @@ function park(group, r) {
   wall.position.set(0, WALL_H / 2, WALL_Z); group.add(wall);
   const cap = new THREE.Mesh(new THREE.BoxGeometry(SPAN + 0.2, 0.12, 0.85), new THREE.MeshStandardMaterial({ color: 0xa29d94, roughness: 0.8 }));
   cap.position.set(0, WALL_H + 0.06, WALL_Z); group.add(cap);
-  const iron = new THREE.MeshStandardMaterial({ color: 0x121317, roughness: 0.5, metalness: 0.7 });
-  const pickets = instancer(new THREE.BoxGeometry(0.03, 1.6, 0.03), iron, { shadows: false });
-  const tips = instancer(new THREE.ConeGeometry(0.045, 0.16, 6), iron, { shadows: false });
-  const top = WALL_H + 0.12;
-  for (let x = -SPAN / 2; x <= SPAN / 2; x += 0.14) { pickets.add(x, top + 0.8, WALL_Z); tips.add(x, top + 1.68, WALL_Z); }
-  group.add(pickets.build(), tips.build());
-  const rails = instancer(new THREE.BoxGeometry(1, 1, 1), iron, { shadows: false });
-  for (const y of [top + 0.12, top + 1.45]) beam(rails, v3(-SPAN / 2, y, WALL_Z), v3(SPAN / 2, y, WALL_Z), 0.04, 0.05);
-  for (let x = -SPAN / 2; x <= SPAN / 2; x += 2.4) beam(rails, v3(x, top, WALL_Z), v3(x, top + 1.85, WALL_Z), 0.08);   // posts
-  group.add(rails.build());
+  // (No fence on top of the wall: it cluttered the view of City Hall.)
 
   // Trees: trunks and leafy crowns, instanced. Kept to the sides so City Hall stays clear.
   const bark = new THREE.MeshStandardMaterial({ color: 0x2e241c, roughness: 1 });
