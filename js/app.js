@@ -79,14 +79,27 @@ function windows([type, w, h], x) {
   return d;
 }
 
+// Home city's landmarks in the middle, with lower filler buildings out to both edges.
 function skyline(code) {
   const spec = SKYLINES[code];
   if (!spec) return "";
-  let x = 2, outline = "", ticks = "";
-  spec.forEach(b => { outline += building(b, x); ticks += windows(b, x); x += b[1] + 2; });
-  const W = x;
-  return `<svg class="skyline" viewBox="0 0 ${W} 101" preserveAspectRatio="none" aria-hidden="true">
-    <g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke">
+  const W = 360;
+  let seed = [...code].reduce((a, c) => a * 31 + c.charCodeAt(0), 7);
+  const rand = () => ((seed = (seed * 9301 + 49297) % 233280) / 233280);
+  const filler = n => Array.from({ length: n }, () => [rand() < 0.25 ? "step" : rand() < 0.15 ? "antennas" : "flat", 7 + Math.round(rand() * 6), 22 + Math.round(rand() * 26)]);
+  const coreW = spec.reduce((a, b) => a + b[1] + 2, 0);
+  const side = (W - coreW) / 2;
+  const fill = [];
+  let left = [];
+  for (let w = 0; w < side - 4;) { const b = filler(1)[0]; left.push(b); w += b[1] + 2; }
+  let right = [];
+  for (let w = 0; w < side - 4;) { const b = filler(1)[0]; right.push(b); w += b[1] + 2; }
+  fill.push(...left, ...spec, ...right);
+  const total = fill.reduce((a, b) => a + b[1] + 2, 0);
+  let x = (W - total) / 2 + 1, outline = "", ticks = "";
+  fill.forEach(b => { outline += building(b, x); ticks += windows(b, x); x += b[1] + 2; });
+  return `<svg class="skyline" viewBox="0 0 ${W} 101" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round">
       <path d="${outline}" stroke-width="1.2" vector-effect="non-scaling-stroke"/>
       <path d="${outline}" stroke-width="0.8" stroke-opacity=".45" transform="translate(.7 -.5)" vector-effect="non-scaling-stroke"/>
       <path d="${ticks}" stroke-width="0.8" stroke-opacity=".55" vector-effect="non-scaling-stroke"/>
@@ -235,10 +248,10 @@ function renderTonight(data, el, ui) {
           <span class="mono kicker">${esc(new Date(g.date + "T12:00:00").toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" }))} · ${esc(g.tip)}</span>
           <span class="badge ${t.status === "draft" ? "brass" : t.status === "graded" ? "chalk" : "blue"}">${esc({ draft: "Draft", final: "Final picks", graded: "Graded" }[t.status] || t.status)}</span>
         </div>
-        <div class="matchup">
-          <div class="team">${skyline("PHI")}${crest("PHI")}<span class="team-name">76ers</span><span class="record mono">${esc(g.records.PHI)}</span></div>
+        <div class="matchup">${skyline(g.home ? "PHI" : g.opp)}
+          <div class="team">${crest("PHI")}<span class="team-name">76ers</span><span class="record mono">${esc(g.records.PHI)}</span></div>
           <span class="at">${g.home ? "vs" : "at"}</span>
-          <div class="team">${skyline(g.opp)}${crest(g.opp)}<span class="team-name">${esc(opp)}</span><span class="record mono">${esc(g.records[g.opp])}</span></div>
+          <div class="team">${crest(g.opp)}<span class="team-name">${esc(opp)}</span><span class="record mono">${esc(g.records[g.opp])}</span></div>
         </div>
         <div class="plate-foot"><span>${esc(g.venue)}</span><span>${t.status === "draft" ? "Picks not locked" : ""}</span></div>
         ${t.statusNote ? `<p class="status-note">${esc(t.statusNote)}</p>` : ""}
