@@ -27,7 +27,6 @@ const toProb = a => (a < 0 ? -a / (-a + 100) : 100 / (a + 100));
 const toAmerican = dec => (dec >= 2 ? (dec - 1) * 100 : -100 / (dec - 1));
 
 const CHEV = `<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>`;
-const CHIP_ICON = `<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/><circle cx="12" cy="12" r="2"/></svg>`;
 
 function value(game, stat) {
   if (stat === "pra") return game.pts + game.reb + game.ast;
@@ -155,7 +154,7 @@ function renderTonight(data, el, ui) {
       </section>
 
       <button type="button" class="analyst-link" data-go="t-build">
-        <div class="analyst-head">${CHIP_ICON}<span class="mono analyst-title">Parlay Analyst</span><span class="badge brass" style="margin-left:auto">${flags} ${flags === 1 ? "flag" : "flags"}</span></div>
+        <div class="analyst-head"><img class="ai-avatar" src="assets/answers-icon.png" width="32" height="32" alt=""><span class="mono analyst-title">AI: The Answers</span><span class="badge brass" style="margin-left:auto">${flags} ${flags === 1 ? "flag" : "flags"}</span></div>
         <p style="font-size:14px;color:var(--ink-2)">${esc(flagSummary(data, s.legs))}</p>
         <span class="mono" style="display:inline-block;margin-top:10px;font-size:11px">Open the read →</span>
       </button>
@@ -288,8 +287,8 @@ function renderBuild(data, el, ui) {
     el.innerHTML = `
       <section class="analyst">
         <div style="display:flex;align-items:center;gap:10px">
-          <div class="analyst-mark">${CHIP_ICON}</div>
-          <div style="display:flex;flex-direction:column;gap:3px"><span class="mono analyst-title" style="color:var(--blue-ink);font-size:12px">Parlay Analyst</span><span class="mono" style="font-size:9px;color:var(--ink-4)">${esc(s.name)} · ${s.legs.length} legs</span></div>
+          <img class="ai-avatar lg" src="assets/answers-icon.png" width="44" height="44" alt="">
+          <div style="display:flex;flex-direction:column;gap:3px"><span class="mono analyst-title" style="color:var(--blue-ink);font-size:12px">AI: The Answers</span><span class="mono" style="font-size:9px;color:var(--ink-4)">${esc(s.name)} · ${s.legs.length} legs</span></div>
         </div>
         <p class="lead">${strong} of ${s.legs.length} legs hit in at least 80% of games this season.${flags.length ? ` Watch: <b>${esc(flags.map(f => f.title).join(" · "))}</b>.` : " No overlaps or rule breaks found."}</p>
         <div class="mini-kpis">
