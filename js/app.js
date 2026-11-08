@@ -138,11 +138,10 @@ const STAT = {
 const STAT_GROUP = { tpm: "Threes", stl: "Steals", blk: "Blocks", reb: "Rebounds", ast: "Assists", pts: "Points", pra: "Pts + reb + ast", ml: "Moneyline", spread: "Spread" };
 const SGP_HAIRCUT = 0.85; // FanDuel paid ~15% under the straight multiply on Nov 6
 const STAKE = 10;         // illustrative stake; stakes aren't recorded
-const BOOST = 0.5;        // the profit boost we usually get
 
 const $ = (sel, el = document) => el.querySelector(sel);
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-const fmtOdds = n => (n > 0 ? `+${Math.round(n)}` : `${Math.round(n)}`);
+const fmtOdds = n => (n == null ? "?" : n > 0 ? `+${Math.round(n)}` : `${Math.round(n)}`);
 const money = n => `${n < 0 ? "−" : ""}$${Math.abs(n) % 1 ? Math.abs(n).toFixed(2) : Math.abs(n)}`;
 const shortName = p => (p === "76ers" ? "76ers" : p.split(" ").slice(-1)[0]);
 const initials = p => (p === "76ers" ? "PHI" : p.split(" ").map(w => w[0]).join(""));
@@ -222,7 +221,8 @@ function expandSlips(t) {
 }
 
 function estPrice(legs) {
-  const dec = legs.reduce((acc, l) => acc / toProb(l.price), 1);
+  // Legs with no posted price for this game (price null) are left out, not guessed.
+  const dec = legs.filter(l => l.price != null).reduce((acc, l) => acc / toProb(l.price), 1);
   return toAmerican(dec * SGP_HAIRCUT);
 }
 
@@ -235,12 +235,14 @@ function renderTonight(data, el, ui) {
 
   const draw = () => {
     const s = slips[ui.slip] || slips[0];
-    const est = estPrice(s.legs);
-    const boosted = est * (1 + BOOST);
-    const profit = (STAKE * boosted) / 100;
+    const real = s.fdPrice != null;        // FanDuel's actual price, once the slip is placed
+    const est = real ? s.fdPrice : estPrice(s.legs);
+    const profit = (STAKE * est) / 100;   // regular (unboosted) price
     const states = s.legs.map(legState);
     const settled = states.filter(x => x !== "pending").length;
     const flags = buildFlags(data, s.legs).length;
+    const unpriced = real ? 0 : s.legs.filter(l => l.price == null).length;
+    const context = [`vs ${opp} (${g.records[g.opp] || "?"})`, g.spread].filter(Boolean).join(" · ");
 
     el.innerHTML = `
       <section class="plate">
@@ -264,18 +266,19 @@ function renderTonight(data, el, ui) {
 
       <section class="plate">
         <div class="sum-top">
-          <div><div class="label">Est. FanDuel price</div><div class="big-price">${fmtOdds(est)}</div></div>
-          <div class="boosts">${[0.25, 0.5].map(b => `<div class="boost-row"><span class="label">With ${b * 100}% boost</span><span class="boost-price">${fmtOdds(est * (1 + b))}</span></div>`).join("")}</div>
+          <div><div class="label">${real ? "FanDuel price" : "Est. FanDuel price"}</div><div class="big-price">${fmtOdds(est)}</div></div>
+          <div class="boosts">${[0.25, 0.5].map(b => `<div class="boost-row"><span class="label">With ${b * 100}% boost</span><span class="boost-price">${fmtOdds(real && s.boosted && s.boost === b * 100 ? s.boosted : est * (1 + b))}</span></div>`).join("")}</div>
         </div>
         <div class="sum-grid">
           <div><span class="label">Stake</span><b>${money(STAKE)}</b></div>
           <div><span class="label">Profit</span><b class="profit">${money(Math.round(profit * 100) / 100)}</b></div>
           <div><span class="label">Return</span><b>${money(Math.round((STAKE + profit) * 100) / 100)}</b></div>
         </div>
-        <p class="muted" style="margin-top:8px">Illustrative $10 stake. Profit is at the ${BOOST * 100}% boost; return = stake + profit.</p>
+        <p class="muted" style="margin-top:8px">Illustrative $10 stake. Profit is at the regular price, no boost; return = stake + profit.</p>
         <div class="progress-row"><span class="label">Ticket progress</span><span class="label" style="color:var(--ink-2)">${settled} of ${s.legs.length} settled</span></div>
         <div class="segs" aria-hidden="true">${states.map(x => `<span class="seg ${x === "hit" ? "hit" : x === "miss" ? "miss" : ""}"></span>`).join("")}</div>
-        <p class="muted" style="margin-top:10px">Estimate = legs multiplied, less ~15% because FanDuel pays less when legs are related. Your screenshot is the real number.</p>
+        ${unpriced ? `<p class="status-note" style="margin-top:10px">${unpriced} ${unpriced === 1 ? "leg has" : "legs have"} no posted price for this game yet, so the estimate leaves ${unpriced === 1 ? "it" : "them"} out. The real price will be higher.</p>` : ""}
+        <p class="muted" style="margin-top:10px">${real ? "Price from your FanDuel slip." : `Estimate = legs multiplied, less ~15% because FanDuel pays less when legs are related. Uses only prices posted for this game (${esc(context)}); prices shift with the opponent. Your screenshot is the real number.`}</p>
       </section>
 
       <section class="legs">
@@ -418,7 +421,7 @@ function renderBuild(data, el, ui) {
     const strong = why.filter(w => w.n && w.r >= 0.8).length;
     const target = risky[0] || why[why.length - 1].l;
     const injuries = t.injuries.filter(i => i.team === "PHI" ? true : !/out/i.test(i.status));
-    const est = estPrice(s.legs);
+    const est = s.fdPrice != null ? s.fdPrice : estPrice(s.legs);
 
     el.innerHTML = `
       <section class="analyst">
@@ -530,7 +533,7 @@ function renderTickets(data, el) {
         <span style="flex:1;display:flex;flex-direction:column;gap:3px">
           <span class="mono" style="font-size:11px;color:var(--brass-ink)">Up next · ${esc({ draft: "Draft", final: "Final picks" }[t.status] || t.status)}</span>
           <span class="disp" style="font-size:20px;font-weight:700">${t.game.home ? "vs" : "at"} ${esc(TEAM[t.game.opp] || t.game.opp)} · ${esc(fmtDate(t.game.date))}</span>
-          <span style="font-size:15px;color:var(--ink-3)">${tonightSlips.map(s => `${s.legs.length} legs est. ${fmtOdds(estPrice(s.legs))}`).join(" · ")}</span>
+          <span style="font-size:15px;color:var(--ink-3)">${tonightSlips.map(s => `${s.legs.length} legs ${s.fdPrice != null ? fmtOdds(s.fdPrice) : `est. ${fmtOdds(estPrice(s.legs))}`}`).join(" · ")}</span>
         </span>
         <span class="mono" style="font-size:14px">Open →</span>
       </button>` : ""}
