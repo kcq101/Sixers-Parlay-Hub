@@ -9,6 +9,7 @@ import * as southPhilly from "./courts/south-philly.js";
 import * as hoopKit from "./hoop.js";
 import * as ballKit from "./ball.js";
 import * as shooterKit from "./shooter.js";
+import * as shooterModel from "./shooter-model.js";
 
 const $ = s => document.querySelector(s);
 const canvas = $("#scene");
@@ -29,7 +30,13 @@ scene.fog = court.fog;
 
 const hoop = hoopKit.build(); scene.add(hoop.group);
 const ball = ballKit.build(); scene.add(ball.mesh, ball.shadow);
-const shooter = shooterKit.build(); scene.add(shooter.group);
+// Start with the simple placeholder, then swap in the 3D model once it has downloaded.
+let shooter = shooterKit.build(); scene.add(shooter.group);
+shooterModel.load().then(m => {
+  scene.remove(shooter.group);
+  shooter = m; scene.add(m.group);
+  m.setPose(poseT);
+}).catch(e => console.warn("Shooter model didn't load; keeping the placeholder.", e));
 
 const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 700);
 const lookAt = new THREE.Vector3(LOOK_AT.x, LOOK_AT.y, LOOK_AT.z);

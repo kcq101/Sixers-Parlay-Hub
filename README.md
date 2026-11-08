@@ -13,8 +13,9 @@ A separate page that the tab opens on top of the hub, so its touch handling can'
 - `js/shot.js` — reads the flick (speed = power, angle = aim) and applies the forgiveness curve
 - `js/physics.js` — ball flight, rim, backboard, floor and net; decides swish, rattled in, front/back/side rim, airball
 - `js/courts/` — one file per court; courts don't know about the ball or hoop, so they can be swapped
-- `js/shooter.js` — placeholder player; replace with licensed art later
-- `vendor/three.module.min.js` — Three.js r170 (MIT), kept in the repo so nothing loads from outside
+- `models/shooter.glb` — the shooter (Meshy model, Mixamo skeleton), compressed to about 1.2 MB; `js/shooter-model.js` loads it and poses the arms to the ball each frame
+- `js/shooter.js` — simple stand-in shown while the model loads, or if it fails
+- `vendor/` — Three.js r170 and its GLTF loader (MIT), kept in the repo so nothing loads from outside
 - `node game/tests/sweep.mjs` — prints what happens across a grid of flick errors and checks the basics
 
 Tuning (forgiveness, flick speed, arc, etc.) is in the game's slider panel and is saved on each phone.
