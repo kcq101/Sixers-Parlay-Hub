@@ -41,14 +41,17 @@ a { color: #6FB0FF; }
 .tab { display: flex; flex-direction: column; gap: 16px; }
 .tab[hidden] { display: none; }
 
-/* Top bar */
+/* Banner + top bar */
+.masthead { max-width: 640px; margin: 0 auto; }
+.banner-wrap { margin: 0; line-height: 0; position: relative; }
+.banner { display: block; width: 100%; height: auto; aspect-ratio: 1280 / 427; background: #0B1A3A; }
+.banner-wrap::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: linear-gradient(90deg, var(--blue) 0 50%, var(--red) 50% 100%); }
 .topbar {
-  max-width: 640px; margin: 0 auto; padding: 14px 16px 10px;
+  max-width: 640px; margin: 0 auto; padding: 8px 16px;
   display: flex; justify-content: space-between; align-items: center;
   border-bottom: 1px solid var(--line);
 }
-.wordmark { font: 800 20px/1 var(--display); letter-spacing: .04em; text-transform: uppercase; }
-.updated { font-size: 10px; color: var(--ink-4); margin-top: 4px; }
+.updated { font-size: 10px; color: var(--ink-4); }
 .icon-btn {
   width: 44px; height: 44px; border-radius: 10px; cursor: pointer;
   background: var(--panel-2); border: 1px solid var(--line-2); color: var(--ink-2);
@@ -278,8 +281,7 @@ h2.section { font: 700 24px/1 var(--display); text-transform: uppercase; letter-
 .chart { position: relative; height: 150px; display: flex; align-items: flex-end; gap: 6px; border-bottom: 1px solid var(--line-2); }
 .chart .col { flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; gap: 2px; }
 .chart .miss { border-radius: 3px 3px 0 0; box-shadow: inset 0 0 0 1.5px var(--red); }
-.chart .hit { background: var(--hit); }
-.chart .hit.near { background: var(--brass-ink); }
+.ramp { width: 120px; height: 10px; border-radius: 3px; display: inline-block; background: linear-gradient(90deg, #B5122F 0%, #F59E3B 49.9%, #7FB79A 50%, #1FD67E 100%); }
 .chart-x { display: flex; gap: 6px; margin-top: 6px; }
 .chart-x span { flex: 1; text-align: center; font: 500 8px/1 var(--mono); color: var(--ink-4); }
 .rate-row { display: flex; flex-direction: column; gap: 6px; padding: 8px 0; border-top: 1px solid rgba(160,182,214,.12); }

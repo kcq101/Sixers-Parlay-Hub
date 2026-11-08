@@ -419,6 +419,17 @@ function ticketBlock(s) {
 }
 
 // ---------- Stats ----------
+// Ticket color by share of legs hit: 50%+ is green, stronger toward 100%;
+// under 50% runs orange to a deep red the further below the middle.
+function mix(a, b, t) {
+  const p = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+  const [x, y] = [p(a), p(b)];
+  return "#" + x.map((v, i) => Math.round(v + (y[i] - v) * t).toString(16).padStart(2, "0")).join("");
+}
+function rampColor(r) {
+  return r >= 0.5 ? mix("#7FB79A", "#1FD67E", (r - 0.5) / 0.5) : mix("#B5122F", "#F59E3B", r / 0.5);
+}
+
 function rateRow(name, h, n) {
   const r = n ? h / n : 0;
   const c = r >= 0.8 ? "var(--hit)" : r >= 0.6 ? "var(--blue)" : "var(--red)";
@@ -476,10 +487,10 @@ function renderStats(data, el) {
 
       <section class="panel">
         <h2 class="panel-h">Legs hit per ticket</h2>
-        <div class="legend"><span><i class="sw" style="background:var(--hit)"></i>Hit</span><span><i class="sw" style="box-shadow:inset 0 0 0 1.5px var(--red)"></i>Missed</span><span><i class="sw" style="background:var(--brass-ink)"></i>One away</span></div>
+        <div class="legend"><span><i class="sw" style="box-shadow:inset 0 0 0 1.5px var(--red)"></i>Missed legs</span><span style="gap:6px"><span class="mono" style="font-size:9px">0%</span><i class="ramp" aria-hidden="true"></i><span class="mono" style="font-size:9px">100% hit</span></span></div>
         <div class="chart" role="img" aria-label="Legs hit per ticket, oldest to newest: ${slips.map(s => `${s.legs.filter(l => l.hit).length} of ${s.legs.length}`).join(", ")}">
           ${slips.map(s => { const h = s.legs.filter(l => l.hit).length; const m = s.legs.length - h;
-            return `<div class="col" title="${esc(fmtDate(s.date))}${s.label ? " " + esc(s.label) : ""}: ${h} of ${s.legs.length}"><div class="miss" style="height:${(m / maxLegs) * 100}%"></div><div class="hit ${m === 1 ? "near" : ""}" style="height:${(h / maxLegs) * 100}%"></div></div>`; }).join("")}
+            return `<div class="col" title="${esc(fmtDate(s.date))}${s.label ? " " + esc(s.label) : ""}: ${h} of ${s.legs.length}"><div class="miss" style="height:${(m / maxLegs) * 100}%"></div><div class="hit" style="height:${(h / maxLegs) * 100}%;background:${rampColor(h / s.legs.length)}"></div></div>`; }).join("")}
         </div>
         <div class="chart-x">${slips.map(s => `<span>${esc(fmtShort(s.date))}</span>`).join("")}</div>
       </section>
