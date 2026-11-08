@@ -24,7 +24,7 @@ renderer.toneMappingExposure = 1.15;   // courts can raise this (see court.expos
 const scene = new THREE.Scene();
 // Which court: ?court=south-philly | waterfront | center-city (the hub's picker sets it).
 export const COURTS = { "south-philly": "south-philly-street", waterfront: "waterfront", "center-city": "center-city" };
-const courtKey = COURTS[new URLSearchParams(location.search).get("court")] ? new URLSearchParams(location.search).get("court") : "south-philly";
+const courtKey = COURTS[new URLSearchParams(location.search).get("court")] ? new URLSearchParams(location.search).get("court") : "waterfront";
 const courtMod = await import(`./courts/${COURTS[courtKey]}.js`);
 const court = courtMod.build();
 scene.add(court.group);

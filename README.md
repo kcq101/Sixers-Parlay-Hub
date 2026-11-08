@@ -6,7 +6,7 @@ Our Sixers same-game parlay picks, history and playbook. View-only site, built f
 - **AI: The Answers** — overlap and correlated-risk checks, injury and minutes notes, bench swaps, why each leg, the price tuner, and the house rules (collapsed at the bottom).
 - **Previous Parlays** — every slip we've played, graded leg by leg, with filters.
 - **Stats** — season P/L, near misses, legs hit per ticket, and hit rates by player, prop type and leg.
-- **Shoot Around** — a free-throw mini-game on three Philly courts (South Philly, Waterfront, Center City). Flick up to shoot. Opens full-screen from the tab; the game itself lives in `game/`.
+- **Shoot Around** — a free-throw mini-game. The Waterfront court is live; South Philly and Center City are built but switched off in `js/app.js` (`SHOOT_COURTS`) while they're refined. Flick up to shoot. Opens full-screen from the tab; the game itself lives in `game/`.
 
 ## Shoot Around (`game/`)
 A separate page that the tab opens on top of the hub, so its touch handling can't fight the page's scrolling and its code only downloads when someone taps Play. It also works on its own at `game/index.html`.
