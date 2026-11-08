@@ -19,7 +19,7 @@ const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPrefere
 renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.15;
+renderer.toneMappingExposure = 1.15;   // courts can raise this (see court.exposure below)
 
 const scene = new THREE.Scene();
 // Which court: ?court=south-philly | waterfront | center-city (the hub's picker sets it).
@@ -30,6 +30,7 @@ const court = courtMod.build();
 scene.add(court.group);
 scene.background = court.background;
 scene.fog = court.fog;
+if (court.exposure) renderer.toneMappingExposure = court.exposure;
 if (court.shadows) {
   // Shadows are drawn once ("baked") since the court never moves; the ball uses its own soft spot.
   renderer.shadowMap.enabled = true;

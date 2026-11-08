@@ -273,6 +273,17 @@ export function lightPool(group, x, z, color, { radius = 4, strength = 0.5, stre
   }
 }
 
+// Two floodlights on tall poles behind and to the sides of the camera (out of view), aimed at the
+// court and hoop, like a lit park court at night. No shadows.
+export function courtFloods(group, { color = 0xfff1dc, intensity = 2.2, x = 7, y = 11, z = 11 } = {}) {
+  for (const sx of [-1, 1]) {
+    const s = new THREE.SpotLight(color, intensity, 0, 0.62, 0.75, 0);
+    s.position.set(sx * x, y, z);
+    s.target.position.set(0, 1.2, 0.5);
+    group.add(s, s.target);
+  }
+}
+
 // ---------- Philadelphia skyline ----------
 // Towers built from the shapes of the real skyline (no names or logos on them):
 //  "spire"   One Liberty Place: tiers of steep gables outlined in light, with a needle spire

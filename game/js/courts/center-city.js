@@ -5,7 +5,7 @@
 // and William Penn rise above the backboard; about 440 m away) → lit skyscrapers behind and beside it.
 // City Hall is lit by its own glow (baked into its materials) rather than real lights.
 import { THREE, canvasTexture, rng, noise, instancer, beam, v3, glowPoints, skyGradient,
-  groundAndCourt, vintageLamp, lightPool, phillySkyline, phillyTowers } from "./kit.js";
+  groundAndCourt, vintageLamp, lightPool, phillySkyline, phillyTowers, courtFloods } from "./kit.js";
 
 export const id = "philly_center_city";
 export const name = "Center City";
@@ -74,8 +74,8 @@ function clockTex() {
 }
 
 function cityHall(group, r) {
-  const lit = (map, extra = {}) => new THREE.MeshStandardMaterial({ map, emissive: FLOOD, emissiveMap: map, emissiveIntensity: 0.62, roughness: 0.9, ...extra });
-  const stoneFlat = new THREE.MeshStandardMaterial({ color: STONE, emissive: FLOOD, emissiveIntensity: 0.38, roughness: 0.9 });
+  const lit = (map, extra = {}) => new THREE.MeshStandardMaterial({ map, emissive: FLOOD, emissiveMap: map, emissiveIntensity: 0.8, roughness: 0.9, ...extra });
+  const stoneFlat = new THREE.MeshStandardMaterial({ color: STONE, emissive: FLOOD, emissiveIntensity: 0.5, roughness: 0.9 });
   const slate = new THREE.MeshStandardMaterial({ color: 0x3e4650, emissive: 0x1a2030, emissiveIntensity: 0.4, roughness: 0.8 });
 
   // Main block: wings between corner pavilions and a centre pavilion.
@@ -254,15 +254,17 @@ export function build() {
   phillySkyline(group, phillyTowers(0, -900, 1.25).filter(t => Math.abs(t.x) > 40), { r, fog: true, dim: 1.0 });
 
   // Night light: deep blue sky light, a little moon, warm lamps (above). No real-time shadows.
-  group.add(new THREE.HemisphereLight(0x3d5a9a, 0x15131a, 0.65));
-  const moon = new THREE.DirectionalLight(0xa9bcff, 0.4);
+  group.add(new THREE.HemisphereLight(0x5e7cc4, 0x2a2630, 1.15));
+  const moon = new THREE.DirectionalLight(0xb8c8ff, 0.85);
+  courtFloods(group, { color: 0xfff0dc, intensity: 2.0 });   // the court itself is lit for play
   moon.position.set(30, 50, 40); group.add(moon);
 
   return {
     group,
-    background: skyGradient([[0, "#030818"], [0.4, "#0a1840"], [0.7, "#16285a"], [0.88, "#2a3766"], [1, "#4a4560"]]),
+    background: skyGradient([[0, "#06102a"], [0.4, "#10225a"], [0.7, "#1e3672"], [0.88, "#34477c"], [1, "#58547a"]]),
     fog: new THREE.Fog(0x1a2748, 120, 1700),
-    shooterTint: 0xd2d9ea,
+    shooterTint: 0xeaeef8,
+    exposure: 1.55,
     shadows: false,
     ballGlow: 0.55,
   };

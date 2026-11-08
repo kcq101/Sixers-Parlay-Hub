@@ -11,7 +11,7 @@
 // is placed inside that strip. Lighting is baked: no real-time shadows here, and the
 // "reflections" on the wet pavement and river are painted-on glows, which cost almost nothing.
 import { THREE, canvasTexture, rng, noise, instancer, beam, v3, wirePoints, glowPoints, brick, skyGradient,
-  groundAndCourt, chainLink, streetLight, lightPool, phillySkyline, phillyTowers } from "./kit.js";
+  groundAndCourt, chainLink, streetLight, lightPool, phillySkyline, phillyTowers, courtFloods } from "./kit.js";
 
 export const id = "philly_waterfront";
 export const name = "Waterfront";
@@ -269,20 +269,22 @@ export function build() {
   phillySkyline(group, phillyTowers(30, -1400, 0.95), { r, fog: false, dim: 0.92 });
 
   // Night light: cool moonlight and city glow. No real-time shadows.
-  group.add(new THREE.HemisphereLight(0x4a5f9a, 0x14121a, 0.6));
-  const moon = new THREE.DirectionalLight(0x9fb4ff, 0.45);
+  group.add(new THREE.HemisphereLight(0x6a82c4, 0x2a2430, 1.15));
+  const moon = new THREE.DirectionalLight(0xb4c4ff, 0.9);
   moon.position.set(-30, 40, 30); group.add(moon);
   for (const [x, z] of [[-5.6, -11.5], [6.4, -15.5]]) {               // amber light on the brick fronts
     const l = new THREE.PointLight(AMBER, 14, 16, 1.2); l.position.set(x, 4.5, z); group.add(l);
   }
-  const blueWash = new THREE.PointLight(BLUE, 5, 22, 1.2);   // blue architectural light on the court side of the wall
+  courtFloods(group, { color: 0xfff0dc, intensity: 2.0 });   // the court itself is lit for play
+  const blueWash = new THREE.PointLight(BLUE, 7, 26, 1.2);   // blue architectural light on the court side of the wall
   blueWash.position.set(0, 4, -12); group.add(blueWash);
 
   return {
     group,
-    background: skyGradient([[0, "#03060f"], [0.45, "#0a1430"], [0.72, "#1b1d40"], [0.88, "#3a2c4a"], [1, "#4a3446"]]),
+    background: skyGradient([[0, "#050a1a"], [0.45, "#0f1c42"], [0.72, "#24285a"], [0.88, "#4a3a62"], [1, "#5e4560"]]),
     fog: new THREE.Fog(0x101a36, 160, 2400),
-    shooterTint: 0xc8d2ea,
+    shooterTint: 0xe8edf8,
+    exposure: 1.55,
     shadows: false,
     ballGlow: 0.55,
     update(dt) { riverTex.offset.y = (riverTex.offset.y + dt * 0.004) % 1; },

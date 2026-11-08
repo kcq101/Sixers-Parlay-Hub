@@ -8,7 +8,7 @@
 // (noted next to each one). The camera stays where Kevin set it in config.js.
 import * as THREE from "../../vendor/three.module.min.js";
 import { canvasTexture, rng, noise } from "../util.js";
-import { brick, instancer, wire } from "./kit.js";
+import { brick, instancer, wire, courtFloods } from "./kit.js";
 import { HOOP } from "../physics.js";
 
 export const id = "philly_south_street";
@@ -28,7 +28,7 @@ const SPEC = {
   fence: { z: -5, width: 36, height: 3.5, color: "#73777a" },
   poles: [[-6.8, -11], [6.2, -22]],                        // spec x ±18: moved in to stay in view
   lights: { at: [[-5.6, -5.4], [5.6, -5.4]], color: "#ffc27b", intensity: 1.8 },   // spec x ±16
-  ambient: { color: "#d18d85", intensity: 0.55 },
+  ambient: { color: "#d18d85", intensity: 1.0 },
   sun: { color: "#ffae78", intensity: 1.3, from: [-0.7, 0.28, 0.66] },   // low sun behind your left shoulder: lights the brick, long shadows
 };
 
@@ -371,7 +371,7 @@ export function build() {
 
   // Sunset light: warm ambient plus a low sun that casts long shadows (baked once at start).
   group.add(new THREE.AmbientLight(SPEC.ambient.color, SPEC.ambient.intensity));
-  const sun = new THREE.DirectionalLight(SPEC.sun.color, SPEC.sun.intensity * 2.2);
+  const sun = new THREE.DirectionalLight(SPEC.sun.color, SPEC.sun.intensity * 2.7);
   const from = new THREE.Vector3(...SPEC.sun.from).normalize();
   sun.target.position.set(0, 0, -6);
   sun.position.copy(sun.target.position).addScaledVector(from, 60);
@@ -380,14 +380,16 @@ export function build() {
   Object.assign(sun.shadow.camera, { left: -26, right: 26, top: 26, bottom: -26, near: 10, far: 130 });
   sun.shadow.bias = -0.0006; sun.shadow.normalBias = 0.03;
   group.add(sun, sun.target);
-  const fill = new THREE.HemisphereLight(0xffc7a8, 0x3a2830, 0.35);   // soft bounce so faces in shadow aren't black
+  const fill = new THREE.HemisphereLight(0xffd2b8, 0x4a3438, 0.7);    // soft bounce so faces in shadow aren't black
   group.add(fill);
+  courtFloods(group, { color: 0xffe2c4, intensity: 1.3 });   // court lights coming on at dusk
 
   return {
     group,
     background: skyTexture(),
     fog: new THREE.Fog(SPEC.fog.color, SPEC.fog.near, SPEC.fog.far),
-    shooterTint: 0xffe4d2,      // warm the pre-rendered shooter to match the sunset
+    shooterTint: 0xfff0e4,      // warm the pre-rendered shooter to match the sunset
+    exposure: 1.6,
     shadows: true,
   };
 }
