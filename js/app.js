@@ -284,7 +284,7 @@ function renderTonight(data, el, ui) {
 
       <button type="button" class="analyst-link" data-go="t-build">
         <div class="analyst-head"><img class="ai-avatar" src="assets/answers-icon.png" width="32" height="32" alt=""><span class="mono analyst-title">AI: The Answers</span><span class="badge brass" style="margin-left:auto">${flags} ${flags === 1 ? "flag" : "flags"}</span></div>
-        <p style="font-size:14px;color:var(--ink-2)">${esc(flagSummary(data, s.legs))}</p>
+        ${flagSummary(data, s.legs)}
         <span class="mono" style="display:inline-block;margin-top:10px;font-size:14px">Open the read →</span>
       </button>
 
@@ -391,10 +391,14 @@ function buildFlags(data, legs) {
   return flags;
 }
 
+// Each warning with the legs behind it spelled out, as list items.
+function watchList(flags) {
+  return `<ul class="watch">${flags.map(f => `<li><b>${esc(f.title)}</b>${f.chips.length ? `<span>${f.chips.map(esc).join(" · ")}</span>` : ""}</li>`).join("")}</ul>`;
+}
 function flagSummary(data, legs) {
   const f = buildFlags(data, legs);
-  if (!f.length) return "No overlaps or rule breaks found in this slip.";
-  return f.map(x => x.title).join(" · ") + ".";
+  if (!f.length) return `<p style="font-size:15px;color:var(--ink-2)">No overlaps or rule breaks found in this slip.</p>`;
+  return watchList(f);
 }
 
 // ---------- Build ----------
@@ -421,7 +425,8 @@ function renderBuild(data, el, ui) {
           <img class="ai-avatar lg" src="assets/answers-icon.png" width="44" height="44" alt="">
           <div style="display:flex;flex-direction:column;gap:3px"><span class="mono analyst-title" style="color:var(--blue-ink);font-size:15px">AI: The Answers</span><span class="mono" style="font-size:11px;color:var(--ink-4)">${esc(s.name)} · ${s.legs.length} legs</span></div>
         </div>
-        <p class="lead">${strong} of ${s.legs.length} legs hit in at least 80% of games this season.${flags.length ? ` Watch: <b>${esc(flags.map(f => f.title).join(" · "))}</b>.` : " No overlaps or rule breaks found."}</p>
+        <p class="lead">${strong} of ${s.legs.length} legs hit in at least 80% of games this season.${flags.length ? " Watch:" : " No overlaps or rule breaks found."}</p>
+        ${flags.length ? watchList(flags) : ""}
         <div class="mini-kpis">
           <div><b>${fmtOdds(est)}</b><span class="label">Est. price</span></div>
           <div><b class="brass-t">${flags.filter(f => f.cls === "brass").length}</b><span class="label">Overlaps</span></div>
