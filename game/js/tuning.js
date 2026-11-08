@@ -1,7 +1,9 @@
 // On-screen tuning panel. Settings are saved on the phone so they stick between visits.
 import { DEFAULTS } from "./shot.js";
 
-const KEY = "shootAround.tuning.v1";
+// v2: forgiveness was reworked (it now changes how hard the game is), so old
+// forgiveness values are dropped; every other setting carries over from v1.
+const KEY = "shootAround.tuning.v2", OLD_KEY = "shootAround.tuning.v1";
 const SLIDERS = [
   ["forgiveness", "Forgiveness", 0, 1, 0.05, v => v < 0.35 ? "Strict" : v < 0.65 ? "Medium" : "Generous"],
   ["targetSpeed", "Flick speed for a perfect shot", 1, 4, 0.1, v => v.toFixed(1)],
@@ -14,8 +16,16 @@ const SLIDERS = [
 ];
 
 export function loadSettings() {
-  try { return { ...DEFAULTS, ...JSON.parse(localStorage.getItem(KEY) || "{}") }; }
-  catch (_) { return { ...DEFAULTS }; }
+  try {
+    let saved = localStorage.getItem(KEY);
+    if (!saved && localStorage.getItem(OLD_KEY)) {
+      const old = JSON.parse(localStorage.getItem(OLD_KEY));
+      delete old.forgiveness;
+      saved = JSON.stringify(old);
+      localStorage.setItem(KEY, saved);
+    }
+    return { ...DEFAULTS, ...JSON.parse(saved || "{}") };
+  } catch (_) { return { ...DEFAULTS }; }
 }
 function save(set) { try { localStorage.setItem(KEY, JSON.stringify(set)); } catch (_) { /* private mode */ } }
 

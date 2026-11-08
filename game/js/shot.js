@@ -10,7 +10,7 @@
 import { HOOP } from "./physics.js";
 
 export const DEFAULTS = {
-  forgiveness: 0.75,   // 0 = strict, 1 = very generous
+  forgiveness: 0.45,   // 0 = strict, 1 = very generous
   targetSpeed: 2.2,    // flick speed for a perfect shot, in screen-heights per second
   aimSens: 1.0,        // how much left/right angle matters
   powerSens: 1.0,      // how much speed matters
@@ -83,8 +83,10 @@ const AIM_DEEP = 0.04;
 
 export function launch(flick, from, set = DEFAULTS) {
   const f = clamp(set.forgiveness, 0, 1);
-  const powerErr = soften(flick.power - 1, 0.02 + 0.16 * f, 0.15) * 0.25 * set.powerSens;
-  const aimErr = soften(flick.aim, 0.03 + 0.2 * f, 0.3) * 0.25 * set.aimSens;
+  // Forgiveness sets both how much small errors shrink and how much any error carries through.
+  const gain = 0.6 - 0.4 * f;
+  const powerErr = soften(flick.power - 1, 0.01 + 0.12 * f, 0.15) * gain * set.powerSens;
+  const aimErr = soften(flick.aim, 0.015 + 0.16 * f, 0.3) * gain * set.aimSens;
 
   const v = idealSpeed(from, set) * (1 + powerErr);
   const th = set.launchDeg * Math.PI / 180;
