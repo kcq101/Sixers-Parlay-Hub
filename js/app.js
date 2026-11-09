@@ -142,7 +142,7 @@ const STAKE = 10;         // illustrative stake; stakes aren't recorded
 const $ = (sel, el = document) => el.querySelector(sel);
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const fmtOdds = n => (n == null ? "?" : n > 0 ? `+${Math.round(n)}` : `${Math.round(n)}`);
-const money = n => `${n < 0 ? "−" : ""}$${Math.abs(n) % 1 ? Math.abs(n).toFixed(2) : Math.abs(n)}`;
+const money = n => n == null || Number.isNaN(n) ? "?" : `${n < 0 ? "−" : ""}$${Math.abs(n) % 1 ? Math.abs(n).toFixed(2) : Math.abs(n)}`;
 const shortName = p => (p === "76ers" ? "76ers" : p.split(" ").slice(-1)[0]);
 const initials = p => (p === "76ers" ? "PHI" : p.split(" ").map(w => w[0]).join(""));
 const legLabel = l => STAT[l.stat](l.line);
@@ -222,7 +222,9 @@ function expandSlips(t) {
 
 function estPrice(legs) {
   // Legs with no posted price for this game (price null) are left out, not guessed.
-  const dec = legs.filter(l => l.price != null).reduce((acc, l) => acc / toProb(l.price), 1);
+  const priced = legs.filter(l => l.price != null);
+  if (!priced.length) return null;   // nothing posted yet: show "?" rather than a made-up number
+  const dec = priced.reduce((acc, l) => acc / toProb(l.price), 1);
   return toAmerican(dec * SGP_HAIRCUT);
 }
 
@@ -237,7 +239,7 @@ function renderTonight(data, el, ui) {
     const s = slips[ui.slip] || slips[0];
     const real = s.fdPrice != null;        // FanDuel's actual price, once the slip is placed
     const est = real ? s.fdPrice : estPrice(s.legs);
-    const profit = (STAKE * est) / 100;   // regular (unboosted) price
+    const profit = est == null ? null : (STAKE * est) / 100;   // regular (unboosted) price
     const L = ui.live && !ui.live.error ? ui.live : ui.live?.last || null;   // last good ESPN read
     const evs = s.legs.map(l => (l.void || l.actual != null ? null : safeEval(l, L, g.opp)));
     const states = s.legs.map((l, i) => (evs[i] ? evs[i].state : legState(l)));
@@ -276,12 +278,12 @@ function renderTonight(data, el, ui) {
       <section class="plate">
         <div class="sum-top">
           <div><div class="label">${real ? "FanDuel price" : "Est. FanDuel price"}</div><div class="big-price">${fmtOdds(est)}</div></div>
-          <div class="boosts">${[0.25, 0.5].map(b => `<div class="boost-row"><span class="label">With ${b * 100}% boost</span><span class="boost-price">${fmtOdds(real && s.boosted && s.boost === b * 100 ? s.boosted : est * (1 + b))}</span></div>`).join("")}</div>
+          <div class="boosts">${[0.25, 0.5].map(b => `<div class="boost-row"><span class="label">With ${b * 100}% boost</span><span class="boost-price">${fmtOdds(real && s.boosted && s.boost === b * 100 ? s.boosted : est == null ? null : est * (1 + b))}</span></div>`).join("")}</div>
         </div>
         <div class="sum-grid">
           <div><span class="label">Stake</span><b>${money(STAKE)}</b></div>
-          <div><span class="label">Profit</span><b class="profit">${money(Math.round(profit * 100) / 100)}</b></div>
-          <div><span class="label">Return</span><b>${money(Math.round((STAKE + profit) * 100) / 100)}</b></div>
+          <div><span class="label">Profit</span><b class="profit">${money(profit == null ? null : Math.round(profit * 100) / 100)}</b></div>
+          <div><span class="label">Return</span><b>${money(profit == null ? null : Math.round((STAKE + profit) * 100) / 100)}</b></div>
         </div>
         <p class="muted" style="margin-top:8px">Illustrative $10 stake. Profit is at the regular price, no boost; return = stake + profit.</p>
         <div class="progress-row"><span class="label">Ticket progress</span><span class="label" style="color:var(--ink-2)">${progress}</span></div>

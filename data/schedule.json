@@ -2,20 +2,22 @@
  "note": "Claude does the research on a schedule. Kevin builds and locks the final slip in FanDuel.",
  "updates": [
   {
-   "when": "2026-11-08T13:30:00-05:00",
+   "when": "2026-11-10T12:40:00-05:00",
    "what": "Refresh the picks",
-   "detail": "Checks the final injury report, the game line and public prop prices, and swaps any leg whose player is out.",
-   "status": "done",
-   "doneAt": "2026-11-08T13:42:00-05:00",
-   "result": "All Sixers stars are in (Embiid probable, Claxton questionable); the line is Sixers -9.5 / -420, so the moneyline leg became Sixers -5.5 and no prop legs changed."
+   "detail": "Adds FanDuel prices, the injury report and the latest line, swaps any leg whose player is out, and fills Brown's Nov 8 line.",
+   "status": "scheduled"
   },
   {
-   "when": "2026-11-08T18:30:00-05:00",
+   "when": "2026-11-10T19:20:00-05:00",
+   "what": "Final check before tip",
+   "detail": "Checks the final injury report and starting lineups 40 minutes before tip and swaps any leg whose player is out or limited.",
+   "status": "scheduled"
+  },
+  {
+   "when": "2026-11-10T22:55:00-05:00",
    "what": "Grade the slip",
-   "detail": "Pulls the final box score, grades each suggested leg, and adds the game to the season logs.",
-   "status": "done",
-   "doneAt": "2026-11-08T19:15:00-05:00",
-   "result": "Sixers won 127-121: the -7.5 slip went 7 of 8 (Sixers covered only 6), and the -2.5 slip went 9 of 9 and cashed at +1095 boosted. Player game logs wait for a full final box score."
+   "detail": "Pulls the final box score, grades each leg, and adds the game to the season logs.",
+   "status": "scheduled"
   }
  ]
 }

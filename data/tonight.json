@@ -1,34 +1,34 @@
 {
- "status": "graded",
- "statusNote": "Final: Sixers won 127-121. The -7.5 slip went 7 of 8 (missed: Sixers -7.5, they won by 6); the -2.5 slip went 9 of 9 and cashed at +1095 boosted.",
- "updated": "2026-11-08T19:15:00-05:00",
+ "status": "draft",
+ "statusNote": "Draft from Monday's numbers. FanDuel hasn't posted props for this game yet, so prices show \"?\". The Tuesday 12:40 PM refresh adds prices, the injury report and the latest line.",
+ "updated": "2026-11-09T11:45:00-05:00",
  "game": {
-  "date": "2026-11-08",
-  "tip": "3:40 PM ET",
-  "opp": "CHI",
-  "oppName": "Chicago Bulls",
-  "home": false,
-  "venue": "United Center",
+  "date": "2026-11-10",
+  "tip": "8:00 PM ET",
+  "opp": "BOS",
+  "oppName": "Boston Celtics",
+  "home": true,
+  "venue": "Xfinity Mobile Arena",
   "records": {
-   "PHI": "8-2",
-   "CHI": "1-6"
+   "PHI": "9-2",
+   "BOS": "8-2"
   },
-  "spread": "Sixers -9.5",
-  "line": "Sixers -9.5, moneyline -420 (Bulls +329), total 237.5 at DraftKings per SI, Sunday midday. Action Network has -9.5 and 238.5.",
-  "lastMeeting": "Sixers won 126-107 on Nov 2. Maxey 26 pts / 11 ast, LeBron 31 PRA."
+  "spread": "Sixers -1.5",
+  "line": "Sixers -1.5, moneyline -113 (Celtics -109), total 215.5 at Heritage per TheRx, Monday morning. First place in the East vs second.",
+  "lastMeeting": "Sixers won Game 7 of last spring's first round 109-100 in Boston (Embiid 34). First meeting since the Brown-for-George trade."
  },
  "injuries": [
   {
    "team": "PHI",
    "player": "Joel Embiid",
-   "status": "Probable",
-   "note": "right foot plantar fascia, injury management; not a back-to-back"
+   "status": "Not yet listed",
+   "note": "right foot management; played 29 min Sunday; not a back-to-back"
   },
   {
    "team": "PHI",
    "player": "Adem Bona",
-   "status": "Out",
-   "note": "cervical spine sprain"
+   "status": "Questionable",
+   "note": "cervical spine sprain; out Sunday, status for Tuesday unclear"
   },
   {
    "team": "PHI",
@@ -43,280 +43,222 @@
    "note": "Achilles"
   },
   {
-   "team": "CHI",
-   "player": "Nic Claxton",
-   "status": "Questionable",
-   "note": "left hamstring; would be his season debut, likely on a minutes limit"
-  },
-  {
-   "team": "CHI",
-   "player": "Tobe Awaka",
-   "status": "Questionable",
-   "note": "MCL sprain"
-  },
-  {
-   "team": "CHI",
-   "player": "Jalen Smith",
-   "status": "Probable",
-   "note": "left finger sprain"
-  },
-  {
-   "team": "CHI",
-   "player": "Zach Collins",
+   "team": "BOS",
+   "player": "Devin Carter",
    "status": "Out",
-   "note": ""
-  },
-  {
-   "team": "CHI",
-   "player": "Dailyn Swain",
-   "status": "Out",
-   "note": ""
+   "note": "mononucleosis"
   }
  ],
  "slips": [
   {
-   "name": "With -7.5",
-   "legsCount": 8,
-   "fdPrice": 630,
-   "boost": 50,
-   "boosted": 944,
-   "estPrice": "+630 on FanDuel, +944 with 50% boost",
-   "placedAt": "2026-11-08T15:33:00-05:00",
-   "legs": [
-    {
-     "player": "Tyrese Maxey",
-     "stat": "tpm",
-     "line": 2,
-     "price": -340,
-     "priceNote": "FanDuel betslip, 3:37 PM",
-     "tag": "Solid",
-     "note": "3 per the NBC Sports/Rotoworld recap; he had 2 with 7:33 left, so 2+ is certain.",
-     "actual": 3,
-     "hit": true
-    },
-    {
-     "player": "Tyrese Maxey",
-     "stat": "pra",
-     "line": 30,
-     "price": -330,
-     "priceNote": "FanDuel betslip, 3:37 PM",
-     "tag": "Solid",
-     "note": "27 pts, 7 ast, 4 reb (rebounds from the NBC Sports/Rotoworld recap only).",
-     "actual": 38,
-     "hit": true
-    },
-    {
-     "player": "VJ Edgecombe",
-     "stat": "tpm",
-     "line": 1,
-     "price": -530,
-     "priceNote": "FanDuel betslip, 3:37 PM",
-     "tag": "Core",
-     "note": "At least 3: he had 3 with 7:33 left; no final box found yet.",
-     "actual": 3,
-     "hit": true
-    },
-    {
-     "player": "VJ Edgecombe",
-     "stat": "stl",
-     "line": 1,
-     "price": -350,
-     "priceNote": "FanDuel betslip, 3:37 PM",
-     "tag": "Core",
-     "note": "At least 3: he had 3 with 7:33 left; no final box found yet.",
-     "actual": 3,
-     "hit": true
-    },
-    {
-     "player": "VJ Edgecombe",
-     "stat": "pra",
-     "line": 17,
-     "price": -600,
-     "priceNote": "FanDuel betslip, 3:37 PM",
-     "tag": "Solid",
-     "note": "At least 22: 13 pts, 6 reb, and 3 ast as of 7:33 left; final assists not confirmed.",
-     "actual": 22,
-     "hit": true
-    },
-    {
-     "player": "Jaylen Brown",
-     "stat": "pra",
-     "line": 26,
-     "price": -450,
-     "priceNote": "FanDuel betslip, 3:37 PM",
-     "tag": "Core",
-     "note": "Nudged up from 25+ (over 25.5). 9 for 9 on your slips. 41 PRA vs Chicago Monday.",
-     "actual": 40,
-     "hit": true
-    },
-    {
-     "player": "LeBron James",
-     "stat": "stl",
-     "line": 1,
-     "price": -245,
-     "priceNote": "FanDuel betslip, 3:37 PM",
-     "tag": "Solid",
-     "note": "1+ steal in every game he's played.",
-     "actual": 1,
-     "hit": true
-    },
-    {
-     "player": "76ers",
-     "stat": "spread",
-     "line": -7.5,
-     "price": -138,
-     "priceNote": "FanDuel, per Kevin",
-     "tag": "Solid",
-     "note": "Alternate spread instead of the moneyline. Main line is Sixers -9.5; they beat Chicago by 19 on Monday.",
-     "actual": 6,
-     "hit": false
-    }
-   ]
-  },
-  {
-   "name": "With -2.5",
+   "name": "Props only",
    "legsCount": 9,
-   "fdPrice": 730,
-   "boost": 50,
-   "boosted": 1095,
-   "estPrice": "+730 on FanDuel, +1095 with 50% boost",
    "legs": [
     {
      "player": "Tyrese Maxey",
      "stat": "tpm",
      "line": 2,
-     "price": -340,
-     "priceNote": "FanDuel betslip, 3:37 PM",
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "3 per the NBC Sports/Rotoworld recap; he had 2 with 7:33 left, so 2+ is certain.",
-     "actual": 3,
-     "hit": true
+     "note": "2+ threes in 9 of 11 games."
     },
     {
      "player": "Tyrese Maxey",
      "stat": "pra",
      "line": 30,
-     "price": -330,
-     "priceNote": "FanDuel betslip, 3:37 PM",
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "27 pts, 7 ast, 4 reb (rebounds from the NBC Sports/Rotoworld recap only).",
-     "actual": 38,
-     "hit": true
+     "note": "30+ in 9 of 11, but the two misses were the last two good defenses (27 at DET, 24 at CLE), and the total is only 215.5. Maxey 25+ is on the bench if you want it safer."
     },
     {
      "player": "VJ Edgecombe",
      "stat": "tpm",
      "line": 1,
-     "price": -530,
-     "priceNote": "FanDuel betslip, 3:37 PM",
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Core",
-     "note": "At least 3: he had 3 with 7:33 left; no final box found yet.",
-     "actual": 3,
-     "hit": true
+     "note": "1+ three in 9 of 10 games; 10 for 10 on our slips."
     },
     {
      "player": "VJ Edgecombe",
      "stat": "stl",
      "line": 1,
-     "price": -350,
-     "priceNote": "FanDuel betslip, 3:37 PM",
-     "tag": "Core",
-     "note": "At least 3: he had 3 with 7:33 left; no final box found yet.",
-     "actual": 3,
-     "hit": true
+     "price": null,
+     "priceNote": "price unknown",
+     "tag": "Solid",
+     "note": "1+ steal in 9 of 10, including 3, 4 and 3 in his last three."
     },
     {
      "player": "VJ Edgecombe",
      "stat": "pra",
      "line": 17,
-     "price": -600,
-     "priceNote": "FanDuel betslip, 3:37 PM",
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "At least 22: 13 pts, 6 reb, and 3 ast as of 7:33 left; final assists not confirmed.",
-     "actual": 22,
-     "hit": true
+     "note": "17+ in 9 of 10 (only miss: 14 in the opener)."
     },
     {
      "player": "Jaylen Brown",
      "stat": "pra",
-     "line": 26,
-     "price": -450,
-     "priceNote": "FanDuel betslip, 3:37 PM",
+     "line": 25,
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Core",
-     "note": "Nudged up from 25+ (over 25.5). 9 for 9 on your slips. 41 PRA vs Chicago Monday.",
-     "actual": 40,
-     "hit": true
+     "note": "His first game against Boston since the trade. 25+ in 8 of 10 (two 24s); 10 for 10 on our slips. Kept at 25+ instead of 26+ because of the low total."
     },
     {
      "player": "LeBron James",
      "stat": "stl",
      "line": 1,
-     "price": -245,
-     "priceNote": "FanDuel betslip, 3:37 PM",
-     "tag": "Solid",
-     "note": "1+ steal in every game he's played.",
-     "actual": 1,
-     "hit": true
+     "price": null,
+     "priceNote": "price unknown",
+     "tag": "Core",
+     "note": "1+ steal in all 9 games he's played."
     },
     {
      "player": "Joel Embiid",
      "stat": "reb",
      "line": 7,
-     "price": -320,
-     "priceNote": "FanDuel betslip, 3:37 PM",
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Risky",
-     "note": "Nudged up from 6+ (over 6.5). Untested on your slips, but he's had 7+ rebounds in all 8 games.",
-     "actual": 10,
-     "hit": true
+     "note": "7+ rebounds in all 9 games, but his foot status isn't confirmed and Boston has real bigs (Queta, Mitchell Robinson). Drop it if he's limited."
+    },
+    {
+     "player": "LeBron James",
+     "stat": "ast",
+     "line": 4,
+     "price": null,
+     "priceNote": "price unknown",
+     "tag": "Solid",
+     "note": "4+ assists in 8 of 9 (3 at CLE)."
+    }
+   ]
+  },
+  {
+   "name": "With +4.5",
+   "legsCount": 9,
+   "legs": [
+    {
+     "player": "Tyrese Maxey",
+     "stat": "tpm",
+     "line": 2,
+     "price": null,
+     "priceNote": "price unknown",
+     "tag": "Solid",
+     "note": "2+ threes in 9 of 11 games."
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "pra",
+     "line": 30,
+     "price": null,
+     "priceNote": "price unknown",
+     "tag": "Solid",
+     "note": "30+ in 9 of 11, but the two misses were the last two good defenses (27 at DET, 24 at CLE), and the total is only 215.5. Maxey 25+ is on the bench if you want it safer."
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "tpm",
+     "line": 1,
+     "price": null,
+     "priceNote": "price unknown",
+     "tag": "Core",
+     "note": "1+ three in 9 of 10 games; 10 for 10 on our slips."
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "stl",
+     "line": 1,
+     "price": null,
+     "priceNote": "price unknown",
+     "tag": "Solid",
+     "note": "1+ steal in 9 of 10, including 3, 4 and 3 in his last three."
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "pra",
+     "line": 17,
+     "price": null,
+     "priceNote": "price unknown",
+     "tag": "Solid",
+     "note": "17+ in 9 of 10 (only miss: 14 in the opener)."
+    },
+    {
+     "player": "Jaylen Brown",
+     "stat": "pra",
+     "line": 25,
+     "price": null,
+     "priceNote": "price unknown",
+     "tag": "Core",
+     "note": "His first game against Boston since the trade. 25+ in 8 of 10 (two 24s); 10 for 10 on our slips. Kept at 25+ instead of 26+ because of the low total."
+    },
+    {
+     "player": "LeBron James",
+     "stat": "stl",
+     "line": 1,
+     "price": null,
+     "priceNote": "price unknown",
+     "tag": "Core",
+     "note": "1+ steal in all 9 games he's played."
+    },
+    {
+     "player": "Joel Embiid",
+     "stat": "reb",
+     "line": 7,
+     "price": null,
+     "priceNote": "price unknown",
+     "tag": "Risky",
+     "note": "7+ rebounds in all 9 games, but his foot status isn't confirmed and Boston has real bigs (Queta, Mitchell Robinson). Drop it if he's limited."
     },
     {
      "player": "76ers",
      "stat": "spread",
-     "line": -2.5,
-     "price": -260,
-     "priceNote": "FanDuel betslip, 3:37 PM",
+     "line": 4.5,
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "Small alternate spread in place of the -450 moneyline.",
-     "actual": 6,
-     "hit": true
+     "note": "Close game expected, so take points instead of a favorite's line. The Sixers have lost by 5+ only twice (DET by 13, CLE by 24)."
     }
    ]
   }
  ],
  "bench": [
   {
+   "player": "Tyrese Maxey",
+   "stat": "pra",
+   "line": 25,
+   "effect": "Shorter price; swap for Maxey 30+.",
+   "note": "25+ in 10 of 11."
+  },
+  {
    "player": "LeBron James",
    "stat": "pra",
    "line": 25,
-   "effect": "Similar price. Swap in for Embiid rebounds if you'd rather skip Embiid.",
-   "note": "6 for 7 on your slips."
-  },
-  {
-   "player": "LeBron James",
-   "stat": "ast",
-   "line": 4,
-   "effect": "Similar price; doesn't need him to score.",
-   "note": "4+ assists in 7 of 8 games."
-  },
-  {
-   "player": "VJ Edgecombe",
-   "stat": "pra",
-   "line": 20,
-   "effect": "Lengthens the slip (replace VJ 15+).",
-   "note": "VJ finished at 14 in the opener and cost you that slip."
+   "effect": "Similar price. Swap in for Embiid rebounds if he's limited or out (then drop another pts + reb + ast leg to stay at 3).",
+   "note": "25+ in 8 of 9."
   },
   {
    "player": "Tyrese Maxey",
    "stat": "stl",
    "line": 1,
    "effect": "Lengthens the slip a little.",
-   "note": "6 for 9 on your slips."
+   "note": "1+ in 8 of 11."
+  },
+  {
+   "player": "76ers",
+   "stat": "ml",
+   "line": 0,
+   "effect": "Use instead of +4.5 for a much bigger price, but it's close to a coin flip (-113 at Heritage).",
+   "note": "The Sixers are 9-2."
   }
  ],
  "tuner": [
-  "Under +900 with no boost: swap VJ 15+ for VJ 20+ pts + reb + ast, or add Maxey 1+ steal as a 10th leg.",
-  "Over +1300: drop Maxey 30+ to 25+ pts + reb + ast, or use Sixers -3.5 instead of -5.5.",
-  "If Embiid is out or you'd rather skip him: use LeBron 25+ pts + reb + ast.",
-  "Blowouts sink pts + reb + ast legs together, so keep it to about 3 of them."
+  "Under +800 with no boost: add Maxey 1+ steal, or use the moneyline instead of +4.5.",
+  "Over +1300: drop Maxey 30+ to 25+ pts + reb + ast, or drop LeBron 4+ assists.",
+  "If Embiid is out or limited: drop his rebounds leg and add Maxey 1+ steal.",
+  "Boston is a real defense and the total is low, so don't nudge lines up a notch this time."
  ]
 }

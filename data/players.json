@@ -1,6 +1,6 @@
 {
- "_note": "2026-27 regular-season game logs (stl/blk/3pm included). A player missing from a date did not play or isn't in the feed.",
- "updated": "2026-11-08",
+ "_note": "2026-27 regular-season game logs (stl/blk/3pm included). A player missing from a date did not play or isn't in the feed. Nov 8: Jaylen Brown's line is pending (the box-score feed leaves him out); the Nov 10 refresh adds it.",
+ "updated": "2026-11-09",
  "games": [
   {
    "date": "2026-10-20",
@@ -61,6 +61,12 @@
    "opp": "CLE",
    "home": false,
    "result": "L 95-119"
+  },
+  {
+   "date": "2026-11-08",
+   "opp": "CHI",
+   "home": false,
+   "result": "W 127-121"
   },
   {
    "date": "2026-11-08",
@@ -160,6 +166,15 @@
     "stl": 1,
     "blk": 0,
     "tpm": 2
+   },
+   {
+    "date": "2026-11-08",
+    "pts": 27,
+    "reb": 4,
+    "ast": 7,
+    "stl": 0,
+    "blk": 0,
+    "tpm": 3
    }
   ],
   "VJ Edgecombe": [
@@ -243,6 +258,15 @@
     "stl": 4,
     "blk": 0,
     "tpm": 3
+   },
+   {
+    "date": "2026-11-08",
+    "pts": 13,
+    "reb": 6,
+    "ast": 3,
+    "stl": 3,
+    "blk": 0,
+    "tpm": 3
    }
   ],
   "LeBron James": [
@@ -317,6 +341,15 @@
     "stl": 2,
     "blk": 1,
     "tpm": 0
+   },
+   {
+    "date": "2026-11-08",
+    "pts": 22,
+    "reb": 5,
+    "ast": 5,
+    "stl": 1,
+    "blk": 0,
+    "tpm": 2
    }
   ],
   "Joel Embiid": [
@@ -390,6 +423,15 @@
     "ast": 1,
     "stl": 0,
     "blk": 2,
+    "tpm": 0
+   },
+   {
+    "date": "2026-11-08",
+    "pts": 18,
+    "reb": 10,
+    "ast": 5,
+    "stl": 2,
+    "blk": 0,
     "tpm": 0
    }
   ],
@@ -566,6 +608,15 @@
     "stl": 0,
     "blk": 0,
     "tpm": 1
+   },
+   {
+    "date": "2026-11-08",
+    "pts": 3,
+    "reb": 4,
+    "ast": 2,
+    "stl": 0,
+    "blk": 0,
+    "tpm": 1
    }
   ],
   "Kentavious Caldwell-Pope": [
@@ -658,6 +709,15 @@
     "stl": 0,
     "blk": 0,
     "tpm": 1
+   },
+   {
+    "date": "2026-11-08",
+    "pts": 6,
+    "reb": 6,
+    "ast": 3,
+    "stl": 1,
+    "blk": 2,
+    "tpm": 2
    }
   ]
  }
