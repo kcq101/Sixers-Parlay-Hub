@@ -21,6 +21,9 @@ A separate page that the tab opens on top of the hub, so its touch handling can'
 
 Tuning (forgiveness, flick speed, arc, etc.) is in the game's slider panel and is saved on each phone.
 
+## Automation
+Scheduled Claude runs keep the site current: draft → refresh → final check → grade for each game, and each grading run drafts and schedules the next game. A daily watchdog repairs the chain. The steps and rules every run follows are in `automation/RUNBOOK.md`.
+
 ## Data
 Everything the page shows lives in `data/`:
 - `tonight.json` — the current picks (rewritten before each game)
