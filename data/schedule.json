@@ -5,7 +5,9 @@
    "when": "2026-11-10T12:40:00-05:00",
    "what": "Refresh the picks",
    "detail": "Adds FanDuel prices, the injury report and the latest line, swaps any leg whose player is out, and fills Brown's Nov 8 line.",
-   "status": "scheduled"
+   "status": "done",
+   "doneAt": "2026-11-10T12:55:00-05:00",
+   "result": "Line flipped to Celtics -1.5, Bona out, Embiid off the report; no legs swapped, no prices posted at our lines; Brown's Nov 8 line added."
   },
   {
    "when": "2026-11-10T19:20:00-05:00",

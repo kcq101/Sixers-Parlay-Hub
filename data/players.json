@@ -1,6 +1,6 @@
 {
- "_note": "2026-27 regular-season game logs (stl/blk/3pm included). A player missing from a date did not play or isn't in the feed. Nov 8: Jaylen Brown's line is pending (the box-score feed leaves him out); the Nov 10 refresh adds it.",
- "updated": "2026-11-09",
+ "_note": "2026-27 regular-season game logs (stl/blk/3pm included). A player missing from a date did not play or isn't in the feed. Brown's Nov 8 line is from Basketball-Reference (the box-score feed leaves him out).",
+ "updated": "2026-11-10",
  "games": [
   {
    "date": "2026-10-20",
@@ -61,12 +61,6 @@
    "opp": "CLE",
    "home": false,
    "result": "L 95-119"
-  },
-  {
-   "date": "2026-11-08",
-   "opp": "CHI",
-   "home": false,
-   "result": "W 127-121"
   },
   {
    "date": "2026-11-08",
@@ -513,6 +507,15 @@
     "pts": 20,
     "reb": 5,
     "ast": 5,
+    "stl": 1,
+    "blk": 0,
+    "tpm": 2
+   },
+   {
+    "date": "2026-11-08",
+    "pts": 29,
+    "reb": 7,
+    "ast": 4,
     "stl": 1,
     "blk": 0,
     "tpm": 2

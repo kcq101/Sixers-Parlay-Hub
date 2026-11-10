@@ -1,7 +1,7 @@
 {
  "status": "draft",
- "statusNote": "Draft from Monday's numbers. FanDuel hasn't posted props for this game yet, so prices show \"?\". The Tuesday 12:40 PM refresh adds prices, the injury report and the latest line.",
- "updated": "2026-11-09T11:45:00-05:00",
+ "statusNote": "Refreshed Tuesday 12:55 PM ET. Checked the injury report, the line and prop prices. Changes: the line flipped to Celtics -1.5 (total 217.5 at FanDuel); Bona is out; Embiid is off the report, so his rebounds leg stays. No leg swapped. FanDuel's prop pages didn't load and no book posted prices at our exact lines (e.g. VJ 1+ three, LeBron 1+ steal), so prices still show \"?\". The final check runs at 7:20 PM, 40 minutes before tip.",
+ "updated": "2026-11-10T12:55:00-05:00",
  "game": {
   "date": "2026-11-10",
   "tip": "8:00 PM ET",
@@ -13,22 +13,22 @@
    "PHI": "9-2",
    "BOS": "8-2"
   },
-  "spread": "Sixers -1.5",
-  "line": "Sixers -1.5, moneyline -113 (Celtics -109), total 215.5 at Heritage per TheRx, Monday morning. First place in the East vs second.",
+  "spread": "Sixers +1.5",
+  "line": "Celtics -1.5 (Sixers +1.5), moneyline Sixers -102 / Celtics -116, total 217.5 at FanDuel, Tuesday. The line moved from Sixers -1.5 on Monday; DraftKings has the total at 218.5. First place in the East vs second.",
   "lastMeeting": "Sixers won Game 7 of last spring's first round 109-100 in Boston (Embiid 34). First meeting since the Brown-for-George trade."
  },
  "injuries": [
   {
    "team": "PHI",
    "player": "Joel Embiid",
-   "status": "Not yet listed",
-   "note": "right foot management; played 29 min Sunday; not a back-to-back"
+   "status": "Not listed",
+   "note": "not on Tuesday's injury report (right foot management); expected to play"
   },
   {
    "team": "PHI",
    "player": "Adem Bona",
-   "status": "Questionable",
-   "note": "cervical spine sprain; out Sunday, status for Tuesday unclear"
+   "status": "Out",
+   "note": "cervical spine sprain"
   },
   {
    "team": "PHI",
@@ -46,7 +46,25 @@
    "team": "BOS",
    "player": "Devin Carter",
    "status": "Out",
-   "note": "mononucleosis"
+   "note": "G League two-way (also listed with mononucleosis earlier)"
+  },
+  {
+   "team": "BOS",
+   "player": "Amari Williams",
+   "status": "Out",
+   "note": "G League two-way"
+  },
+  {
+   "team": "BOS",
+   "player": "Chris Cenac Jr.",
+   "status": "Questionable",
+   "note": "G League assignment"
+  },
+  {
+   "team": "BOS",
+   "player": "Dillon Mitchell",
+   "status": "Questionable",
+   "note": "G League two-way"
   }
  ],
  "slips": [
@@ -106,7 +124,7 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Core",
-     "note": "His first game against Boston since the trade. 25+ in 8 of 10 (two 24s); 10 for 10 on our slips. Kept at 25+ instead of 26+ because of the low total."
+     "note": "His first game against Boston since the trade. 25+ in 8 of 10 (two 24s), including 40 at CHI on Sunday; 10 for 10 on our slips. Kept at 25+ instead of 26+ because of the low total."
     },
     {
      "player": "LeBron James",
@@ -124,7 +142,7 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Risky",
-     "note": "7+ rebounds in all 9 games, but his foot status isn't confirmed and Boston has real bigs (Queta, Mitchell Robinson). Drop it if he's limited."
+     "note": "7+ rebounds in all 9 games. He's off the injury report, but Boston has real bigs (Queta, Mitchell Robinson). Drop it if he's limited."
     },
     {
      "player": "LeBron James",
@@ -193,7 +211,7 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Core",
-     "note": "His first game against Boston since the trade. 25+ in 8 of 10 (two 24s); 10 for 10 on our slips. Kept at 25+ instead of 26+ because of the low total."
+     "note": "His first game against Boston since the trade. 25+ in 8 of 10 (two 24s), including 40 at CHI on Sunday; 10 for 10 on our slips. Kept at 25+ instead of 26+ because of the low total."
     },
     {
      "player": "LeBron James",
@@ -211,7 +229,7 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Risky",
-     "note": "7+ rebounds in all 9 games, but his foot status isn't confirmed and Boston has real bigs (Queta, Mitchell Robinson). Drop it if he's limited."
+     "note": "7+ rebounds in all 9 games. He's off the injury report, but Boston has real bigs (Queta, Mitchell Robinson). Drop it if he's limited."
     },
     {
      "player": "76ers",
@@ -220,7 +238,7 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "Close game expected, so take points instead of a favorite's line. The Sixers have lost by 5+ only twice (DET by 13, CLE by 24)."
+     "note": "The Sixers are now 1.5-point underdogs, so +4.5 gives three extra points over the main line. They've lost by 5+ only twice (DET by 13, CLE by 24)."
     }
    ]
   }
@@ -251,7 +269,7 @@
    "player": "76ers",
    "stat": "ml",
    "line": 0,
-   "effect": "Use instead of +4.5 for a much bigger price, but it's close to a coin flip (-113 at Heritage).",
+   "effect": "Use instead of +4.5 for a much bigger price, but it's a coin flip (Sixers -102 at FanDuel).",
    "note": "The Sixers are 9-2."
   }
  ],
