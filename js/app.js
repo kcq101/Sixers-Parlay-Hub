@@ -239,7 +239,9 @@ function renderTonight(data, el, ui) {
     const s = slips[ui.slip] || slips[0];
     const real = s.fdPrice != null;        // FanDuel's actual price, once the slip is placed
     const est = real ? s.fdPrice : estPrice(s.legs);
-    const profit = est == null ? null : (STAKE * est) / 100;   // regular (unboosted) price
+    const placed = real && s.wager != null && s.payout != null;   // Kevin's actual wager and FanDuel payout
+    const stake = placed ? s.wager : STAKE;
+    const profit = placed ? s.payout - s.wager : est == null ? null : (STAKE * est) / 100;   // regular (unboosted) price unless placed
     const L = ui.live && !ui.live.error ? ui.live : ui.live?.last || null;   // last good ESPN read
     const evs = s.legs.map(l => (l.void || l.actual != null ? null : safeEval(l, L, g.opp)));
     const states = s.legs.map((l, i) => (evs[i] ? evs[i].state : legState(l)));
@@ -278,14 +280,14 @@ function renderTonight(data, el, ui) {
       <section class="plate">
         <div class="sum-top">
           <div><div class="label">${real ? "FanDuel price" : "Est. FanDuel price"}</div><div class="big-price">${fmtOdds(est)}</div></div>
-          <div class="boosts">${[0.25, 0.5].map(b => `<div class="boost-row"><span class="label">With ${b * 100}% boost</span><span class="boost-price">${fmtOdds(real && s.boosted && s.boost === b * 100 ? s.boosted : est == null ? null : est * (1 + b))}</span></div>`).join("")}</div>
+          <div class="boosts">${real && s.boosted && s.boost ? `<div class="boost-row"><span class="label">With your ${esc(s.boost)}% boost</span><span class="boost-price">${fmtOdds(s.boosted)}</span></div>` : [0.25, 0.5].map(b => `<div class="boost-row"><span class="label">With ${b * 100}% boost</span><span class="boost-price">${fmtOdds(real && s.boosted && s.boost === b * 100 ? s.boosted : est == null ? null : est * (1 + b))}</span></div>`).join("")}</div>
         </div>
         <div class="sum-grid">
-          <div><span class="label">Stake</span><b>${money(STAKE)}</b></div>
+          <div><span class="label">Stake</span><b>${money(stake)}</b></div>
           <div><span class="label">Profit</span><b class="profit">${money(profit == null ? null : Math.round(profit * 100) / 100)}</b></div>
-          <div><span class="label">Return</span><b>${money(profit == null ? null : Math.round((STAKE + profit) * 100) / 100)}</b></div>
+          <div><span class="label">Return</span><b>${money(profit == null ? null : Math.round((stake + profit) * 100) / 100)}</b></div>
         </div>
-        <p class="muted" style="margin-top:8px">Illustrative $10 stake. Profit is at the regular price, no boost; return = stake + profit.</p>
+        <p class="muted" style="margin-top:8px">${placed ? "Your FanDuel wager and payout, boost included." : "Illustrative $10 stake. Profit is at the regular price, no boost; return = stake + profit."}</p>
         <div class="progress-row"><span class="label">Ticket progress</span><span class="label" style="color:var(--ink-2)">${progress}</span></div>
         <div class="segs" aria-hidden="true">${states.map(x => `<span class="seg ${["hit", "miss", "live"].includes(x) ? x : ""}"></span>`).join("")}</div>
         ${unpriced ? `<p class="status-note" style="margin-top:10px">${unpriced} ${unpriced === 1 ? "leg has" : "legs have"} no posted price for this game yet, so the estimate leaves ${unpriced === 1 ? "it" : "them"} out. The real price will be higher.</p>` : ""}

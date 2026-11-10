@@ -1,7 +1,7 @@
 {
- "status": "draft",
- "statusNote": "Refreshed Tuesday 12:55 PM ET. Checked the injury report, the line and prop prices. Changes: the line flipped to Celtics -1.5 (total 217.5 at FanDuel); Bona is out; Embiid is off the report, so his rebounds leg stays. No leg swapped. FanDuel's prop pages didn't load and no book posted prices at our exact lines (e.g. VJ 1+ three, LeBron 1+ steal), so prices still show \"?\". The final check runs at 7:20 PM, 40 minutes before tip.",
- "updated": "2026-11-10T12:55:00-05:00",
+ "status": "final",
+ "statusNote": "Placed by Kevin at 6:00 PM on FanDuel, $25 each. Props only: 9 legs, +630, boosted 50% to +945 (pays $261.48). With ML: the same 9 plus the Sixers moneyline (+100), +931, boosted 30% to +1210 (pays $327.68). Changes from the draft, based on the odds: Maxey 28+, VJ 16+ and Brown 27+ pts + reb + ast; LeBron 24+ pts + reb + ast and Simons 1+ three replace LeBron's steal and 4+ assists; the moneyline replaces +4.5. The final check at 7:20 PM will only note risks; it won't change placed slips.",
+ "updated": "2026-11-10T18:05:00-05:00",
  "game": {
   "date": "2026-11-10",
   "tip": "8:00 PM ET",
@@ -14,7 +14,7 @@
    "BOS": "8-2"
   },
   "spread": "Sixers +1.5",
-  "line": "Celtics -1.5 (Sixers +1.5), moneyline Sixers -102 / Celtics -116, total 217.5 at FanDuel, Tuesday. The line moved from Sixers -1.5 on Monday; DraftKings has the total at 218.5. First place in the East vs second.",
+  "line": "Celtics -1.5 (Sixers +1.5), total 217.5 at FanDuel. Moneyline Sixers +100 at FanDuel at 6 PM (was -102 at midday). First place in the East vs second.",
   "lastMeeting": "Sixers won Game 7 of last spring's first round 109-100 in Boston (Embiid 34). First meeting since the Brown-for-George trade."
  },
  "injuries": [
@@ -74,173 +74,192 @@
    "legs": [
     {
      "player": "Tyrese Maxey",
+     "stat": "pra",
+     "line": 28,
+     "price": -330,
+     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
+     "tag": "Solid",
+     "note": "28+ (Over 27.5) in 9 of 11; the two misses were 27 at DET and 24 at CLE."
+    },
+    {
+     "player": "Tyrese Maxey",
      "stat": "tpm",
      "line": 2,
-     "price": null,
-     "priceNote": "price unknown",
+     "price": -350,
+     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
      "tag": "Solid",
      "note": "2+ threes in 9 of 11 games."
     },
     {
-     "player": "Tyrese Maxey",
+     "player": "VJ Edgecombe",
      "stat": "pra",
-     "line": 30,
-     "price": null,
-     "priceNote": "price unknown",
+     "line": 16,
+     "price": -420,
+     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
      "tag": "Solid",
-     "note": "30+ in 9 of 11, but the two misses were the last two good defenses (27 at DET, 24 at CLE), and the total is only 215.5. Maxey 25+ is on the bench if you want it safer."
+     "note": "16+ (Over 15.5) in 9 of 10; only miss was 14 in the opener."
     },
     {
      "player": "VJ Edgecombe",
      "stat": "tpm",
      "line": 1,
-     "price": null,
-     "priceNote": "price unknown",
+     "price": -650,
+     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
      "tag": "Core",
      "note": "1+ three in 9 of 10 games; 10 for 10 on our slips."
     },
     {
-     "player": "VJ Edgecombe",
-     "stat": "stl",
-     "line": 1,
-     "price": null,
-     "priceNote": "price unknown",
-     "tag": "Solid",
-     "note": "1+ steal in 9 of 10, including 3, 4 and 3 in his last three."
-    },
-    {
-     "player": "VJ Edgecombe",
-     "stat": "pra",
-     "line": 17,
-     "price": null,
-     "priceNote": "price unknown",
-     "tag": "Solid",
-     "note": "17+ in 9 of 10 (only miss: 14 in the opener)."
-    },
-    {
      "player": "Jaylen Brown",
      "stat": "pra",
-     "line": 25,
-     "price": null,
-     "priceNote": "price unknown",
+     "line": 27,
+     "price": -320,
+     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
      "tag": "Core",
-     "note": "His first game against Boston since the trade. 25+ in 8 of 10 (two 24s), including 40 at CHI on Sunday; 10 for 10 on our slips. Kept at 25+ instead of 26+ because of the low total."
+     "note": "27+ (Over 26.5) in 8 of 10 (the misses were two 24s). First game against Boston since the trade."
     },
     {
-     "player": "LeBron James",
+     "player": "VJ Edgecombe",
      "stat": "stl",
      "line": 1,
-     "price": null,
-     "priceNote": "price unknown",
-     "tag": "Core",
-     "note": "1+ steal in all 9 games he's played."
+     "price": -350,
+     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
+     "tag": "Solid",
+     "note": "1+ steal in 9 of 10, including 3, 4 and 3 in his last three."
     },
     {
      "player": "Joel Embiid",
      "stat": "reb",
      "line": 7,
-     "price": null,
-     "priceNote": "price unknown",
+     "price": -330,
+     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
      "tag": "Risky",
-     "note": "7+ rebounds in all 9 games. He's off the injury report, but Boston has real bigs (Queta, Mitchell Robinson). Drop it if he's limited."
+     "note": "7+ rebounds in all 9 games. Boston has real bigs (Queta, Mitchell Robinson)."
+    },
+    {
+     "player": "Anfernee Simons",
+     "stat": "tpm",
+     "line": 1,
+     "price": -440,
+     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
+     "tag": "Solid",
+     "note": "1+ three in 9 of 11 games."
     },
     {
      "player": "LeBron James",
-     "stat": "ast",
-     "line": 4,
-     "price": null,
-     "priceNote": "price unknown",
+     "stat": "pra",
+     "line": 24,
+     "price": -340,
+     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
      "tag": "Solid",
-     "note": "4+ assists in 8 of 9 (3 at CLE)."
+     "note": "24+ (Over 23.5) in 8 of 9 (18 was the miss)."
     }
-   ]
+   ],
+   "fdPrice": 630,
+   "boost": 50,
+   "boosted": 945,
+   "wager": 25,
+   "payout": 261.48
   },
   {
-   "name": "With +4.5",
-   "legsCount": 9,
+   "name": "With ML",
+   "legsCount": 10,
    "legs": [
     {
      "player": "Tyrese Maxey",
+     "stat": "pra",
+     "line": 28,
+     "price": -330,
+     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
+     "tag": "Solid",
+     "note": "28+ (Over 27.5) in 9 of 11; the two misses were 27 at DET and 24 at CLE."
+    },
+    {
+     "player": "Tyrese Maxey",
      "stat": "tpm",
      "line": 2,
-     "price": null,
-     "priceNote": "price unknown",
+     "price": -350,
+     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
      "tag": "Solid",
      "note": "2+ threes in 9 of 11 games."
     },
     {
-     "player": "Tyrese Maxey",
+     "player": "VJ Edgecombe",
      "stat": "pra",
-     "line": 30,
-     "price": null,
-     "priceNote": "price unknown",
+     "line": 16,
+     "price": -420,
+     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
      "tag": "Solid",
-     "note": "30+ in 9 of 11, but the two misses were the last two good defenses (27 at DET, 24 at CLE), and the total is only 215.5. Maxey 25+ is on the bench if you want it safer."
+     "note": "16+ (Over 15.5) in 9 of 10; only miss was 14 in the opener."
     },
     {
      "player": "VJ Edgecombe",
      "stat": "tpm",
      "line": 1,
-     "price": null,
-     "priceNote": "price unknown",
+     "price": -650,
+     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
      "tag": "Core",
      "note": "1+ three in 9 of 10 games; 10 for 10 on our slips."
     },
     {
-     "player": "VJ Edgecombe",
-     "stat": "stl",
-     "line": 1,
-     "price": null,
-     "priceNote": "price unknown",
-     "tag": "Solid",
-     "note": "1+ steal in 9 of 10, including 3, 4 and 3 in his last three."
-    },
-    {
-     "player": "VJ Edgecombe",
-     "stat": "pra",
-     "line": 17,
-     "price": null,
-     "priceNote": "price unknown",
-     "tag": "Solid",
-     "note": "17+ in 9 of 10 (only miss: 14 in the opener)."
-    },
-    {
      "player": "Jaylen Brown",
      "stat": "pra",
-     "line": 25,
-     "price": null,
-     "priceNote": "price unknown",
+     "line": 27,
+     "price": -320,
+     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
      "tag": "Core",
-     "note": "His first game against Boston since the trade. 25+ in 8 of 10 (two 24s), including 40 at CHI on Sunday; 10 for 10 on our slips. Kept at 25+ instead of 26+ because of the low total."
+     "note": "27+ (Over 26.5) in 8 of 10 (the misses were two 24s). First game against Boston since the trade."
     },
     {
-     "player": "LeBron James",
+     "player": "VJ Edgecombe",
      "stat": "stl",
      "line": 1,
-     "price": null,
-     "priceNote": "price unknown",
-     "tag": "Core",
-     "note": "1+ steal in all 9 games he's played."
+     "price": -350,
+     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
+     "tag": "Solid",
+     "note": "1+ steal in 9 of 10, including 3, 4 and 3 in his last three."
     },
     {
      "player": "Joel Embiid",
      "stat": "reb",
      "line": 7,
-     "price": null,
-     "priceNote": "price unknown",
+     "price": -330,
+     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
      "tag": "Risky",
-     "note": "7+ rebounds in all 9 games. He's off the injury report, but Boston has real bigs (Queta, Mitchell Robinson). Drop it if he's limited."
+     "note": "7+ rebounds in all 9 games. Boston has real bigs (Queta, Mitchell Robinson)."
+    },
+    {
+     "player": "Anfernee Simons",
+     "stat": "tpm",
+     "line": 1,
+     "price": -440,
+     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
+     "tag": "Solid",
+     "note": "1+ three in 9 of 11 games."
+    },
+    {
+     "player": "LeBron James",
+     "stat": "pra",
+     "line": 24,
+     "price": -340,
+     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
+     "tag": "Solid",
+     "note": "24+ (Over 23.5) in 8 of 9 (18 was the miss)."
     },
     {
      "player": "76ers",
-     "stat": "spread",
-     "line": 4.5,
-     "price": null,
-     "priceNote": "price unknown",
-     "tag": "Solid",
-     "note": "The Sixers are now 1.5-point underdogs, so +4.5 gives three extra points over the main line. They've lost by 5+ only twice (DET by 13, CLE by 24)."
+     "stat": "ml",
+     "line": 0,
+     "price": 100,
+     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
+     "tag": "Risky",
+     "note": "Moneyline at +100: a coin flip against the 8-2 Celtics, who are 1.5-point favorites."
     }
-   ]
+   ],
+   "fdPrice": 931,
+   "boost": 30,
+   "boosted": 1210,
+   "wager": 25,
+   "payout": 327.68
   }
  ],
  "bench": [
@@ -273,10 +292,5 @@
    "note": "The Sixers are 9-2."
   }
  ],
- "tuner": [
-  "Under +800 with no boost: add Maxey 1+ steal, or use the moneyline instead of +4.5.",
-  "Over +1300: drop Maxey 30+ to 25+ pts + reb + ast, or drop LeBron 4+ assists.",
-  "If Embiid is out or limited: drop his rebounds leg and add Maxey 1+ steal.",
-  "Boston is a real defense and the total is low, so don't nudge lines up a notch this time."
- ]
+ "tuner": []
 }
