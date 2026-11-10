@@ -20,6 +20,7 @@ The cycle for each game is: **Draft → Refresh → Final check → Grade**. Aft
 - If no price is posted for a leg, set `"price": null` and `"priceNote": "price unknown"`.
 - Keep `game.spread` current, e.g. `"Sixers -1.5"`.
 - Only Kevin's FanDuel screenshot sets a slip's `fdPrice`. Never set it yourself.
+- Never record or mention how much Kevin bet or what a slip pays (wager, payout, dollar amounts) anywhere on the site, in notes or in messages.
 
 ## Pick rules (from data/playbook.json — re-read it, it wins if they differ)
 - FanDuel same-game parlay. Two slips per game, 9 legs each, about +1000 before boost; each leg roughly -250 to -550.

@@ -1,6 +1,6 @@
 {
  "status": "final",
- "statusNote": "Placed by Kevin at 6:00 PM on FanDuel, $25 each. Props only: 9 legs, +630, boosted 50% to +945 (pays $261.48). With ML: the same 9 plus the Sixers moneyline (+100), +931, boosted 30% to +1210 (pays $327.68).",
+ "statusNote": "Placed by Kevin at 6:00 PM on FanDuel. Props only: 9 legs, +630, boosted 50% to +945. With ML: the same 9 plus the Sixers moneyline (+100), +931, boosted 30% to +1210.",
  "updated": "2026-11-10T18:05:00-05:00",
  "game": {
   "date": "2026-11-10",
@@ -156,9 +156,7 @@
    ],
    "fdPrice": 630,
    "boost": 50,
-   "boosted": 945,
-   "wager": 25,
-   "payout": 261.48
+   "boosted": 945
   },
   {
    "name": "With ML",
@@ -257,9 +255,7 @@
    ],
    "fdPrice": 931,
    "boost": 30,
-   "boosted": 1210,
-   "wager": 25,
-   "payout": 327.68
+   "boosted": 1210
   }
  ],
  "bench": [
