@@ -1,5 +1,5 @@
 import * as THREE from "../vendor/three.module.min.js";
-import { canvasTexture, rng } from "./util.js";
+import { canvasTexture, rng, DECAL } from "./util.js";
 import { BALL_R } from "./physics.js";
 
 export function build() {
@@ -37,7 +37,7 @@ export function build() {
     g.fillStyle = gr; g.fillRect(0, 0, w, h);
   });
   const shadow = new THREE.Mesh(new THREE.PlaneGeometry(BALL_R * 3.2, BALL_R * 3.2),
-    new THREE.MeshBasicMaterial({ map: shadowTex, transparent: true, depthWrite: false }));
+    new THREE.MeshBasicMaterial({ map: shadowTex, transparent: true, depthWrite: false, ...DECAL }));
   shadow.rotation.x = -Math.PI / 2;
   shadow.position.y = 0.01;
 

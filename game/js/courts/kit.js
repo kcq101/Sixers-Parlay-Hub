@@ -2,7 +2,7 @@
 // coordinates (hoop glass at z = 0, shooter near z = 4.7, camera behind him at z ≈ 11)
 // and these same parts, so the three courts stay consistent.
 import * as THREE from "../../vendor/three.module.min.js";
-import { canvasTexture, rng, noise } from "../util.js";
+import { canvasTexture, rng, noise, DECAL } from "../util.js";
 import { HOOP } from "../physics.js";
 
 export { THREE, canvasTexture, rng, noise };
@@ -159,12 +159,14 @@ export function courtLinesTexture({ paint = "#4f74b0", paintAlpha = 0.5, line = 
 
 // Ground plane + court paint, in one call.
 export function groundAndCourt(group, { size, z, color, lines, seed, roughness = 0.9, shadows = true, pave = {} }) {
-  const ground = new THREE.Mesh(new THREE.PlaneGeometry(size[0], size[1]),
+  // Subdivided so phones interpolate depth accurately across it (one huge quad lets the paint
+  // layer above it flicker in and out at a distance).
+  const ground = new THREE.Mesh(new THREE.PlaneGeometry(size[0], size[1], Math.ceil(size[0] / 2), Math.ceil(size[1] / 2)),
     new THREE.MeshStandardMaterial({ map: pavementTexture({ color, seed, ...pave }), roughness }));
   ground.rotation.x = -Math.PI / 2; ground.position.set(0, 0, z); ground.receiveShadow = shadows;
   group.add(ground);
   const court = new THREE.Mesh(new THREE.PlaneGeometry(18, 18),
-    new THREE.MeshStandardMaterial({ map: courtLinesTexture(lines), transparent: true, roughness: 0.85, depthWrite: false }));
+    new THREE.MeshStandardMaterial({ map: courtLinesTexture(lines), transparent: true, roughness: 0.85, depthWrite: false, ...DECAL }));
   court.rotation.x = -Math.PI / 2; court.position.set(0, 0.004, 6); court.receiveShadow = shadows;
   group.add(court);
   return { ground, court };
@@ -261,7 +263,7 @@ export function lightPool(group, x, z, color, { radius = 4, strength = 0.5, stre
     gr.addColorStop(0, "rgba(255,255,255,1)"); gr.addColorStop(1, "rgba(255,255,255,0)");
     g.fillStyle = gr; g.fillRect(0, 0, w, h);
   }, { srgb: false });
-  const mat = new THREE.MeshBasicMaterial({ map: tex, color: new THREE.Color(color).multiplyScalar(strength), transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, fog: false });
+  const mat = new THREE.MeshBasicMaterial({ map: tex, color: new THREE.Color(color).multiplyScalar(strength), transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, fog: false, ...DECAL });
   const pool = new THREE.Mesh(new THREE.PlaneGeometry(radius * 2, radius * 2), mat);
   pool.rotation.x = -Math.PI / 2; pool.position.set(x, 0.012, z);
   group.add(pool);

@@ -5,7 +5,7 @@
 // Frames: 0 stand (ball held at the chest) · 1 dip · 2 ball low · 3 ball rising · 4 set point
 //         5 release (ball removed: the game's ball takes over here) · 6-8 follow-through.
 import * as THREE from "../vendor/three.module.min.js";
-import { canvasTexture } from "./util.js";
+import { canvasTexture, DECAL } from "./util.js";
 import { SHOOTER, CAMERA, RELEASE } from "./config.js";
 
 export const STAND = 0, RELEASE_FRAME = 5;
@@ -41,7 +41,7 @@ export async function load() {
       gr.addColorStop(0, "rgba(0,0,0,0.6)"); gr.addColorStop(1, "rgba(0,0,0,0)");
       g.setTransform(1, 0, 0, 0.5, 0, h / 4); g.fillStyle = gr; g.fillRect(0, 0, w, w);
     }),
-    transparent: true, depthWrite: false,
+    transparent: true, depthWrite: false, ...DECAL,
   }));
   shadow.rotation.x = -Math.PI / 2;
   shadow.position.set(wx(meta.bodyX), 0.012, SHOOTER.z - 0.05);

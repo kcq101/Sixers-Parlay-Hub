@@ -7,7 +7,7 @@
 // the hoop is visible, so a few things are pulled toward the middle to stay in view
 // (noted next to each one). The camera stays where Kevin set it in config.js.
 import * as THREE from "../../vendor/three.module.min.js";
-import { canvasTexture, rng, noise } from "../util.js";
+import { canvasTexture, rng, noise, DECAL } from "../util.js";
 import { brick, instancer, wire, courtFloods } from "./kit.js";
 import { HOOP } from "../physics.js";
 
@@ -303,10 +303,10 @@ export function build() {
 
   // Ground and court paint.
   const [GW, GD] = SPEC.ground.size;
-  const ground = new THREE.Mesh(new THREE.PlaneGeometry(GW, GD), new THREE.MeshStandardMaterial({ map: groundTexture(), roughness: 0.9 }));
+  const ground = new THREE.Mesh(new THREE.PlaneGeometry(GW, GD, Math.ceil(GW / 2), Math.ceil(GD / 2)), new THREE.MeshStandardMaterial({ map: groundTexture(), roughness: 0.9 }));
   ground.rotation.x = -Math.PI / 2; ground.position.set(0, 0, SPEC.ground.z); ground.receiveShadow = true;
   group.add(ground);
-  const lines = new THREE.Mesh(new THREE.PlaneGeometry(18, 18), new THREE.MeshStandardMaterial({ map: courtLinesTexture(), transparent: true, roughness: 0.85, depthWrite: false }));
+  const lines = new THREE.Mesh(new THREE.PlaneGeometry(18, 18), new THREE.MeshStandardMaterial({ map: courtLinesTexture(), transparent: true, roughness: 0.85, depthWrite: false, ...DECAL }));
   lines.rotation.x = -Math.PI / 2; lines.position.set(0, 0.004, 6); lines.receiveShadow = true;
   group.add(lines);
 

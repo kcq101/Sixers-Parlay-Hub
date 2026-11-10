@@ -71,7 +71,9 @@ function stepAnim(dt) {
   }
 }
 
-const camera = new THREE.PerspectiveCamera(50, 1, 0.25, 4000);   // far enough for distant skylines
+// Near plane at 1 m: the closest thing ever in view is the floor about 5 m ahead, and a tighter
+// near plane gives the depth buffer 4x the precision, so flat layers on the floor don't flicker.
+const camera = new THREE.PerspectiveCamera(50, 1, 1.0, 4000);   // far enough for distant skylines
 const lookAt = new THREE.Vector3(LOOK_AT.x, LOOK_AT.y, LOOK_AT.z);
 function resize() {
   const w = window.innerWidth, h = window.innerHeight;

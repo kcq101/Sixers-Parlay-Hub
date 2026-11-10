@@ -25,3 +25,8 @@ export function noise(ctx, w, h, amount, rand, alpha = 0.08) {
     ctx.fillRect(rand() * w, rand() * h, 1 + rand() * 2, 1 + rand() * 2);
   }
 }
+
+// Flat layers lying on the ground (court paint, light pools, soft shadows) sit only millimetres
+// above it. Pulling them toward the camera in depth keeps the floor from winning the depth test
+// on phone GPUs, which showed up as a band of the court flickering. Spread into the material.
+export const DECAL = { polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -4 };
