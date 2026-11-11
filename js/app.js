@@ -267,7 +267,7 @@ function renderTonight(data, el, ui) {
           <div class="team">${crest(g.opp)}<span class="team-name">${esc(opp)}</span><span class="record mono">${esc(g.records[g.opp])}</span></div>
         </div>
         <div class="plate-foot"><span>${esc(g.venue)}</span><span>${t.status === "draft" ? "Picks not locked" : ""}</span></div>
-        ${t.statusNote ? `<p class="status-note">${esc(t.statusNote)}</p>` : ""}
+        ${gameNotes(g)}
       </section>
 
       ${ui.liveOn ? liveStrip(ui.live, g) : ""}
@@ -311,10 +311,6 @@ function renderTonight(data, el, ui) {
         <div class="rows">${t.injuries.map(i => `<div><span class="mono tm">${esc(i.team)}</span><span class="grow"><b style="font-weight:600">${esc(i.player)}</b> <span class="sub">· ${esc(i.note)}</span></span>${injuryBadge(i.status)}</div>`).join("")}</div>
       </section>
 
-      <section class="panel">
-        <h2 class="panel-h">Game notes</h2>
-        <div class="rows"><div><span class="grow" style="color:var(--ink-2)">${esc(g.line)}</span></div><div><span class="grow" style="color:var(--ink-2)">${esc(g.lastMeeting)}</span></div></div>
-      </section>
     `;
     el.querySelectorAll(".switch button").forEach(b => b.addEventListener("click", () => { ui.slip = +b.dataset.i; draw(); }));
     el.querySelectorAll("details.leg").forEach((d, i) => d.addEventListener("toggle", () => { if (d.open) ui.open = i; else if (ui.open === i) ui.open = -1; }));
@@ -322,6 +318,13 @@ function renderTonight(data, el, ui) {
   };
   ui.redrawTonight = draw;
   draw();
+}
+
+// Storylines under the matchup: the interesting tidbits, not betting or injury details.
+function gameNotes(g) {
+  const notes = g.notes?.length ? g.notes : [g.lastMeeting].filter(Boolean);
+  if (!notes.length) return "";
+  return `<ul class="game-notes">${notes.map(n => `<li>${esc(n)}</li>`).join("")}</ul>`;
 }
 
 function safeEval(l, L, opp) {

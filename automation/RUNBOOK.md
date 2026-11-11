@@ -38,6 +38,7 @@ The cycle for each game is: **Draft → Refresh → Final check → Grade**. Aft
 3. Get the line if one is posted: spread, moneyline, total, and the last meeting.
 4. Rewrite `data/tonight.json` in the existing shape:
    - `status` "draft"; `game` {date, tip, opp, oppName, home, venue, records, spread, line, lastMeeting}; `injuries`.
+   - `game.notes`: 3–4 short storylines shown under the matchup (e.g. a player's first game against his old team, standings stakes, last meeting, a hot streak). No betting lines, prices or injury details there. `statusNote` is not shown on the Game tab.
    - Two slips. Each leg's `note` gives its season hit count (e.g. "9 of 10 games").
    - `bench` with 3–4 swap options and `tuner` with 3–4 lines.
    - Prices follow the pricing rules (usually null at draft time).

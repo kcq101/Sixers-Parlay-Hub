@@ -368,3 +368,6 @@ body.gaming { overflow: hidden; }
 .live-meter.hit .lm-text { color: var(--hit); }
 .live-meter.miss .lm-text { color: var(--red-ink); }
 .live-meter.void .lm-text { color: var(--ink-3); }
+
+.game-notes { margin: 12px 0 0; padding: 0 0 0 18px; color: var(--ink-2); font-size: 15px; line-height: 1.45; }
+.game-notes li { margin: 4px 0; }
