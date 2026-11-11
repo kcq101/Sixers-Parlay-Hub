@@ -2,28 +2,22 @@
  "note": "Claude does the research on a schedule. Kevin builds and locks the final slip in FanDuel.",
  "updates": [
   {
-   "when": "2026-11-10T12:40:00-05:00",
+   "when": "2026-11-12T12:40:00-05:00",
    "what": "Refresh the picks",
-   "detail": "Adds FanDuel prices, the injury report and the latest line, swaps any leg whose player is out, and fills Brown's Nov 8 line.",
-   "status": "done",
-   "doneAt": "2026-11-10T12:55:00-05:00",
-   "result": "Line flipped to Celtics -1.5, Bona out, Embiid off the report; no legs swapped, no prices posted at our lines; Brown's Nov 8 line added."
+   "detail": "Adds FanDuel prices, the injury report and the line, swaps any leg whose player is out, and fills VJ's Nov 10 threes if a final box score turns up.",
+   "status": "scheduled"
   },
   {
-   "when": "2026-11-10T19:20:00-05:00",
+   "when": "2026-11-12T18:20:00-05:00",
    "what": "Final check before tip",
    "detail": "Checks the final injury report and starting lineups 40 minutes before tip and swaps any leg whose player is out or limited.",
-   "status": "done",
-   "doneAt": "2026-11-10T19:25:00-05:00",
-   "result": "No new injuries; all five Sixers starters and Simons cleared, no minutes limits; both slips already placed, nothing changed."
+   "status": "scheduled"
   },
   {
-   "when": "2026-11-10T22:55:00-05:00",
+   "when": "2026-11-12T21:55:00-05:00",
    "what": "Grade the slip",
    "detail": "Pulls the final box score, grades each leg, and adds the game to the season logs.",
-   "status": "done",
-   "doneAt": "2026-11-10T23:05:00-05:00",
-   "result": "Celtics won 123-101; both slips lost on Brown pts + reb + ast and Embiid rebounds (the ML slip also on the moneyline)."
+   "status": "scheduled"
   }
  ]
 }

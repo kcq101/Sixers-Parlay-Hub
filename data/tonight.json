@@ -1,46 +1,46 @@
 {
- "status": "graded",
- "statusNote": "Final: Celtics 123, Sixers 101. Props only: lost. Maxey 29 pts + reb + ast and 3 threes, VJ 17 pts + reb + ast and a steal, Simons' three and LeBron's 24 hit; Brown's pts + reb + ast (20, foul trouble) and Embiid's rebounds (6) missed. VJ's threes aren't confirmed yet. With ML: lost on the same two legs, plus the moneyline (lost by 22).",
+ "status": "draft",
+ "statusNote": "Draft written Tue Nov 10, 11:05 PM after grading Boston. No line or prop prices posted yet. The refresh runs Thu Nov 12 at 12:40 PM ET (injuries, line, prices), the final check at 6:20 PM.",
  "updated": "2026-11-10T23:05:00-05:00",
  "game": {
-  "date": "2026-11-10",
-  "tip": "8:00 PM ET",
-  "opp": "BOS",
-  "oppName": "Boston Celtics",
+  "date": "2026-11-12",
+  "tip": "7:00 PM ET",
+  "opp": "TOR",
+  "oppName": "Toronto Raptors",
   "home": true,
   "venue": "Xfinity Mobile Arena",
   "records": {
-   "PHI": "9-2",
-   "BOS": "8-2"
+   "PHI": "9-3",
+   "TOR": "5-5"
   },
-  "spread": "Sixers +1.5",
-  "line": "Celtics -1.5 (Sixers +1.5), total 217.5 at FanDuel. Moneyline Sixers +100 at FanDuel at 6 PM (was -102 at midday). First place in the East vs second.",
-  "lastMeeting": "Sixers won Game 7 of last spring's first round 109-100 in Boston (Embiid 34). First meeting since the Brown-for-George trade.",
+  "spread": "not posted yet",
+  "line": "Not posted yet. Toronto hosts Boston on Wednesday, so the Raptors are on the second night of a back-to-back. Refresh fills the spread, moneyline and total.",
+  "lastMeeting": "First meeting this season.",
   "notes": [
-   "Jaylen Brown's first game against the Celtics since the Brown-for-George trade.",
-   "First place in the East (Sixers 9-2) vs second (Celtics 8-2).",
-   "First meeting since the Sixers won Game 7 of last spring's first round 109-100 in Boston, behind 34 from Embiid.",
-   "Brown comes in hot: 40 pts + reb + ast at Chicago on Sunday."
+   "Bounce-back spot after a 123-101 loss to Boston on Tuesday.",
+   "Toronto plays Boston at home Wednesday, so the Raptors arrive on the second night of a back-to-back.",
+   "First meeting of the season with the Raptors.",
+   "Maxey has 28+ pts + reb + ast in 10 of 12 games."
   ]
  },
  "injuries": [
   {
    "team": "PHI",
    "player": "Joel Embiid",
-   "status": "Not listed",
-   "note": "not on Tuesday's injury report (right foot management); expected to play"
+   "status": "Watch",
+   "note": "took a hard fall late in the first half vs Boston, limped, but started the third quarter; not on a back-to-back"
   },
   {
    "team": "PHI",
    "player": "Adem Bona",
    "status": "Out",
-   "note": "cervical spine sprain"
+   "note": "cervical spine sprain (as of Nov 10)"
   },
   {
    "team": "PHI",
    "player": "Dominick Barlow",
    "status": "Out",
-   "note": "lower back stress reaction"
+   "note": "lower back stress reaction (as of Nov 10)"
   },
   {
    "team": "PHI",
@@ -49,28 +49,34 @@
    "note": "Achilles"
   },
   {
-   "team": "BOS",
-   "player": "Devin Carter",
+   "team": "TOR",
+   "player": "Kawhi Leonard",
    "status": "Out",
-   "note": "G League two-way (also listed with mononucleosis earlier)"
+   "note": "left knee; update expected in about a week (report for Nov 11)"
   },
   {
-   "team": "BOS",
-   "player": "Amari Williams",
+   "team": "TOR",
+   "player": "Scottie Barnes",
    "status": "Out",
-   "note": "G League two-way"
+   "note": "left groin strain; out for Nov 11 vs Boston"
   },
   {
-   "team": "BOS",
-   "player": "Chris Cenac Jr.",
-   "status": "Questionable",
-   "note": "G League assignment"
+   "team": "TOR",
+   "player": "Nate Bittle",
+   "status": "Out",
+   "note": "avulsion fracture; hasn't debuted"
   },
   {
-   "team": "BOS",
-   "player": "Dillon Mitchell",
+   "team": "TOR",
+   "player": "Immanuel Quickley",
    "status": "Questionable",
-   "note": "G League two-way"
+   "note": "right hamstring (for Nov 11)"
+  },
+  {
+   "team": "TOR",
+   "player": "Collin Murray-Boyles",
+   "status": "Questionable",
+   "note": "illness (for Nov 11)"
   }
  ],
  "slips": [
@@ -82,255 +88,344 @@
      "player": "Tyrese Maxey",
      "stat": "pra",
      "line": 28,
-     "price": -330,
-     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "28+ (Over 27.5) in 9 of 11; the two misses were 27 at DET and 24 at CLE.",
-     "actual": 29,
-     "hit": true
+     "note": "28+ in 10 of 12; the misses were 27 at DET and 24 at CLE. 29 vs Boston."
     },
     {
      "player": "Tyrese Maxey",
      "stat": "tpm",
      "line": 2,
-     "price": -350,
-     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "2+ threes in 9 of 11 games.",
-     "actual": 3,
-     "hit": true
-    },
-    {
-     "player": "VJ Edgecombe",
-     "stat": "pra",
-     "line": 16,
-     "price": -420,
-     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
-     "tag": "Solid",
-     "note": "16+ (Over 15.5) in 9 of 10; only miss was 14 in the opener.",
-     "actual": 17,
-     "hit": true
+     "note": "2+ threes in 10 of 12 games; 3 vs Boston."
     },
     {
      "player": "VJ Edgecombe",
      "stat": "tpm",
      "line": 1,
-     "price": -650,
-     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Core",
-     "note": "Not graded yet: no final source found for his threes (0 of 3 late in the 3rd). Doesn't change the result: the slip already missed on other legs.",
-     "actual": null,
-     "hit": null
-    },
-    {
-     "player": "Jaylen Brown",
-     "stat": "pra",
-     "line": 27,
-     "price": -320,
-     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
-     "tag": "Core",
-     "note": "27+ (Over 26.5) in 8 of 10 (the misses were two 24s). First game against Boston since the trade.",
-     "actual": 20,
-     "hit": false
+     "note": "1+ three in 9 of 10 graded games; 11 for 11 on our slips."
     },
     {
      "player": "VJ Edgecombe",
      "stat": "stl",
      "line": 1,
-     "price": -350,
-     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "1+ steal in 9 of 10, including 3, 4 and 3 in his last three.",
-     "actual": 1,
-     "hit": true
+     "note": "1+ steal in 10 of 11; 10 for 11 on our slips."
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "pra",
+     "line": 16,
+     "price": null,
+     "priceNote": "price unknown",
+     "tag": "Solid",
+     "note": "16+ in 10 of 11; only miss was 14 in the opener. 17 vs Boston."
+    },
+    {
+     "player": "Jaylen Brown",
+     "stat": "pra",
+     "line": 24,
+     "price": null,
+     "priceNote": "price unknown",
+     "tag": "Core",
+     "note": "24+ in 10 of 11; the miss was 20 vs Boston in foul trouble. Dropped from 27+ after that."
+    },
+    {
+     "player": "LeBron James",
+     "stat": "stl",
+     "line": 1,
+     "price": null,
+     "priceNote": "price unknown",
+     "tag": "Core",
+     "note": "1+ steal in 9 of 10; 7 for 7 on our slips. Had 0 vs Boston."
     },
     {
      "player": "Joel Embiid",
      "stat": "reb",
-     "line": 7,
-     "price": -330,
-     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
+     "line": 6,
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Risky",
-     "note": "7+ rebounds in all 9 games. Boston has real bigs (Queta, Mitchell Robinson).",
-     "actual": 6,
-     "hit": false
+     "note": "6+ rebounds in all 10 games (7+ in 9 of 10; 6 vs Boston). Took a hard fall vs Boston but finished the game."
     },
     {
-     "player": "Anfernee Simons",
+     "player": "Kentavious Caldwell-Pope",
      "stat": "tpm",
      "line": 1,
-     "price": -440,
-     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "At least 1 three (1 of 3 late in the 3rd; 17 points). Hit.",
-     "actual": 1,
-     "hit": true
-    },
-    {
-     "player": "LeBron James",
-     "stat": "pra",
-     "line": 24,
-     "price": -340,
-     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
-     "tag": "Solid",
-     "note": "24+ (Over 23.5) in 8 of 9 (18 was the miss).",
-     "actual": 24,
-     "hit": true
+     "note": "1+ three in 10 of 11 graded games."
     }
-   ],
-   "fdPrice": 630,
-   "boost": 50,
-   "boosted": 945
+   ]
   },
   {
    "name": "With ML",
-   "legsCount": 10,
+   "legsCount": 9,
    "legs": [
     {
      "player": "Tyrese Maxey",
      "stat": "pra",
      "line": 28,
-     "price": -330,
-     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "28+ (Over 27.5) in 9 of 11; the two misses were 27 at DET and 24 at CLE.",
-     "actual": 29,
-     "hit": true
+     "note": "28+ in 10 of 12; the misses were 27 at DET and 24 at CLE. 29 vs Boston."
     },
     {
      "player": "Tyrese Maxey",
      "stat": "tpm",
      "line": 2,
-     "price": -350,
-     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "2+ threes in 9 of 11 games.",
-     "actual": 3,
-     "hit": true
-    },
-    {
-     "player": "VJ Edgecombe",
-     "stat": "pra",
-     "line": 16,
-     "price": -420,
-     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
-     "tag": "Solid",
-     "note": "16+ (Over 15.5) in 9 of 10; only miss was 14 in the opener.",
-     "actual": 17,
-     "hit": true
+     "note": "2+ threes in 10 of 12 games; 3 vs Boston."
     },
     {
      "player": "VJ Edgecombe",
      "stat": "tpm",
      "line": 1,
-     "price": -650,
-     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Core",
-     "note": "Not graded yet: no final source found for his threes (0 of 3 late in the 3rd). Doesn't change the result: the slip already missed on other legs.",
-     "actual": null,
-     "hit": null
-    },
-    {
-     "player": "Jaylen Brown",
-     "stat": "pra",
-     "line": 27,
-     "price": -320,
-     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
-     "tag": "Core",
-     "note": "27+ (Over 26.5) in 8 of 10 (the misses were two 24s). First game against Boston since the trade.",
-     "actual": 20,
-     "hit": false
+     "note": "1+ three in 9 of 10 graded games; 11 for 11 on our slips."
     },
     {
      "player": "VJ Edgecombe",
      "stat": "stl",
      "line": 1,
-     "price": -350,
-     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "1+ steal in 9 of 10, including 3, 4 and 3 in his last three.",
-     "actual": 1,
-     "hit": true
+     "note": "1+ steal in 10 of 11; 10 for 11 on our slips."
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "pra",
+     "line": 16,
+     "price": null,
+     "priceNote": "price unknown",
+     "tag": "Solid",
+     "note": "16+ in 10 of 11; only miss was 14 in the opener. 17 vs Boston."
+    },
+    {
+     "player": "Jaylen Brown",
+     "stat": "pra",
+     "line": 24,
+     "price": null,
+     "priceNote": "price unknown",
+     "tag": "Core",
+     "note": "24+ in 10 of 11; the miss was 20 vs Boston in foul trouble. Dropped from 27+ after that."
+    },
+    {
+     "player": "LeBron James",
+     "stat": "stl",
+     "line": 1,
+     "price": null,
+     "priceNote": "price unknown",
+     "tag": "Core",
+     "note": "1+ steal in 9 of 10; 7 for 7 on our slips. Had 0 vs Boston."
     },
     {
      "player": "Joel Embiid",
      "stat": "reb",
-     "line": 7,
-     "price": -330,
-     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
+     "line": 6,
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Risky",
-     "note": "7+ rebounds in all 9 games. Boston has real bigs (Queta, Mitchell Robinson).",
-     "actual": 6,
-     "hit": false
-    },
-    {
-     "player": "Anfernee Simons",
-     "stat": "tpm",
-     "line": 1,
-     "price": -440,
-     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
-     "tag": "Solid",
-     "note": "At least 1 three (1 of 3 late in the 3rd; 17 points). Hit.",
-     "actual": 1,
-     "hit": true
-    },
-    {
-     "player": "LeBron James",
-     "stat": "pra",
-     "line": 24,
-     "price": -340,
-     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
-     "tag": "Solid",
-     "note": "24+ (Over 23.5) in 8 of 9 (18 was the miss).",
-     "actual": 24,
-     "hit": true
+     "note": "6+ rebounds in all 10 games (7+ in 9 of 10; 6 vs Boston). Took a hard fall vs Boston but finished the game."
     },
     {
      "player": "76ers",
      "stat": "ml",
      "line": 0,
-     "price": 100,
-     "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
-     "tag": "Risky",
-     "note": "Moneyline at +100: a coin flip against the 8-2 Celtics, who are 1.5-point favorites.",
-     "actual": -22,
-     "hit": false
+     "price": null,
+     "priceNote": "price unknown",
+     "tag": "Solid",
+     "note": "9-3 Sixers at home vs a 5-5 Raptors team on the second night of a back-to-back and missing Leonard and Barnes. Line not posted yet."
     }
-   ],
-   "fdPrice": 931,
-   "boost": 30,
-   "boosted": 1210
+   ]
   }
  ],
  "bench": [
   {
-   "player": "Tyrese Maxey",
-   "stat": "pra",
-   "line": 25,
-   "effect": "Shorter price; swap for Maxey 30+.",
-   "note": "25+ in 10 of 11."
-  },
-  {
    "player": "LeBron James",
    "stat": "pra",
-   "line": 25,
-   "effect": "Similar price. Swap in for Embiid rebounds if he's limited or out (then drop another pts + reb + ast leg to stay at 3).",
-   "note": "25+ in 8 of 9."
+   "line": 24,
+   "effect": "Swap in for Embiid rebounds if he's limited or out (then drop VJ pts + reb + ast to stay at 3).",
+   "note": "24+ in 9 of 10."
+  },
+  {
+   "player": "Anfernee Simons",
+   "stat": "tpm",
+   "line": 1,
+   "effect": "Same idea as Caldwell-Pope 1+ three, if KCP's price is too short.",
+   "note": "1+ in 9 of 11; 17 points vs Boston."
+  },
+  {
+   "player": "Joel Embiid",
+   "stat": "reb",
+   "line": 7,
+   "effect": "Lengthens the slip a notch if 6+ is too short.",
+   "note": "7+ in 9 of 10."
   },
   {
    "player": "Tyrese Maxey",
    "stat": "stl",
    "line": 1,
    "effect": "Lengthens the slip a little.",
-   "note": "1+ in 8 of 11."
-  },
-  {
-   "player": "76ers",
-   "stat": "ml",
-   "line": 0,
-   "effect": "Use instead of +4.5 for a much bigger price, but it's a coin flip (Sixers -102 at FanDuel).",
-   "note": "The Sixers are 9-2."
+   "note": "1+ in 8 of 12."
   }
  ],
- "tuner": []
+ "tuner": [
+  "Under +800 with no boost: use Embiid 7+ rebounds instead of 6+, or add Maxey 1+ steal.",
+  "Over +1300: drop Maxey 28+ to 25+ pts + reb + ast.",
+  "If the Sixers are big favorites (-8 or more), skip a big spread and keep the moneyline.",
+  "If Embiid is out or limited: use LeBron 24+ pts + reb + ast and drop VJ pts + reb + ast."
+ ],
+ "analysis": {
+  "game": "2026-11-12",
+  "written": "2026-11-10T23:05:00-05:00",
+  "summary": "A softer spot than Boston: Toronto is 5-5, missing Leonard and Barnes, and on the second night of a back-to-back. The slip leans on Maxey, VJ's threes and steals, and LeBron's steals, with Brown's line dropped to 24+ after Tuesday. Main risk: a Sixers blowout that cuts the starters' fourth-quarter minutes.",
+  "slips": {
+   "Props only": "Nine props, three of them pts + reb + ast, built from legs that hit in 80-100% of games.",
+   "With ML": "Swaps Caldwell-Pope's three for the Sixers to win at home against a tired, short-handed Raptors team."
+  },
+  "watch": [
+   {
+    "kind": "Rest",
+    "title": "Raptors on a back-to-back",
+    "text": "Toronto hosts Boston Wednesday night, then travels to Philly. Tired legs help the Sixers' scoring and the moneyline.",
+    "legs": [
+     "76ers moneyline"
+    ],
+    "level": "good"
+   },
+   {
+    "kind": "Blowout",
+    "title": "Starters could sit late",
+    "text": "If the Sixers pull away, Maxey, Brown and VJ may sit the fourth, which hurts the three pts + reb + ast legs together.",
+    "legs": [
+     "Maxey 28+ pts + reb + ast",
+     "Brown 24+ pts + reb + ast",
+     "VJ 16+ pts + reb + ast"
+    ],
+    "level": "brass"
+   },
+   {
+    "kind": "Injury",
+    "title": "Embiid's fall",
+    "text": "He limped after a hard fall vs Boston but came back for the second half. Check the report Thursday.",
+    "legs": [
+     "Embiid 6+ rebounds"
+    ],
+    "level": "brass"
+   },
+   {
+    "kind": "Overlap",
+    "title": "VJ carries three legs",
+    "text": "VJ's threes, steal and pts + reb + ast tend to rise and fall together; a quiet VJ night could cost more than one leg.",
+    "legs": [
+     "VJ 1+ three",
+     "VJ 1+ steal",
+     "VJ 16+ pts + reb + ast"
+    ],
+    "level": "brass"
+   }
+  ],
+  "legs": [
+   {
+    "player": "Tyrese Maxey",
+    "stat": "pra",
+    "line": 28,
+    "why": "10 of 12 this season, 29 vs Boston. Toronto's guards are thin with Quickley questionable."
+   },
+   {
+    "player": "Tyrese Maxey",
+    "stat": "tpm",
+    "line": 2,
+    "why": "10 of 12 games and 12 for 15 on our slips; hit 3 vs Boston."
+   },
+   {
+    "player": "VJ Edgecombe",
+    "stat": "tpm",
+    "line": 1,
+    "why": "9 of 10 graded games and 11 for 11 on our slips. Went cold vs Boston (0 for 3 into the third quarter)."
+   },
+   {
+    "player": "VJ Edgecombe",
+    "stat": "stl",
+    "line": 1,
+    "why": "10 of 11 games and 10 for 11 on our slips."
+   },
+   {
+    "player": "VJ Edgecombe",
+    "stat": "pra",
+    "line": 16,
+    "why": "10 of 11 games; 17 vs Boston. Kept at 16+ per the playbook."
+   },
+   {
+    "player": "Jaylen Brown",
+    "stat": "pra",
+    "line": 24,
+    "why": "10 of 11 games. Missed 27+ vs Boston (20) in foul trouble, so the line comes down to 24+."
+   },
+   {
+    "player": "LeBron James",
+    "stat": "stl",
+    "line": 1,
+    "why": "9 of 10 games and 7 for 7 on our slips."
+   },
+   {
+    "player": "Joel Embiid",
+    "stat": "reb",
+    "line": 6,
+    "why": "All 10 games. Toronto is without its listed center, Bittle. Still Risky: he took a hard fall Tuesday."
+   },
+   {
+    "player": "Kentavious Caldwell-Pope",
+    "stat": "tpm",
+    "line": 1,
+    "why": "10 of 11 graded games, steady off the bench."
+   },
+   {
+    "player": "76ers",
+    "stat": "ml",
+    "line": 0,
+    "why": "9-3 at home vs 5-5 Toronto on a back-to-back without Leonard and Barnes. Line not posted yet."
+   },
+   {
+    "player": "LeBron James",
+    "stat": "pra",
+    "line": 24,
+    "why": "Bench: 9 of 10 games."
+   },
+   {
+    "player": "Anfernee Simons",
+    "stat": "tpm",
+    "line": 1,
+    "why": "Bench: 9 of 11 games."
+   },
+   {
+    "player": "Joel Embiid",
+    "stat": "reb",
+    "line": 7,
+    "why": "Bench: 9 of 10 games."
+   },
+   {
+    "player": "Tyrese Maxey",
+    "stat": "stl",
+    "line": 1,
+    "why": "Bench: 8 of 12 games, 6 for 9 on our slips."
+   }
+  ]
+ }
 }
