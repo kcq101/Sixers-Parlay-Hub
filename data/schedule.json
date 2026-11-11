@@ -13,7 +13,9 @@
    "when": "2026-11-10T19:20:00-05:00",
    "what": "Final check before tip",
    "detail": "Checks the final injury report and starting lineups 40 minutes before tip and swaps any leg whose player is out or limited.",
-   "status": "scheduled"
+   "status": "done",
+   "doneAt": "2026-11-10T19:25:00-05:00",
+   "result": "No new injuries; all five Sixers starters and Simons cleared, no minutes limits; both slips already placed, nothing changed."
   },
   {
    "when": "2026-11-10T22:55:00-05:00",
