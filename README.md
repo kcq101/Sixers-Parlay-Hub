@@ -3,7 +3,7 @@
 Our Sixers same-game parlay picks, history and playbook. View-only site, built for phones.
 
 - **The Game** — the next game's suggested 9-leg and 10-leg slips: estimated price, profit and return (illustrative $10 stake), each leg's season bars, hit count and season average, automatic-update schedule, injuries and notes.
-- **AI: The Answers** — overlap and correlated-risk checks, injury and minutes notes, bench swaps, why each leg, the price tuner, and the house rules (collapsed at the bottom).
+- **AI: The Answers** — before the game: the pre-game read written by the refresh job (`analysis` in `tonight.json`), overlap and correlated-risk checks, injury and minutes notes, bench swaps (tap to try one; it's saved on that phone only and only for slips not yet placed), why each leg, the price tuner, and the house rules (collapsed at the bottom). Once the game tips: the in-game read at the top, with a rough chance for each leg and the slip, refreshed every 2 minutes from ESPN (`js/ingame.js`).
 - **Previous Parlays** — every slip we've played, graded leg by leg, with filters.
 - **Stats** — season P/L, near misses, legs hit per ticket, and hit rates by player, prop type and leg.
 - **Shoot Around** — a free-throw mini-game. The Waterfront court is live; South Philly and Center City are built but switched off in `js/app.js` (`SHOOT_COURTS`) while they're refined. Flick up to shoot. Opens full-screen from the tab; the game itself lives in `game/`.

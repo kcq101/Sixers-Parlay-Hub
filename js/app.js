@@ -220,6 +220,71 @@ function expandSlips(t) {
   return t.slips.map(s => (s.sameAs ? { ...s, legs: [...t.slips.find(x => x.name === s.sameAs).legs, ...s.addLegs] } : s));
 }
 
+// ---------- Swaps made on this phone (only for slips not yet placed in FanDuel) ----------
+const SWAP_KEY = "sph-swaps";
+const legKey = l => `${l.player}|${l.stat}|${l.line}`;
+const swapKey = (t, s) => `${t.game.date}|${t.game.opp}|${s.name}`;
+function loadSwaps() { try { return JSON.parse(localStorage.getItem(SWAP_KEY) || "{}") || {}; } catch (e) { return {}; } }
+function saveSwaps(o) { try { localStorage.setItem(SWAP_KEY, JSON.stringify(o)); } catch (e) { /* private mode */ } }
+function applySwaps(t, slips) {
+  const sw = loadSwaps();
+  return slips.map(s => {
+    const list = s.fdPrice != null ? null : sw[swapKey(t, s)];
+    if (!list?.length) return s;
+    const legs = [...s.legs], done = [];
+    list.forEach(x => {
+      const i = legs.findIndex(l => legKey(l) === x.out);
+      const b = (t.bench || []).find(b => legKey(b) === x.in);
+      if (i < 0 || !b || legs.some(l => legKey(l) === x.in)) return;
+      done.push({ out: legs[i], in: b });
+      legs[i] = { player: b.player, stat: b.stat, line: b.line, price: null, priceNote: "bench swap made on this phone; no price yet", tag: b.tag || "", note: b.note || "", swapped: true };
+    });
+    return { ...s, legs, swaps: done };
+  });
+}
+function addSwap(t, s, outLeg, inLeg) {
+  const sw = loadSwaps(), k = swapKey(t, s);
+  (sw[k] ??= []).push({ out: legKey(outLeg), in: legKey(inLeg) });
+  saveSwaps(sw);
+}
+function clearSwaps(t, s) { const sw = loadSwaps(); delete sw[swapKey(t, s)]; saveSwaps(sw); }
+const slipsFor = t => applySwaps(t, expandSlips(t));
+
+// ---------- Pre-game analysis written by the refresh job (tonight.json "analysis") ----------
+// Only used when it was written for tonight's game; otherwise the page's own checks stand in.
+function analysisFor(t) {
+  const a = t.analysis;
+  return a && a.game === t.game.date ? a : null;
+}
+function analystWhy(a, l) {
+  const hit = a?.legs?.find(x => legKey(x) === legKey(l));
+  return hit?.why || l.note || "";
+}
+
+// ---------- In-game read (js/ingame.js) ----------
+function seasonAvgNum(data, l) {
+  const g = history(l, data);
+  return g.length ? g.reduce((a, x) => a + x.val, 0) / g.length : null;
+}
+function liveEvals(legs, L, opp) {
+  return legs.map(l => (l.void || l.actual != null ? null : safeEval(l, L, opp)));
+}
+// Null before tip or when there's no live read. Graded legs count as settled.
+function inGame(data, legs, evs, L) {
+  if (!window.InGame || !L || !L.state || L.state === "pre") return null;
+  const g = data.tonight.game;
+  const reads = legs.map((l, i) => {
+    if (l.void) return { p: 1, label: "Void", cls: "void", note: "" };
+    if (l.actual != null) return { p: l.hit ? 1 : 0, label: l.hit ? "Hit" : "Missed", cls: l.hit ? "hit" : "miss", note: "" };
+    try { return InGame.legRead(l, evs[i], L, { opp: g.opp, spread: g.spread, seasonAvg: isGame(l) ? null : seasonAvgNum(data, l) }); } catch (e) { return null; }
+  });
+  let slip = null;
+  try { slip = InGame.slipRead(legs, reads, L, g.opp); } catch (e) { /* show legs anyway */ }
+  return { reads, slip };
+}
+const pctTxt = p => (window.InGame ? InGame.pctTxt(p) : `${Math.round(p * 100)}%`);
+const IG_CLS = { good: "hit", ok: "blue", push: "brass", bad: "red", hit: "hit", miss: "red", void: "steel" };
+
 function estPrice(legs) {
   // Legs with no posted price for this game (price null) are left out, not guessed.
   const priced = legs.filter(l => l.price != null);
@@ -232,17 +297,19 @@ function estPrice(legs) {
 function renderTonight(data, el, ui) {
   const t = data.tonight;
   const g = t.game;
-  const slips = expandSlips(t);
   const opp = TEAM[g.opp] || g.opp;
 
   const draw = () => {
+    const slips = slipsFor(t);
     const s = slips[ui.slip] || slips[0];
     const real = s.fdPrice != null;        // FanDuel's actual price, once the slip is placed
     const est = real ? s.fdPrice : estPrice(s.legs);
     const stake = STAKE;
     const profit = est == null ? null : (STAKE * est) / 100;   // regular (unboosted) price
     const L = ui.live && !ui.live.error ? ui.live : ui.live?.last || null;   // last good ESPN read
-    const evs = s.legs.map(l => (l.void || l.actual != null ? null : safeEval(l, L, g.opp)));
+    const evs = liveEvals(s.legs, L, g.opp);
+    const ig = t.status === "graded" ? null : inGame(data, s.legs, evs, L);
+    const A = analysisFor(t);
     const states = s.legs.map((l, i) => (evs[i] ? evs[i].state : legState(l)));
     const settled = states.filter(x => x !== "pending" && x !== "live").length;
     const nHit = states.filter(x => x === "hit").length, nMiss = states.filter(x => x === "miss").length;
@@ -289,19 +356,20 @@ function renderTonight(data, el, ui) {
         <p class="muted" style="margin-top:8px">Illustrative $10 stake. Profit is at the regular price, no boost; return = stake + profit.</p>
         <div class="progress-row"><span class="label">Ticket progress</span><span class="label" style="color:var(--ink-2)">${progress}</span></div>
         <div class="segs" aria-hidden="true">${states.map(x => `<span class="seg ${["hit", "miss", "live"].includes(x) ? x : ""}"></span>`).join("")}</div>
+        ${s.swaps?.length ? `<p class="status-note" style="margin-top:10px">Swapped on this phone: ${s.swaps.map(x => `${esc(shortName(x.in.player))} ${esc(legLabel(x.in))} for ${esc(shortName(x.out.player))} ${esc(legLabel(x.out))}`).join("; ")}. Undo it on AI: The Answers.</p>` : ""}
         ${unpriced ? `<p class="status-note" style="margin-top:10px">${unpriced} ${unpriced === 1 ? "leg has" : "legs have"} no posted price for this game yet, so the estimate leaves ${unpriced === 1 ? "it" : "them"} out. The real price will be higher.</p>` : ""}
         <p class="muted" style="margin-top:10px">${real ? "Price from your FanDuel slip." : `Estimate = legs multiplied, less ~15% because FanDuel pays less when legs are related. Uses only prices posted for this game (${esc(context)}); prices shift with the opponent. Your screenshot is the real number.`}</p>
       </section>
 
       <section class="legs">
         <div class="section-row"><h2 class="section">Legs</h2><span class="label">Bars = this season · line = threshold</span></div>
-        ${s.legs.map((l, i) => legCard(l, data, g.opp, i === ui.open, evs[i], L)).join("")}
+        ${s.legs.map((l, i) => legCard(l, data, g.opp, i === ui.open, evs[i], L, ig?.reads[i])).join("")}
       </section>
 
       <button type="button" class="analyst-link" data-go="t-build">
-        <div class="analyst-head"><img class="ai-avatar" src="assets/answers-icon.png" width="32" height="32" alt=""><span class="mono analyst-title">AI: The Answers</span><span class="badge brass" style="margin-left:auto">${flags} ${flags === 1 ? "flag" : "flags"}</span></div>
-        ${flagSummary(data, s.legs)}
-        <span class="mono" style="display:inline-block;margin-top:10px;font-size:14px">Open the read →</span>
+        <div class="analyst-head"><img class="ai-avatar" src="assets/answers-icon.png" width="32" height="32" alt=""><span class="mono analyst-title">AI: The Answers</span>${ig?.slip ? `<span class="badge ${ig.slip.chance >= 0.5 ? "hit" : ig.slip.chance >= 0.2 ? "brass" : "red"}" style="margin-left:auto">${L.state === "post" ? "Final" : "In-game"} · ${pctTxt(ig.slip.chance)}</span>` : `<span class="badge brass" style="margin-left:auto">${flags} ${flags === 1 ? "flag" : "flags"}</span>`}</div>
+        ${ig?.slip ? `<p class="ig-lead">Slip chance about <b>${pctTxt(ig.slip.chance)}</b>. ${esc(ig.slip.text)}</p>` : `${A?.summary ? `<p class="ig-lead">${esc(A.summary)}</p>` : ""}${flagSummary(data, s.legs)}`}
+        <span class="mono" style="display:inline-block;margin-top:10px;font-size:14px">${ig?.slip ? "Open the in-game read →" : "Open the read →"}</span>
       </button>
 
       ${scheduleBlock(data.schedule)}
@@ -356,18 +424,19 @@ function liveStrip(live, g) {
 }
 
 // Live progress line for one leg, e.g. "18 of 30" with a meter, or "Up 12 · needs 8+".
-function liveLine(l, ev) {
+function liveLine(l, ev, r) {
   if (!ev) return "";
+  const chance = r && ev.state === "live" ? ` · <b class="ig-p ${r.cls}">${pctTxt(r.p)}</b>` : "";
   if (isGame(l)) {
     const m = ev.val;
     const now = m > 0 ? `Up ${m}` : m < 0 ? `Down ${-m}` : "Tied";
     const need = l.stat === "ml" ? "needs the win" : l.line < 0 ? `needs to win by ${Math.floor(-l.line) + 1}+` : `covers unless they lose by ${Math.ceil(l.line)}+`;
-    return `<div class="live-meter ${ev.state}"><span class="lm-text">${ev.state === "live" ? `${now} · ${need}` : `${ev.state === "hit" ? "Covered" : "Missed"} · ${now.toLowerCase()}`}</span></div>`;
+    return `<div class="live-meter ${ev.state}"><span class="lm-text">${ev.state === "live" ? `${now} · ${need}${chance}` : `${ev.state === "hit" ? "Covered" : "Missed"} · ${now.toLowerCase()}`}</span></div>`;
   }
   if (ev.state === "void") return `<div class="live-meter void"><span class="lm-text">Didn't play · leg voids</span></div>`;
   const w = Math.min(100, Math.round((ev.val / l.line) * 100));
   const label = ev.state === "hit" ? `Hit · ${ev.val} of ${l.line}` : ev.notIn ? `Hasn't played yet · 0 of ${l.line}` : `${ev.val} of ${l.line}${ev.state === "miss" ? " · missed" : ""}`;
-  return `<div class="live-meter ${ev.state}"><span class="lm-track"><i style="width:${w}%"></i></span><span class="lm-text">${esc(label)}</span></div>`;
+  return `<div class="live-meter ${ev.state}"><span class="lm-track"><i style="width:${w}%"></i></span><span class="lm-text">${esc(label)}${chance}</span></div>`;
 }
 
 function injuryBadge(status) {
@@ -377,7 +446,7 @@ function injuryBadge(status) {
   return `<span class="badge ${cls}">${esc(label)}</span>`;
 }
 
-function legCard(l, data, opp, open, ev, L) {
+function legCard(l, data, opp, open, ev, L, r) {
   const games = history(l, data);
   const st = ev ? ev.state : legState(l);
   const hits = games.filter(g => g.hit).length;
@@ -403,11 +472,13 @@ function legCard(l, data, opp, open, ev, L) {
         </span>
         ${CHEV}
       </div>
-      ${liveLine(l, ev)}
+      ${liveLine(l, ev, r)}
       ${bars(games, l)}
     </summary>
     <div class="leg-body">
       ${final}
+      ${r && r.note && ev?.state === "live" ? `<p class="ig-note"><span class="badge ${IG_CLS[r.cls]}">${esc(r.label)}</span> ${esc(r.note)}</p>` : ""}
+      ${l.swapped ? `<p class="status-note">Swapped in on this phone.</p>` : ""}
       ${games.length ? `<div class="games">${games.map(x => `<div class="${x.hit ? "h" : "m"}"><small>${esc(x.opp)}</small><b>${esc(isGame(l) ? (x.val > 0 ? `W+${x.val}` : `L${x.val}`) : x.val)}</b></div>`).join("")}</div>` : ""}
       ${l.note ? `<p class="leg-note">${esc(l.note)}</p>` : ""}
       <p class="muted">${games.length ? `Season avg ${seasonAvg(games, l)} ${AVG_WHAT[l.stat]}${isGame(l) ? "" : ` (needs ${l.line})`} over ${games.length} games. ` : ""}${rec.n ? `On our slips: ${rec.h} of ${rec.n}.` : "Not on our slips yet."} ${vsLine ? vsLine + "." : ""} ${l.priceNote ? `Price: ${esc(l.priceNote)}.` : ""}</p>
@@ -469,12 +540,15 @@ function flagSummary(data, legs) {
   return watchList(f);
 }
 
-// ---------- Build ----------
+// ---------- Build (AI: The Answers) ----------
 function renderBuild(data, el, ui) {
   const t = data.tonight;
-  const slips = expandSlips(t);
+  const g = t.game;
   const draw = () => {
+    const slips = slipsFor(t);
     const s = slips[ui.slip] || slips[0];
+    const A = analysisFor(t);
+    const placed = s.fdPrice != null;
     const flags = buildFlags(data, s.legs);
     const risky = s.legs.filter(l => l.tag === "Risky");
     const why = s.legs.map(l => {
@@ -483,24 +557,42 @@ function renderBuild(data, el, ui) {
       return { l, h, n: games.length, r: games.length ? h / games.length : 0, avg: seasonAvg(games, l) };
     }).sort((a, b) => b.r - a.r || b.n - a.n);
     const strong = why.filter(w => w.n && w.r >= 0.8).length;
-    const target = risky[0] || why[why.length - 1].l;
+    const defTarget = risky[0] || why[why.length - 1].l;
+    if (ui.swapTarget == null || !s.legs.some(l => legKey(l) === ui.swapTarget)) ui.swapTarget = legKey(defTarget);
+    const target = s.legs.find(l => legKey(l) === ui.swapTarget) || defTarget;
     const injuries = t.injuries.filter(i => i.team === "PHI" ? true : !/out/i.test(i.status));
-    const est = s.fdPrice != null ? s.fdPrice : estPrice(s.legs);
+    const est = placed ? s.fdPrice : estPrice(s.legs);
+    const L = ui.live && !ui.live.error ? ui.live : ui.live?.last || null;
+    const ig = t.status === "graded" ? null : inGame(data, s.legs, liveEvals(s.legs, L, g.opp), L);
+    const lead = A?.summary
+      ? esc(A.summary)
+      : `${strong} of ${s.legs.length} legs hit in at least 80% of games this season.${flags.length ? " Watch:" : " No overlaps or rule breaks found."}`;
+    const slipNote = A?.slips?.[s.name];
 
+    const rulesOpen = el.querySelector("details.rules")?.open;
     el.innerHTML = `
+      ${ig?.slip ? inGameBlock(s, ig, L) : ""}
+
       <section class="analyst">
         <div style="display:flex;align-items:center;gap:10px">
           <img class="ai-avatar lg" src="assets/answers-icon.png" width="44" height="44" alt="">
-          <div style="display:flex;flex-direction:column;gap:3px"><span class="mono analyst-title" style="color:var(--blue-ink);font-size:15px">AI: The Answers</span><span class="mono" style="font-size:11px;color:var(--ink-4)">${esc(s.name)} · ${s.legs.length} legs</span></div>
+          <div style="display:flex;flex-direction:column;gap:3px"><span class="mono analyst-title" style="color:var(--blue-ink);font-size:15px">${ig?.slip ? "Pre-game read" : "AI: The Answers"}</span><span class="mono" style="font-size:11px;color:var(--ink-4)">${esc(s.name)} · ${s.legs.length} legs${A?.written ? ` · written ${esc(new Date(A.written).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" }))}` : ""}</span></div>
         </div>
-        <p class="lead">${strong} of ${s.legs.length} legs hit in at least 80% of games this season.${flags.length ? " Watch:" : " No overlaps or rule breaks found."}</p>
-        ${flags.length ? watchList(flags) : ""}
+        <p class="lead">${lead}</p>
+        ${slipNote ? `<p class="lead" style="margin-top:8px;font-size:15px;color:var(--ink-2)">${esc(slipNote)}</p>` : ""}
+        ${A?.summary ? "" : flags.length ? watchList(flags) : ""}
         <div class="mini-kpis">
-          <div><b>${fmtOdds(est)}</b><span class="label">Est. price</span></div>
+          <div><b>${fmtOdds(est)}</b><span class="label">${placed ? "FanDuel price" : "Est. price"}</span></div>
           <div><b class="brass-t">${flags.filter(f => f.cls === "brass").length}</b><span class="label">Overlaps</span></div>
           <div><b style="color:var(--red-ink)">${risky.length}</b><span class="label">Risky ${risky.length === 1 ? "leg" : "legs"}</span></div>
         </div>
       </section>
+
+      ${A?.watch?.length ? `<section class="panel"><h2 class="panel-h">Analyst notes</h2>
+        ${A.watch.map(w => `<div class="flag"><div class="flag-h"><span class="badge ${w.level === "red" ? "red" : w.level === "good" ? "hit" : "brass"}">${esc(w.kind || "Note")}</span>${esc(w.title || "")}</div>
+          ${w.legs?.length ? `<div class="chips">${w.legs.map(c => `<span class="chip">${esc(c)}</span>`).join("")}</div>` : ""}
+          ${w.text ? `<p>${esc(w.text)}</p>` : ""}</div>`).join("")}
+      </section>` : ""}
 
       ${flags.length ? `<section class="panel"><h2 class="panel-h">Overlap &amp; correlated risk</h2>
         ${flags.map(f => `<div class="flag"><div class="flag-h"><span class="badge ${f.cls}">${esc(f.kind)}</span>${esc(f.title)}</div>
@@ -511,30 +603,36 @@ function renderBuild(data, el, ui) {
       <section class="panel">
         <h2 class="panel-h">Injury, lineup &amp; minutes</h2>
         <div class="rows">${injuries.map(i => `<div><span class="mono tm">${esc(i.team)}</span><span class="grow"><b style="font-weight:600">${esc(i.player)}</b> <span class="sub">· ${esc(i.note)}</span></span>${injuryBadge(i.status)}</div>`).join("")}</div>
-        <p class="muted" style="margin-top:8px">The 1:30 PM refresh rechecks this and swaps any leg whose player is out.</p>
+        <p class="muted" style="margin-top:8px">The game-day refresh rechecks this and swaps any leg whose player is out.</p>
       </section>
 
       <section class="panel" style="border-color:rgba(237,23,76,.45)">
         <h2 class="panel-h">Swap one leg</h2>
-        <div class="swap-target">
-          <span style="flex:1;display:flex;flex-direction:column;gap:2px"><span class="mono" style="font-size:11px;color:#FF8FA8">${target.tag === "Risky" ? "Riskiest leg" : "Weakest leg"}</span><span class="disp" style="font-size:19px;font-weight:700">${esc(shortName(target.player))} ${esc(legLabel(target))} <span style="color:var(--ink-3);font-weight:500">${fmtOdds(target.price)}</span></span></span>
+        <label class="swap-target">
+          <span style="flex:1;display:flex;flex-direction:column;gap:2px"><span class="mono" style="font-size:11px;color:#FF8FA8">${legKey(target) === legKey(defTarget) ? (target.tag === "Risky" ? "Riskiest leg" : "Weakest leg") : "Leg to replace"}</span><span class="disp" style="font-size:19px;font-weight:700">${esc(shortName(target.player))} ${esc(legLabel(target))} <span style="color:var(--ink-3);font-weight:500">${fmtOdds(target.price)}</span></span></span>
           ${tagBadge(target.tag)}
-        </div>
-        <p class="muted" style="margin:8px 0 12px">Bench options keep the other legs as they are. Make the swap in FanDuel; this page never places a bet.</p>
+          ${placed ? "" : `<select class="swap-pick" data-swap-target aria-label="Leg to replace">${s.legs.map(l => `<option value="${esc(legKey(l))}"${legKey(l) === legKey(target) ? " selected" : ""}>${esc(shortName(l.player))} ${esc(legLabel(l))}</option>`).join("")}</select>`}
+        </label>
+        <p class="muted" style="margin:8px 0 12px">${placed
+          ? "This slip is already placed in FanDuel, so these are for reference."
+          : "Tap Swap in to try a bench leg in place of the one above. It recalculates the slip on this phone only (your friends won't see it). Make the real change in FanDuel; this page never places a bet."}</p>
+        ${s.swaps?.length ? `<div class="swap-done"><span>Swapped on this phone: ${s.swaps.map(x => `${esc(shortName(x.in.player))} ${esc(legLabel(x.in))} for ${esc(shortName(x.out.player))} ${esc(legLabel(x.out))}`).join("; ")}.</span><button type="button" class="btn" data-swap-undo>Undo</button></div>` : ""}
         <div style="display:flex;flex-direction:column;gap:8px">
-          ${t.bench.map(b => {
+          ${(t.bench || []).map((b, bi) => {
             const games = history(b, data);
             const h = games.filter(x => x.hit).length;
+            const inSlip = s.legs.some(l => legKey(l) === legKey(b));
             return `<div class="swap-opt"><div style="display:flex;justify-content:space-between;gap:8px"><span class="disp" style="font-size:18px;font-weight:700">${esc(shortName(b.player))} ${esc(legLabel(b))}</span><span class="mono" style="font-size:12.5px;color:var(--brass-ink);white-space:nowrap">${games.length ? `${h}/${games.length} · avg ${seasonAvg(games, b)}` : ""}</span></div>
               ${bars(games, b)}
-              <p class="muted" style="font-size:13px;color:var(--ink-3)">${esc(b.effect)} ${esc(b.note || "")}</p></div>`;
+              <p class="muted" style="font-size:13px;color:var(--ink-3)">${esc(b.effect)} ${esc(b.note || "")}</p>
+              ${placed ? "" : inSlip ? `<p class="mono" style="font-size:12px;color:var(--ink-4)">Already in this slip</p>` : `<div><button type="button" class="btn" data-swap-in="${bi}">Swap in for ${esc(shortName(target.player))} ${esc(legLabel(target))}</button></div>`}</div>`;
           }).join("")}
         </div>
       </section>
 
       <section class="panel why">
         <h2 class="panel-h">Why each leg</h2>
-        ${why.map(w => `<div><span class="mono rate">${w.n ? `${w.h}/${w.n}<br><span style="color:var(--ink-4)">avg ${w.avg}</span>` : "—"}</span><div style="flex:1;display:flex;flex-direction:column;gap:2px"><span class="leg-t">${esc(shortName(w.l.player))} ${esc(legLabel(w.l))}</span><p>${esc(w.l.note || "")}</p></div></div>`).join("")}
+        ${why.map(w => `<div><span class="mono rate">${w.n ? `${w.h}/${w.n}<br><span style="color:var(--ink-4)">avg ${w.avg}</span>` : "—"}</span><div style="flex:1;display:flex;flex-direction:column;gap:2px"><span class="leg-t">${esc(shortName(w.l.player))} ${esc(legLabel(w.l))}</span><p>${esc(analystWhy(A, w.l))}</p></div></div>`).join("")}
       </section>
 
       ${t.tuner?.length ? `<section class="panel tuner"><h2 class="panel-h">If FanDuel's price is off</h2>${t.tuner.map(x => `<div>${esc(x)}</div>`).join("")}</section>` : ""}
@@ -543,9 +641,47 @@ function renderBuild(data, el, ui) {
 
       ${playbookBlock(data.playbook)}
     `;
+    if (rulesOpen) el.querySelector("details.rules")?.setAttribute("open", "");
+    el.querySelector("[data-swap-target]")?.addEventListener("change", e => { ui.swapTarget = e.target.value; draw(); });
+    el.querySelectorAll("[data-swap-in]").forEach(btn => btn.addEventListener("click", () => {
+      addSwap(t, s, target, t.bench[+btn.dataset.swapIn]);
+      ui.swapTarget = legKey(t.bench[+btn.dataset.swapIn]);
+      draw(); ui.redrawTonight?.();
+    }));
+    el.querySelector("[data-swap-undo]")?.addEventListener("click", () => { clearSwaps(t, s); ui.swapTarget = null; draw(); ui.redrawTonight?.(); });
   };
   draw();
   return draw;
+}
+
+// Top of AI: The Answers once the game is on: slip chance and a row per leg, worst first.
+function inGameBlock(s, ig, L) {
+  const final = L.state === "post";
+  const rows = s.legs.map((l, i) => ({ l, r: ig.reads[i] })).filter(x => x.r);
+  const open = rows.filter(x => !["Hit", "Missed", "Void"].includes(x.r.label)).sort((a, b) => a.r.p - b.r.p);
+  const done = rows.filter(x => ["Hit", "Missed", "Void"].includes(x.r.label));
+  const nHit = done.filter(x => x.r.label === "Hit").length;
+  const c = ig.slip.chance;
+  const row = x => `<div class="ig-row ${x.r.cls}">
+      <span class="ig-pct mono">${["Hit", "Missed", "Void"].includes(x.r.label) ? (x.r.label === "Hit" ? "✓" : x.r.label === "Void" ? "—" : "✕") : pctTxt(x.r.p)}</span>
+      <div class="ig-mid"><span class="leg-t">${esc(shortName(x.l.player))} ${esc(legLabel(x.l))}</span>${x.r.note ? `<p>${esc(x.r.note)}</p>` : ""}</div>
+      <span class="badge ${IG_CLS[x.r.cls]}">${esc(x.r.label)}</span>
+    </div>`;
+  return `<section class="analyst ig">
+    <div style="display:flex;align-items:center;gap:10px">
+      <img class="ai-avatar lg" src="assets/answers-icon.png" width="44" height="44" alt="">
+      <div style="display:flex;flex-direction:column;gap:3px"><span class="mono analyst-title" style="color:var(--blue-ink);font-size:15px">${final ? "Final read" : "In-game read"}</span><span class="mono" style="font-size:11px;color:var(--ink-4)">${esc(s.name)} · ${esc(ig.slip.when)} · ${esc(ig.slip.score)}${L.updated ? ` · ${esc(new Date(L.updated).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" }))}` : ""}</span></div>
+      ${final ? "" : `<span class="badge red live-dot" style="margin-left:auto">Live</span>`}
+    </div>
+    <p class="lead">${esc(ig.slip.text)}</p>
+    <div class="mini-kpis">
+      <div><b style="color:${c >= 0.5 ? "var(--hit)" : c >= 0.2 ? "var(--brass-ink)" : "var(--red-ink)"}">${pctTxt(c)}</b><span class="label">Slip chance</span></div>
+      <div><b style="color:var(--hit)">${nHit}</b><span class="label">Hit</span></div>
+      <div><b>${open.length}</b><span class="label">To go</span></div>
+    </div>
+    <div class="ig-list">${[...open, ...done].map(row).join("")}</div>
+    <p class="muted" style="margin-top:10px">${final ? "From ESPN's final box score; the grading job records it." : "Updates every 2 minutes from ESPN while this page is open."} Rough estimate: it blends each player's season average with his pace tonight, trims minutes for blowouts and foul trouble, and multiplies the legs as if they were unrelated, so treat the slip chance as a ballpark.</p>
+  </section>`;
 }
 
 function playbookBlock(p) {
@@ -797,7 +933,7 @@ function renderShoot(el) {
 }
 
 // ---------- Live tracking (ESPN) ----------
-// Polls only while The Game tab is showing, the page is visible and it's game day; every 2 min
+// Polls only while The Game or AI: The Answers tab is showing, the page is visible and it's game day; every 2 min
 // once the game is on, stops at the final. Before tip it waits until tip time (checking at most
 // every 15 min). Nothing is written anywhere; this just paints the legs.
 const LIVE_EVERY = 2 * 60 * 1000;
@@ -812,7 +948,7 @@ function gameDay(g, status) {
   // Same day in Eastern time, or a late game still running a few hours past midnight.
   return etDate(now) === g.date || etDate(new Date(now.getTime() - 5 * 3600e3)) === g.date;
 }
-const canPoll = () => document.visibilityState === "visible" && !$("#tab-tonight").hidden;
+const canPoll = () => document.visibilityState === "visible" && (!$("#tab-tonight").hidden || !$("#tab-build").hidden);
 
 function startLive(tonight) {
   const g = tonight.game;
@@ -840,6 +976,7 @@ async function liveTick(force) {
   poll.busy = false;
   poll.last = Date.now();
   try { ui.redrawTonight?.(); } catch (e) { /* keep polling even if a redraw trips */ }
+  try { ui.redrawBuild?.(); } catch (e) { /* same */ }
   const st = ui.live.error ? "error" : ui.live.state;
   if (st === "post") { poll.done = true; return; }
   let wait = LIVE_EVERY;
@@ -869,7 +1006,7 @@ function show(id) {
   });
   try { window.history.replaceState(null, "", "#" + id.slice(2)); } catch (e) { /* file:// */ }
   window.scrollTo(0, 0);
-  if (id === "t-tonight") liveResume();
+  if (id === "t-tonight" || id === "t-build") liveResume();
 }
 function setupTabs() {
   document.querySelectorAll('[role="tab"]').forEach(t => t.addEventListener("click", () => show(t.id)));
@@ -890,6 +1027,7 @@ async function load() {
     if (ui.slip >= tonight.slips.length) ui.slip = 0;
     ui.liveOn = !!window.Live && gameDay(tonight.game, tonight.status);
     const redrawBuild = renderBuild(data, $("#tab-build"), ui);
+    ui.redrawBuild = redrawBuild;
     renderTonight(data, $("#tab-tonight"), ui);
     // Keep Build in step with the slip chosen on Tonight.
     $("#tab-tonight").addEventListener("click", e => { if (e.target.closest(".switch button")) redrawBuild(); });

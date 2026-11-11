@@ -56,14 +56,14 @@ window.Live = (function () {
         const col = (key, label) => { const i = keys.indexOf(key); return i >= 0 ? i : labels.indexOf(label); };
         const idx = {
           min: col("minutes", "MIN"), pts: col("points", "PTS"), reb: col("rebounds", "REB"), ast: col("assists", "AST"),
-          stl: col("steals", "STL"), blk: col("blocks", "BLK"), tpm: col("threePointFieldGoalsMade-threePointFieldGoalsAttempted", "3PT")
+          stl: col("steals", "STL"), blk: col("blocks", "BLK"), pf: col("fouls", "PF"), tpm: col("threePointFieldGoalsMade-threePointFieldGoalsAttempted", "3PT")
         };
         (block.athletes || []).forEach(a => {
           const s = a.stats || [];
           const num = i => (i < 0 || s[i] == null ? 0 : parseInt(String(s[i]).split("-")[0], 10) || 0);
           const rec = {
             name: a.athlete?.displayName || "", team, dnp: !!a.didNotPlay || !s.length, min: num(idx.min),
-            pts: num(idx.pts), reb: num(idx.reb), ast: num(idx.ast), stl: num(idx.stl), blk: num(idx.blk), tpm: num(idx.tpm)
+            pts: num(idx.pts), reb: num(idx.reb), ast: num(idx.ast), stl: num(idx.stl), blk: num(idx.blk), tpm: num(idx.tpm), pf: num(idx.pf)
           };
           rec.pra = rec.pts + rec.reb + rec.ast;
           players[norm(rec.name)] = rec;
@@ -100,10 +100,10 @@ window.Live = (function () {
       return { state: final ? (ok ? "hit" : "miss") : "live", val: m, ok };
     }
     const p = findPlayer(live.players || {}, leg.player);
-    if (!p || p.dnp) return final ? { state: "void", val: null } : { state: "live", val: 0, notIn: true };
+    if (!p || p.dnp) return final ? { state: "void", val: null } : { state: "live", val: 0, notIn: true, player: p || null };
     const v = p[leg.stat] ?? 0;
-    if (v >= leg.line) return { state: "hit", val: v };
-    return { state: final ? "miss" : "live", val: v };
+    if (v >= leg.line) return { state: "hit", val: v, player: p };
+    return { state: final ? "miss" : "live", val: v, player: p };
   }
 
   // One poll: find the game once (remembered in memo), then read its box score.

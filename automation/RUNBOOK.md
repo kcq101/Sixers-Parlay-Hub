@@ -43,6 +43,7 @@ The cycle for each game is: **Draft → Refresh → Final check → Grade**. Aft
    - `bench` with 3–4 swap options and `tuner` with 3–4 lines.
    - Prices follow the pricing rules (usually null at draft time).
    - `statusNote` says it's a draft and when the refresh runs.
+   - Write the `analysis` block (see **Analysis block** below) for the draft slips.
 5. Rewrite `data/schedule.json` with this game's runs (Refresh, Final check before tip, Grade the slip), all `"status": "scheduled"`, times as ISO with the ET offset.
 6. Then do **Step E** to schedule them.
 
@@ -51,22 +52,46 @@ The cycle for each game is: **Draft → Refresh → Final check → Grade**. Aft
 2. Find prop and alt-line prices for every leg (FanDuel research, Covers, Action Network, SportsBettingDime, Rotowire).
 3. Update `injuries`, `game.line`, `game.spread`, records and `updated`, and fill prices.
 4. If a leg's player is out or doubtful, swap the leg using the bench and pick rules. If a price puts a leg far outside -200 to -550, say so in `statusNote` and suggest the fix; don't change lines silently.
-5. Keep `status` "draft". Set `statusNote` to what you checked, when, and what changed.
-6. Fill any `players.json` gaps from earlier games if you can find the numbers.
-7. Mark the schedule entry `done` with `doneAt` and a one-sentence `result`, or `failed` with the reason.
+5. Rewrite the `analysis` block (see **Analysis block** below) from what you found: it's the pre-game read on AI: The Answers.
+6. Keep `status` "draft". Set `statusNote` to what you checked, when, and what changed.
+7. Fill any `players.json` gaps from earlier games if you can find the numbers.
+8. Mark the schedule entry `done` with `doneAt` and a one-sentence `result`, or `failed` with the reason.
 
 ## Step C — Final check before tip (~40 min before tip)
 1. Check the final injury report, starting lineups, any minutes limits, and the line.
 2. Never change a slip that has `fdPrice` set: Kevin already placed it. Only note risks.
 3. For unplaced slips, swap legs whose player is out, doubtful or limited.
 4. Set `status` to "final" if no slip has `fdPrice` yet.
-5. Update `statusNote` and the schedule entry.
+5. If anything changed (a swap, a starter out, a minutes limit, a line move), update the `analysis` block to match; set its `written` time.
+6. Update `statusNote` and the schedule entry.
+
+## Analysis block (`tonight.json` → `analysis`)
+The pre-game read shown on AI: The Answers (and summarized on The Game tab). Write it in plain, short sentences, the way you'd explain the slip to a friend. If the block is missing or its `game` isn't tonight's date, the page falls back to its own automatic checks, so a stale block never shows.
+```json
+"analysis": {
+  "game": "2026-11-12",
+  "written": "2026-11-12T13:05:00-05:00",
+  "summary": "2–3 sentences: how strong the slip looks, what it leans on, the main risk tonight.",
+  "slips": { "Props only": "One sentence on this slip.", "With -5.5": "One sentence on what the game line adds." },
+  "watch": [
+    { "kind": "Matchup", "title": "Short headline", "text": "One or two sentences.", "legs": ["Maxey 2+ threes"], "level": "brass" }
+  ],
+  "legs": [
+    { "player": "Tyrese Maxey", "stat": "pra", "line": 28, "why": "Season hit count, matchup, recent form, minutes or injury context." }
+  ]
+}
+```
+- `game` must equal `game.date`. `slips` keys must match slip names exactly.
+- `watch`: 2–4 items: overlaps (legs that fail together), matchup problems (opponent's defense against a stat, size, pace), injuries or minutes risk, rest/back-to-back, blowout risk to starters' minutes. `level` is `red` (real risk), `brass` (worth knowing) or `good` (a tailwind). `kind` is one or two words.
+- `legs`: one `why` per leg in every slip (match on player + stat + line), including bench legs swapped in. Base it on `players.json`, `slips.json` and the matchup; give numbers ("9 of 11", "averages 3.1 vs. teams in the top 10 in defense").
+- Never mention wager or payout amounts, never call a leg a sure thing, never suggest bets beyond the picks.
+- The in-game read (live chances during the game) is computed in the browser from ESPN; the jobs don't write it.
 
 ## Step D — Grade (~2 h 55 min after tip)
 1. Confirm the game is final (scores). If it isn't, wait 15 minutes and retry, up to 4 times. If it never goes final, mark the entry `failed`, push, message Kevin, and stop. Don't draft the next game; the Watchdog will.
 2. Pull the box score (`game_stats`). The feed often leaves players out (it has never included Jaylen Brown). Find missing players among Maxey, VJ Edgecombe, Brown, LeBron, Embiid, Simons and Caldwell-Pope on nba.com, ESPN or CBS. If a player didn't play, note DNP. Never invent numbers.
 3. `players.json`: append the game to `games[]` and each player's line `{date, pts, reb, ast, stl, blk, tpm}`.
-4. `tonight.json`: add `actual` and `hit` to every leg. A DNP leg gets `actual` null, `hit` null and the note "Did not play (FanDuel usually voids this leg)". Set `status` "graded" and write a `statusNote` per slip.
+4. `tonight.json`: add `actual` and `hit` to every leg (leave `analysis` as it was). A DNP leg gets `actual` null, `hit` null and the note "Did not play (FanDuel usually voids this leg)". Set `status` "graded" and write a `statusNote` per slip.
 5. `slips.json`: append **only** slips with `fdPrice` set, matching the existing entry shape (`label` = slip name in lowercase). If none were placed, append nothing and say so.
 6. `playbook.json`: change it only if a rule clearly changed.
 7. Mark the schedule entry `done`.

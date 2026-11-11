@@ -371,3 +371,27 @@ body.gaming { overflow: hidden; }
 
 .game-notes { margin: 12px 0 0; padding: 0 0 0 18px; color: var(--ink-2); font-size: 15px; line-height: 1.45; }
 .game-notes li { margin: 4px 0; }
+
+/* ---------- Phase 2: analyst + in-game read ---------- */
+.ig-lead { font-size: 15px; line-height: 1.45; color: var(--ink-2); margin-bottom: 6px; }
+.ig-lead b { color: var(--ink); }
+.ig-p { font-weight: 700; }
+.ig-p.good, .ig-p.hit { color: var(--hit); } .ig-p.ok { color: var(--blue-ink); }
+.ig-p.push { color: var(--brass-ink); } .ig-p.bad, .ig-p.miss { color: var(--red-ink); }
+.ig-note { font-size: 14px; line-height: 1.45; color: var(--ink-2); margin-bottom: 8px; }
+.ig-note .badge { margin-right: 6px; vertical-align: 1px; }
+.analyst.ig { margin-bottom: 14px; }
+.ig-list { display: flex; flex-direction: column; margin-top: 14px; }
+.ig-row { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-top: 1px solid rgba(160,182,214,.12); }
+.ig-row:first-child { border-top: 0; }
+.ig-pct { flex: none; width: 56px; font-size: 16px; font-weight: 700; padding-top: 1px; }
+.ig-row.good .ig-pct, .ig-row.hit .ig-pct { color: var(--hit); } .ig-row.ok .ig-pct { color: var(--blue-ink); }
+.ig-row.push .ig-pct { color: var(--brass-ink); } .ig-row.bad .ig-pct, .ig-row.miss .ig-pct { color: var(--red-ink); }
+.ig-row.void .ig-pct { color: var(--ink-4); }
+.ig-mid { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.ig-mid .leg-t { font: 700 17px/1.15 var(--display); }
+.ig-mid p { font-size: 13px; color: var(--ink-3); line-height: 1.4; }
+.ig-row .badge { flex: none; margin-top: 2px; }
+.swap-target { flex-wrap: wrap; cursor: pointer; }
+.swap-pick { width: 100%; margin-top: 4px; font: 500 15px var(--body, inherit); color: var(--ink); background: var(--panel); border: 1px solid rgba(160,182,214,.3); border-radius: 8px; padding: 8px; }
+.swap-done { display: flex; align-items: center; gap: 10px; justify-content: space-between; font-size: 14px; color: var(--brass-ink); background: rgba(201,164,92,.1); border: 1px solid rgba(201,164,92,.4); border-radius: 10px; padding: 8px 10px; margin-bottom: 10px; }
