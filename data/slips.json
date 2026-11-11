@@ -1017,6 +1017,165 @@
     }
    ],
    "note": "Cashed at +1095 boosted (VJ's threes, steals and pts + reb + ast are floors from a late-4th box; no full final box yet)."
+  },
+  {
+   "date": "2026-11-10",
+   "opp": "BOS",
+   "home": true,
+   "final": "L 101-123",
+   "label": "props only",
+   "price": 630,
+   "boost": 50,
+   "boosted": 945,
+   "legs": [
+    {
+     "player": "Tyrese Maxey",
+     "stat": "pra",
+     "line": 28,
+     "actual": 29,
+     "hit": true
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "tpm",
+     "line": 2,
+     "actual": 3,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "pra",
+     "line": 16,
+     "actual": 17,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "tpm",
+     "line": 1,
+     "actual": null,
+     "hit": null
+    },
+    {
+     "player": "Jaylen Brown",
+     "stat": "pra",
+     "line": 27,
+     "actual": 20,
+     "hit": false
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "stl",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    },
+    {
+     "player": "Joel Embiid",
+     "stat": "reb",
+     "line": 7,
+     "actual": 6,
+     "hit": false
+    },
+    {
+     "player": "Anfernee Simons",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    },
+    {
+     "player": "LeBron James",
+     "stat": "pra",
+     "line": 24,
+     "actual": 24,
+     "hit": true
+    }
+   ],
+   "note": "Lost: Brown pts + reb + ast (20 of 27) and Embiid rebounds (6 of 7) missed. VJ's threes not confirmed yet."
+  },
+  {
+   "date": "2026-11-10",
+   "opp": "BOS",
+   "home": true,
+   "final": "L 101-123",
+   "label": "with ml",
+   "price": 931,
+   "boost": 30,
+   "boosted": 1210,
+   "legs": [
+    {
+     "player": "Tyrese Maxey",
+     "stat": "pra",
+     "line": 28,
+     "actual": 29,
+     "hit": true
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "tpm",
+     "line": 2,
+     "actual": 3,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "pra",
+     "line": 16,
+     "actual": 17,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "tpm",
+     "line": 1,
+     "actual": null,
+     "hit": null
+    },
+    {
+     "player": "Jaylen Brown",
+     "stat": "pra",
+     "line": 27,
+     "actual": 20,
+     "hit": false
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "stl",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    },
+    {
+     "player": "Joel Embiid",
+     "stat": "reb",
+     "line": 7,
+     "actual": 6,
+     "hit": false
+    },
+    {
+     "player": "Anfernee Simons",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    },
+    {
+     "player": "LeBron James",
+     "stat": "pra",
+     "line": 24,
+     "actual": 24,
+     "hit": true
+    },
+    {
+     "player": "76ers",
+     "stat": "ml",
+     "line": 0,
+     "actual": -22,
+     "hit": false
+    }
+   ],
+   "note": "Lost: Brown pts + reb + ast, Embiid rebounds and the moneyline (lost by 22) missed. VJ's threes not confirmed yet."
   }
  ]
 }

@@ -158,8 +158,8 @@ const toAmerican = dec => (dec >= 2 ? (dec - 1) * 100 : -100 / (dec - 1));
 const CHEV = `<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>`;
 
 function value(game, stat) {
-  if (stat === "pra") return game.pts + game.reb + game.ast;
-  return game[stat];
+  if (stat === "pra") return game.pts == null || game.reb == null || game.ast == null ? null : game.pts + game.reb + game.ast;
+  return game[stat] ?? null;   // null = number not found yet
 }
 
 // Season games for a leg: returns [{date, opp, val, hit}]
@@ -177,7 +177,7 @@ function history(leg, data) {
     const meta = data.players.games.find(x => x.date === g.date) || {};
     const v = value(g, leg.stat);
     return { date: g.date, opp: meta.opp, val: v, hit: v >= leg.line };
-  });
+  }).filter(g => g.val != null);
 }
 
 // Season average for a leg's stat (Sixers' average margin for game lines), e.g. "2.6" or "+5.2"
@@ -190,7 +190,7 @@ const AVG_WHAT = { tpm: "threes", stl: "steals", blk: "blocks", reb: "rebounds",
 
 // How a player + stat has done on our slips: {h, n}
 function slipRecord(data, player, stat) {
-  const legs = data.slips.slips.flatMap(s => s.legs).filter(l => l.player === player && l.stat === stat);
+  const legs = data.slips.slips.flatMap(s => s.legs).filter(l => l.player === player && l.stat === stat && l.hit != null);
   return { h: legs.filter(l => l.hit).length, n: legs.length };
 }
 

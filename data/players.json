@@ -1,5 +1,5 @@
 {
- "_note": "2026-27 regular-season game logs (stl/blk/3pm included). A player missing from a date did not play or isn't in the feed. Brown's Nov 8 line is from Basketball-Reference (the box-score feed leaves him out).",
+ "_note": "2026-27 regular-season game logs (stl/blk/3pm included). A player missing from a date did not play or isn't in the feed. Brown's Nov 8 line is from Basketball-Reference (the box-score feed leaves him out). Nov 10 vs BOS: no final full box score was reachable; lines are from Bleacher Report, NBC Sports and Yardbarker recaps. Null = not found yet (VJ's threes; Simons has points only; Caldwell-Pope missing).",
  "updated": "2026-11-10",
  "games": [
   {
@@ -67,6 +67,12 @@
    "opp": "CHI",
    "home": false,
    "result": "W 127-121"
+  },
+  {
+   "date": "2026-11-10",
+   "opp": "BOS",
+   "home": true,
+   "result": "L 101-123"
   }
  ],
  "players": {
@@ -169,6 +175,15 @@
     "stl": 0,
     "blk": 0,
     "tpm": 3
+   },
+   {
+    "date": "2026-11-10",
+    "pts": 24,
+    "reb": 1,
+    "ast": 4,
+    "stl": 0,
+    "blk": 0,
+    "tpm": 3
    }
   ],
   "VJ Edgecombe": [
@@ -261,6 +276,15 @@
     "stl": 3,
     "blk": 0,
     "tpm": 3
+   },
+   {
+    "date": "2026-11-10",
+    "pts": 8,
+    "reb": 4,
+    "ast": 5,
+    "stl": 1,
+    "blk": 1,
+    "tpm": null
    }
   ],
   "LeBron James": [
@@ -344,6 +368,15 @@
     "stl": 1,
     "blk": 0,
     "tpm": 2
+   },
+   {
+    "date": "2026-11-10",
+    "pts": 11,
+    "reb": 8,
+    "ast": 5,
+    "stl": 0,
+    "blk": 0,
+    "tpm": 1
    }
   ],
   "Joel Embiid": [
@@ -427,6 +460,15 @@
     "stl": 2,
     "blk": 0,
     "tpm": 0
+   },
+   {
+    "date": "2026-11-10",
+    "pts": 16,
+    "reb": 6,
+    "ast": 1,
+    "stl": 0,
+    "blk": 0,
+    "tpm": 1
    }
   ],
   "Jaylen Brown": [
@@ -519,6 +561,15 @@
     "stl": 1,
     "blk": 0,
     "tpm": 2
+   },
+   {
+    "date": "2026-11-10",
+    "pts": 13,
+    "reb": 5,
+    "ast": 2,
+    "stl": 2,
+    "blk": 1,
+    "tpm": 1
    }
   ],
   "Anfernee Simons": [
@@ -620,6 +671,15 @@
     "stl": 0,
     "blk": 0,
     "tpm": 1
+   },
+   {
+    "date": "2026-11-10",
+    "pts": 17,
+    "reb": null,
+    "ast": null,
+    "stl": null,
+    "blk": null,
+    "tpm": null
    }
   ],
   "Kentavious Caldwell-Pope": [

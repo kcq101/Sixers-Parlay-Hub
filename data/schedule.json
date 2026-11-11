@@ -21,7 +21,9 @@
    "when": "2026-11-10T22:55:00-05:00",
    "what": "Grade the slip",
    "detail": "Pulls the final box score, grades each leg, and adds the game to the season logs.",
-   "status": "scheduled"
+   "status": "done",
+   "doneAt": "2026-11-10T23:05:00-05:00",
+   "result": "Celtics won 123-101; both slips lost on Brown pts + reb + ast and Embiid rebounds (the ML slip also on the moneyline)."
   }
  ]
 }

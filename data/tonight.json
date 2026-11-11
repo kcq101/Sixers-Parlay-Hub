@@ -1,7 +1,7 @@
 {
- "status": "final",
- "statusNote": "Placed by Kevin at 6:00 PM on FanDuel. Props only: 9 legs, +630, boosted 50% to +945. With ML: the same 9 plus the Sixers moneyline (+100), +931, boosted 30% to +1210. Final check 7:25 PM: no new injuries. Maxey, Edgecombe, Brown, LeBron and Embiid listed as starters, no minutes limits reported; Simons available off the bench. Still out: Bona, Barlow, Hukporti (PHI); Carter, Williams (BOS). Risk to note: Embiid rebounds vs Boston's bigs (Queta). No slips changed.",
- "updated": "2026-11-10T19:25:00-05:00",
+ "status": "graded",
+ "statusNote": "Final: Celtics 123, Sixers 101. Props only: lost. Maxey 29 pts + reb + ast and 3 threes, VJ 17 pts + reb + ast and a steal, Simons' three and LeBron's 24 hit; Brown's pts + reb + ast (20, foul trouble) and Embiid's rebounds (6) missed. VJ's threes aren't confirmed yet. With ML: lost on the same two legs, plus the moneyline (lost by 22).",
+ "updated": "2026-11-10T23:05:00-05:00",
  "game": {
   "date": "2026-11-10",
   "tip": "8:00 PM ET",
@@ -85,7 +85,9 @@
      "price": -330,
      "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
      "tag": "Solid",
-     "note": "28+ (Over 27.5) in 9 of 11; the two misses were 27 at DET and 24 at CLE."
+     "note": "28+ (Over 27.5) in 9 of 11; the two misses were 27 at DET and 24 at CLE.",
+     "actual": 29,
+     "hit": true
     },
     {
      "player": "Tyrese Maxey",
@@ -94,7 +96,9 @@
      "price": -350,
      "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
      "tag": "Solid",
-     "note": "2+ threes in 9 of 11 games."
+     "note": "2+ threes in 9 of 11 games.",
+     "actual": 3,
+     "hit": true
     },
     {
      "player": "VJ Edgecombe",
@@ -103,7 +107,9 @@
      "price": -420,
      "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
      "tag": "Solid",
-     "note": "16+ (Over 15.5) in 9 of 10; only miss was 14 in the opener."
+     "note": "16+ (Over 15.5) in 9 of 10; only miss was 14 in the opener.",
+     "actual": 17,
+     "hit": true
     },
     {
      "player": "VJ Edgecombe",
@@ -112,7 +118,9 @@
      "price": -650,
      "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
      "tag": "Core",
-     "note": "1+ three in 9 of 10 games; 10 for 10 on our slips."
+     "note": "Not graded yet: no final source found for his threes (0 of 3 late in the 3rd). Doesn't change the result: the slip already missed on other legs.",
+     "actual": null,
+     "hit": null
     },
     {
      "player": "Jaylen Brown",
@@ -121,7 +129,9 @@
      "price": -320,
      "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
      "tag": "Core",
-     "note": "27+ (Over 26.5) in 8 of 10 (the misses were two 24s). First game against Boston since the trade."
+     "note": "27+ (Over 26.5) in 8 of 10 (the misses were two 24s). First game against Boston since the trade.",
+     "actual": 20,
+     "hit": false
     },
     {
      "player": "VJ Edgecombe",
@@ -130,7 +140,9 @@
      "price": -350,
      "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
      "tag": "Solid",
-     "note": "1+ steal in 9 of 10, including 3, 4 and 3 in his last three."
+     "note": "1+ steal in 9 of 10, including 3, 4 and 3 in his last three.",
+     "actual": 1,
+     "hit": true
     },
     {
      "player": "Joel Embiid",
@@ -139,7 +151,9 @@
      "price": -330,
      "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
      "tag": "Risky",
-     "note": "7+ rebounds in all 9 games. Boston has real bigs (Queta, Mitchell Robinson)."
+     "note": "7+ rebounds in all 9 games. Boston has real bigs (Queta, Mitchell Robinson).",
+     "actual": 6,
+     "hit": false
     },
     {
      "player": "Anfernee Simons",
@@ -148,7 +162,9 @@
      "price": -440,
      "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
      "tag": "Solid",
-     "note": "1+ three in 9 of 11 games."
+     "note": "At least 1 three (1 of 3 late in the 3rd; 17 points). Hit.",
+     "actual": 1,
+     "hit": true
     },
     {
      "player": "LeBron James",
@@ -157,7 +173,9 @@
      "price": -340,
      "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
      "tag": "Solid",
-     "note": "24+ (Over 23.5) in 8 of 9 (18 was the miss)."
+     "note": "24+ (Over 23.5) in 8 of 9 (18 was the miss).",
+     "actual": 24,
+     "hit": true
     }
    ],
    "fdPrice": 630,
@@ -175,7 +193,9 @@
      "price": -330,
      "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
      "tag": "Solid",
-     "note": "28+ (Over 27.5) in 9 of 11; the two misses were 27 at DET and 24 at CLE."
+     "note": "28+ (Over 27.5) in 9 of 11; the two misses were 27 at DET and 24 at CLE.",
+     "actual": 29,
+     "hit": true
     },
     {
      "player": "Tyrese Maxey",
@@ -184,7 +204,9 @@
      "price": -350,
      "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
      "tag": "Solid",
-     "note": "2+ threes in 9 of 11 games."
+     "note": "2+ threes in 9 of 11 games.",
+     "actual": 3,
+     "hit": true
     },
     {
      "player": "VJ Edgecombe",
@@ -193,7 +215,9 @@
      "price": -420,
      "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
      "tag": "Solid",
-     "note": "16+ (Over 15.5) in 9 of 10; only miss was 14 in the opener."
+     "note": "16+ (Over 15.5) in 9 of 10; only miss was 14 in the opener.",
+     "actual": 17,
+     "hit": true
     },
     {
      "player": "VJ Edgecombe",
@@ -202,7 +226,9 @@
      "price": -650,
      "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
      "tag": "Core",
-     "note": "1+ three in 9 of 10 games; 10 for 10 on our slips."
+     "note": "Not graded yet: no final source found for his threes (0 of 3 late in the 3rd). Doesn't change the result: the slip already missed on other legs.",
+     "actual": null,
+     "hit": null
     },
     {
      "player": "Jaylen Brown",
@@ -211,7 +237,9 @@
      "price": -320,
      "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
      "tag": "Core",
-     "note": "27+ (Over 26.5) in 8 of 10 (the misses were two 24s). First game against Boston since the trade."
+     "note": "27+ (Over 26.5) in 8 of 10 (the misses were two 24s). First game against Boston since the trade.",
+     "actual": 20,
+     "hit": false
     },
     {
      "player": "VJ Edgecombe",
@@ -220,7 +248,9 @@
      "price": -350,
      "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
      "tag": "Solid",
-     "note": "1+ steal in 9 of 10, including 3, 4 and 3 in his last three."
+     "note": "1+ steal in 9 of 10, including 3, 4 and 3 in his last three.",
+     "actual": 1,
+     "hit": true
     },
     {
      "player": "Joel Embiid",
@@ -229,7 +259,9 @@
      "price": -330,
      "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
      "tag": "Risky",
-     "note": "7+ rebounds in all 9 games. Boston has real bigs (Queta, Mitchell Robinson)."
+     "note": "7+ rebounds in all 9 games. Boston has real bigs (Queta, Mitchell Robinson).",
+     "actual": 6,
+     "hit": false
     },
     {
      "player": "Anfernee Simons",
@@ -238,7 +270,9 @@
      "price": -440,
      "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
      "tag": "Solid",
-     "note": "1+ three in 9 of 11 games."
+     "note": "At least 1 three (1 of 3 late in the 3rd; 17 points). Hit.",
+     "actual": 1,
+     "hit": true
     },
     {
      "player": "LeBron James",
@@ -247,7 +281,9 @@
      "price": -340,
      "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
      "tag": "Solid",
-     "note": "24+ (Over 23.5) in 8 of 9 (18 was the miss)."
+     "note": "24+ (Over 23.5) in 8 of 9 (18 was the miss).",
+     "actual": 24,
+     "hit": true
     },
     {
      "player": "76ers",
@@ -256,7 +292,9 @@
      "price": 100,
      "priceNote": "FanDuel, Kevin's slip, 6:00 PM",
      "tag": "Risky",
-     "note": "Moneyline at +100: a coin flip against the 8-2 Celtics, who are 1.5-point favorites."
+     "note": "Moneyline at +100: a coin flip against the 8-2 Celtics, who are 1.5-point favorites.",
+     "actual": -22,
+     "hit": false
     }
    ],
    "fdPrice": 931,
