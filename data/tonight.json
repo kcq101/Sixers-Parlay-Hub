@@ -1,7 +1,7 @@
 {
  "status": "draft",
- "statusNote": "Draft written Tue Nov 10, 11:05 PM after grading Boston. No line or prop prices posted yet. The refresh runs Thu Nov 12 at 12:40 PM ET (injuries, line, prices), the final check at 6:20 PM.",
- "updated": "2026-11-10T23:05:00-05:00",
+ "statusNote": "Updated Thu Nov 12, 5:10 PM: LeBron out (back), Dean Wade starts in his place. FanDuel prop prices not posted yet. Final check runs at 6:20 PM.",
+ "updated": "2026-11-12T17:10:00-05:00",
  "game": {
   "date": "2026-11-12",
   "tip": "7:00 PM ET",
@@ -13,22 +13,28 @@
    "PHI": "9-3",
    "TOR": "5-5"
   },
-  "spread": "not posted yet",
-  "line": "Not posted yet. Toronto hosts Boston on Wednesday, so the Raptors are on the second night of a back-to-back. Refresh fills the spread, moneyline and total.",
+  "spread": "PHI -8.5 to -9.5 (other books; FanDuel not checked)",
+  "line": "Sixers favored by 8.5 to 9.5 at other books, moneyline about -360 to -400. FanDuel's line not checked yet.",
   "lastMeeting": "First meeting this season.",
   "notes": [
+   "LeBron sits with a sore back; Dean Wade gets his fifth start of the season.",
    "Bounce-back spot after a 123-101 loss to Boston on Tuesday.",
-   "Toronto plays Boston at home Wednesday, so the Raptors arrive on the second night of a back-to-back.",
-   "First meeting of the season with the Raptors.",
+   "Toronto played Boston at home Wednesday, so the Raptors arrive on the second night of a back-to-back.",
    "Maxey has 28+ pts + reb + ast in 10 of 12 games."
   ]
  },
  "injuries": [
   {
    "team": "PHI",
+   "player": "LeBron James",
+   "status": "Out",
+   "note": "lower back (sciatica); maintenance night. Dean Wade starts."
+  },
+  {
+   "team": "PHI",
    "player": "Joel Embiid",
-   "status": "Watch",
-   "note": "took a hard fall late in the first half vs Boston, limped, but started the third quarter; not on a back-to-back"
+   "status": "Questionable",
+   "note": "right foot plantar fasciitis (Nov 12 report); also took a hard fall vs Boston"
   },
   {
    "team": "PHI",
@@ -139,13 +145,13 @@
      "note": "24+ in 10 of 11; the miss was 20 vs Boston in foul trouble. Dropped from 27+ after that."
     },
     {
-     "player": "LeBron James",
-     "stat": "stl",
+     "player": "Dean Wade",
+     "stat": "tpm",
      "line": 1,
      "price": null,
      "priceNote": "price unknown",
-     "tag": "Core",
-     "note": "1+ steal in 9 of 10; 7 for 7 on our slips. Had 0 vs Boston."
+     "tag": "Risky",
+     "note": "Starting for LeBron. 2 threes in his first start (MIL) and 2 vs Boston; 0 in the Charlotte start. Shoots about 35% from three, small sample."
     },
     {
      "player": "Joel Embiid",
@@ -154,7 +160,7 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Risky",
-     "note": "6+ rebounds in all 10 games (7+ in 9 of 10; 6 vs Boston). Took a hard fall vs Boston but finished the game."
+     "note": "6+ rebounds in all 10 games (7+ in 9 of 10). Questionable with a sore right foot; swap out if he sits."
     },
     {
      "player": "Kentavious Caldwell-Pope",
@@ -226,13 +232,13 @@
      "note": "24+ in 10 of 11; the miss was 20 vs Boston in foul trouble. Dropped from 27+ after that."
     },
     {
-     "player": "LeBron James",
-     "stat": "stl",
+     "player": "Dean Wade",
+     "stat": "tpm",
      "line": 1,
      "price": null,
      "priceNote": "price unknown",
-     "tag": "Core",
-     "note": "1+ steal in 9 of 10; 7 for 7 on our slips. Had 0 vs Boston."
+     "tag": "Risky",
+     "note": "Starting for LeBron. 2 threes in his first start (MIL) and 2 vs Boston; 0 in the Charlotte start. Shoots about 35% from three, small sample."
     },
     {
      "player": "Joel Embiid",
@@ -241,7 +247,7 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Risky",
-     "note": "6+ rebounds in all 10 games (7+ in 9 of 10; 6 vs Boston). Took a hard fall vs Boston but finished the game."
+     "note": "6+ rebounds in all 10 games (7+ in 9 of 10). Questionable with a sore right foot; swap out if he sits."
     },
     {
      "player": "76ers",
@@ -250,24 +256,24 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "9-3 Sixers at home vs a 5-5 Raptors team on the second night of a back-to-back and missing Leonard and Barnes. Line not posted yet."
+     "note": "Sixers favored by 8.5 to 9.5 at home vs a short-handed Raptors team on a back-to-back. Kept the moneyline instead of a big spread, per the playbook."
     }
    ]
   }
  ],
  "bench": [
   {
-   "player": "LeBron James",
-   "stat": "pra",
-   "line": 24,
-   "effect": "Swap in for Embiid rebounds if he's limited or out (then drop VJ pts + reb + ast to stay at 3).",
-   "note": "24+ in 9 of 10."
+   "player": "Dean Wade",
+   "stat": "reb",
+   "line": 3,
+   "effect": "Swap in for Embiid rebounds if Embiid sits (Wade would play center).",
+   "note": "3+ in 2 of 3 games we have (2, 5, 9)."
   },
   {
    "player": "Anfernee Simons",
    "stat": "tpm",
    "line": 1,
-   "effect": "Same idea as Caldwell-Pope 1+ three, if KCP's price is too short.",
+   "effect": "Same idea as Caldwell-Pope 1+ three, or in for Wade's three if his price is too long.",
    "note": "1+ in 9 of 11; 17 points vs Boston."
   },
   {
@@ -287,32 +293,43 @@
  ],
  "tuner": [
   "Under +800 with no boost: use Embiid 7+ rebounds instead of 6+, or add Maxey 1+ steal.",
-  "Over +1300: drop Maxey 28+ to 25+ pts + reb + ast.",
-  "If the Sixers are big favorites (-8 or more), skip a big spread and keep the moneyline.",
-  "If Embiid is out or limited: use LeBron 24+ pts + reb + ast and drop VJ pts + reb + ast."
+  "Over +1300: drop Maxey 28+ to 25+ pts + reb + ast, or swap Wade's three for Simons 1+ three.",
+  "Sixers are big favorites (-8.5 or more): keep the moneyline, skip the spread.",
+  "If Embiid is out: swap Embiid rebounds for Wade 3+ rebounds."
  ],
  "analysis": {
   "game": "2026-11-12",
-  "written": "2026-11-10T23:05:00-05:00",
-  "summary": "A softer spot than Boston: Toronto is 5-5, missing Leonard and Barnes, and on the second night of a back-to-back. The slip leans on Maxey, VJ's threes and steals, and LeBron's steals, with Brown's line dropped to 24+ after Tuesday. Main risk: a Sixers blowout that cuts the starters' fourth-quarter minutes.",
+  "written": "2026-11-12T17:10:00-05:00",
+  "summary": "LeBron is out, so Dean Wade starts and more of the ball goes to Maxey and Brown. Toronto is 5-5, missing Leonard and Barnes, and on a back-to-back. Wade's 1+ three replaces LeBron's steal on both slips. Main risks: Embiid's foot and a blowout that sits the starters late.",
   "slips": {
-   "Props only": "Nine props, three of them pts + reb + ast, built from legs that hit in 80-100% of games.",
-   "With ML": "Swaps Caldwell-Pope's three for the Sixers to win at home against a tired, short-handed Raptors team."
+   "Props only": "Nine props, three of them pts + reb + ast. Wade's three is the newest and least proven leg.",
+   "With ML": "Swaps Caldwell-Pope's three for the Sixers to win at home; kept the moneyline instead of the -8.5 spread."
   },
   "watch": [
    {
-    "kind": "Rest",
-    "title": "Raptors on a back-to-back",
-    "text": "Toronto hosts Boston Wednesday night, then travels to Philly. Tired legs help the Sixers' scoring and the moneyline.",
+    "kind": "Lineup",
+    "title": "LeBron out, Wade starts",
+    "text": "More shots for Maxey and Brown helps their pts + reb + ast. Wade gets starter minutes, but he's a low-usage shooter.",
     "legs": [
-     "76ers moneyline"
+     "Dean Wade 1+ three",
+     "Maxey 28+ pts + reb + ast",
+     "Brown 24+ pts + reb + ast"
     ],
     "level": "good"
    },
    {
+    "kind": "Injury",
+    "title": "Embiid questionable",
+    "text": "Sore right foot on the Nov 12 report. If he sits, swap his rebounds for Wade 3+ rebounds.",
+    "legs": [
+     "Embiid 6+ rebounds"
+    ],
+    "level": "brass"
+   },
+   {
     "kind": "Blowout",
     "title": "Starters could sit late",
-    "text": "If the Sixers pull away, Maxey, Brown and VJ may sit the fourth, which hurts the three pts + reb + ast legs together.",
+    "text": "With the Sixers favored by about 9, a big lead could cut the fourth-quarter minutes for Maxey, Brown and VJ.",
     "legs": [
      "Maxey 28+ pts + reb + ast",
      "Brown 24+ pts + reb + ast",
@@ -321,18 +338,9 @@
     "level": "brass"
    },
    {
-    "kind": "Injury",
-    "title": "Embiid's fall",
-    "text": "He limped after a hard fall vs Boston but came back for the second half. Check the report Thursday.",
-    "legs": [
-     "Embiid 6+ rebounds"
-    ],
-    "level": "brass"
-   },
-   {
     "kind": "Overlap",
     "title": "VJ carries three legs",
-    "text": "VJ's threes, steal and pts + reb + ast tend to rise and fall together; a quiet VJ night could cost more than one leg.",
+    "text": "VJ's threes, steal and pts + reb + ast tend to rise and fall together.",
     "legs": [
      "VJ 1+ three",
      "VJ 1+ steal",
@@ -379,16 +387,16 @@
     "why": "10 of 11 games. Missed 27+ vs Boston (20) in foul trouble, so the line comes down to 24+."
    },
    {
-    "player": "LeBron James",
-    "stat": "stl",
+    "player": "Dean Wade",
+    "stat": "tpm",
     "line": 1,
-    "why": "9 of 10 games and 7 for 7 on our slips."
+    "why": "Starter minutes with LeBron out. Made 2 threes in two of the three games we have (MIL start, Boston). Small sample, so Risky."
    },
    {
     "player": "Joel Embiid",
     "stat": "reb",
     "line": 6,
-    "why": "All 10 games. Toronto is without its listed center, Bittle. Still Risky: he took a hard fall Tuesday."
+    "why": "All 10 games. Questionable with a sore right foot, so Risky."
    },
    {
     "player": "Kentavious Caldwell-Pope",
@@ -400,13 +408,13 @@
     "player": "76ers",
     "stat": "ml",
     "line": 0,
-    "why": "9-3 at home vs 5-5 Toronto on a back-to-back without Leonard and Barnes. Line not posted yet."
+    "why": "Favored by 8.5 to 9.5 at home vs a tired, short-handed Toronto."
    },
    {
-    "player": "LeBron James",
-    "stat": "pra",
-    "line": 24,
-    "why": "Bench: 9 of 10 games."
+    "player": "Dean Wade",
+    "stat": "reb",
+    "line": 3,
+    "why": "Bench: 2, 5 and 9 rebounds in the games we have; would rise if Embiid sits."
    },
    {
     "player": "Anfernee Simons",

@@ -1,5 +1,5 @@
 {
- "_note": "2026-27 regular-season game logs (stl/blk/3pm included). A player missing from a date did not play or isn't in the feed. Brown's Nov 8 line is from Basketball-Reference (the box-score feed leaves him out). Nov 10 vs BOS: no final full box score was reachable; lines are from Bleacher Report, NBC Sports and Yardbarker recaps. Null = not found yet (VJ's threes; Simons has points only; Caldwell-Pope missing).",
+ "_note": "2026-27 regular-season game logs (stl/blk/3pm included). A player missing from a date did not play or isn't in the feed. Brown's Nov 8 line is from Basketball-Reference (the box-score feed leaves him out). Nov 10 vs BOS: no final full box score was reachable; lines are from Bleacher Report, NBC Sports and Yardbarker recaps. Null = not found yet (VJ's threes; Simons has points only; Caldwell-Pope missing). Dean Wade: only Oct 24, Oct 31 and Nov 10 are filled so far (from the box-score feed).",
  "updated": "2026-11-10",
  "games": [
   {
@@ -780,6 +780,35 @@
     "ast": 3,
     "stl": 1,
     "blk": 2,
+    "tpm": 2
+   }
+  ],
+  "Dean Wade": [
+   {
+    "date": "2026-10-24",
+    "pts": 7,
+    "reb": 2,
+    "ast": 0,
+    "stl": 3,
+    "blk": 1,
+    "tpm": 2
+   },
+   {
+    "date": "2026-10-31",
+    "pts": 4,
+    "reb": 5,
+    "ast": 10,
+    "stl": 2,
+    "blk": 1,
+    "tpm": 0
+   },
+   {
+    "date": "2026-11-10",
+    "pts": 8,
+    "reb": 9,
+    "ast": 0,
+    "stl": 0,
+    "blk": 0,
     "tpm": 2
    }
   ]
