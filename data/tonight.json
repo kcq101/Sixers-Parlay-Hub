@@ -1,7 +1,7 @@
 {
- "status": "draft",
- "statusNote": "Updated Thu Nov 12, 5:10 PM: LeBron out (back), Dean Wade starts in his place. FanDuel prop prices not posted yet. Final check runs at 6:20 PM.",
- "updated": "2026-11-12T17:10:00-05:00",
+ "status": "final",
+ "statusNote": "Placed by Kevin on FanDuel. Props only: 9 legs, +674, boosted 50% to +1012. With ML: the same 9 plus the Sixers moneyline, +894, no boost. LeBron out; Embiid questionable (right foot).",
+ "updated": "2026-11-12T18:50:00-05:00",
  "game": {
   "date": "2026-11-12",
   "tip": "7:00 PM ET",
@@ -93,217 +93,177 @@
     {
      "player": "Tyrese Maxey",
      "stat": "pra",
-     "line": 28,
-     "price": null,
-     "priceNote": "price unknown",
+     "line": 30,
+     "price": -340,
      "tag": "Solid",
-     "note": "28+ in 10 of 12; the misses were 27 at DET and 24 at CLE. 29 vs Boston."
+     "note": "30+ in 9 of 12 games."
     },
     {
      "player": "Tyrese Maxey",
      "stat": "tpm",
      "line": 2,
-     "price": null,
-     "priceNote": "price unknown",
+     "price": -400,
      "tag": "Solid",
      "note": "2+ threes in 10 of 12 games; 3 vs Boston."
     },
     {
      "player": "VJ Edgecombe",
+     "stat": "pra",
+     "line": 20,
+     "price": -330,
+     "tag": "Solid",
+     "note": "20+ in 8 of 11 games."
+    },
+    {
+     "player": "VJ Edgecombe",
      "stat": "tpm",
      "line": 1,
-     "price": null,
-     "priceNote": "price unknown",
+     "price": -700,
      "tag": "Core",
-     "note": "1+ three in 9 of 10 graded games; 11 for 11 on our slips."
-    },
-    {
-     "player": "VJ Edgecombe",
-     "stat": "stl",
-     "line": 1,
-     "price": null,
-     "priceNote": "price unknown",
-     "tag": "Solid",
-     "note": "1+ steal in 10 of 11; 10 for 11 on our slips."
-    },
-    {
-     "player": "VJ Edgecombe",
-     "stat": "pra",
-     "line": 16,
-     "price": null,
-     "priceNote": "price unknown",
-     "tag": "Solid",
-     "note": "16+ in 10 of 11; only miss was 14 in the opener. 17 vs Boston."
-    },
-    {
-     "player": "Jaylen Brown",
-     "stat": "pra",
-     "line": 24,
-     "price": null,
-     "priceNote": "price unknown",
-     "tag": "Core",
-     "note": "24+ in 10 of 11; the miss was 20 vs Boston in foul trouble. Dropped from 27+ after that."
+     "note": "1+ three in 9 of 10 graded games."
     },
     {
      "player": "Dean Wade",
      "stat": "tpm",
      "line": 1,
-     "price": null,
-     "priceNote": "price unknown",
+     "price": -220,
      "tag": "Risky",
-     "note": "Starting for LeBron. 2 threes in his first start (MIL) and 2 vs Boston; 0 in the Charlotte start. Shoots about 35% from three, small sample."
+     "note": "Starting for LeBron. 2 threes in two of the three games we have."
     },
     {
      "player": "Joel Embiid",
      "stat": "reb",
-     "line": 6,
-     "price": null,
-     "priceNote": "price unknown",
+     "line": 7,
+     "price": -400,
      "tag": "Risky",
-     "note": "6+ rebounds in all 10 games (7+ in 9 of 10). Questionable with a sore right foot; swap out if he sits."
+     "note": "7+ in 9 of 10 games. Listed questionable with a sore right foot."
     },
     {
-     "player": "Kentavious Caldwell-Pope",
+     "player": "Jaylen Brown",
+     "stat": "pra",
+     "line": 30,
+     "price": -295,
+     "tag": "Solid",
+     "note": "30+ in 8 of 11 games."
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "stl",
+     "line": 1,
+     "price": -340,
+     "tag": "Solid",
+     "note": "1+ steal in 8 of 12 games."
+    },
+    {
+     "player": "Anfernee Simons",
      "stat": "tpm",
      "line": 1,
-     "price": null,
-     "priceNote": "price unknown",
-     "tag": "Solid",
-     "note": "1+ three in 10 of 11 graded games."
+     "price": -700,
+     "tag": "Core",
+     "note": "1+ three in 9 of 11 games."
     }
-   ]
+   ],
+   "fdPrice": 674,
+   "boost": 50,
+   "boosted": 1012
   },
   {
    "name": "With ML",
-   "legsCount": 9,
+   "legsCount": 10,
    "legs": [
     {
      "player": "Tyrese Maxey",
      "stat": "pra",
-     "line": 28,
-     "price": null,
-     "priceNote": "price unknown",
+     "line": 30,
+     "price": -340,
      "tag": "Solid",
-     "note": "28+ in 10 of 12; the misses were 27 at DET and 24 at CLE. 29 vs Boston."
+     "note": "30+ in 9 of 12 games."
     },
     {
      "player": "Tyrese Maxey",
      "stat": "tpm",
      "line": 2,
-     "price": null,
-     "priceNote": "price unknown",
+     "price": -400,
      "tag": "Solid",
      "note": "2+ threes in 10 of 12 games; 3 vs Boston."
     },
     {
      "player": "VJ Edgecombe",
+     "stat": "pra",
+     "line": 20,
+     "price": -330,
+     "tag": "Solid",
+     "note": "20+ in 8 of 11 games."
+    },
+    {
+     "player": "VJ Edgecombe",
      "stat": "tpm",
      "line": 1,
-     "price": null,
-     "priceNote": "price unknown",
+     "price": -700,
      "tag": "Core",
-     "note": "1+ three in 9 of 10 graded games; 11 for 11 on our slips."
-    },
-    {
-     "player": "VJ Edgecombe",
-     "stat": "stl",
-     "line": 1,
-     "price": null,
-     "priceNote": "price unknown",
-     "tag": "Solid",
-     "note": "1+ steal in 10 of 11; 10 for 11 on our slips."
-    },
-    {
-     "player": "VJ Edgecombe",
-     "stat": "pra",
-     "line": 16,
-     "price": null,
-     "priceNote": "price unknown",
-     "tag": "Solid",
-     "note": "16+ in 10 of 11; only miss was 14 in the opener. 17 vs Boston."
-    },
-    {
-     "player": "Jaylen Brown",
-     "stat": "pra",
-     "line": 24,
-     "price": null,
-     "priceNote": "price unknown",
-     "tag": "Core",
-     "note": "24+ in 10 of 11; the miss was 20 vs Boston in foul trouble. Dropped from 27+ after that."
+     "note": "1+ three in 9 of 10 graded games."
     },
     {
      "player": "Dean Wade",
      "stat": "tpm",
      "line": 1,
-     "price": null,
-     "priceNote": "price unknown",
+     "price": -220,
      "tag": "Risky",
-     "note": "Starting for LeBron. 2 threes in his first start (MIL) and 2 vs Boston; 0 in the Charlotte start. Shoots about 35% from three, small sample."
+     "note": "Starting for LeBron. 2 threes in two of the three games we have."
     },
     {
      "player": "Joel Embiid",
      "stat": "reb",
-     "line": 6,
-     "price": null,
-     "priceNote": "price unknown",
+     "line": 7,
+     "price": -400,
      "tag": "Risky",
-     "note": "6+ rebounds in all 10 games (7+ in 9 of 10). Questionable with a sore right foot; swap out if he sits."
+     "note": "7+ in 9 of 10 games. Listed questionable with a sore right foot."
+    },
+    {
+     "player": "Jaylen Brown",
+     "stat": "pra",
+     "line": 30,
+     "price": -295,
+     "tag": "Solid",
+     "note": "30+ in 8 of 11 games."
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "stl",
+     "line": 1,
+     "price": -340,
+     "tag": "Solid",
+     "note": "1+ steal in 8 of 12 games."
+    },
+    {
+     "player": "Anfernee Simons",
+     "stat": "tpm",
+     "line": 1,
+     "price": -700,
+     "tag": "Core",
+     "note": "1+ three in 9 of 11 games."
     },
     {
      "player": "76ers",
      "stat": "ml",
      "line": 0,
-     "price": null,
-     "priceNote": "price unknown",
+     "price": -300,
      "tag": "Solid",
-     "note": "Sixers favored by 8.5 to 9.5 at home vs a short-handed Raptors team on a back-to-back. Kept the moneyline instead of a big spread, per the playbook."
+     "note": "Favored at home vs a short-handed Raptors team on a back-to-back."
     }
-   ]
+   ],
+   "fdPrice": 894
   }
  ],
- "bench": [
-  {
-   "player": "Dean Wade",
-   "stat": "reb",
-   "line": 3,
-   "effect": "Swap in for Embiid rebounds if Embiid sits (Wade would play center).",
-   "note": "3+ in 2 of 3 games we have (2, 5, 9)."
-  },
-  {
-   "player": "Anfernee Simons",
-   "stat": "tpm",
-   "line": 1,
-   "effect": "Same idea as Caldwell-Pope 1+ three, or in for Wade's three if his price is too long.",
-   "note": "1+ in 9 of 11; 17 points vs Boston."
-  },
-  {
-   "player": "Joel Embiid",
-   "stat": "reb",
-   "line": 7,
-   "effect": "Lengthens the slip a notch if 6+ is too short.",
-   "note": "7+ in 9 of 10."
-  },
-  {
-   "player": "Tyrese Maxey",
-   "stat": "stl",
-   "line": 1,
-   "effect": "Lengthens the slip a little.",
-   "note": "1+ in 8 of 12."
-  }
- ],
- "tuner": [
-  "Under +800 with no boost: use Embiid 7+ rebounds instead of 6+, or add Maxey 1+ steal.",
-  "Over +1300: drop Maxey 28+ to 25+ pts + reb + ast, or swap Wade's three for Simons 1+ three.",
-  "Sixers are big favorites (-8.5 or more): keep the moneyline, skip the spread.",
-  "If Embiid is out: swap Embiid rebounds for Wade 3+ rebounds."
- ],
+ "bench": [],
+ "tuner": [],
  "analysis": {
   "game": "2026-11-12",
-  "written": "2026-11-12T17:10:00-05:00",
-  "summary": "LeBron is out, so Dean Wade starts and more of the ball goes to Maxey and Brown. Toronto is 5-5, missing Leonard and Barnes, and on a back-to-back. Wade's 1+ three replaces LeBron's steal on both slips. Main risks: Embiid's foot and a blowout that sits the starters late.",
+  "written": "2026-11-12T18:50:00-05:00",
+  "summary": "LeBron is out, so Dean Wade starts and more of the ball goes to Maxey and Brown. Toronto is 5-5, missing Leonard and Barnes, and on a back-to-back. Main risks: Embiid's foot, a blowout that sits the starters late, and three 30+ / 20+ pts + reb + ast legs that tend to miss together.",
   "slips": {
-   "Props only": "Nine props, three of them pts + reb + ast. Wade's three is the newest and least proven leg.",
-   "With ML": "Swaps Caldwell-Pope's three for the Sixers to win at home; kept the moneyline instead of the -8.5 spread."
+   "Props only": "Nine props: three pts + reb + ast ladders, four 1+/2+ three legs including Wade, plus Embiid rebounds and Maxey's steal.",
+   "With ML": "The same nine plus the Sixers to win at home."
   },
   "watch": [
    {
@@ -312,17 +272,17 @@
     "text": "More shots for Maxey and Brown helps their pts + reb + ast. Wade gets starter minutes, but he's a low-usage shooter.",
     "legs": [
      "Dean Wade 1+ three",
-     "Maxey 28+ pts + reb + ast",
-     "Brown 24+ pts + reb + ast"
+     "Maxey 30+ pts + reb + ast",
+     "Brown 30+ pts + reb + ast"
     ],
     "level": "good"
    },
    {
     "kind": "Injury",
     "title": "Embiid questionable",
-    "text": "Sore right foot on the Nov 12 report. If he sits, swap his rebounds for Wade 3+ rebounds.",
+    "text": "Sore right foot on the Nov 12 report. Watch his minutes; the rebounds leg needs 7+.",
     "legs": [
-     "Embiid 6+ rebounds"
+     "Embiid 7+ rebounds"
     ],
     "level": "brass"
    },
@@ -331,20 +291,21 @@
     "title": "Starters could sit late",
     "text": "With the Sixers favored by about 9, a big lead could cut the fourth-quarter minutes for Maxey, Brown and VJ.",
     "legs": [
-     "Maxey 28+ pts + reb + ast",
-     "Brown 24+ pts + reb + ast",
-     "VJ 16+ pts + reb + ast"
+     "Maxey 30+ pts + reb + ast",
+     "Brown 30+ pts + reb + ast",
+     "VJ 20+ pts + reb + ast"
     ],
     "level": "brass"
    },
    {
     "kind": "Overlap",
-    "title": "VJ carries three legs",
-    "text": "VJ's threes, steal and pts + reb + ast tend to rise and fall together.",
+    "title": "Three-point legs",
+    "text": "Four legs need made threes (Maxey 2+, VJ, Wade, Simons). A cold shooting night could cost more than one.",
     "legs": [
+     "Maxey 2+ threes",
      "VJ 1+ three",
-     "VJ 1+ steal",
-     "VJ 16+ pts + reb + ast"
+     "Dean Wade 1+ three",
+     "Simons 1+ three"
     ],
     "level": "brass"
    }
@@ -353,86 +314,62 @@
    {
     "player": "Tyrese Maxey",
     "stat": "pra",
-    "line": 28,
-    "why": "10 of 12 this season, 29 vs Boston. Toronto's guards are thin with Quickley questionable."
+    "line": 30,
+    "why": "9 of 12 at 30+. More shots with LeBron out."
    },
    {
     "player": "Tyrese Maxey",
     "stat": "tpm",
     "line": 2,
-    "why": "10 of 12 games and 12 for 15 on our slips; hit 3 vs Boston."
+    "why": "10 of 12 games; 3 vs Boston."
+   },
+   {
+    "player": "VJ Edgecombe",
+    "stat": "pra",
+    "line": 20,
+    "why": "8 of 11 at 20+."
    },
    {
     "player": "VJ Edgecombe",
     "stat": "tpm",
     "line": 1,
-    "why": "9 of 10 graded games and 11 for 11 on our slips. Went cold vs Boston (0 for 3 into the third quarter)."
-   },
-   {
-    "player": "VJ Edgecombe",
-    "stat": "stl",
-    "line": 1,
-    "why": "10 of 11 games and 10 for 11 on our slips."
-   },
-   {
-    "player": "VJ Edgecombe",
-    "stat": "pra",
-    "line": 16,
-    "why": "10 of 11 games; 17 vs Boston. Kept at 16+ per the playbook."
-   },
-   {
-    "player": "Jaylen Brown",
-    "stat": "pra",
-    "line": 24,
-    "why": "10 of 11 games. Missed 27+ vs Boston (20) in foul trouble, so the line comes down to 24+."
+    "why": "9 of 10 graded games."
    },
    {
     "player": "Dean Wade",
     "stat": "tpm",
     "line": 1,
-    "why": "Starter minutes with LeBron out. Made 2 threes in two of the three games we have (MIL start, Boston). Small sample, so Risky."
+    "why": "Starter minutes with LeBron out; 2 threes in two of the three games we have. Small sample."
    },
    {
     "player": "Joel Embiid",
     "stat": "reb",
-    "line": 6,
-    "why": "All 10 games. Questionable with a sore right foot, so Risky."
+    "line": 7,
+    "why": "9 of 10 at 7+. Questionable with a sore foot."
    },
    {
-    "player": "Kentavious Caldwell-Pope",
+    "player": "Jaylen Brown",
+    "stat": "pra",
+    "line": 30,
+    "why": "8 of 11 at 30+. More usage with LeBron out."
+   },
+   {
+    "player": "Tyrese Maxey",
+    "stat": "stl",
+    "line": 1,
+    "why": "8 of 12 games."
+   },
+   {
+    "player": "Anfernee Simons",
     "stat": "tpm",
     "line": 1,
-    "why": "10 of 11 graded games, steady off the bench."
+    "why": "9 of 11 games."
    },
    {
     "player": "76ers",
     "stat": "ml",
     "line": 0,
     "why": "Favored by 8.5 to 9.5 at home vs a tired, short-handed Toronto."
-   },
-   {
-    "player": "Dean Wade",
-    "stat": "reb",
-    "line": 3,
-    "why": "Bench: 2, 5 and 9 rebounds in the games we have; would rise if Embiid sits."
-   },
-   {
-    "player": "Anfernee Simons",
-    "stat": "tpm",
-    "line": 1,
-    "why": "Bench: 9 of 11 games."
-   },
-   {
-    "player": "Joel Embiid",
-    "stat": "reb",
-    "line": 7,
-    "why": "Bench: 9 of 10 games."
-   },
-   {
-    "player": "Tyrese Maxey",
-    "stat": "stl",
-    "line": 1,
-    "why": "Bench: 8 of 12 games, 6 for 9 on our slips."
    }
   ]
  }
