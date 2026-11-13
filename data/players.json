@@ -1,6 +1,6 @@
 {
- "_note": "2026-27 regular-season game logs (stl/blk/3pm included). A player missing from a date did not play or isn't in the feed. Brown's Nov 8 line is from Basketball-Reference (the box-score feed leaves him out). Nov 10 vs BOS: no final full box score was reachable; lines are from Bleacher Report, NBC Sports and Yardbarker recaps. Null = not found yet (VJ's threes; Simons has points only; Caldwell-Pope missing). Dean Wade: only Oct 24, Oct 31 and Nov 10 are filled so far (from the box-score feed).",
- "updated": "2026-11-10",
+ "_note": "2026-27 regular-season game logs (stl/blk/3pm included). A player missing from a date did not play or isn't in the feed. Brown's Nov 8 line is from Basketball-Reference (the box-score feed leaves him out). Nov 10 vs BOS: no final full box score was reachable; lines are from Bleacher Report, NBC Sports and Yardbarker recaps. Null = not found yet (VJ's threes; Simons has points only; Caldwell-Pope missing). Dean Wade: only Oct 24, Oct 31 and Nov 10 are filled so far (from the box-score feed). Nov 12 vs TOR: from ESPN's box score (rows matched to players by roster order; team totals check out). LeBron James out (back).",
+ "updated": "2026-11-12",
  "games": [
   {
    "date": "2026-10-20",
@@ -73,6 +73,12 @@
    "opp": "BOS",
    "home": true,
    "result": "L 101-123"
+  },
+  {
+   "date": "2026-11-12",
+   "opp": "TOR",
+   "home": true,
+   "result": "W 123-112"
   }
  ],
  "players": {
@@ -184,6 +190,15 @@
     "stl": 0,
     "blk": 0,
     "tpm": 3
+   },
+   {
+    "date": "2026-11-12",
+    "pts": 27,
+    "reb": 2,
+    "ast": 8,
+    "stl": 2,
+    "blk": 1,
+    "tpm": 1
    }
   ],
   "VJ Edgecombe": [
@@ -285,6 +300,15 @@
     "stl": 1,
     "blk": 1,
     "tpm": null
+   },
+   {
+    "date": "2026-11-12",
+    "pts": 15,
+    "reb": 8,
+    "ast": 8,
+    "stl": 3,
+    "blk": 1,
+    "tpm": 1
    }
   ],
   "LeBron James": [
@@ -469,6 +493,15 @@
     "stl": 0,
     "blk": 0,
     "tpm": 1
+   },
+   {
+    "date": "2026-11-12",
+    "pts": 20,
+    "reb": 4,
+    "ast": 3,
+    "stl": 1,
+    "blk": 1,
+    "tpm": 0
    }
   ],
   "Jaylen Brown": [
@@ -570,6 +603,15 @@
     "stl": 2,
     "blk": 1,
     "tpm": 1
+   },
+   {
+    "date": "2026-11-12",
+    "pts": 18,
+    "reb": 6,
+    "ast": 2,
+    "stl": 2,
+    "blk": 1,
+    "tpm": 0
    }
   ],
   "Anfernee Simons": [
@@ -680,6 +722,15 @@
     "stl": null,
     "blk": null,
     "tpm": null
+   },
+   {
+    "date": "2026-11-12",
+    "pts": 17,
+    "reb": 3,
+    "ast": 2,
+    "stl": 0,
+    "blk": 0,
+    "tpm": 5
    }
   ],
   "Kentavious Caldwell-Pope": [
@@ -781,6 +832,15 @@
     "stl": 1,
     "blk": 2,
     "tpm": 2
+   },
+   {
+    "date": "2026-11-12",
+    "pts": 11,
+    "reb": 4,
+    "ast": 5,
+    "stl": 1,
+    "blk": 1,
+    "tpm": 3
    }
   ],
   "Dean Wade": [
@@ -807,6 +867,15 @@
     "pts": 8,
     "reb": 9,
     "ast": 0,
+    "stl": 0,
+    "blk": 0,
+    "tpm": 2
+   },
+   {
+    "date": "2026-11-12",
+    "pts": 6,
+    "reb": 5,
+    "ast": 2,
     "stl": 0,
     "blk": 0,
     "tpm": 2

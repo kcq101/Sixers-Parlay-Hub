@@ -2,19 +2,19 @@
  "note": "Claude does the research on a schedule. Kevin builds and locks the final slip in FanDuel.",
  "updates": [
   {
-   "when": "2026-11-12T12:40:00-05:00",
+   "when": "2026-11-15T10:00:00-05:00",
    "what": "Refresh the picks",
-   "detail": "Adds FanDuel prices, the injury report and the line, swaps any leg whose player is out, and fills VJ's Nov 10 threes if a final box score turns up.",
+   "detail": "Adds FanDuel prices, the injury report and the line, and swaps any leg whose player is out (LeBron's back, Embiid's foot).",
    "status": "scheduled"
   },
   {
-   "when": "2026-11-12T18:20:00-05:00",
+   "when": "2026-11-15T12:20:00-05:00",
    "what": "Final check before tip",
    "detail": "Checks the final injury report and starting lineups 40 minutes before tip and swaps any leg whose player is out or limited.",
    "status": "scheduled"
   },
   {
-   "when": "2026-11-12T21:55:00-05:00",
+   "when": "2026-11-15T15:55:00-05:00",
    "what": "Grade the slip",
    "detail": "Pulls the final box score, grades each leg, and adds the game to the season logs.",
    "status": "scheduled"

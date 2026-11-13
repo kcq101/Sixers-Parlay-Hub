@@ -1176,6 +1176,165 @@
     }
    ],
    "note": "Lost: Brown pts + reb + ast, Embiid rebounds and the moneyline (lost by 22) missed. VJ's threes not confirmed yet."
+  },
+  {
+   "date": "2026-11-12",
+   "opp": "TOR",
+   "home": true,
+   "final": "W 123-112",
+   "label": "props only",
+   "price": 674,
+   "boost": 50,
+   "boosted": 1012,
+   "legs": [
+    {
+     "player": "Tyrese Maxey",
+     "stat": "pra",
+     "line": 30,
+     "actual": 37,
+     "hit": true
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "tpm",
+     "line": 2,
+     "actual": 1,
+     "hit": false
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "pra",
+     "line": 20,
+     "actual": 31,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    },
+    {
+     "player": "Dean Wade",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 2,
+     "hit": true
+    },
+    {
+     "player": "Joel Embiid",
+     "stat": "reb",
+     "line": 7,
+     "actual": 4,
+     "hit": false
+    },
+    {
+     "player": "Jaylen Brown",
+     "stat": "pra",
+     "line": 30,
+     "actual": 26,
+     "hit": false
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "stl",
+     "line": 1,
+     "actual": 2,
+     "hit": true
+    },
+    {
+     "player": "Anfernee Simons",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 5,
+     "hit": true
+    }
+   ],
+   "note": "Lost: Maxey 2+ threes (made 1), Embiid 7+ rebounds (had 4), Brown 30+ pts + reb + ast (had 26) missed."
+  },
+  {
+   "date": "2026-11-12",
+   "opp": "TOR",
+   "home": true,
+   "final": "W 123-112",
+   "label": "with ml",
+   "price": 894,
+   "boost": null,
+   "boosted": null,
+   "legs": [
+    {
+     "player": "Tyrese Maxey",
+     "stat": "pra",
+     "line": 30,
+     "actual": 37,
+     "hit": true
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "tpm",
+     "line": 2,
+     "actual": 1,
+     "hit": false
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "pra",
+     "line": 20,
+     "actual": 31,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    },
+    {
+     "player": "Dean Wade",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 2,
+     "hit": true
+    },
+    {
+     "player": "Joel Embiid",
+     "stat": "reb",
+     "line": 7,
+     "actual": 4,
+     "hit": false
+    },
+    {
+     "player": "Jaylen Brown",
+     "stat": "pra",
+     "line": 30,
+     "actual": 26,
+     "hit": false
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "stl",
+     "line": 1,
+     "actual": 2,
+     "hit": true
+    },
+    {
+     "player": "Anfernee Simons",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 5,
+     "hit": true
+    },
+    {
+     "player": "76ers",
+     "stat": "ml",
+     "line": 0,
+     "actual": 11,
+     "hit": true
+    }
+   ],
+   "note": "Lost: Maxey 2+ threes (made 1), Embiid 7+ rebounds (had 4), Brown 30+ pts + reb + ast (had 26) missed. Moneyline hit (won by 11)."
   }
  ]
 }
