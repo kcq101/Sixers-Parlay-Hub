@@ -1,7 +1,7 @@
 {
- "status": "draft",
- "statusNote": "Draft for Sunday's 1:00 PM game vs Indiana. No prices or line posted yet; the refresh runs Sunday at 10:00 AM ET with the injury report, line and FanDuel prices.",
- "updated": "2026-11-13T09:55:00-05:00",
+ "status": "graded",
+ "statusNote": "Final: Sixers won 131-124 without Embiid. Props only went 6 of 8 graded legs (missed VJ 1+ three with 0 and LeBron 1+ steal with 0; Embiid's rebounds void, he sat). With ML went 7 of 9 graded, same two misses; the moneyline hit. Neither slip was placed.",
+ "updated": "2026-11-16T09:10:00-05:00",
  "game": {
   "date": "2026-11-15",
   "tip": "1:00 PM ET",
@@ -85,7 +85,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Core",
-     "note": "28+ in 11 of 13 games; 37 vs Toronto."
+     "note": "28+ in 11 of 13 games; 37 vs Toronto.",
+     "actual": 37,
+     "hit": true
     },
     {
      "player": "Tyrese Maxey",
@@ -94,7 +96,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "2+ threes in 10 of 13 games; 1 vs Toronto."
+     "note": "2+ threes in 10 of 13 games; 1 vs Toronto.",
+     "actual": 5,
+     "hit": true
     },
     {
      "player": "VJ Edgecombe",
@@ -103,7 +107,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Core",
-     "note": "1+ three in 10 of 11 graded games."
+     "note": "1+ three in 10 of 11 graded games.",
+     "actual": 0,
+     "hit": false
     },
     {
      "player": "VJ Edgecombe",
@@ -112,7 +118,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "15+ in 11 of 12 games; 31 vs Toronto."
+     "note": "15+ in 11 of 12 games; 31 vs Toronto.",
+     "actual": 21,
+     "hit": true
     },
     {
      "player": "VJ Edgecombe",
@@ -121,7 +129,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "1+ steal in 11 of 12 games."
+     "note": "1+ steal in 11 of 12 games.",
+     "actual": 1,
+     "hit": true
     },
     {
      "player": "Jaylen Brown",
@@ -130,7 +140,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "24+ in 11 of 12 games; 20 and 26 his last two."
+     "note": "24+ in 11 of 12 games; 20 and 26 his last two.",
+     "actual": 35,
+     "hit": true
     },
     {
      "player": "LeBron James",
@@ -139,7 +151,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Core",
-     "note": "1+ steal in 9 of 10 games. Sat Nov 12 with a sore back; check he plays."
+     "note": "1+ steal in 9 of 10 games. Sat Nov 12 with a sore back; check he plays.",
+     "actual": 0,
+     "hit": false
     },
     {
      "player": "Anfernee Simons",
@@ -148,7 +162,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "1+ three in 10 of 12 games; 5 vs Toronto."
+     "note": "1+ three in 10 of 12 games; 5 vs Toronto.",
+     "actual": 1,
+     "hit": true
     },
     {
      "player": "Joel Embiid",
@@ -157,7 +173,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Risky",
-     "note": "6+ in 10 of 11 games, but 6 and 4 his last two. Sore right foot."
+     "note": "Did not play (FanDuel usually voids this leg)",
+     "actual": null,
+     "hit": null
     }
    ]
   },
@@ -172,7 +190,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Core",
-     "note": "28+ in 11 of 13 games; 37 vs Toronto."
+     "note": "28+ in 11 of 13 games; 37 vs Toronto.",
+     "actual": 37,
+     "hit": true
     },
     {
      "player": "Tyrese Maxey",
@@ -181,7 +201,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "2+ threes in 10 of 13 games; 1 vs Toronto."
+     "note": "2+ threes in 10 of 13 games; 1 vs Toronto.",
+     "actual": 5,
+     "hit": true
     },
     {
      "player": "VJ Edgecombe",
@@ -190,7 +212,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Core",
-     "note": "1+ three in 10 of 11 graded games."
+     "note": "1+ three in 10 of 11 graded games.",
+     "actual": 0,
+     "hit": false
     },
     {
      "player": "VJ Edgecombe",
@@ -199,7 +223,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "15+ in 11 of 12 games; 31 vs Toronto."
+     "note": "15+ in 11 of 12 games; 31 vs Toronto.",
+     "actual": 21,
+     "hit": true
     },
     {
      "player": "VJ Edgecombe",
@@ -208,7 +234,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "1+ steal in 11 of 12 games."
+     "note": "1+ steal in 11 of 12 games.",
+     "actual": 1,
+     "hit": true
     },
     {
      "player": "Jaylen Brown",
@@ -217,7 +245,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "24+ in 11 of 12 games; 20 and 26 his last two."
+     "note": "24+ in 11 of 12 games; 20 and 26 his last two.",
+     "actual": 35,
+     "hit": true
     },
     {
      "player": "LeBron James",
@@ -226,7 +256,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Core",
-     "note": "1+ steal in 9 of 10 games. Sat Nov 12 with a sore back; check he plays."
+     "note": "1+ steal in 9 of 10 games. Sat Nov 12 with a sore back; check he plays.",
+     "actual": 0,
+     "hit": false
     },
     {
      "player": "Anfernee Simons",
@@ -235,7 +267,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "1+ three in 10 of 12 games; 5 vs Toronto."
+     "note": "1+ three in 10 of 12 games; 5 vs Toronto.",
+     "actual": 1,
+     "hit": true
     },
     {
      "player": "Joel Embiid",
@@ -244,7 +278,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Risky",
-     "note": "6+ in 10 of 11 games, but 6 and 4 his last two. Sore right foot."
+     "note": "Did not play (FanDuel usually voids this leg)",
+     "actual": null,
+     "hit": null
     },
     {
      "player": "76ers",
@@ -253,7 +289,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "At home vs 4-8 Indiana, who are without Haliburton. Beat them 114-109 in Indiana."
+     "note": "At home vs 4-8 Indiana, who are without Haliburton. Beat them 114-109 in Indiana.",
+     "actual": 7,
+     "hit": true
     }
    ]
   }
