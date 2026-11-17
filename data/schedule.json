@@ -17,7 +17,9 @@
    "when": "2026-11-16T22:25:00-05:00",
    "what": "Grade the slip",
    "detail": "Pulls the final box score, grades each leg, and adds the game to the season logs.",
-   "status": "scheduled"
+   "status": "done",
+   "doneAt": "2026-11-16T22:45:00-05:00",
+   "result": "Won 135-123; both slips missed only Embiid 6+ rebounds (had 5)."
   }
  ]
 }

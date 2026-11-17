@@ -1335,6 +1335,165 @@
     }
    ],
    "note": "Lost: Maxey 2+ threes (made 1), Embiid 7+ rebounds (had 4), Brown 30+ pts + reb + ast (had 26) missed. Moneyline hit (won by 11)."
+  },
+  {
+   "date": "2026-11-16",
+   "opp": "BKN",
+   "home": false,
+   "final": "W 135-123",
+   "label": "props only",
+   "price": 752,
+   "boost": 25,
+   "boosted": 940,
+   "legs": [
+    {
+     "player": "Tyrese Maxey",
+     "stat": "pra",
+     "line": 30,
+     "actual": 34,
+     "hit": true
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "tpm",
+     "line": 2,
+     "actual": 4,
+     "hit": true
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "stl",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "pra",
+     "line": 20,
+     "actual": 27,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "stl",
+     "line": 1,
+     "actual": 2,
+     "hit": true
+    },
+    {
+     "player": "Jaylen Brown",
+     "stat": "pra",
+     "line": 30,
+     "actual": 48,
+     "hit": true
+    },
+    {
+     "player": "Dean Wade",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    },
+    {
+     "player": "Joel Embiid",
+     "stat": "reb",
+     "line": 6,
+     "actual": 5,
+     "hit": false
+    }
+   ],
+   "note": "Lost by one leg: Embiid had 5 rebounds, one short of 6+."
+  },
+  {
+   "date": "2026-11-16",
+   "opp": "BKN",
+   "home": false,
+   "final": "W 135-123",
+   "label": "with ml",
+   "price": 960,
+   "boost": 25,
+   "boosted": 1200,
+   "legs": [
+    {
+     "player": "Tyrese Maxey",
+     "stat": "pra",
+     "line": 30,
+     "actual": 34,
+     "hit": true
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "tpm",
+     "line": 2,
+     "actual": 4,
+     "hit": true
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "stl",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "pra",
+     "line": 20,
+     "actual": 27,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "stl",
+     "line": 1,
+     "actual": 2,
+     "hit": true
+    },
+    {
+     "player": "Jaylen Brown",
+     "stat": "pra",
+     "line": 30,
+     "actual": 48,
+     "hit": true
+    },
+    {
+     "player": "Dean Wade",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    },
+    {
+     "player": "Joel Embiid",
+     "stat": "reb",
+     "line": 6,
+     "actual": 5,
+     "hit": false
+    },
+    {
+     "player": "76ers",
+     "stat": "ml",
+     "line": 0,
+     "actual": 12,
+     "hit": true
+    }
+   ],
+   "note": "Lost by one leg: Embiid had 5 rebounds, one short of 6+. Moneyline hit (won by 12)."
   }
  ]
 }

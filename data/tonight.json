@@ -1,7 +1,7 @@
 {
- "status": "final",
- "statusNote": "Both slips are placed in FanDuel with a 25% profit boost: Props only (9 legs) +752, +940 boosted; With ML (10 legs) +960, +1200 boosted. Leg prices are from FanDuel.",
- "updated": "2026-11-16T18:45:00-05:00",
+ "status": "graded",
+ "statusNote": "Graded: Sixers won 135-123. Both slips lost by one leg, Embiid 6+ rebounds (had 5); every other leg hit.",
+ "updated": "2026-11-16T22:45:00-05:00",
  "game": {
   "date": "2026-11-16",
   "tip": "7:30 PM ET",
@@ -27,14 +27,14 @@
   {
    "team": "PHI",
    "player": "Joel Embiid",
-   "status": "Watch",
-   "note": "right foot (plantar fasciitis); sat Nov 15, but FanDuel has his props up tonight"
+   "status": "Played",
+   "note": "played: 37 points, 5 rebounds"
   },
   {
    "team": "PHI",
    "player": "LeBron James",
-   "status": "Watch",
-   "note": "lower back; played 33 minutes Nov 15, second night of a back-to-back"
+   "status": "Out",
+   "note": "sat the back-to-back (injury management)"
   },
   {
    "team": "PHI",
@@ -76,7 +76,9 @@
      "price": -350,
      "priceNote": "FanDuel",
      "tag": "Core",
-     "note": "30+ in 11 of 14 games; 37 vs Indiana."
+     "note": "30+ in 11 of 14 games; 37 vs Indiana.",
+     "actual": 34,
+     "hit": true
     },
     {
      "player": "Tyrese Maxey",
@@ -85,7 +87,9 @@
      "price": -280,
      "priceNote": "FanDuel",
      "tag": "Solid",
-     "note": "2+ threes in 11 of 14 games; 5 vs Indiana."
+     "note": "2+ threes in 11 of 14 games; 5 vs Indiana.",
+     "actual": 4,
+     "hit": true
     },
     {
      "player": "Tyrese Maxey",
@@ -94,7 +98,9 @@
      "price": -350,
      "priceNote": "FanDuel",
      "tag": "Solid",
-     "note": "1+ steal in 10 of 14 games."
+     "note": "1+ steal in 10 of 14 games.",
+     "actual": 1,
+     "hit": true
     },
     {
      "player": "VJ Edgecombe",
@@ -103,7 +109,9 @@
      "price": -295,
      "priceNote": "FanDuel",
      "tag": "Solid",
-     "note": "20+ in 10 of 13 games; 21 vs Indiana."
+     "note": "20+ in 10 of 13 games; 21 vs Indiana.",
+     "actual": 27,
+     "hit": true
     },
     {
      "player": "VJ Edgecombe",
@@ -112,7 +120,9 @@
      "price": -620,
      "priceNote": "FanDuel",
      "tag": "Core",
-     "note": "1+ three in 10 of 12 graded games; 0 vs Indiana."
+     "note": "1+ three in 10 of 12 graded games; 0 vs Indiana.",
+     "actual": 1,
+     "hit": true
     },
     {
      "player": "VJ Edgecombe",
@@ -121,7 +131,9 @@
      "price": -400,
      "priceNote": "FanDuel",
      "tag": "Solid",
-     "note": "1+ steal in 12 of 13 games."
+     "note": "1+ steal in 12 of 13 games.",
+     "actual": 2,
+     "hit": true
     },
     {
      "player": "Jaylen Brown",
@@ -130,7 +142,9 @@
      "price": -240,
      "priceNote": "FanDuel",
      "tag": "Solid",
-     "note": "30+ in 9 of 13 games; 35 vs Indiana."
+     "note": "30+ in 9 of 13 games; 35 vs Indiana.",
+     "actual": 48,
+     "hit": true
     },
     {
      "player": "Dean Wade",
@@ -139,7 +153,9 @@
      "price": -360,
      "priceNote": "FanDuel",
      "tag": "Solid",
-     "note": "1+ three in 4 of 5 games we have; 3 vs Indiana."
+     "note": "1+ three in 4 of 5 games we have; 3 vs Indiana.",
+     "actual": 1,
+     "hit": true
     },
     {
      "player": "Joel Embiid",
@@ -148,9 +164,12 @@
      "price": -440,
      "priceNote": "FanDuel",
      "tag": "Risky",
-     "note": "6+ rebounds in 10 of 11 games; sat Sunday with the foot."
+     "note": "6+ rebounds in 10 of 11 games; sat Sunday with the foot.",
+     "actual": 5,
+     "hit": false
     }
-   ]
+   ],
+   "statusNote": "Lost by one leg: Embiid 6+ rebounds (had 5). The other 8 legs hit."
   },
   {
    "name": "With ML",
@@ -166,7 +185,9 @@
      "price": -350,
      "priceNote": "FanDuel",
      "tag": "Core",
-     "note": "30+ in 11 of 14 games; 37 vs Indiana."
+     "note": "30+ in 11 of 14 games; 37 vs Indiana.",
+     "actual": 34,
+     "hit": true
     },
     {
      "player": "Tyrese Maxey",
@@ -175,7 +196,9 @@
      "price": -280,
      "priceNote": "FanDuel",
      "tag": "Solid",
-     "note": "2+ threes in 11 of 14 games; 5 vs Indiana."
+     "note": "2+ threes in 11 of 14 games; 5 vs Indiana.",
+     "actual": 4,
+     "hit": true
     },
     {
      "player": "Tyrese Maxey",
@@ -184,7 +207,9 @@
      "price": -350,
      "priceNote": "FanDuel",
      "tag": "Solid",
-     "note": "1+ steal in 10 of 14 games."
+     "note": "1+ steal in 10 of 14 games.",
+     "actual": 1,
+     "hit": true
     },
     {
      "player": "VJ Edgecombe",
@@ -193,7 +218,9 @@
      "price": -295,
      "priceNote": "FanDuel",
      "tag": "Solid",
-     "note": "20+ in 10 of 13 games; 21 vs Indiana."
+     "note": "20+ in 10 of 13 games; 21 vs Indiana.",
+     "actual": 27,
+     "hit": true
     },
     {
      "player": "VJ Edgecombe",
@@ -202,7 +229,9 @@
      "price": -620,
      "priceNote": "FanDuel",
      "tag": "Core",
-     "note": "1+ three in 10 of 12 graded games; 0 vs Indiana."
+     "note": "1+ three in 10 of 12 graded games; 0 vs Indiana.",
+     "actual": 1,
+     "hit": true
     },
     {
      "player": "VJ Edgecombe",
@@ -211,7 +240,9 @@
      "price": -400,
      "priceNote": "FanDuel",
      "tag": "Solid",
-     "note": "1+ steal in 12 of 13 games."
+     "note": "1+ steal in 12 of 13 games.",
+     "actual": 2,
+     "hit": true
     },
     {
      "player": "Jaylen Brown",
@@ -220,7 +251,9 @@
      "price": -240,
      "priceNote": "FanDuel",
      "tag": "Solid",
-     "note": "30+ in 9 of 13 games; 35 vs Indiana."
+     "note": "30+ in 9 of 13 games; 35 vs Indiana.",
+     "actual": 48,
+     "hit": true
     },
     {
      "player": "Dean Wade",
@@ -229,7 +262,9 @@
      "price": -360,
      "priceNote": "FanDuel",
      "tag": "Solid",
-     "note": "1+ three in 4 of 5 games we have; 3 vs Indiana."
+     "note": "1+ three in 4 of 5 games we have; 3 vs Indiana.",
+     "actual": 1,
+     "hit": true
     },
     {
      "player": "Joel Embiid",
@@ -238,7 +273,9 @@
      "price": -440,
      "priceNote": "FanDuel",
      "tag": "Risky",
-     "note": "6+ rebounds in 10 of 11 games; sat Sunday with the foot."
+     "note": "6+ rebounds in 10 of 11 games; sat Sunday with the foot.",
+     "actual": 5,
+     "hit": false
     },
     {
      "player": "76ers",
@@ -247,9 +284,12 @@
      "price": -215,
      "priceNote": "FanDuel",
      "tag": "Solid",
-     "note": "Sixers win at 3-9 Brooklyn. They won by 7 without Embiid on Sunday."
+     "note": "Sixers win at 3-9 Brooklyn. They won by 7 without Embiid on Sunday.",
+     "actual": 12,
+     "hit": true
     }
-   ]
+   ],
+   "statusNote": "Lost by one leg: Embiid 6+ rebounds (had 5). The other 9 legs hit."
   }
  ],
  "bench": [
