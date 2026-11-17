@@ -1,40 +1,46 @@
 {
- "status": "graded",
- "statusNote": "Graded: Sixers won 135-123. Both slips lost by one leg, Embiid 6+ rebounds (had 5); every other leg hit.",
- "updated": "2026-11-16T22:45:00-05:00",
+ "status": "draft",
+ "statusNote": "Draft for Wednesday's 7:00 PM game at Orlando, set up by the watchdog Tuesday morning. No line or prices yet; Brown's hamstring is being checked Tuesday. The refresh runs Wednesday at 12:40 PM ET.",
+ "updated": "2026-11-17T09:10:00-05:00",
  "game": {
-  "date": "2026-11-16",
-  "tip": "7:30 PM ET",
-  "opp": "BKN",
-  "oppName": "Brooklyn Nets",
+  "date": "2026-11-18",
+  "tip": "7:00 PM ET",
+  "opp": "ORL",
+  "oppName": "Orlando Magic",
   "home": false,
-  "venue": "Barclays Center",
+  "venue": "Kia Center",
   "records": {
-   "PHI": "11-3",
-   "BKN": "3-9"
+   "PHI": "12-3",
+   "ORL": "6-7"
   },
-  "spread": "Sixers -5.5",
-  "line": "Sixers -5.5, total 225 (BetMGM preview, Nov 16). FanDuel moneyline: Sixers -215.",
-  "lastMeeting": "Sixers won 104-97 on Mar 14, 2026. First meeting this season.",
+  "spread": "No line yet",
+  "line": "No sportsbook line posted yet (Tuesday morning). Prediction markets: Sixers about 55%.",
+  "lastMeeting": "Sixers won 109-97 in the play-in on Apr 15, 2026 (Maxey 31). First meeting this season.",
   "notes": [
-   "Second night of a back-to-back after Sunday's 131-124 win over Indiana.",
-   "Maxey and Brown combined for 58 on Sunday; LeBron had 11 assists and passed Jason Kidd on the career assists list.",
-   "Brooklyn is 3-9, near the bottom of the East; the Sixers are 11-3.",
-   "First meeting of the season; the Sixers won the last one 104-97 in March."
+   "Rematch of April's play-in game, which the Sixers won 109-97 behind Maxey's 31 to clinch the 7 seed.",
+   "The Sixers have won three straight; Embiid scored a season-high 37 at Brooklyn.",
+   "Orlando is 6-7 and playing at home; the Sixers are 12-3.",
+   "One day of rest after Monday's game at Brooklyn."
   ]
  },
  "injuries": [
   {
    "team": "PHI",
-   "player": "Joel Embiid",
-   "status": "Played",
-   "note": "played: 37 points, 5 rebounds"
+   "player": "Jaylen Brown",
+   "status": "Questionable",
+   "note": "left hamstring tightness and a cut on his head Nov 16; being evaluated Tuesday, possible MRI"
   },
   {
    "team": "PHI",
    "player": "LeBron James",
-   "status": "Out",
-   "note": "sat the back-to-back (injury management)"
+   "status": "Watch",
+   "note": "low back; sat Nov 16 (sciatica management), not a back-to-back Wednesday"
+  },
+  {
+   "team": "PHI",
+   "player": "Joel Embiid",
+   "status": "Watch",
+   "note": "right foot (plantar fascia) management; played Nov 16"
   },
   {
    "team": "PHI",
@@ -55,325 +61,290 @@
    "note": "Achilles"
   },
   {
-   "team": "BKN",
-   "player": "Michael Porter Jr.",
-   "status": "Day-to-day",
-   "note": "personal"
+   "team": "ORL",
+   "player": "Paolo Banchero",
+   "status": "Out",
+   "note": "right high-ankle sprain"
+  },
+  {
+   "team": "ORL",
+   "player": "Jonathan Isaac",
+   "status": "Out",
+   "note": "left knee"
+  },
+  {
+   "team": "ORL",
+   "player": "Noah Penda",
+   "status": "Out",
+   "note": "hamstring"
   }
  ],
  "slips": [
   {
    "name": "Props only",
    "legsCount": 9,
-   "fdPrice": 752,
-   "boost": 25,
-   "boosted": 940,
    "legs": [
     {
      "player": "Tyrese Maxey",
      "stat": "pra",
      "line": 30,
-     "price": -350,
-     "priceNote": "FanDuel",
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Core",
-     "note": "30+ in 11 of 14 games; 37 vs Indiana.",
-     "actual": 34,
-     "hit": true
+     "note": "30+ in 12 of 15 games; 34 at Brooklyn."
     },
     {
      "player": "Tyrese Maxey",
      "stat": "tpm",
      "line": 2,
-     "price": -280,
-     "priceNote": "FanDuel",
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "2+ threes in 11 of 14 games; 5 vs Indiana.",
-     "actual": 4,
-     "hit": true
-    },
-    {
-     "player": "Tyrese Maxey",
-     "stat": "stl",
-     "line": 1,
-     "price": -350,
-     "priceNote": "FanDuel",
-     "tag": "Solid",
-     "note": "1+ steal in 10 of 14 games.",
-     "actual": 1,
-     "hit": true
-    },
-    {
-     "player": "VJ Edgecombe",
-     "stat": "pra",
-     "line": 20,
-     "price": -295,
-     "priceNote": "FanDuel",
-     "tag": "Solid",
-     "note": "20+ in 10 of 13 games; 21 vs Indiana.",
-     "actual": 27,
-     "hit": true
+     "note": "2+ threes in 12 of 15 games; 4 at Brooklyn."
     },
     {
      "player": "VJ Edgecombe",
      "stat": "tpm",
      "line": 1,
-     "price": -620,
-     "priceNote": "FanDuel",
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Core",
-     "note": "1+ three in 10 of 12 graded games; 0 vs Indiana.",
-     "actual": 1,
-     "hit": true
+     "note": "1+ three in 11 of 13 graded games."
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "pra",
+     "line": 15,
+     "price": null,
+     "priceNote": "price unknown",
+     "tag": "Solid",
+     "note": "15+ in 13 of 14 games; 27 at Brooklyn."
     },
     {
      "player": "VJ Edgecombe",
      "stat": "stl",
      "line": 1,
-     "price": -400,
-     "priceNote": "FanDuel",
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "1+ steal in 12 of 13 games.",
-     "actual": 2,
-     "hit": true
+     "note": "1+ steal in 13 of 14 games."
     },
     {
      "player": "Jaylen Brown",
      "stat": "pra",
-     "line": 30,
-     "price": -240,
-     "priceNote": "FanDuel",
-     "tag": "Solid",
-     "note": "30+ in 9 of 13 games; 35 vs Indiana.",
-     "actual": 48,
-     "hit": true
+     "line": 26,
+     "price": null,
+     "priceNote": "price unknown",
+     "tag": "Risky",
+     "note": "26+ in 11 of 14 games; 48 at Brooklyn, but he left with a tight hamstring."
     },
     {
-     "player": "Dean Wade",
+     "player": "LeBron James",
+     "stat": "stl",
+     "line": 1,
+     "price": null,
+     "priceNote": "price unknown",
+     "tag": "Solid",
+     "note": "1+ steal in 9 of 11 games; 0 his last two."
+    },
+    {
+     "player": "Kentavious Caldwell-Pope",
      "stat": "tpm",
      "line": 1,
-     "price": -360,
-     "priceNote": "FanDuel",
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "1+ three in 4 of 5 games we have; 3 vs Indiana.",
-     "actual": 1,
-     "hit": true
+     "note": "1+ three in 12 of 14 games."
     },
     {
      "player": "Joel Embiid",
      "stat": "reb",
      "line": 6,
-     "price": -440,
-     "priceNote": "FanDuel",
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Risky",
-     "note": "6+ rebounds in 10 of 11 games; sat Sunday with the foot.",
-     "actual": 5,
-     "hit": false
+     "note": "6+ rebounds in 10 of 12 games, but 4 and 5 his last two."
     }
-   ],
-   "statusNote": "Lost by one leg: Embiid 6+ rebounds (had 5). The other 8 legs hit."
+   ]
   },
   {
-   "name": "With ML",
+   "name": "With +4.5",
    "legsCount": 10,
-   "fdPrice": 960,
-   "boost": 25,
-   "boosted": 1200,
    "legs": [
     {
      "player": "Tyrese Maxey",
      "stat": "pra",
      "line": 30,
-     "price": -350,
-     "priceNote": "FanDuel",
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Core",
-     "note": "30+ in 11 of 14 games; 37 vs Indiana.",
-     "actual": 34,
-     "hit": true
+     "note": "30+ in 12 of 15 games; 34 at Brooklyn."
     },
     {
      "player": "Tyrese Maxey",
      "stat": "tpm",
      "line": 2,
-     "price": -280,
-     "priceNote": "FanDuel",
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "2+ threes in 11 of 14 games; 5 vs Indiana.",
-     "actual": 4,
-     "hit": true
-    },
-    {
-     "player": "Tyrese Maxey",
-     "stat": "stl",
-     "line": 1,
-     "price": -350,
-     "priceNote": "FanDuel",
-     "tag": "Solid",
-     "note": "1+ steal in 10 of 14 games.",
-     "actual": 1,
-     "hit": true
-    },
-    {
-     "player": "VJ Edgecombe",
-     "stat": "pra",
-     "line": 20,
-     "price": -295,
-     "priceNote": "FanDuel",
-     "tag": "Solid",
-     "note": "20+ in 10 of 13 games; 21 vs Indiana.",
-     "actual": 27,
-     "hit": true
+     "note": "2+ threes in 12 of 15 games; 4 at Brooklyn."
     },
     {
      "player": "VJ Edgecombe",
      "stat": "tpm",
      "line": 1,
-     "price": -620,
-     "priceNote": "FanDuel",
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Core",
-     "note": "1+ three in 10 of 12 graded games; 0 vs Indiana.",
-     "actual": 1,
-     "hit": true
+     "note": "1+ three in 11 of 13 graded games."
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "pra",
+     "line": 15,
+     "price": null,
+     "priceNote": "price unknown",
+     "tag": "Solid",
+     "note": "15+ in 13 of 14 games; 27 at Brooklyn."
     },
     {
      "player": "VJ Edgecombe",
      "stat": "stl",
      "line": 1,
-     "price": -400,
-     "priceNote": "FanDuel",
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "1+ steal in 12 of 13 games.",
-     "actual": 2,
-     "hit": true
+     "note": "1+ steal in 13 of 14 games."
     },
     {
      "player": "Jaylen Brown",
      "stat": "pra",
-     "line": 30,
-     "price": -240,
-     "priceNote": "FanDuel",
-     "tag": "Solid",
-     "note": "30+ in 9 of 13 games; 35 vs Indiana.",
-     "actual": 48,
-     "hit": true
+     "line": 26,
+     "price": null,
+     "priceNote": "price unknown",
+     "tag": "Risky",
+     "note": "26+ in 11 of 14 games; 48 at Brooklyn, but he left with a tight hamstring."
     },
     {
-     "player": "Dean Wade",
+     "player": "LeBron James",
+     "stat": "stl",
+     "line": 1,
+     "price": null,
+     "priceNote": "price unknown",
+     "tag": "Solid",
+     "note": "1+ steal in 9 of 11 games; 0 his last two."
+    },
+    {
+     "player": "Kentavious Caldwell-Pope",
      "stat": "tpm",
      "line": 1,
-     "price": -360,
-     "priceNote": "FanDuel",
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "1+ three in 4 of 5 games we have; 3 vs Indiana.",
-     "actual": 1,
-     "hit": true
+     "note": "1+ three in 12 of 14 games."
     },
     {
      "player": "Joel Embiid",
      "stat": "reb",
      "line": 6,
-     "price": -440,
-     "priceNote": "FanDuel",
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Risky",
-     "note": "6+ rebounds in 10 of 11 games; sat Sunday with the foot.",
-     "actual": 5,
-     "hit": false
+     "note": "6+ rebounds in 10 of 12 games, but 4 and 5 his last two."
     },
     {
      "player": "76ers",
-     "stat": "ml",
-     "line": 0,
-     "price": -215,
-     "priceNote": "FanDuel",
+     "stat": "spread",
+     "line": 4.5,
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "Sixers win at 3-9 Brooklyn. They won by 7 without Embiid on Sunday.",
-     "actual": 12,
-     "hit": true
+     "note": "Sixers win or lose by 4 or fewer. No line posted yet; prediction markets have it close to a pick'em."
     }
-   ],
-   "statusNote": "Lost by one leg: Embiid 6+ rebounds (had 5). The other 9 legs hit."
+   ]
   }
  ],
  "bench": [
   {
-   "player": "LeBron James",
+   "player": "Anfernee Simons",
+   "stat": "tpm",
+   "line": 1,
+   "effect": "Swap in for Brown's pts + reb + ast if Brown is out; Simons would play more.",
+   "note": "1+ in 12 of 14 graded games."
+  },
+  {
+   "player": "Tyrese Maxey",
    "stat": "stl",
    "line": 1,
-   "effect": "Reference only; both slips are placed.",
-   "note": "1+ in 9 of 11, but 0 his last two."
+   "effect": "Swap for LeBron's steal if LeBron sits again.",
+   "note": "1+ in 11 of 15."
   },
   {
    "player": "Jaylen Brown",
    "stat": "stl",
    "line": 1,
-   "effect": "Reference only; both slips are placed.",
-   "note": "1+ in 12 of 13."
+   "effect": "Shorter Brown leg if he plays but his minutes look limited.",
+   "note": "1+ in 12 of 13 graded."
   },
   {
-   "player": "Kentavious Caldwell-Pope",
+   "player": "Dean Wade",
    "stat": "tpm",
    "line": 1,
-   "effect": "Reference only; both slips are placed.",
-   "note": "1+ in 12 of 13."
-  },
-  {
-   "player": "Anfernee Simons",
-   "stat": "tpm",
-   "line": 1,
-   "effect": "Reference only; both slips are placed.",
-   "note": "1+ in 11 of 13."
+   "effect": "Swap for LeBron's steal if LeBron sits; Wade would start.",
+   "note": "1+ in 5 of 6 games we have."
   }
  ],
  "tuner": [
-  "Under +800 with no boost: Brown 26+ pts + reb + ast (10 of 13) for 24+, or Maxey 3+ threes (8 of 14).",
-  "Over +1300: drop Maxey to 25+ pts + reb + ast, or swap Caldwell-Pope's three for Brown 1+ steal.",
-  "If the spread moves past -7.5, use the moneyline instead.",
-  "If LeBron sits: Dean Wade 1+ three replaces LeBron's steal."
+  "Under +800 with no boost: Brown to 30+ pts + reb + ast (9 of 14) or Maxey 3+ threes (9 of 15).",
+  "Over +1300: drop Maxey to 28+ pts + reb + ast, or swap Embiid's rebounds for Simons 1+ three.",
+  "If the Sixers open as favorites of 3 or more, use -2.5 or the moneyline instead of +4.5.",
+  "If Brown sits: Simons 1+ three replaces Brown's pts + reb + ast."
  ],
  "analysis": {
-  "game": "2026-11-16",
-  "written": "2026-11-16T18:45:00-05:00",
-  "summary": "Both slips lean on Maxey and VJ, with Brown at 30+ and Embiid's rebounds as the stretch legs. The 10-leg version adds a Sixers win at 3-9 Brooklyn. The main risk is the back-to-back: tired legs and an Embiid who sat Sunday.",
+  "game": "2026-11-18",
+  "written": "2026-11-17T09:10:00-05:00",
+  "summary": "A Maxey-and-VJ draft against a 6-7 Orlando team playing without Banchero. Brown at 26+ and Embiid's rebounds are the shaky legs. The big question is Brown's hamstring, which gets checked Tuesday.",
   "slips": {
-   "Props only": "Nine props: Maxey, VJ and Brown carry it, with Wade's three and Embiid's rebounds filling it out.",
-   "With ML": "The same nine plus the Sixers simply winning at Brooklyn."
+   "Props only": "Nine props built on Maxey and VJ, with Brown, LeBron's steal and Embiid's rebounds as the legs to watch.",
+   "With +4.5": "The same nine plus the Sixers winning or losing by 4 or fewer in what looks like a close game."
   },
   "watch": [
    {
-    "kind": "Rest",
-    "title": "Back-to-back",
-    "text": "The Sixers played at 1 PM Sunday. Embiid sat that game with his foot; if he plays, watch for a minutes limit.",
+    "kind": "Injury",
+    "title": "Brown's hamstring",
+    "text": "Brown left Monday's game with a tight hamstring and gets checked Tuesday. If he sits, Simons' three replaces his leg.",
     "legs": [
-     "Embiid 6+ rebounds"
+     "Brown 26+ pts + reb + ast"
     ],
     "level": "red"
    },
    {
-    "kind": "Overlap",
-    "title": "Three made-three legs",
-    "text": "Maxey 2+, VJ and Wade all need threes. A cold shooting night can sink several at once; VJ had 0 Sunday.",
+    "kind": "Minutes",
+    "title": "Embiid and LeBron",
+    "text": "Embiid is managing his foot and had 4 and 5 rebounds his last two games. LeBron sat Monday with his back.",
     "legs": [
-     "Maxey 2+ threes",
-     "VJ 1+ three",
-     "Wade 1+ three"
+     "Embiid 6+ rebounds",
+     "LeBron 1+ steal"
     ],
     "level": "brass"
    },
    {
-    "kind": "Line",
-    "title": "Brown at 30+",
-    "text": "Brown has cleared 30 in 9 of 13 games; at -240 it's the longest prop on the slips.",
+    "kind": "Overlap",
+    "title": "Three made-three legs",
+    "text": "Maxey 2+, VJ and Caldwell-Pope all need made threes, so a cold shooting night hurts several legs at once.",
     "legs": [
-     "Brown 30+ pts + reb + ast"
+     "Maxey 2+ threes",
+     "VJ 1+ three",
+     "Caldwell-Pope 1+ three"
     ],
     "level": "brass"
    },
    {
     "kind": "Matchup",
-    "title": "Weak opponent",
-    "text": "Brooklyn is 3-9, which helps the moneyline. A blowout could trim the starters' fourth-quarter minutes.",
+    "title": "Orlando without Banchero",
+    "text": "The Magic are 6-7 and missing Banchero. The Sixers beat them 109-97 in April's play-in.",
     "legs": [
-     "Sixers ML",
-     "Maxey 30+ pts + reb + ast",
-     "Brown 30+ pts + reb + ast"
+     "Sixers +4.5"
     ],
     "level": "good"
    }
@@ -383,61 +354,85 @@
     "player": "Tyrese Maxey",
     "stat": "pra",
     "line": 30,
-    "why": "11 of 14 games, and 29, 37 and 37 his last three. He carries the offense."
+    "why": "12 of 15 games, and 34 or more in each of his last three."
    },
    {
     "player": "Tyrese Maxey",
     "stat": "tpm",
     "line": 2,
-    "why": "11 of 14 games; 5 of 10 from deep Sunday."
-   },
-   {
-    "player": "Tyrese Maxey",
-    "stat": "stl",
-    "line": 1,
-    "why": "10 of 14 games."
-   },
-   {
-    "player": "VJ Edgecombe",
-    "stat": "pra",
-    "line": 20,
-    "why": "10 of 13 games; 21 or more in two of his last three."
+    "why": "12 of 15 games; 4 at Brooklyn and 5 vs Indiana."
    },
    {
     "player": "VJ Edgecombe",
     "stat": "tpm",
     "line": 1,
-    "why": "10 of 12 graded games; went 0 Sunday."
+    "why": "11 of 13 graded games."
+   },
+   {
+    "player": "VJ Edgecombe",
+    "stat": "pra",
+    "line": 15,
+    "why": "13 of 14 games; 27 at Brooklyn."
    },
    {
     "player": "VJ Edgecombe",
     "stat": "stl",
     "line": 1,
-    "why": "12 of 13 games."
+    "why": "13 of 14 games; 2 at Brooklyn."
    },
    {
     "player": "Jaylen Brown",
     "stat": "pra",
-    "line": 30,
-    "why": "9 of 13 games; 35 Sunday on 31 points."
+    "line": 26,
+    "why": "11 of 14 games and 48 Monday, but the hamstring could limit his minutes or keep him out."
    },
    {
-    "player": "Dean Wade",
+    "player": "LeBron James",
+    "stat": "stl",
+    "line": 1,
+    "why": "9 of 11 games, but 0 in his last two, and he sat Monday with his back."
+   },
+   {
+    "player": "Kentavious Caldwell-Pope",
     "stat": "tpm",
     "line": 1,
-    "why": "4 of 5 games we have, with 2, 2 and 3 his last three."
+    "why": "12 of 14 games; would also see more minutes if Brown sits."
    },
    {
     "player": "Joel Embiid",
     "stat": "reb",
     "line": 6,
-    "why": "10 of 11 games, but 4 his last time out and he sat Sunday with the foot."
+    "why": "10 of 12 games, but 4 and 5 his last two while managing his foot. Missed by one at Brooklyn."
    },
    {
     "player": "76ers",
-    "stat": "ml",
-    "line": 0,
-    "why": "Brooklyn is 3-9 and the Sixers are 11-3; they won by 7 without Embiid on Sunday."
+    "stat": "spread",
+    "line": 4.5,
+    "why": "No line yet, but it looks close. The Sixers are 12-3 and Orlando is 6-7 without Banchero."
+   },
+   {
+    "player": "Anfernee Simons",
+    "stat": "tpm",
+    "line": 1,
+    "why": "Bench: 12 of 14 graded games; first swap if Brown sits."
+   },
+   {
+    "player": "Tyrese Maxey",
+    "stat": "stl",
+    "line": 1,
+    "why": "Bench: 11 of 15 games."
+   },
+   {
+    "player": "Jaylen Brown",
+    "stat": "stl",
+    "line": 1,
+    "why": "Bench: 12 of 13 graded games."
+   },
+   {
+    "player": "Dean Wade",
+    "stat": "tpm",
+    "line": 1,
+    "why": "Bench: 5 of 6 games we have."
    }
   ]
  }

@@ -2,24 +2,22 @@
  "note": "Claude does the research on a schedule. Kevin builds and locks the final slip in FanDuel.",
  "updates": [
   {
-   "when": "2026-11-16T12:40:00-05:00",
+   "when": "2026-11-18T12:40:00-05:00",
    "what": "Refresh the picks",
-   "detail": "Adds FanDuel prices, the injury report and the line, and swaps any leg whose player is out (watch LeBron on the back-to-back).",
+   "detail": "Adds FanDuel prices, the injury report and the line, and swaps any leg whose player is out (watch Brown's hamstring).",
    "status": "scheduled"
   },
   {
-   "when": "2026-11-16T18:50:00-05:00",
+   "when": "2026-11-18T18:20:00-05:00",
    "what": "Final check before tip",
    "detail": "Checks the final injury report and starting lineups 40 minutes before tip and swaps any leg whose player is out or limited.",
    "status": "scheduled"
   },
   {
-   "when": "2026-11-16T22:25:00-05:00",
+   "when": "2026-11-18T21:55:00-05:00",
    "what": "Grade the slip",
    "detail": "Pulls the final box score, grades each leg, and adds the game to the season logs.",
-   "status": "done",
-   "doneAt": "2026-11-16T22:45:00-05:00",
-   "result": "Won 135-123; both slips missed only Embiid 6+ rebounds (had 5)."
+   "status": "scheduled"
   }
  ]
 }
