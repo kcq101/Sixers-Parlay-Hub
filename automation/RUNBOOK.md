@@ -93,6 +93,7 @@ The pre-game read shown on AI: The Answers (and summarized on The Game tab). Wri
 3. `players.json`: append the game to `games[]` and each player's line `{date, pts, reb, ast, stl, blk, tpm}`.
 4. `tonight.json`: add `actual` and `hit` to every leg (leave `analysis` as it was). A DNP leg gets `actual` null, `hit` null and the note "Did not play (FanDuel usually voids this leg)". Set `status` "graded" and write a `statusNote` per slip.
 5. `slips.json`: append **only** slips with `fdPrice` set, matching the existing entry shape (`label` = slip name in lowercase). If none were placed, append nothing and say so.
+   - A slip with `"repriced": true` had legs voided after it was placed, so `fdPrice`/`boosted` are not the settled odds. Leave `void` legs as `hit: null`, set the entry's `price` and `boosted` to null with a note that the settled price is pending, and ask Kevin for FanDuel's settled price in the message.
 6. `playbook.json`: change it only if a rule clearly changed.
 7. Mark the schedule entry `done`.
 8. Commit and push (Step F), and message Kevin the result.
