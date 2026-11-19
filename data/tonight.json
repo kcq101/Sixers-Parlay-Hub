@@ -1,7 +1,7 @@
 {
  "status": "final",
  "statusNote": "Both slips placed in FanDuel (Props only +665, +865 with a 30% boost; With +1.5 +900). Maxey and Wade were ruled out afterward, so their four legs void and the final odds are unknown until FanDuel settles the slips.",
- "updated": "2026-11-18T19:50:00-05:00",
+ "updated": "2026-11-18T19:58:00-05:00",
  "game": {
   "date": "2026-11-18",
   "tip": "7:00 PM ET",
@@ -94,23 +94,13 @@
  "slips": [
   {
    "name": "Props only",
-   "legsCount": 9,
+   "legsCount": 5,
    "fdPrice": 665,
    "boost": 30,
    "boosted": 865,
    "repriced": true,
-   "repriceNote": "Placed at +665 (+865 with a 30% boost). Maxey and Wade were ruled out after the slip was placed, so their four legs void and FanDuel reprices the slip. The final odds show once the game ends.",
+   "repriceNote": "Placed at +665 (+865 with a 30% boost). Maxey and Wade were ruled out after the slip was placed, so their four legs voided and are removed here and FanDuel reprices the slip. The final odds show once the game ends.",
    "legs": [
-    {
-     "player": "Tyrese Maxey",
-     "stat": "pra",
-     "line": 29,
-     "price": null,
-     "priceNote": "price unknown",
-     "tag": "Core",
-     "note": "29+ in 13 of 15 games. Ruled out after the slip was placed; FanDuel voids this leg.",
-     "void": true
-    },
     {
      "player": "LeBron James",
      "stat": "pra",
@@ -128,16 +118,6 @@
      "priceNote": "price unknown",
      "tag": "Solid",
      "note": "18+ in 11 of 14 games; 27 at Brooklyn."
-    },
-    {
-     "player": "Tyrese Maxey",
-     "stat": "tpm",
-     "line": 2,
-     "price": null,
-     "priceNote": "price unknown",
-     "tag": "Solid",
-     "note": "2+ threes in 12 of 15 games. Ruled out after the slip was placed; FanDuel voids this leg.",
-     "void": true
     },
     {
      "player": "VJ Edgecombe",
@@ -158,16 +138,6 @@
      "note": "1+ three in 12 of 14 games; 0 at Brooklyn."
     },
     {
-     "player": "Dean Wade",
-     "stat": "tpm",
-     "line": 1,
-     "price": null,
-     "priceNote": "price unknown",
-     "tag": "Solid",
-     "note": "1+ three in 5 of 6 games we have. Ruled out after the slip was placed; FanDuel voids this leg.",
-     "void": true
-    },
-    {
      "player": "VJ Edgecombe",
      "stat": "stl",
      "line": 1,
@@ -175,38 +145,18 @@
      "priceNote": "price unknown",
      "tag": "Solid",
      "note": "1+ steal in 13 of 14 games."
-    },
-    {
-     "player": "Dean Wade",
-     "stat": "reb",
-     "line": 4,
-     "price": null,
-     "priceNote": "price unknown",
-     "tag": "Solid",
-     "note": "4+ rebounds in 5 of 6 games we have; 11 at Brooklyn. Ruled out after the slip was placed; FanDuel voids this leg.",
-     "void": true
     }
    ]
   },
   {
    "name": "With +1.5",
-   "legsCount": 10,
+   "legsCount": 6,
    "fdPrice": 900,
    "boost": null,
    "boosted": null,
    "repriced": true,
-   "repriceNote": "Placed at +900. Maxey and Wade were ruled out after the slip was placed, so their four legs void and FanDuel reprices the slip. The final odds show once the game ends.",
+   "repriceNote": "Placed at +900. Maxey and Wade were ruled out after the slip was placed, so their four legs voided and are removed here and FanDuel reprices the slip. The final odds show once the game ends.",
    "legs": [
-    {
-     "player": "Tyrese Maxey",
-     "stat": "pra",
-     "line": 29,
-     "price": null,
-     "priceNote": "price unknown",
-     "tag": "Core",
-     "note": "29+ in 13 of 15 games. Ruled out after the slip was placed; FanDuel voids this leg.",
-     "void": true
-    },
     {
      "player": "LeBron James",
      "stat": "pra",
@@ -224,16 +174,6 @@
      "priceNote": "price unknown",
      "tag": "Solid",
      "note": "18+ in 11 of 14 games; 27 at Brooklyn."
-    },
-    {
-     "player": "Tyrese Maxey",
-     "stat": "tpm",
-     "line": 2,
-     "price": null,
-     "priceNote": "price unknown",
-     "tag": "Solid",
-     "note": "2+ threes in 12 of 15 games. Ruled out after the slip was placed; FanDuel voids this leg.",
-     "void": true
     },
     {
      "player": "VJ Edgecombe",
@@ -254,16 +194,6 @@
      "note": "1+ three in 12 of 14 games; 0 at Brooklyn."
     },
     {
-     "player": "Dean Wade",
-     "stat": "tpm",
-     "line": 1,
-     "price": null,
-     "priceNote": "price unknown",
-     "tag": "Solid",
-     "note": "1+ three in 5 of 6 games we have. Ruled out after the slip was placed; FanDuel voids this leg.",
-     "void": true
-    },
-    {
      "player": "VJ Edgecombe",
      "stat": "stl",
      "line": 1,
@@ -271,16 +201,6 @@
      "priceNote": "price unknown",
      "tag": "Solid",
      "note": "1+ steal in 13 of 14 games."
-    },
-    {
-     "player": "Dean Wade",
-     "stat": "reb",
-     "line": 4,
-     "price": null,
-     "priceNote": "price unknown",
-     "tag": "Solid",
-     "note": "4+ rebounds in 5 of 6 games we have; 11 at Brooklyn. Ruled out after the slip was placed; FanDuel voids this leg.",
-     "void": true
     },
     {
      "player": "76ers",
@@ -372,12 +292,6 @@
   ],
   "legs": [
    {
-    "player": "Tyrese Maxey",
-    "stat": "pra",
-    "line": 29,
-    "why": "Void: Maxey was ruled out."
-   },
-   {
     "player": "LeBron James",
     "stat": "pra",
     "line": 26,
@@ -388,12 +302,6 @@
     "stat": "pra",
     "line": 18,
     "why": "11 of 14 games; 27 at Brooklyn."
-   },
-   {
-    "player": "Tyrese Maxey",
-    "stat": "tpm",
-    "line": 2,
-    "why": "Void: Maxey was ruled out."
    },
    {
     "player": "VJ Edgecombe",
@@ -408,22 +316,10 @@
     "why": "12 of 14 games, but 0 for 3 at Brooklyn."
    },
    {
-    "player": "Dean Wade",
-    "stat": "tpm",
-    "line": 1,
-    "why": "Void: Wade was ruled out."
-   },
-   {
     "player": "VJ Edgecombe",
     "stat": "stl",
     "line": 1,
     "why": "13 of 14 games."
-   },
-   {
-    "player": "Dean Wade",
-    "stat": "reb",
-    "line": 4,
-    "why": "Void: Wade was ruled out."
    },
    {
     "player": "76ers",
