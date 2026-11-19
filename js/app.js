@@ -285,6 +285,9 @@ function inGame(data, legs, evs, L) {
 const pctTxt = p => (window.InGame ? InGame.pctTxt(p) : `${Math.round(p * 100)}%`);
 const IG_CLS = { good: "hit", ok: "blue", push: "brass", bad: "red", hit: "hit", miss: "red", void: "steel" };
 
+// A placed slip's price, or null ("?") while FanDuel reprices it after voided legs.
+const placedPrice = s => (s.repriced ? null : s.fdPrice);
+
 function estPrice(legs) {
   // Legs with no posted price for this game (price null) are left out, not guessed.
   const priced = legs.filter(l => l.price != null);
@@ -303,7 +306,7 @@ function renderTonight(data, el, ui) {
     const slips = slipsFor(t);
     const s = slips[ui.slip] || slips[0];
     const real = s.fdPrice != null;        // FanDuel's actual price, once the slip is placed
-    const est = real ? s.fdPrice : estPrice(s.legs);
+    const est = real ? placedPrice(s) : estPrice(s.legs);
     const stake = STAKE;
     const profit = est == null ? null : (STAKE * est) / 100;   // regular (unboosted) price
     const L = ui.live && !ui.live.error ? ui.live : ui.live?.last || null;   // last good ESPN read
@@ -346,7 +349,7 @@ function renderTonight(data, el, ui) {
       <section class="plate">
         <div class="sum-top">
           <div><div class="label">${real ? "FanDuel price" : "Est. FanDuel price"}</div><div class="big-price">${fmtOdds(est)}</div></div>
-          <div class="boosts">${real && s.boosted && s.boost ? `<div class="boost-row"><span class="label">With your ${esc(s.boost)}% boost</span><span class="boost-price">${fmtOdds(s.boosted)}</span></div>` : [0.25, 0.5].map(b => `<div class="boost-row"><span class="label">With ${b * 100}% boost</span><span class="boost-price">${fmtOdds(real && s.boosted && s.boost === b * 100 ? s.boosted : est == null ? null : est * (1 + b))}</span></div>`).join("")}</div>
+          <div class="boosts">${real && s.repriced && s.boost ? `<div class="boost-row"><span class="label">With your ${esc(s.boost)}% boost</span><span class="boost-price">?</span></div>` : real && s.boosted && s.boost ? `<div class="boost-row"><span class="label">With your ${esc(s.boost)}% boost</span><span class="boost-price">${fmtOdds(s.boosted)}</span></div>` : [0.25, 0.5].map(b => `<div class="boost-row"><span class="label">With ${b * 100}% boost</span><span class="boost-price">${fmtOdds(real && s.boosted && s.boost === b * 100 ? s.boosted : est == null ? null : est * (1 + b))}</span></div>`).join("")}</div>
         </div>
         <div class="sum-grid">
           <div><span class="label">Stake</span><b>${money(stake)}</b></div>
@@ -357,6 +360,7 @@ function renderTonight(data, el, ui) {
         <div class="progress-row"><span class="label">Ticket progress</span><span class="label" style="color:var(--ink-2)">${progress}</span></div>
         <div class="segs" aria-hidden="true">${states.map(x => `<span class="seg ${["hit", "miss", "live"].includes(x) ? x : ""}"></span>`).join("")}</div>
         ${s.swaps?.length ? `<p class="status-note" style="margin-top:10px">Swapped on this phone: ${s.swaps.map(x => `${esc(shortName(x.in.player))} ${esc(legLabel(x.in))} for ${esc(shortName(x.out.player))} ${esc(legLabel(x.out))}`).join("; ")}. Undo it on AI: The Answers.</p>` : ""}
+        ${real && s.repriced ? `<p class="status-note" style="margin-top:10px">${esc(s.repriceNote || `Placed at ${fmtOdds(s.fdPrice)}${s.boosted ? ` (${fmtOdds(s.boosted)} boosted)` : ""}. Voided legs drop off and FanDuel reprices the slip; the final odds show once the game ends.`)}</p>` : ""}
         ${unpriced ? `<p class="status-note" style="margin-top:10px">${unpriced} ${unpriced === 1 ? "leg has" : "legs have"} no posted price for this game yet, so the estimate leaves ${unpriced === 1 ? "it" : "them"} out. The real price will be higher.</p>` : ""}
         <p class="muted" style="margin-top:10px">${real ? "Price from your FanDuel slip." : `Estimate = legs multiplied, less ~15% because FanDuel pays less when legs are related. Uses only prices posted for this game (${esc(context)}); prices shift with the opponent. Your screenshot is the real number.`}</p>
       </section>
@@ -561,7 +565,7 @@ function renderBuild(data, el, ui) {
     if (ui.swapTarget == null || !s.legs.some(l => legKey(l) === ui.swapTarget)) ui.swapTarget = legKey(defTarget);
     const target = s.legs.find(l => legKey(l) === ui.swapTarget) || defTarget;
     const injuries = t.injuries.filter(i => i.team === "PHI" ? true : !/out/i.test(i.status));
-    const est = placed ? s.fdPrice : estPrice(s.legs);
+    const est = placed ? placedPrice(s) : estPrice(s.legs);
     const L = ui.live && !ui.live.error ? ui.live : ui.live?.last || null;
     const ig = t.status === "graded" ? null : inGame(data, s.legs, liveEvals(s.legs, L, g.opp), L);
     const lead = A?.summary
@@ -733,7 +737,7 @@ function renderTickets(data, el) {
         <span style="flex:1;display:flex;flex-direction:column;gap:3px">
           <span class="mono" style="font-size:11px;color:var(--brass-ink)">Up next · ${esc({ draft: "Draft", final: "Final picks" }[t.status] || t.status)}</span>
           <span class="disp" style="font-size:20px;font-weight:700">${t.game.home ? "vs" : "at"} ${esc(TEAM[t.game.opp] || t.game.opp)} · ${esc(fmtDate(t.game.date))}</span>
-          <span style="font-size:15px;color:var(--ink-3)">${tonightSlips.map(s => `${s.legs.length} legs ${s.fdPrice != null ? fmtOdds(s.fdPrice) : `est. ${fmtOdds(estPrice(s.legs))}`}`).join(" · ")}</span>
+          <span style="font-size:15px;color:var(--ink-3)">${tonightSlips.map(s => `${s.legs.length} legs ${s.fdPrice != null ? fmtOdds(placedPrice(s)) : `est. ${fmtOdds(estPrice(s.legs))}`}`).join(" · ")}</span>
         </span>
         <span class="mono" style="font-size:14px">Open →</span>
       </button>` : ""}
