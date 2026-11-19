@@ -2,24 +2,22 @@
  "note": "Claude does the research on a schedule. Kevin builds and locks the final slip in FanDuel.",
  "updates": [
   {
-   "when": "2026-11-18T12:40:00-05:00",
+   "when": "2026-11-21T10:00:00-05:00",
    "what": "Refresh the picks",
-   "detail": "Adds FanDuel prices, the injury report and the line, and swaps any leg whose player is out (watch Brown's hamstring).",
+   "detail": "Adds FanDuel prices, the injury report and the line, and swaps any leg whose player is out (watch Maxey's foot and Brown's hamstring).",
    "status": "scheduled"
   },
   {
-   "when": "2026-11-18T18:20:00-05:00",
+   "when": "2026-11-21T12:20:00-05:00",
    "what": "Final check before tip",
    "detail": "Checks the final injury report and starting lineups 40 minutes before tip and swaps any leg whose player is out or limited.",
    "status": "scheduled"
   },
   {
-   "when": "2026-11-18T21:55:00-05:00",
+   "when": "2026-11-21T15:55:00-05:00",
    "what": "Grade the slip",
    "detail": "Pulls the final box score, grades each leg, and adds the game to the season logs.",
-   "status": "done",
-   "doneAt": "2026-11-19T09:05:00-05:00",
-   "result": "Graded by the watchdog the next morning (the scheduled grade never ran): Sixers won 121-116 and both slips cashed on the legs that counted; Maxey and Wade legs voided."
+   "status": "scheduled"
   }
  ]
 }
