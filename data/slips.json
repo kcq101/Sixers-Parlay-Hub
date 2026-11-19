@@ -1494,6 +1494,173 @@
     }
    ],
    "note": "Lost by one leg: Embiid had 5 rebounds, one short of 6+. Moneyline hit (won by 12)."
+  },
+  {
+   "date": "2026-11-18",
+   "opp": "ORL",
+   "home": false,
+   "final": "W 121-116",
+   "label": "props only",
+   "price": null,
+   "boost": 30,
+   "boosted": null,
+   "legs": [
+    {
+     "player": "Tyrese Maxey",
+     "stat": "pra",
+     "line": 29,
+     "actual": null,
+     "hit": null,
+     "void": true
+    },
+    {
+     "player": "LeBron James",
+     "stat": "pra",
+     "line": 26,
+     "actual": 31,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "pra",
+     "line": 18,
+     "actual": 38,
+     "hit": true
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "tpm",
+     "line": 2,
+     "actual": null,
+     "hit": null,
+     "void": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 4,
+     "hit": true
+    },
+    {
+     "player": "Kentavious Caldwell-Pope",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 2,
+     "hit": true
+    },
+    {
+     "player": "Dean Wade",
+     "stat": "tpm",
+     "line": 1,
+     "actual": null,
+     "hit": null,
+     "void": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "stl",
+     "line": 1,
+     "actual": 2,
+     "hit": true
+    },
+    {
+     "player": "Dean Wade",
+     "stat": "reb",
+     "line": 4,
+     "actual": null,
+     "hit": null,
+     "void": true
+    }
+   ],
+   "note": "Cashed: every leg that counted hit. Maxey and Wade were ruled out after the slip was placed, so their 4 legs voided; placed at +665 (+865 boosted), settled price pending from FanDuel."
+  },
+  {
+   "date": "2026-11-18",
+   "opp": "ORL",
+   "home": false,
+   "final": "W 121-116",
+   "label": "with +1.5",
+   "price": null,
+   "boost": null,
+   "boosted": null,
+   "legs": [
+    {
+     "player": "Tyrese Maxey",
+     "stat": "pra",
+     "line": 29,
+     "actual": null,
+     "hit": null,
+     "void": true
+    },
+    {
+     "player": "LeBron James",
+     "stat": "pra",
+     "line": 26,
+     "actual": 31,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "pra",
+     "line": 18,
+     "actual": 38,
+     "hit": true
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "tpm",
+     "line": 2,
+     "actual": null,
+     "hit": null,
+     "void": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 4,
+     "hit": true
+    },
+    {
+     "player": "Kentavious Caldwell-Pope",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 2,
+     "hit": true
+    },
+    {
+     "player": "Dean Wade",
+     "stat": "tpm",
+     "line": 1,
+     "actual": null,
+     "hit": null,
+     "void": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "stl",
+     "line": 1,
+     "actual": 2,
+     "hit": true
+    },
+    {
+     "player": "Dean Wade",
+     "stat": "reb",
+     "line": 4,
+     "actual": null,
+     "hit": null,
+     "void": true
+    },
+    {
+     "player": "76ers",
+     "stat": "spread",
+     "line": 1.5,
+     "actual": 5,
+     "hit": true
+    }
+   ],
+   "note": "Cashed: every leg that counted hit. Maxey and Wade were ruled out after the slip was placed, so their 4 legs voided; placed at +900, settled price pending from FanDuel."
   }
  ]
 }
