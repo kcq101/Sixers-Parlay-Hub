@@ -5,13 +5,15 @@
    "when": "2026-11-21T10:00:00-05:00",
    "what": "Refresh the picks",
    "detail": "Adds FanDuel prices, the injury report and the line, and swaps any leg whose player is out (watch Maxey's foot and Brown's hamstring).",
-   "status": "scheduled"
+   "status": "failed",
+   "result": "Didn't run: the scheduled task was never created. Kevin's placed slips and FanDuel prices were added at 12:25 PM."
   },
   {
    "when": "2026-11-21T12:20:00-05:00",
    "what": "Final check before tip",
    "detail": "Checks the final injury report and starting lineups 40 minutes before tip and swaps any leg whose player is out or limited.",
-   "status": "scheduled"
+   "status": "failed",
+   "result": "Didn't run: the scheduled task was never created. Kevin's placed slips and FanDuel prices were added at 12:25 PM."
   },
   {
    "when": "2026-11-21T15:55:00-05:00",
