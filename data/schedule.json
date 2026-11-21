@@ -16,7 +16,7 @@
    "result": "Didn't run: the scheduled task was never created. Kevin's placed slips and FanDuel prices were added at 12:25 PM."
   },
   {
-   "when": "2026-11-21T15:55:00-05:00",
+   "when": "2026-11-21T16:05:00-05:00",
    "what": "Grade the slip",
    "detail": "Pulls the final box score, grades each leg, and adds the game to the season logs.",
    "status": "scheduled"
