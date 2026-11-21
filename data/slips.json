@@ -1501,9 +1501,9 @@
    "home": false,
    "final": "W 121-116",
    "label": "props only",
-   "price": null,
+   "price": 164,
    "boost": 30,
-   "boosted": null,
+   "boosted": 214,
    "legs": [
     {
      "player": "LeBron James",
@@ -1541,7 +1541,7 @@
      "hit": true
     }
    ],
-   "note": "Cashed: all 5 legs hit. Maxey and Wade were ruled out after the slip was placed, so their 4 legs voided and dropped off; settled price pending from FanDuel."
+   "note": "Cashed: all 5 legs hit. Maxey and Wade were ruled out after the slip was placed, so their 4 legs voided; FanDuel settled it at +164 (+214 with the 30% boost), down from +665 (+865 boosted) when placed."
   },
   {
    "date": "2026-11-18",
@@ -1549,7 +1549,7 @@
    "home": false,
    "final": "W 121-116",
    "label": "with +1.5",
-   "price": null,
+   "price": 304,
    "boost": null,
    "boosted": null,
    "legs": [
@@ -1596,7 +1596,7 @@
      "hit": true
     }
    ],
-   "note": "Cashed: all 6 legs hit. Spread hit (won by 5). Maxey and Wade were ruled out after the slip was placed, so their 4 legs voided and dropped off; settled price pending from FanDuel."
+   "note": "Cashed: all 6 legs hit, spread included (won by 5). Maxey and Wade were ruled out after the slip was placed, so their 4 legs voided; FanDuel settled it at +304, down from +900 when placed."
   }
  ]
 }
