@@ -1597,6 +1597,165 @@
     }
    ],
    "note": "Cashed: all 6 legs hit, spread included (won by 5). Maxey and Wade were ruled out after the slip was placed, so their 4 legs voided; FanDuel settled it at +304, down from +900 when placed."
+  },
+  {
+   "date": "2026-11-21",
+   "opp": "MIL",
+   "home": true,
+   "final": "W 132-129",
+   "label": "props only",
+   "price": 829,
+   "boost": 50,
+   "boosted": 1243,
+   "legs": [
+    {
+     "player": "VJ Edgecombe",
+     "stat": "pra",
+     "line": 20,
+     "actual": 25,
+     "hit": true
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "pra",
+     "line": 29,
+     "actual": 25,
+     "hit": false
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "tpm",
+     "line": 2,
+     "actual": 0,
+     "hit": false
+    },
+    {
+     "player": "Anfernee Simons",
+     "stat": "tpm",
+     "line": 2,
+     "actual": 4,
+     "hit": true
+    },
+    {
+     "player": "Kentavious Caldwell-Pope",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 3,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "stl",
+     "line": 1,
+     "actual": 2,
+     "hit": true
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "stl",
+     "line": 1,
+     "actual": 0,
+     "hit": false
+    },
+    {
+     "player": "LeBron James",
+     "stat": "pra",
+     "line": 27,
+     "actual": 33,
+     "hit": true
+    },
+    {
+     "player": "Joel Embiid",
+     "stat": "reb",
+     "line": 7,
+     "actual": 17,
+     "hit": true
+    }
+   ],
+   "note": "Lost: all three Maxey legs missed (25 pts + reb + ast vs 29+, 0 threes, 0 steals). Every other leg hit, including Simons 2+ threes (made 4)."
+  },
+  {
+   "date": "2026-11-21",
+   "opp": "MIL",
+   "home": true,
+   "final": "W 132-129",
+   "label": "with -2.5",
+   "price": 1013,
+   "boost": 30,
+   "boosted": 1317,
+   "legs": [
+    {
+     "player": "VJ Edgecombe",
+     "stat": "pra",
+     "line": 20,
+     "actual": 25,
+     "hit": true
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "pra",
+     "line": 29,
+     "actual": 25,
+     "hit": false
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "tpm",
+     "line": 2,
+     "actual": 0,
+     "hit": false
+    },
+    {
+     "player": "Anfernee Simons",
+     "stat": "tpm",
+     "line": 2,
+     "actual": 4,
+     "hit": true
+    },
+    {
+     "player": "Kentavious Caldwell-Pope",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 3,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "stl",
+     "line": 1,
+     "actual": 2,
+     "hit": true
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "stl",
+     "line": 1,
+     "actual": 0,
+     "hit": false
+    },
+    {
+     "player": "LeBron James",
+     "stat": "pra",
+     "line": 27,
+     "actual": 33,
+     "hit": true
+    },
+    {
+     "player": "Joel Embiid",
+     "stat": "reb",
+     "line": 7,
+     "actual": 17,
+     "hit": true
+    },
+    {
+     "player": "76ers",
+     "stat": "spread",
+     "line": -2.5,
+     "actual": 3,
+     "hit": true
+    }
+   ],
+   "note": "Lost: all three Maxey legs missed (25 pts + reb + ast vs 29+, 0 threes, 0 steals). Every other leg hit, including Simons 2+ threes (made 4). Spread hit (won by 3)."
   }
  ]
 }

@@ -19,7 +19,9 @@
    "when": "2026-11-21T16:05:00-05:00",
    "what": "Grade the slip",
    "detail": "Pulls the final box score, grades each leg, and adds the game to the season logs.",
-   "status": "scheduled"
+   "status": "done",
+   "doneAt": "2026-11-21T16:30:00-05:00",
+   "result": "Sixers won 132-129; both slips lost on the three Maxey legs, every other leg hit."
   }
  ]
 }
