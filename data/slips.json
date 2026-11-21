@@ -1506,14 +1506,6 @@
    "boosted": null,
    "legs": [
     {
-     "player": "Tyrese Maxey",
-     "stat": "pra",
-     "line": 29,
-     "actual": null,
-     "hit": null,
-     "void": true
-    },
-    {
      "player": "LeBron James",
      "stat": "pra",
      "line": 26,
@@ -1526,14 +1518,6 @@
      "line": 18,
      "actual": 38,
      "hit": true
-    },
-    {
-     "player": "Tyrese Maxey",
-     "stat": "tpm",
-     "line": 2,
-     "actual": null,
-     "hit": null,
-     "void": true
     },
     {
      "player": "VJ Edgecombe",
@@ -1550,30 +1534,14 @@
      "hit": true
     },
     {
-     "player": "Dean Wade",
-     "stat": "tpm",
-     "line": 1,
-     "actual": null,
-     "hit": null,
-     "void": true
-    },
-    {
      "player": "VJ Edgecombe",
      "stat": "stl",
      "line": 1,
      "actual": 2,
      "hit": true
-    },
-    {
-     "player": "Dean Wade",
-     "stat": "reb",
-     "line": 4,
-     "actual": null,
-     "hit": null,
-     "void": true
     }
    ],
-   "note": "Cashed: every leg that counted hit. Maxey and Wade were ruled out after the slip was placed, so their 4 legs voided; placed at +665 (+865 boosted), settled price pending from FanDuel."
+   "note": "Cashed: all 5 legs hit. Maxey and Wade were ruled out after the slip was placed, so their 4 legs voided and dropped off; settled price pending from FanDuel."
   },
   {
    "date": "2026-11-18",
@@ -1586,14 +1554,6 @@
    "boosted": null,
    "legs": [
     {
-     "player": "Tyrese Maxey",
-     "stat": "pra",
-     "line": 29,
-     "actual": null,
-     "hit": null,
-     "void": true
-    },
-    {
      "player": "LeBron James",
      "stat": "pra",
      "line": 26,
@@ -1606,14 +1566,6 @@
      "line": 18,
      "actual": 38,
      "hit": true
-    },
-    {
-     "player": "Tyrese Maxey",
-     "stat": "tpm",
-     "line": 2,
-     "actual": null,
-     "hit": null,
-     "void": true
     },
     {
      "player": "VJ Edgecombe",
@@ -1630,27 +1582,11 @@
      "hit": true
     },
     {
-     "player": "Dean Wade",
-     "stat": "tpm",
-     "line": 1,
-     "actual": null,
-     "hit": null,
-     "void": true
-    },
-    {
      "player": "VJ Edgecombe",
      "stat": "stl",
      "line": 1,
      "actual": 2,
      "hit": true
-    },
-    {
-     "player": "Dean Wade",
-     "stat": "reb",
-     "line": 4,
-     "actual": null,
-     "hit": null,
-     "void": true
     },
     {
      "player": "76ers",
@@ -1660,7 +1596,7 @@
      "hit": true
     }
    ],
-   "note": "Cashed: every leg that counted hit. Maxey and Wade were ruled out after the slip was placed, so their 4 legs voided; placed at +900, settled price pending from FanDuel."
+   "note": "Cashed: all 6 legs hit. Spread hit (won by 5). Maxey and Wade were ruled out after the slip was placed, so their 4 legs voided and dropped off; settled price pending from FanDuel."
   }
  ]
 }
