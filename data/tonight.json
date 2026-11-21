@@ -1,64 +1,52 @@
 {
- "status": "graded",
- "statusNote": "Props only: lost, 6 of 9 legs hit. All three misses were Maxey (25 pts + reb + ast, 0 threes, 0 steals). With -2.5: lost, 7 of 10 hit; the spread hit (won by 3) but the same three Maxey legs missed. Embiid had 26/17/9, LeBron 33 pts + reb + ast with 3 steals, Simons 4 threes, Caldwell-Pope 3.",
- "updated": "2026-11-21T16:30:00-05:00",
+ "status": "draft",
+ "statusNote": "Draft for Monday vs Portland. No line or prices are posted yet. The refresh runs Monday at 12:40 PM ET and the final check at 6:20 PM.",
+ "updated": "2026-11-21T16:45:00-05:00",
  "game": {
-  "date": "2026-11-21",
-  "tip": "1:10 PM ET",
-  "opp": "MIL",
-  "oppName": "Milwaukee Bucks",
+  "date": "2026-11-23",
+  "tip": "7:00 PM ET",
+  "opp": "POR",
+  "oppName": "Portland Trail Blazers",
   "home": true,
   "venue": "Xfinity Mobile Arena",
   "records": {
-   "PHI": "13-3",
-   "MIL": "1-13"
+   "PHI": "14-3",
+   "POR": "10-5"
   },
   "spread": "No line yet",
-  "line": "No sportsbook line posted yet (Thursday morning). ESPN's model gives the Sixers about 87%.",
-  "lastMeeting": "Sixers won 127-116 at home on Oct 24. Second of three meetings this season.",
+  "line": "No sportsbook line posted yet (Saturday). ESPN's model has it a coin flip: Portland 50.3%.",
+  "lastMeeting": "First meeting this season. The second is in Portland in late March.",
   "notes": [
-   "The Sixers have won four straight and came back from 17 down at Orlando on Wednesday.",
-   "VJ Edgecombe scored a season-high 24 with 8 rebounds and 6 assists in Orlando.",
-   "Milwaukee has lost 10 straight; the Sixers beat the Bucks 127-116 in October.",
-   "An early Saturday tip after two days off."
+   "The Sixers have won five straight after holding off Milwaukee 132-129 despite Tyler Herro's 50.",
+   "Anfernee Simons faces Portland, where he played his first seven seasons.",
+   "Joel Embiid had a season-high 17 rebounds with 26 points and 9 assists on Saturday.",
+   "Portland is 10-5 and won at Milwaukee on Thursday; Ja Morant is still out."
   ]
  },
  "injuries": [
   {
    "team": "PHI",
-   "player": "Tyrese Maxey",
-   "status": "Questionable",
-   "note": "foot; late scratch Nov 18, no update yet"
+   "player": "Jaylen Brown",
+   "status": "Out",
+   "note": "left hamstring strain; missed Nov 18 and 21, ESPN lists a possible return Nov 23"
   },
   {
    "team": "PHI",
-   "player": "Jaylen Brown",
-   "status": "Out",
-   "note": "left hamstring strain; ESPN lists a possible return Nov 21"
+   "player": "Tyrese Maxey",
+   "status": "Watch",
+   "note": "foot; played 36 minutes Nov 21"
   },
   {
    "team": "PHI",
    "player": "Dean Wade",
-   "status": "Questionable",
-   "note": "hamstring; missed Nov 18"
-  },
-  {
-   "team": "PHI",
-   "player": "Joel Embiid",
-   "status": "Watch",
-   "note": "foot management; played Nov 16 and Nov 18"
+   "status": "Out",
+   "note": "hamstring; possible return Nov 23"
   },
   {
    "team": "PHI",
    "player": "Adem Bona",
    "status": "Out",
-   "note": "back/neck; possible return Nov 21"
-  },
-  {
-   "team": "PHI",
-   "player": "Dominick Barlow",
-   "status": "Out",
-   "note": "back; possible return Nov 21"
+   "note": "back; needs a full-contact practice first"
   },
   {
    "team": "PHI",
@@ -67,243 +55,217 @@
    "note": "Achilles"
   },
   {
-   "team": "MIL",
-   "player": "Ryan Rollins",
-   "status": "Questionable",
-   "note": "illness; missed Nov 18"
+   "team": "POR",
+   "player": "Ja Morant",
+   "status": "Out",
+   "note": "hamstring; ESPN estimates Dec 1"
   },
   {
-   "team": "MIL",
-   "player": "Ousmane Dieng",
+   "team": "POR",
+   "player": "Deni Avdija",
+   "status": "Questionable",
+   "note": "foot; their leading scorer"
+  },
+  {
+   "team": "POR",
+   "player": "Shaedon Sharpe",
    "status": "Out",
-   "note": "fractured left finger"
+   "note": "knee"
+  },
+  {
+   "team": "POR",
+   "player": "Vit Krejci",
+   "status": "Out",
+   "note": "ankle"
+  },
+  {
+   "team": "POR",
+   "player": "Chris Youngblood",
+   "status": "Out",
+   "note": "heel"
   }
  ],
  "slips": [
   {
    "name": "Props only",
    "legsCount": 9,
-   "fdPrice": 829,
-   "boost": 50,
-   "boosted": 1243,
    "legs": [
+    {
+     "player": "Tyrese Maxey",
+     "stat": "pra",
+     "line": 27,
+     "price": null,
+     "priceNote": "price unknown",
+     "tag": "Core",
+     "note": "27+ in 14 of 16 games; 25 against Milwaukee."
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "tpm",
+     "line": 2,
+     "price": null,
+     "priceNote": "price unknown",
+     "tag": "Solid",
+     "note": "2+ threes in 12 of 16 games; 0 for 3 against Milwaukee."
+    },
     {
      "player": "VJ Edgecombe",
      "stat": "pra",
-     "line": 20,
-     "price": -420,
-     "priceNote": "FanDuel",
+     "line": 18,
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "20+ in 12 of 15 games; 38 at Orlando.",
-     "actual": 25,
-     "hit": true
+     "note": "18+ in 13 of 16 games; 21 or more his last five."
     },
     {
-     "player": "Tyrese Maxey",
-     "stat": "pra",
-     "line": 29,
-     "price": -320,
-     "priceNote": "FanDuel",
+     "player": "VJ Edgecombe",
+     "stat": "tpm",
+     "line": 1,
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Core",
-     "note": "29+ in 13 of 15 games; back from the foot issue.",
-     "actual": 25,
-     "hit": false
+     "note": "1+ three in 13 of 15 games; 11 for 11 on our slips."
     },
     {
-     "player": "Tyrese Maxey",
-     "stat": "tpm",
-     "line": 2,
-     "price": -360,
-     "priceNote": "FanDuel",
+     "player": "VJ Edgecombe",
+     "stat": "stl",
+     "line": 1,
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "2+ threes in 12 of 15 games.",
-     "actual": 0,
-     "hit": false
+     "note": "1+ steal in 15 of 16 games."
     },
     {
-     "player": "Anfernee Simons",
-     "stat": "tpm",
-     "line": 2,
-     "price": -330,
-     "priceNote": "FanDuel",
-     "tag": "Risky",
-     "note": "2+ threes in 6 of 15 games; 3 at Orlando.",
-     "actual": 4,
-     "hit": true
+     "player": "LeBron James",
+     "stat": "pra",
+     "line": 24,
+     "price": null,
+     "priceNote": "price unknown",
+     "tag": "Solid",
+     "note": "24+ in 12 of 13 games; 33 against Milwaukee."
+    },
+    {
+     "player": "LeBron James",
+     "stat": "stl",
+     "line": 1,
+     "price": null,
+     "priceNote": "price unknown",
+     "tag": "Core",
+     "note": "1+ steal in 10 of 13 games; 5 for 5 on our slips."
     },
     {
      "player": "Kentavious Caldwell-Pope",
      "stat": "tpm",
      "line": 1,
-     "price": -360,
-     "priceNote": "FanDuel",
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "1+ three in 13 of 15 games; 2 at Orlando.",
-     "actual": 3,
-     "hit": true
-    },
-    {
-     "player": "VJ Edgecombe",
-     "stat": "stl",
-     "line": 1,
-     "price": -440,
-     "priceNote": "FanDuel",
-     "tag": "Solid",
-     "note": "1+ steal in 14 of 15 games.",
-     "actual": 2,
-     "hit": true
-    },
-    {
-     "player": "Tyrese Maxey",
-     "stat": "stl",
-     "line": 1,
-     "price": -320,
-     "priceNote": "FanDuel",
-     "tag": "Solid",
-     "note": "1+ steal in 11 of 15 games.",
-     "actual": 0,
-     "hit": false
-    },
-    {
-     "player": "LeBron James",
-     "stat": "pra",
-     "line": 27,
-     "price": -400,
-     "priceNote": "FanDuel",
-     "tag": "Solid",
-     "note": "27+ in 9 of 12 games; 31 at Orlando.",
-     "actual": 33,
-     "hit": true
+     "note": "1+ three in 14 of 16 games; 3 against Milwaukee."
     },
     {
      "player": "Joel Embiid",
      "stat": "reb",
      "line": 7,
-     "price": -320,
-     "priceNote": "FanDuel",
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Risky",
-     "note": "7+ rebounds in 9 of 13 games, but 4, 5 and 6 his last three.",
-     "actual": 17,
-     "hit": true
+     "note": "7+ rebounds in 10 of 14 games; 17 against Milwaukee, but Portland has Clingan."
     }
    ]
   },
   {
-   "name": "With -2.5",
+   "name": "With +4.5",
    "legsCount": 10,
-   "fdPrice": 1013,
-   "boost": 30,
-   "boosted": 1317,
    "legs": [
+    {
+     "player": "Tyrese Maxey",
+     "stat": "pra",
+     "line": 27,
+     "price": null,
+     "priceNote": "price unknown",
+     "tag": "Core",
+     "note": "27+ in 14 of 16 games; 25 against Milwaukee."
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "tpm",
+     "line": 2,
+     "price": null,
+     "priceNote": "price unknown",
+     "tag": "Solid",
+     "note": "2+ threes in 12 of 16 games; 0 for 3 against Milwaukee."
+    },
     {
      "player": "VJ Edgecombe",
      "stat": "pra",
-     "line": 20,
-     "price": -420,
-     "priceNote": "FanDuel",
+     "line": 18,
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "20+ in 12 of 15 games; 38 at Orlando.",
-     "actual": 25,
-     "hit": true
+     "note": "18+ in 13 of 16 games; 21 or more his last five."
     },
     {
-     "player": "Tyrese Maxey",
-     "stat": "pra",
-     "line": 29,
-     "price": -320,
-     "priceNote": "FanDuel",
+     "player": "VJ Edgecombe",
+     "stat": "tpm",
+     "line": 1,
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Core",
-     "note": "29+ in 13 of 15 games; back from the foot issue.",
-     "actual": 25,
-     "hit": false
+     "note": "1+ three in 13 of 15 games; 11 for 11 on our slips."
     },
     {
-     "player": "Tyrese Maxey",
-     "stat": "tpm",
-     "line": 2,
-     "price": -360,
-     "priceNote": "FanDuel",
+     "player": "VJ Edgecombe",
+     "stat": "stl",
+     "line": 1,
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "2+ threes in 12 of 15 games.",
-     "actual": 0,
-     "hit": false
+     "note": "1+ steal in 15 of 16 games."
     },
     {
-     "player": "Anfernee Simons",
-     "stat": "tpm",
-     "line": 2,
-     "price": -330,
-     "priceNote": "FanDuel",
-     "tag": "Risky",
-     "note": "2+ threes in 6 of 15 games; 3 at Orlando.",
-     "actual": 4,
-     "hit": true
+     "player": "LeBron James",
+     "stat": "pra",
+     "line": 24,
+     "price": null,
+     "priceNote": "price unknown",
+     "tag": "Solid",
+     "note": "24+ in 12 of 13 games; 33 against Milwaukee."
+    },
+    {
+     "player": "LeBron James",
+     "stat": "stl",
+     "line": 1,
+     "price": null,
+     "priceNote": "price unknown",
+     "tag": "Core",
+     "note": "1+ steal in 10 of 13 games; 5 for 5 on our slips."
     },
     {
      "player": "Kentavious Caldwell-Pope",
      "stat": "tpm",
      "line": 1,
-     "price": -360,
-     "priceNote": "FanDuel",
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "1+ three in 13 of 15 games; 2 at Orlando.",
-     "actual": 3,
-     "hit": true
-    },
-    {
-     "player": "VJ Edgecombe",
-     "stat": "stl",
-     "line": 1,
-     "price": -440,
-     "priceNote": "FanDuel",
-     "tag": "Solid",
-     "note": "1+ steal in 14 of 15 games.",
-     "actual": 2,
-     "hit": true
-    },
-    {
-     "player": "Tyrese Maxey",
-     "stat": "stl",
-     "line": 1,
-     "price": -320,
-     "priceNote": "FanDuel",
-     "tag": "Solid",
-     "note": "1+ steal in 11 of 15 games.",
-     "actual": 0,
-     "hit": false
-    },
-    {
-     "player": "LeBron James",
-     "stat": "pra",
-     "line": 27,
-     "price": -400,
-     "priceNote": "FanDuel",
-     "tag": "Solid",
-     "note": "27+ in 9 of 12 games; 31 at Orlando.",
-     "actual": 33,
-     "hit": true
+     "note": "1+ three in 14 of 16 games; 3 against Milwaukee."
     },
     {
      "player": "Joel Embiid",
      "stat": "reb",
      "line": 7,
-     "price": -320,
-     "priceNote": "FanDuel",
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Risky",
-     "note": "7+ rebounds in 9 of 13 games, but 4, 5 and 6 his last three.",
-     "actual": 17,
-     "hit": true
+     "note": "7+ rebounds in 10 of 14 games; 17 against Milwaukee, but Portland has Clingan."
     },
     {
      "player": "76ers",
      "stat": "spread",
-     "line": -2.5,
-     "price": -320,
-     "priceNote": "FanDuel (alternate spread)",
+     "line": 4.5,
+     "price": null,
+     "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "Sixers win by 3+ at home against 1-13 Milwaukee; beat them by 11 in October.",
-     "actual": 3,
-     "hit": true
+     "note": "Near pick'em (ESPN gives Portland 50.3%); Sixers are 6-2 at home and can lose by up to 4."
     }
    ]
   }
@@ -313,153 +275,146 @@
    "player": "Jaylen Brown",
    "stat": "pra",
    "line": 26,
-   "effect": "Swap in for Simons's three if Brown is cleared.",
-   "note": "26+ in 11 of 14 games."
-  },
-  {
-   "player": "Joel Embiid",
-   "stat": "reb",
-   "line": 6,
-   "effect": "Risky add if the slip is short of +1000.",
-   "note": "6+ in 11 of 13 games; 6 at Orlando."
+   "effect": "Swap in for Embiid's rebounds if Brown is cleared.",
+   "note": "26+ in 11 of 14 games; 9 for 11 on our slips."
   },
   {
    "player": "Tyrese Maxey",
    "stat": "stl",
    "line": 1,
-   "effect": "Swap for LeBron's steal if LeBron sits.",
-   "note": "1+ in 11 of 15."
+   "effect": "Third Maxey leg if the slip is short of +1000.",
+   "note": "1+ in 11 of 16; 0 in two of his last five."
+  },
+  {
+   "player": "Anfernee Simons",
+   "stat": "tpm",
+   "line": 1,
+   "effect": "Swap for Embiid's rebounds if Embiid sits or is limited.",
+   "note": "1+ in 14 of 16 games; 4 against Milwaukee."
   },
   {
    "player": "LeBron James",
    "stat": "ast",
    "line": 5,
-   "effect": "Shorter LeBron leg if Maxey sits and LeBron runs the offense.",
-   "note": "5+ in 11 of 12."
+   "effect": "Shorter LeBron leg if Maxey sits.",
+   "note": "5+ in 12 of 13."
   }
  ],
  "tuner": [
-  "If Maxey is out: Simons 2+ threes is too thin (6 of 15); use LeBron 5+ assists and Embiid 6+ rebounds for his two legs.",
-  "Under +800: Maxey to 30+ pts + reb + ast (12 of 15) or LeBron to 26+ (9 of 12).",
-  "Over +1300: drop Maxey's threes or swap Embiid's rebounds out.",
-  "If the moneyline is shorter than about -1000, the With ML slip barely moves; a small spread like -5.5 adds more. Avoid -9.5 or bigger."
+  "If Brown is cleared: add Brown 26+ pts + reb + ast in place of Embiid's rebounds.",
+  "Under +800: Maxey to 29+ pts + reb + ast (13 of 16) or add Maxey 1+ steal.",
+  "Over +1300: drop Embiid's rebounds for Simons 1+ three.",
+  "If the Sixers open as favorites of 3 or more, switch +4.5 to the moneyline or a small spread like -1.5."
  ],
  "analysis": {
-  "game": "2026-11-21",
-  "written": "2026-11-21T12:25:00-05:00",
-  "summary": "The placed slips lean on Maxey and VJ, with LeBron's pts + reb + ast, threes from Simons and Caldwell-Pope, and Embiid's rebounds. Simons 2+ threes and Embiid 7+ rebounds are the shakiest legs, and a lopsided game could cut the starters' fourth-quarter minutes.",
+  "game": "2026-11-23",
+  "written": "2026-11-21T16:45:00-05:00",
+  "summary": "The draft leans on VJ and LeBron, whose legs have been the most reliable on our slips, plus two Maxey legs after his quiet Saturday. Embiid's 7+ rebounds is the shakiest leg against Portland's size, and Brown's hamstring is the question to settle at the refresh.",
   "slips": {
-   "Props only": "Nine props: three Maxey legs, two VJ legs, LeBron, Embiid and two three-point shooters.",
-   "With -2.5": "The same nine plus the Sixers winning by 3 or more at home against a 1-13 team."
+   "Props only": "Nine props: two Maxey, three VJ, two LeBron, Caldwell-Pope's three and Embiid's rebounds.",
+   "With +4.5": "The same nine plus the Sixers losing by no more than 4 in what ESPN rates a coin flip."
   },
   "watch": [
    {
-    "kind": "Weak leg",
-    "title": "Simons needs two threes",
-    "text": "He has made 2+ threes in only 6 of 15 games, the lowest hit rate on the slip.",
+    "kind": "Size",
+    "title": "Embiid vs. Clingan",
+    "text": "Donovan Clingan averages over 10 rebounds, and Embiid's 7+ has hit only 2 of 5 times on our slips.",
     "legs": [
-     "Simons 2+ threes"
+     "Embiid 7+ rebounds"
     ],
     "level": "red"
    },
    {
-    "kind": "Rebounds",
-    "title": "Embiid at 7+",
-    "text": "He hit 7+ in 9 of 13 games but has 4, 5 and 6 in his last three.",
+    "kind": "Bounce-back",
+    "title": "Maxey after a quiet game",
+    "text": "He had 25 pts + reb + ast and no threes against Milwaukee, his first game back from the foot issue. He hit 27+ in 14 of 16.",
     "legs": [
-     "Embiid 7+ rebounds"
+     "Maxey 27+ pts + reb + ast",
+     "Maxey 2+ threes"
     ],
     "level": "brass"
    },
    {
-    "kind": "Blowout",
-    "title": "Starters may sit early",
-    "text": "A big lead over a 1-13 team could shorten the fourth quarter for Maxey, VJ and LeBron, which hurts the pts + reb + ast legs most.",
+    "kind": "Injury",
+    "title": "Brown's hamstring",
+    "text": "If he returns, his usage comes partly out of Maxey's and VJ's shots; if not, KCP keeps starting.",
     "legs": [
-     "Maxey 29+ pts + reb + ast",
-     "VJ 20+ pts + reb + ast",
-     "LeBron 27+ pts + reb + ast"
+     "Maxey 27+ pts + reb + ast",
+     "VJ 18+ pts + reb + ast"
     ],
     "level": "brass"
    },
    {
-    "kind": "Overlap",
-    "title": "Three Maxey legs",
-    "text": "His points, threes and steal all ride on one player's night, a game after he sat with a foot issue.",
+    "kind": "Steals",
+    "title": "VJ and LeBron's hands",
+    "text": "VJ has a steal in 15 of 16 games and LeBron's steal leg is 5 for 5 on our slips.",
     "legs": [
-     "Maxey 29+ pts + reb + ast",
-     "Maxey 2+ threes",
-     "Maxey 1+ steal"
+     "VJ 1+ steal",
+     "LeBron 1+ steal"
     ],
-    "level": "brass"
+    "level": "good"
    }
   ],
   "legs": [
    {
-    "player": "VJ Edgecombe",
-    "stat": "pra",
-    "line": 20,
-    "why": "12 of 15 games; 27 and 38 his last two."
-   },
-   {
     "player": "Tyrese Maxey",
-    "stat": "pra",
-    "line": 29,
-    "why": "13 of 15 games; 34 or more in each of his last three games played."
-   },
-   {
-    "player": "Tyrese Maxey",
-    "stat": "tpm",
-    "line": 2,
-    "why": "12 of 15 games, with 9 threes over his last two games played."
-   },
-   {
-    "player": "Anfernee Simons",
-    "stat": "tpm",
-    "line": 2,
-    "why": "Only 6 of 15 games; 3 at Orlando with Brown out."
-   },
-   {
-    "player": "Kentavious Caldwell-Pope",
-    "stat": "tpm",
-    "line": 1,
-    "why": "13 of 15 games; 2 at Orlando."
-   },
-   {
-    "player": "VJ Edgecombe",
-    "stat": "stl",
-    "line": 1,
-    "why": "14 of 15 games; 2 in each of his last two."
-   },
-   {
-    "player": "Tyrese Maxey",
-    "stat": "stl",
-    "line": 1,
-    "why": "11 of 15 games."
-   },
-   {
-    "player": "LeBron James",
     "stat": "pra",
     "line": 27,
-    "why": "9 of 12 games; 33 and 31 his last two."
+    "why": "14 of 16 games; 34 or more in three straight before Saturday's 25."
    },
    {
-    "player": "Joel Embiid",
-    "stat": "reb",
-    "line": 7,
-    "why": "9 of 13 games, but 4, 5 and 6 his last three. Risky."
+    "player": "Tyrese Maxey",
+    "stat": "tpm",
+    "line": 2,
+    "why": "12 of 16 games; 10 for 14 on our slips. 0 for 3 Saturday."
    },
    {
-    "player": "76ers",
-    "stat": "spread",
-    "line": -2.5,
-    "why": "Home against a 1-13 team they beat 127-116 in October."
+    "player": "VJ Edgecombe",
+    "stat": "pra",
+    "line": 18,
+    "why": "13 of 16 games and 11 of 12 on our slips; 21 or more in each of his last five."
+   },
+   {
+    "player": "VJ Edgecombe",
+    "stat": "tpm",
+    "line": 1,
+    "why": "13 of 15 games and 11 for 11 on our slips."
+   },
+   {
+    "player": "VJ Edgecombe",
+    "stat": "stl",
+    "line": 1,
+    "why": "15 of 16 games; 2 or more in four of his last five."
    },
    {
     "player": "LeBron James",
     "stat": "pra",
     "line": 24,
-    "why": "11 of 12 games; 31 at Orlando."
+    "why": "12 of 13 games; 31 or more in three of his last four."
+   },
+   {
+    "player": "LeBron James",
+    "stat": "stl",
+    "line": 1,
+    "why": "10 of 13 games and 5 for 5 on our slips; 3 Saturday."
+   },
+   {
+    "player": "Kentavious Caldwell-Pope",
+    "stat": "tpm",
+    "line": 1,
+    "why": "14 of 16 games; 3 for 3 on our slips, 3 threes Saturday."
+   },
+   {
+    "player": "Joel Embiid",
+    "stat": "reb",
+    "line": 7,
+    "why": "10 of 14 games; 17 Saturday, but 4, 5 and 6 in the three before. Risky."
+   },
+   {
+    "player": "76ers",
+    "stat": "spread",
+    "line": 4.5,
+    "why": "ESPN calls it even; the Sixers are 14-3 and 6-2 at home, and +4.5 covers a close loss."
    },
    {
     "player": "Jaylen Brown",
@@ -468,10 +423,22 @@
     "why": "11 of 14 games if he's cleared from the hamstring strain."
    },
    {
+    "player": "Tyrese Maxey",
+    "stat": "stl",
+    "line": 1,
+    "why": "11 of 16 games; 7 for 10 on our slips."
+   },
+   {
+    "player": "Anfernee Simons",
+    "stat": "tpm",
+    "line": 1,
+    "why": "14 of 16 games; 4 against Milwaukee."
+   },
+   {
     "player": "LeBron James",
     "stat": "ast",
     "line": 5,
-    "why": "11 of 12 games."
+    "why": "12 of 13 games."
    }
   ]
  }
