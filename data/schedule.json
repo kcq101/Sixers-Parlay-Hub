@@ -2,26 +2,22 @@
  "note": "Claude does the research on a schedule. Kevin builds and locks the final slip in FanDuel.",
  "updates": [
   {
-   "when": "2026-11-23T12:40:00-05:00",
+   "when": "2026-11-25T14:00:00-05:00",
    "what": "Refresh the picks",
-   "detail": "Adds FanDuel prices, the injury report and the line, and swaps any leg whose player is out (watch Brown's hamstring and Maxey's foot).",
-   "status": "failed",
-   "result": "Didn't run: the scheduled task was never created. Kevin's placed slips were added at 7:40 PM."
+   "detail": "Adds FanDuel prices, the injury report and the line, and swaps any leg whose player is out (watch Brown's hamstring and Embiid's illness).",
+   "status": "scheduled"
   },
   {
-   "when": "2026-11-23T18:20:00-05:00",
+   "when": "2026-11-25T16:20:00-05:00",
    "what": "Final check before tip",
    "detail": "Checks the final injury report and starting lineups 40 minutes before tip and swaps any leg whose player is out or limited.",
-   "status": "failed",
-   "result": "Didn't run: the scheduled task was never created. Kevin's placed slips were added at 7:40 PM."
+   "status": "scheduled"
   },
   {
-   "when": "2026-11-23T21:55:00-05:00",
+   "when": "2026-11-25T19:55:00-05:00",
    "what": "Grade the slip",
    "detail": "Pulls the final box score, grades each leg, and adds the game to the season logs.",
-   "status": "done",
-   "doneAt": "2026-11-24T09:30:00-05:00",
-   "result": "Graded by the daily watchdog (the grade task was never created): Portland won 128-111; Props only went 7 of 9 and With +1.5 went 7 of 10."
+   "status": "scheduled"
   }
  ]
 }
