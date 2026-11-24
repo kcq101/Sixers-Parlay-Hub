@@ -1756,6 +1756,165 @@
     }
    ],
    "note": "Lost: all three Maxey legs missed (25 pts + reb + ast vs 29+, 0 threes, 0 steals). Every other leg hit, including Simons 2+ threes (made 4). Spread hit (won by 3)."
+  },
+  {
+   "date": "2026-11-23",
+   "opp": "POR",
+   "home": true,
+   "final": "L 111-128",
+   "label": "props only",
+   "price": 576,
+   "boost": 50,
+   "boosted": 864,
+   "legs": [
+    {
+     "player": "Tyrese Maxey",
+     "stat": "pra",
+     "line": 28,
+     "actual": 29,
+     "hit": true
+    },
+    {
+     "player": "Jaylen Brown",
+     "stat": "pra",
+     "line": 25,
+     "actual": 26,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "pra",
+     "line": 18,
+     "actual": 26,
+     "hit": true
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "tpm",
+     "line": 2,
+     "actual": 2,
+     "hit": true
+    },
+    {
+     "player": "LeBron James",
+     "stat": "pra",
+     "line": 26,
+     "actual": 32,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "stl",
+     "line": 1,
+     "actual": 2,
+     "hit": true
+    },
+    {
+     "player": "Kentavious Caldwell-Pope",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 0,
+     "hit": false
+    },
+    {
+     "player": "LeBron James",
+     "stat": "ast",
+     "line": 6,
+     "actual": 3,
+     "hit": false
+    }
+   ],
+   "note": "Lost by two legs: Caldwell-Pope 0 threes (0 for 4) and LeBron 3 assists. The four pts + reb + ast legs all hit."
+  },
+  {
+   "date": "2026-11-23",
+   "opp": "POR",
+   "home": true,
+   "final": "L 111-128",
+   "label": "with +1.5",
+   "price": 835,
+   "boost": 25,
+   "boosted": 1043,
+   "legs": [
+    {
+     "player": "Tyrese Maxey",
+     "stat": "pra",
+     "line": 28,
+     "actual": 29,
+     "hit": true
+    },
+    {
+     "player": "Jaylen Brown",
+     "stat": "pra",
+     "line": 25,
+     "actual": 26,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "pra",
+     "line": 18,
+     "actual": 26,
+     "hit": true
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "tpm",
+     "line": 2,
+     "actual": 2,
+     "hit": true
+    },
+    {
+     "player": "LeBron James",
+     "stat": "pra",
+     "line": 26,
+     "actual": 32,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "stl",
+     "line": 1,
+     "actual": 2,
+     "hit": true
+    },
+    {
+     "player": "Kentavious Caldwell-Pope",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 0,
+     "hit": false
+    },
+    {
+     "player": "LeBron James",
+     "stat": "ast",
+     "line": 6,
+     "actual": 3,
+     "hit": false
+    },
+    {
+     "player": "76ers",
+     "stat": "spread",
+     "line": 1.5,
+     "actual": -17,
+     "hit": false
+    }
+   ],
+   "note": "Lost by three legs: Caldwell-Pope 0 threes, LeBron 3 assists, and the Sixers lost by 17 (+1.5)."
   }
  ]
 }

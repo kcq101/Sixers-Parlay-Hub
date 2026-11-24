@@ -1,7 +1,7 @@
 {
- "status": "final",
- "statusNote": "Both slips are placed in FanDuel: Props only (9 legs) +576, +864 with a 50% boost; With +1.5 (10 legs) +835, +1043 with a 25% boost. Leg prices weren't on the screenshot. The refresh and final check didn't run, so the injury list is from Saturday except Brown, who is playing.",
- "updated": "2026-11-23T19:40:00-05:00",
+ "status": "graded",
+ "statusNote": "Final: Portland won 128-111 (Embiid out, illness). Props only went 7 of 9 (missed: Caldwell-Pope 0 threes on 0-for-4, LeBron 3 assists vs 6+). With +1.5 went 7 of 10 (same two misses, plus the Sixers lost by 17).",
+ "updated": "2026-11-24T09:30:00-05:00",
  "game": {
   "date": "2026-11-23",
   "tip": "7:00 PM ET",
@@ -100,7 +100,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Core",
-     "note": "28+ in 13 of 16 games; 25 against Milwaukee."
+     "note": "28+ in 13 of 16 games; 25 against Milwaukee.",
+     "actual": 29,
+     "hit": true
     },
     {
      "player": "Jaylen Brown",
@@ -109,7 +111,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Core",
-     "note": "25+ in 11 of 14 games; back from the hamstring."
+     "note": "25+ in 11 of 14 games; back from the hamstring.",
+     "actual": 26,
+     "hit": true
     },
     {
      "player": "VJ Edgecombe",
@@ -118,7 +122,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "18+ in 13 of 16 games; 21 or more his last five."
+     "note": "18+ in 13 of 16 games; 21 or more his last five.",
+     "actual": 26,
+     "hit": true
     },
     {
      "player": "Tyrese Maxey",
@@ -127,7 +133,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "2+ threes in 12 of 16 games; 0 for 3 against Milwaukee."
+     "note": "2+ threes in 12 of 16 games; 0 for 3 against Milwaukee.",
+     "actual": 2,
+     "hit": true
     },
     {
      "player": "LeBron James",
@@ -136,7 +144,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "26+ in 10 of 13 games; 33 against Milwaukee."
+     "note": "26+ in 10 of 13 games; 33 against Milwaukee.",
+     "actual": 32,
+     "hit": true
     },
     {
      "player": "VJ Edgecombe",
@@ -145,7 +155,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Core",
-     "note": "1+ three in 13 of 15 games; 11 for 11 on our slips."
+     "note": "1+ three in 13 of 15 games; 11 for 11 on our slips.",
+     "actual": 1,
+     "hit": true
     },
     {
      "player": "VJ Edgecombe",
@@ -154,7 +166,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "1+ steal in 15 of 16 games."
+     "note": "1+ steal in 15 of 16 games.",
+     "actual": 2,
+     "hit": true
     },
     {
      "player": "Kentavious Caldwell-Pope",
@@ -163,7 +177,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "1+ three in 14 of 16 games; 3 against Milwaukee."
+     "note": "1+ three in 14 of 16 games; 3 against Milwaukee.",
+     "actual": 0,
+     "hit": false
     },
     {
      "player": "LeBron James",
@@ -172,7 +188,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Risky",
-     "note": "6+ assists in 8 of 13 games; 6 in each of his last two."
+     "note": "6+ assists in 8 of 13 games; 6 in each of his last two.",
+     "actual": 3,
+     "hit": false
     }
    ]
   },
@@ -190,7 +208,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Core",
-     "note": "28+ in 13 of 16 games; 25 against Milwaukee."
+     "note": "28+ in 13 of 16 games; 25 against Milwaukee.",
+     "actual": 29,
+     "hit": true
     },
     {
      "player": "Jaylen Brown",
@@ -199,7 +219,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Core",
-     "note": "25+ in 11 of 14 games; back from the hamstring."
+     "note": "25+ in 11 of 14 games; back from the hamstring.",
+     "actual": 26,
+     "hit": true
     },
     {
      "player": "VJ Edgecombe",
@@ -208,7 +230,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "18+ in 13 of 16 games; 21 or more his last five."
+     "note": "18+ in 13 of 16 games; 21 or more his last five.",
+     "actual": 26,
+     "hit": true
     },
     {
      "player": "Tyrese Maxey",
@@ -217,7 +241,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "2+ threes in 12 of 16 games; 0 for 3 against Milwaukee."
+     "note": "2+ threes in 12 of 16 games; 0 for 3 against Milwaukee.",
+     "actual": 2,
+     "hit": true
     },
     {
      "player": "LeBron James",
@@ -226,7 +252,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "26+ in 10 of 13 games; 33 against Milwaukee."
+     "note": "26+ in 10 of 13 games; 33 against Milwaukee.",
+     "actual": 32,
+     "hit": true
     },
     {
      "player": "VJ Edgecombe",
@@ -235,7 +263,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Core",
-     "note": "1+ three in 13 of 15 games; 11 for 11 on our slips."
+     "note": "1+ three in 13 of 15 games; 11 for 11 on our slips.",
+     "actual": 1,
+     "hit": true
     },
     {
      "player": "VJ Edgecombe",
@@ -244,7 +274,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "1+ steal in 15 of 16 games."
+     "note": "1+ steal in 15 of 16 games.",
+     "actual": 2,
+     "hit": true
     },
     {
      "player": "Kentavious Caldwell-Pope",
@@ -253,7 +285,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "1+ three in 14 of 16 games; 3 against Milwaukee."
+     "note": "1+ three in 14 of 16 games; 3 against Milwaukee.",
+     "actual": 0,
+     "hit": false
     },
     {
      "player": "LeBron James",
@@ -262,7 +296,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Risky",
-     "note": "6+ assists in 8 of 13 games; 6 in each of his last two."
+     "note": "6+ assists in 8 of 13 games; 6 in each of his last two.",
+     "actual": 3,
+     "hit": false
     },
     {
      "player": "76ers",
@@ -271,7 +307,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "Sixers +1.5: they can lose by 1. Placed as a near pick'em."
+     "note": "Sixers +1.5: they can lose by 1. Placed as a near pick'em.",
+     "actual": -17,
+     "hit": false
     }
    ]
   }

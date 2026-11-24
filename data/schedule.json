@@ -19,7 +19,9 @@
    "when": "2026-11-23T21:55:00-05:00",
    "what": "Grade the slip",
    "detail": "Pulls the final box score, grades each leg, and adds the game to the season logs.",
-   "status": "scheduled"
+   "status": "done",
+   "doneAt": "2026-11-24T09:30:00-05:00",
+   "result": "Graded by the daily watchdog (the grade task was never created): Portland won 128-111; Props only went 7 of 9 and With +1.5 went 7 of 10."
   }
  ]
 }
