@@ -1,6 +1,6 @@
 {
  "status": "final",
- "statusNote": "Kevin placed \"With +5.5\" on FanDuel at 4:40 PM: +734, +918 with a 25% boost. Props only is still the draft until its FanDuel slip is in.",
+ "statusNote": "Both slips placed on FanDuel at 4:40 PM. Props only: +655, +851 with a 30% boost. With +5.5: +734, +918 with a 25% boost.",
  "updated": "2026-11-25T16:45:00-05:00",
  "game": {
   "date": "2026-11-25",
@@ -53,87 +53,90 @@
   {
    "name": "Props only",
    "legsCount": 9,
+   "fdPrice": 655,
+   "boost": 30,
+   "boosted": 851,
    "legs": [
+    {
+     "player": "VJ Edgecombe",
+     "stat": "pra",
+     "line": 20,
+     "price": -400,
+     "priceNote": "FanDuel, 4:40 PM",
+     "tag": "Solid",
+     "note": "20+ in 14 of 17 games; 26 against Portland."
+    },
     {
      "player": "Tyrese Maxey",
      "stat": "pra",
-     "line": 28,
-     "price": null,
-     "priceNote": "price unknown",
+     "line": 29,
+     "price": -400,
+     "priceNote": "FanDuel, 4:40 PM",
      "tag": "Core",
-     "note": "28+ in 14 of 17 games; 29 against Portland."
+     "note": "29+ in 14 of 17 games; 29 against Portland."
+    },
+    {
+     "player": "Jaylen Brown",
+     "stat": "pra",
+     "line": 27,
+     "price": -420,
+     "priceNote": "FanDuel, 4:40 PM",
+     "tag": "Solid",
+     "note": "27+ in 10 of 15 games; 26 against Portland."
     },
     {
      "player": "Tyrese Maxey",
      "stat": "tpm",
      "line": 2,
-     "price": null,
-     "priceNote": "price unknown",
+     "price": -460,
+     "priceNote": "FanDuel, 4:40 PM",
      "tag": "Solid",
      "note": "2+ threes in 13 of 17 games; 2 against Portland."
-    },
-    {
-     "player": "Jaylen Brown",
-     "stat": "pra",
-     "line": 24,
-     "price": null,
-     "priceNote": "price unknown",
-     "tag": "Core",
-     "note": "24+ in 14 of 15 games; 26 against Portland."
-    },
-    {
-     "player": "Jaylen Brown",
-     "stat": "stl",
-     "line": 1,
-     "price": null,
-     "priceNote": "price unknown",
-     "tag": "Solid",
-     "note": "1+ steal in 13 of 14 games with steals on record."
-    },
-    {
-     "player": "VJ Edgecombe",
-     "stat": "pra",
-     "line": 18,
-     "price": null,
-     "priceNote": "price unknown",
-     "tag": "Solid",
-     "note": "18+ in 14 of 17 games; 26 against Portland."
     },
     {
      "player": "VJ Edgecombe",
      "stat": "tpm",
      "line": 1,
-     "price": null,
-     "priceNote": "price unknown",
+     "price": -560,
+     "priceNote": "FanDuel, 4:40 PM",
      "tag": "Core",
-     "note": "1+ three in 14 of 16 games; 12 for 12 on our slips."
-    },
-    {
-     "player": "VJ Edgecombe",
-     "stat": "stl",
-     "line": 1,
-     "price": null,
-     "priceNote": "price unknown",
-     "tag": "Solid",
-     "note": "1+ steal in 16 of 17 games."
+     "note": "1+ three in 14 of 16 games; hasn't missed on our slips."
     },
     {
      "player": "LeBron James",
-     "stat": "stl",
+     "stat": "tpm",
      "line": 1,
-     "price": null,
-     "priceNote": "price unknown",
-     "tag": "Core",
-     "note": "1+ steal in 10 of 14 games; 5 for 5 on our slips."
+     "price": -370,
+     "priceNote": "FanDuel, 4:40 PM",
+     "tag": "Solid",
+     "note": "1+ three in 8 of 14 games; 4 against Portland."
     },
     {
      "player": "LeBron James",
      "stat": "ast",
-     "line": 5,
-     "price": null,
-     "priceNote": "price unknown",
+     "line": 6,
+     "price": -340,
+     "priceNote": "FanDuel, 4:40 PM",
      "tag": "Solid",
-     "note": "5+ assists in 12 of 14 games; 3 against Portland."
+     "note": "6+ assists in 8 of 14 games; 3 against Portland."
+    },
+    {
+     "player": "LeBron James",
+     "stat": "stl",
+     "line": 1,
+     "price": -245,
+     "priceNote": "FanDuel, 4:40 PM",
+     "tag": "Core",
+     "note": "1+ steal in 10 of 14 games; hasn't missed on our slips."
+    },
+    {
+     "player": "Jabari Walker",
+     "stat": "pts",
+     "line": 5,
+     "price": -245,
+     "priceNote": "FanDuel, 4:40 PM",
+     "tag": "Solid",
+     "note": "5+ points; not in our season log yet."
     }
    ]
   },
@@ -278,7 +281,7 @@
   "written": "2026-11-25T16:45:00-05:00",
   "summary": "The placed slip leans on three pts + reb + ast legs (Maxey, Brown, VJ), Maxey and VJ threes, and three LeBron legs, with the Sixers getting 5.5 points. Miami's fast pace helps the counting stats. The main risks are Brown's hamstring and LeBron needing a three and 6 assists on the same night.",
   "slips": {
-   "Props only": "Nine props: two Maxey, two Brown, three VJ and two LeBron.",
+   "Props only": "The same nine props as the placed slip, without the spread.",
    "With +5.5": "Ten legs: nine props plus the Sixers +5.5, which only loses if Miami wins by 6 or more."
   },
   "watch": [
@@ -324,42 +327,6 @@
    }
   ],
   "legs": [
-   {
-    "player": "Tyrese Maxey",
-    "stat": "pra",
-    "line": 28,
-    "why": "28+ in 14 of 17 and 12 for 14 on our slips; 29 against Portland."
-   },
-   {
-    "player": "Jaylen Brown",
-    "stat": "pra",
-    "line": 24,
-    "why": "24+ in 14 of 15 and 10 for 12 on our slips; 26 in 29 minutes Monday."
-   },
-   {
-    "player": "Jaylen Brown",
-    "stat": "stl",
-    "line": 1,
-    "why": "1+ steal in 13 of the 14 games with steals on record; 2 against Portland."
-   },
-   {
-    "player": "VJ Edgecombe",
-    "stat": "pra",
-    "line": 18,
-    "why": "18+ in 14 of 17 and 12 for 13 on our slips; 26 against Portland."
-   },
-   {
-    "player": "VJ Edgecombe",
-    "stat": "stl",
-    "line": 1,
-    "why": "1+ steal in 16 of 17 and 10 for 11 on our slips."
-   },
-   {
-    "player": "LeBron James",
-    "stat": "ast",
-    "line": 5,
-    "why": "5+ assists in 12 of 14; one shorter than Monday's 6+ that missed with 3."
-   },
    {
     "player": "VJ Edgecombe",
     "stat": "pra",
