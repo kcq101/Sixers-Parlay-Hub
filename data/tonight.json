@@ -1,7 +1,7 @@
 {
- "status": "final",
- "statusNote": "Both slips placed on FanDuel at 4:40 PM. Props only: +655, +851 with a 30% boost. With +5.5: +734, +918 with a 25% boost.",
- "updated": "2026-11-25T16:45:00-05:00",
+ "status": "graded",
+ "statusNote": "Final: Sixers won 111-104. Props only went 8 of 9 (missed: Brown 8 pts + reb + ast after leaving with a hamstring injury in the second quarter). With +5.5 went 9 of 10 (same miss; the +5.5 covered).",
+ "updated": "2026-11-26T09:15:00-05:00",
  "game": {
   "date": "2026-11-25",
   "tip": "5:00 PM ET",
@@ -64,7 +64,9 @@
      "price": -400,
      "priceNote": "FanDuel, 4:40 PM",
      "tag": "Solid",
-     "note": "20+ in 14 of 17 games; 26 against Portland."
+     "note": "20+ in 14 of 17 games; 26 against Portland.",
+     "actual": 29,
+     "hit": true
     },
     {
      "player": "Tyrese Maxey",
@@ -73,7 +75,9 @@
      "price": -400,
      "priceNote": "FanDuel, 4:40 PM",
      "tag": "Core",
-     "note": "29+ in 14 of 17 games; 29 against Portland."
+     "note": "29+ in 14 of 17 games; 29 against Portland.",
+     "actual": 40,
+     "hit": true
     },
     {
      "player": "Jaylen Brown",
@@ -82,7 +86,9 @@
      "price": -420,
      "priceNote": "FanDuel, 4:40 PM",
      "tag": "Solid",
-     "note": "27+ in 10 of 15 games; 26 against Portland."
+     "note": "27+ in 10 of 15 games; 26 against Portland.",
+     "actual": 8,
+     "hit": false
     },
     {
      "player": "Tyrese Maxey",
@@ -91,7 +97,9 @@
      "price": -460,
      "priceNote": "FanDuel, 4:40 PM",
      "tag": "Solid",
-     "note": "2+ threes in 13 of 17 games; 2 against Portland."
+     "note": "2+ threes in 13 of 17 games; 2 against Portland.",
+     "actual": 3,
+     "hit": true
     },
     {
      "player": "VJ Edgecombe",
@@ -100,7 +108,9 @@
      "price": -560,
      "priceNote": "FanDuel, 4:40 PM",
      "tag": "Core",
-     "note": "1+ three in 14 of 16 games; hasn't missed on our slips."
+     "note": "1+ three in 14 of 16 games; hasn't missed on our slips.",
+     "actual": 2,
+     "hit": true
     },
     {
      "player": "LeBron James",
@@ -109,7 +119,9 @@
      "price": -370,
      "priceNote": "FanDuel, 4:40 PM",
      "tag": "Solid",
-     "note": "1+ three in 8 of 14 games; 4 against Portland."
+     "note": "1+ three in 8 of 14 games; 4 against Portland.",
+     "actual": 4,
+     "hit": true
     },
     {
      "player": "LeBron James",
@@ -118,7 +130,9 @@
      "price": -340,
      "priceNote": "FanDuel, 4:40 PM",
      "tag": "Solid",
-     "note": "6+ assists in 8 of 14 games; 3 against Portland."
+     "note": "6+ assists in 8 of 14 games; 3 against Portland.",
+     "actual": 12,
+     "hit": true
     },
     {
      "player": "LeBron James",
@@ -127,7 +141,9 @@
      "price": -245,
      "priceNote": "FanDuel, 4:40 PM",
      "tag": "Core",
-     "note": "1+ steal in 10 of 14 games; hasn't missed on our slips."
+     "note": "1+ steal in 10 of 14 games; hasn't missed on our slips.",
+     "actual": 1,
+     "hit": true
     },
     {
      "player": "Jabari Walker",
@@ -136,7 +152,9 @@
      "price": -245,
      "priceNote": "FanDuel, 4:40 PM",
      "tag": "Solid",
-     "note": "5+ points; not in our season log yet."
+     "note": "5+ points; not in our season log yet.",
+     "actual": 7,
+     "hit": true
     }
    ]
   },
@@ -154,7 +172,9 @@
      "price": -400,
      "priceNote": "FanDuel, 4:40 PM",
      "tag": "Solid",
-     "note": "20+ in 14 of 17 games; 26 against Portland."
+     "note": "20+ in 14 of 17 games; 26 against Portland.",
+     "actual": 29,
+     "hit": true
     },
     {
      "player": "Tyrese Maxey",
@@ -163,7 +183,9 @@
      "price": -400,
      "priceNote": "FanDuel, 4:40 PM",
      "tag": "Core",
-     "note": "29+ in 14 of 17 games; 29 against Portland."
+     "note": "29+ in 14 of 17 games; 29 against Portland.",
+     "actual": 40,
+     "hit": true
     },
     {
      "player": "Jaylen Brown",
@@ -172,7 +194,9 @@
      "price": -420,
      "priceNote": "FanDuel, 4:40 PM",
      "tag": "Solid",
-     "note": "27+ in 10 of 15 games; 26 against Portland."
+     "note": "27+ in 10 of 15 games; 26 against Portland.",
+     "actual": 8,
+     "hit": false
     },
     {
      "player": "Tyrese Maxey",
@@ -181,7 +205,9 @@
      "price": -460,
      "priceNote": "FanDuel, 4:40 PM",
      "tag": "Solid",
-     "note": "2+ threes in 13 of 17 games; 2 against Portland."
+     "note": "2+ threes in 13 of 17 games; 2 against Portland.",
+     "actual": 3,
+     "hit": true
     },
     {
      "player": "VJ Edgecombe",
@@ -190,7 +216,9 @@
      "price": -560,
      "priceNote": "FanDuel, 4:40 PM",
      "tag": "Core",
-     "note": "1+ three in 14 of 16 games; hasn't missed on our slips."
+     "note": "1+ three in 14 of 16 games; hasn't missed on our slips.",
+     "actual": 2,
+     "hit": true
     },
     {
      "player": "LeBron James",
@@ -199,7 +227,9 @@
      "price": -370,
      "priceNote": "FanDuel, 4:40 PM",
      "tag": "Solid",
-     "note": "1+ three in 8 of 14 games; 4 against Portland."
+     "note": "1+ three in 8 of 14 games; 4 against Portland.",
+     "actual": 4,
+     "hit": true
     },
     {
      "player": "LeBron James",
@@ -208,7 +238,9 @@
      "price": -340,
      "priceNote": "FanDuel, 4:40 PM",
      "tag": "Solid",
-     "note": "6+ assists in 8 of 14 games; 3 against Portland."
+     "note": "6+ assists in 8 of 14 games; 3 against Portland.",
+     "actual": 12,
+     "hit": true
     },
     {
      "player": "LeBron James",
@@ -217,7 +249,9 @@
      "price": -245,
      "priceNote": "FanDuel, 4:40 PM",
      "tag": "Core",
-     "note": "1+ steal in 10 of 14 games; hasn't missed on our slips."
+     "note": "1+ steal in 10 of 14 games; hasn't missed on our slips.",
+     "actual": 1,
+     "hit": true
     },
     {
      "player": "Jabari Walker",
@@ -226,7 +260,9 @@
      "price": -245,
      "priceNote": "FanDuel, 4:40 PM",
      "tag": "Solid",
-     "note": "5+ points; not in our season log yet."
+     "note": "5+ points; not in our season log yet.",
+     "actual": 7,
+     "hit": true
     },
     {
      "player": "76ers",
@@ -235,7 +271,9 @@
      "price": -194,
      "priceNote": "FanDuel, 4:40 PM",
      "tag": "Solid",
-     "note": "Sixers +5.5: they cover unless they lose by 6 or more."
+     "note": "Sixers +5.5: they cover unless they lose by 6 or more.",
+     "actual": 7,
+     "hit": true
     }
    ]
   }

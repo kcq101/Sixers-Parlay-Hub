@@ -1915,6 +1915,165 @@
     }
    ],
    "note": "Lost by three legs: Caldwell-Pope 0 threes, LeBron 3 assists, and the Sixers lost by 17 (+1.5)."
+  },
+  {
+   "date": "2026-11-25",
+   "opp": "MIA",
+   "home": true,
+   "final": "W 111-104",
+   "label": "props only",
+   "price": 655,
+   "boost": 30,
+   "boosted": 851,
+   "legs": [
+    {
+     "player": "VJ Edgecombe",
+     "stat": "pra",
+     "line": 20,
+     "actual": 29,
+     "hit": true
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "pra",
+     "line": 29,
+     "actual": 40,
+     "hit": true
+    },
+    {
+     "player": "Jaylen Brown",
+     "stat": "pra",
+     "line": 27,
+     "actual": 8,
+     "hit": false
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "tpm",
+     "line": 2,
+     "actual": 3,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 2,
+     "hit": true
+    },
+    {
+     "player": "LeBron James",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 4,
+     "hit": true
+    },
+    {
+     "player": "LeBron James",
+     "stat": "ast",
+     "line": 6,
+     "actual": 12,
+     "hit": true
+    },
+    {
+     "player": "LeBron James",
+     "stat": "stl",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    },
+    {
+     "player": "Jabari Walker",
+     "stat": "pts",
+     "line": 5,
+     "actual": 7,
+     "hit": true
+    }
+   ],
+   "note": "Lost by one leg: Brown had 8 pts + reb + ast (needed 27) after leaving with a hamstring injury in the second quarter."
+  },
+  {
+   "date": "2026-11-25",
+   "opp": "MIA",
+   "home": true,
+   "final": "W 111-104",
+   "label": "with +5.5",
+   "price": 734,
+   "boost": 25,
+   "boosted": 918,
+   "legs": [
+    {
+     "player": "VJ Edgecombe",
+     "stat": "pra",
+     "line": 20,
+     "actual": 29,
+     "hit": true
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "pra",
+     "line": 29,
+     "actual": 40,
+     "hit": true
+    },
+    {
+     "player": "Jaylen Brown",
+     "stat": "pra",
+     "line": 27,
+     "actual": 8,
+     "hit": false
+    },
+    {
+     "player": "Tyrese Maxey",
+     "stat": "tpm",
+     "line": 2,
+     "actual": 3,
+     "hit": true
+    },
+    {
+     "player": "VJ Edgecombe",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 2,
+     "hit": true
+    },
+    {
+     "player": "LeBron James",
+     "stat": "tpm",
+     "line": 1,
+     "actual": 4,
+     "hit": true
+    },
+    {
+     "player": "LeBron James",
+     "stat": "ast",
+     "line": 6,
+     "actual": 12,
+     "hit": true
+    },
+    {
+     "player": "LeBron James",
+     "stat": "stl",
+     "line": 1,
+     "actual": 1,
+     "hit": true
+    },
+    {
+     "player": "Jabari Walker",
+     "stat": "pts",
+     "line": 5,
+     "actual": 7,
+     "hit": true
+    },
+    {
+     "player": "76ers",
+     "stat": "spread",
+     "line": 5.5,
+     "actual": 7,
+     "hit": true
+    }
+   ],
+   "note": "Lost by one leg: Brown had 8 pts + reb + ast (needed 27) after leaving with a hamstring injury in the second quarter. The +5.5 covered."
   }
  ]
 }
