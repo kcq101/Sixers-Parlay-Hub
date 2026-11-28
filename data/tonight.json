@@ -1,7 +1,7 @@
 {
- "status": "draft",
- "statusNote": "Draft written Thursday morning. Brown (hamstring imaging) and Embiid (illness) are both uncertain, so Brown's usual leg is on the bench for now. The refresh at 12:40 PM Friday adds prices, the injury report and any swaps.",
- "updated": "2026-11-26T09:30:00-05:00",
+ "status": "graded",
+ "statusNote": "Final: Sixers won 111-87 and clinched NBA Cup Group B. Props only went 6 of 9 and With -2.5 went 6 of 9 (both missed Maxey 21 pts + reb + ast, Maxey 0 threes and LeBron 0 steals; the -2.5 covered by 24). Neither slip was placed. Brown sat (hamstring); Embiid returned with 14 and 11.",
+ "updated": "2026-11-28T09:00:00-05:00",
  "game": {
   "date": "2026-11-27",
   "tip": "7:30 PM ET",
@@ -91,7 +91,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Core",
-     "note": "29+ in 15 of 18 games; 40 against Miami."
+     "note": "29+ in 15 of 18 games; 40 against Miami.",
+     "actual": 21,
+     "hit": false
     },
     {
      "player": "Tyrese Maxey",
@@ -100,7 +102,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "2+ threes in 14 of 18 games; 3 against Miami."
+     "note": "2+ threes in 14 of 18 games; 3 against Miami.",
+     "actual": 0,
+     "hit": false
     },
     {
      "player": "VJ Edgecombe",
@@ -109,7 +113,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "20+ in 15 of 18 games; 10 for 10 on our slips."
+     "note": "20+ in 15 of 18 games; 10 for 10 on our slips.",
+     "actual": 21,
+     "hit": true
     },
     {
      "player": "VJ Edgecombe",
@@ -118,7 +124,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Core",
-     "note": "1+ three in 15 of 17 games; hasn't missed on our slips."
+     "note": "1+ three in 15 of 17 games; hasn't missed on our slips.",
+     "actual": 1,
+     "hit": true
     },
     {
      "player": "VJ Edgecombe",
@@ -127,7 +135,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "1+ steal in 17 of 18 games; 2 in each of his last five."
+     "note": "1+ steal in 17 of 18 games; 2 in each of his last five.",
+     "actual": 1,
+     "hit": true
     },
     {
      "player": "LeBron James",
@@ -136,7 +146,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "24+ in 14 of 15 games; 47 against Miami."
+     "note": "24+ in 14 of 15 games; 47 against Miami.",
+     "actual": 34,
+     "hit": true
     },
     {
      "player": "LeBron James",
@@ -145,7 +157,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Core",
-     "note": "1+ steal in 11 of 15 games; hasn't missed on our slips."
+     "note": "1+ steal in 11 of 15 games; hasn't missed on our slips.",
+     "actual": 0,
+     "hit": false
     },
     {
      "player": "LeBron James",
@@ -154,7 +168,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "5+ rebounds in 13 of 15 games; 10 against Miami."
+     "note": "5+ rebounds in 13 of 15 games; 10 against Miami.",
+     "actual": 7,
+     "hit": true
     },
     {
      "player": "Anfernee Simons",
@@ -163,7 +179,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "1+ three in 15 of 18 games; 2 against Miami."
+     "note": "1+ three in 15 of 18 games; 2 against Miami.",
+     "actual": 5,
+     "hit": true
     }
    ]
   },
@@ -178,7 +196,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Core",
-     "note": "29+ in 15 of 18 games; 40 against Miami."
+     "note": "29+ in 15 of 18 games; 40 against Miami.",
+     "actual": 21,
+     "hit": false
     },
     {
      "player": "Tyrese Maxey",
@@ -187,7 +207,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "2+ threes in 14 of 18 games; 3 against Miami."
+     "note": "2+ threes in 14 of 18 games; 3 against Miami.",
+     "actual": 0,
+     "hit": false
     },
     {
      "player": "VJ Edgecombe",
@@ -196,7 +218,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "20+ in 15 of 18 games; 10 for 10 on our slips."
+     "note": "20+ in 15 of 18 games; 10 for 10 on our slips.",
+     "actual": 21,
+     "hit": true
     },
     {
      "player": "VJ Edgecombe",
@@ -205,7 +229,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Core",
-     "note": "1+ three in 15 of 17 games; hasn't missed on our slips."
+     "note": "1+ three in 15 of 17 games; hasn't missed on our slips.",
+     "actual": 1,
+     "hit": true
     },
     {
      "player": "VJ Edgecombe",
@@ -214,7 +240,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "1+ steal in 17 of 18 games; 2 in each of his last five."
+     "note": "1+ steal in 17 of 18 games; 2 in each of his last five.",
+     "actual": 1,
+     "hit": true
     },
     {
      "player": "LeBron James",
@@ -223,7 +251,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "24+ in 14 of 15 games; 47 against Miami."
+     "note": "24+ in 14 of 15 games; 47 against Miami.",
+     "actual": 34,
+     "hit": true
     },
     {
      "player": "LeBron James",
@@ -232,7 +262,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Core",
-     "note": "1+ steal in 11 of 15 games; hasn't missed on our slips."
+     "note": "1+ steal in 11 of 15 games; hasn't missed on our slips.",
+     "actual": 0,
+     "hit": false
     },
     {
      "player": "LeBron James",
@@ -241,7 +273,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "5+ rebounds in 13 of 15 games; 10 against Miami."
+     "note": "5+ rebounds in 13 of 15 games; 10 against Miami.",
+     "actual": 7,
+     "hit": true
     },
     {
      "player": "76ers",
@@ -250,7 +284,9 @@
      "price": null,
      "priceNote": "price unknown",
      "tag": "Solid",
-     "note": "Sixers -2.5: they need to win by 3 or more. FanDuel has them -3.5."
+     "note": "Sixers -2.5: they need to win by 3 or more. FanDuel has them -3.5.",
+     "actual": 24,
+     "hit": true
     }
    ]
   }

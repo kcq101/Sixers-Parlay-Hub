@@ -5,19 +5,25 @@
    "when": "2026-11-27T12:40:00-05:00",
    "what": "Refresh the picks",
    "detail": "Adds FanDuel prices, the injury report and the line, and swaps any leg whose player is out (watch Brown's hamstring and Embiid's illness).",
-   "status": "scheduled"
+   "status": "failed",
+   "result": "Never ran: its scheduled task wasn't created. The watchdog caught it Saturday morning.",
+   "doneAt": "2026-11-28T09:00:00-05:00"
   },
   {
    "when": "2026-11-27T18:50:00-05:00",
    "what": "Final check before tip",
    "detail": "Checks the final injury report and starting lineups 40 minutes before tip and swaps any leg whose player is out or limited.",
-   "status": "scheduled"
+   "status": "failed",
+   "result": "Never ran: its scheduled task wasn't created.",
+   "doneAt": "2026-11-28T09:00:00-05:00"
   },
   {
    "when": "2026-11-27T22:25:00-05:00",
    "what": "Grade the slip",
    "detail": "Pulls the final box score, grades each leg, and adds the game to the season logs.",
-   "status": "scheduled"
+   "status": "done",
+   "result": "Graded by the watchdog Saturday morning: Sixers won 111-87; both draft slips went 6 of 9 (neither was placed).",
+   "doneAt": "2026-11-28T09:00:00-05:00"
   }
  ]
 }

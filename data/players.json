@@ -1,6 +1,6 @@
 {
- "_note": "2026-27 regular-season game logs (stl/blk/3pm included). A player missing from a date did not play or isn't in the feed. Brown's Nov 8 line is from Basketball-Reference (the box-score feed leaves him out). Nov 10 vs BOS: no final full box score was reachable; lines are from Bleacher Report, NBC Sports and Yardbarker recaps. Null = not found yet (VJ's threes; Simons has points only; Caldwell-Pope missing). Dean Wade: only Oct 24, Oct 31 and Nov 10 are filled so far (from the box-score feed). Nov 12 vs TOR: from ESPN's box score (rows matched to players by roster order; team totals check out). LeBron James out (back). Nov 15 vs IND: from the NBA.com game page, cross-checked with Bleacher Report and TheScore recaps; Embiid out (foot). Nov 16 at BKN: box-score feed for everyone except Brown; Brown's 31/13/4 and 3 threes from Bleacher Report and ClutchPoints (steals/blocks not found). LeBron James out (injury management). Nov 18 at ORL: points/rebounds/assists/steals/blocks from Bleacher Report's box score; threes from CBS Sports and Covers (VJ's 4 also in the AP recap). Maxey, Brown and Wade out. Nov 21 vs MIL: full box from Fantasy Roundup (fsroundup.com), cross-checked with Bleacher Report's box score; Brown and Wade out. Nov 23 vs POR: full box from SI.com's box score, cross-checked with Bleacher Report (pts/reb/ast/stl/blk) and the NBC10 recap; Embiid out (illness). Nov 25 vs MIA: full box from DigestSports, cross-checked with Bleacher Report (pts/reb/ast/stl/blk); Embiid out (illness); Brown left in the second quarter (hamstring). Jabari Walker's log starts Nov 25.",
- "updated": "2026-11-26T09:15:00-05:00",
+ "_note": "2026-27 regular-season game logs (stl/blk/3pm included). A player missing from a date did not play or isn't in the feed. Brown's Nov 8 line is from Basketball-Reference (the box-score feed leaves him out). Nov 10 vs BOS: no final full box score was reachable; lines are from Bleacher Report, NBC Sports and Yardbarker recaps. Null = not found yet (VJ's threes; Simons has points only; Caldwell-Pope missing). Dean Wade: only Oct 24, Oct 31 and Nov 10 are filled so far (from the box-score feed). Nov 12 vs TOR: from ESPN's box score (rows matched to players by roster order; team totals check out). LeBron James out (back). Nov 15 vs IND: from the NBA.com game page, cross-checked with Bleacher Report and TheScore recaps; Embiid out (foot). Nov 16 at BKN: box-score feed for everyone except Brown; Brown's 31/13/4 and 3 threes from Bleacher Report and ClutchPoints (steals/blocks not found). LeBron James out (injury management). Nov 18 at ORL: points/rebounds/assists/steals/blocks from Bleacher Report's box score; threes from CBS Sports and Covers (VJ's 4 also in the AP recap). Maxey, Brown and Wade out. Nov 21 vs MIL: full box from Fantasy Roundup (fsroundup.com), cross-checked with Bleacher Report's box score; Brown and Wade out. Nov 23 vs POR: full box from SI.com's box score, cross-checked with Bleacher Report (pts/reb/ast/stl/blk) and the NBC10 recap; Embiid out (illness). Nov 25 vs MIA: full box from DigestSports, cross-checked with Bleacher Report (pts/reb/ast/stl/blk); Embiid out (illness); Brown left in the second quarter (hamstring). Jabari Walker's log starts Nov 25. Nov 27 at IND: full box from CBS Sports' box score, cross-checked with the NBA.com and NBC Sports Philadelphia recaps (LeBron 21/7/6 with 3 threes, Embiid 14/11, Simons 19 with 5 threes); Brown and Wade out.",
+ "updated": "2026-11-28T09:00:00-05:00",
  "games": [
   {
    "date": "2026-10-20",
@@ -115,6 +115,12 @@
    "opp": "MIA",
    "home": true,
    "result": "W 111-104"
+  },
+  {
+   "date": "2026-11-27",
+   "opp": "IND",
+   "home": false,
+   "result": "W 111-87"
   }
  ],
  "players": {
@@ -280,6 +286,15 @@
     "stl": 1,
     "blk": 0,
     "tpm": 3
+   },
+   {
+    "date": "2026-11-27",
+    "pts": 14,
+    "reb": 1,
+    "ast": 6,
+    "stl": 0,
+    "blk": 0,
+    "tpm": 0
    }
   ],
   "VJ Edgecombe": [
@@ -444,6 +459,15 @@
     "stl": 2,
     "blk": 0,
     "tpm": 2
+   },
+   {
+    "date": "2026-11-27",
+    "pts": 9,
+    "reb": 5,
+    "ast": 7,
+    "stl": 1,
+    "blk": 1,
+    "tpm": 1
    }
   ],
   "LeBron James": [
@@ -581,6 +605,15 @@
     "stl": 1,
     "blk": 0,
     "tpm": 4
+   },
+   {
+    "date": "2026-11-27",
+    "pts": 21,
+    "reb": 7,
+    "ast": 6,
+    "stl": 0,
+    "blk": 1,
+    "tpm": 3
    }
   ],
   "Joel Embiid": [
@@ -709,6 +742,15 @@
     "stl": 0,
     "blk": 1,
     "tpm": 0
+   },
+   {
+    "date": "2026-11-27",
+    "pts": 14,
+    "reb": 11,
+    "ast": 3,
+    "stl": 3,
+    "blk": 0,
+    "tpm": 1
    }
   ],
   "Jaylen Brown": [
@@ -1028,6 +1070,15 @@
     "stl": 1,
     "blk": 0,
     "tpm": 2
+   },
+   {
+    "date": "2026-11-27",
+    "pts": 19,
+    "reb": 2,
+    "ast": 3,
+    "stl": 1,
+    "blk": 0,
+    "tpm": 5
    }
   ],
   "Kentavious Caldwell-Pope": [
@@ -1192,6 +1243,15 @@
     "stl": 2,
     "blk": 0,
     "tpm": 1
+   },
+   {
+    "date": "2026-11-27",
+    "pts": 8,
+    "reb": 0,
+    "ast": 1,
+    "stl": 0,
+    "blk": 0,
+    "tpm": 2
    }
   ],
   "Dean Wade": [
